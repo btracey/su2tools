@@ -19,8 +19,8 @@ func (d *su2ToGoFieldMapWriter) init() (err error) {
 		return err
 	}
 	d.File.WriteString("\n")
-	d.File.WriteString("//goToSU2FieldMap is a map that translates the go field to an SU2 field\n")
-	d.File.WriteString("var goToSU2FieldMap map[string]string = map[string]string{\n")
+	d.File.WriteString("//su2ToGoFieldMap is a map that translates the go field to an SU2 field\n")
+	d.File.WriteString("var su2ToGoFieldMap map[string]string = map[string]string{\n")
 	return nil
 }
 

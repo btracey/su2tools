@@ -48,6 +48,7 @@ func (d *optionMapWriter) add_option(option *pythonOption) error {
 	d.File.WriteString("Default: \"" + option.defaultO + "\",\n")
 	d.File.WriteString("Type: \"" + option.go_type + "\",\n")
 	d.File.WriteString("StructName: \"" + option.structName + "\",\n")
+	d.File.WriteString("ValueString: \"" + option.values + "\",")
 	d.File.WriteString("enumOptions: []string{\n")
 	for _, val := range option.enumOptions {
 		d.File.WriteString("\"" + val + "\"" + ",\n")

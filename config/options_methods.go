@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"fmt"
+	//"fmt"
 )
 
 func is_enum_option(t string) bool {
@@ -38,45 +38,43 @@ func (o *Options) IsEnum(field string) bool {
 // SetEnum  sets the enumerable field, checking that it is a valid option.
 // Returns an error if it is not a valid option or if
 func (o *Options) SetEnum(field string, val string) error {
+	// First, check that it's a real field
+	option, ok := optionMap[field]
+	if !ok {
+		return errors.New("setenum: " + field + " is not a valid field")
+	}
+	// check that the value is any of the possible options
+	for _, str := range option.enumOptions {
+		if str == val {
+			reflect.ValueOf(o).Elem().FieldByName(field).SetString(val)
+			return nil
+		}
+	}
+	return errors.New("setenum: " + " val is not a valid option " + option.ValueString)
+}
+
+func (o *Options) SetField(field string, val interface{}) error {
+	option, ok := optionMap[field]
+	if !ok {
+		return errors.New("setfields: " + field + " is not a field")
+	}
+	if is_enum_option(option.OptionTypeName) && option.OptionTypeName != "EnumListOption" {
+		err := o.SetEnum(field, val.(string))
+		if err != nil {
+			errors.New("setfelids: error setting field " + field + ": " + err.Error())
+		}
+		return nil
+	}
+	reflect.ValueOf(o).Elem().FieldByName(field).Set(reflect.ValueOf(val))
 	return nil
 }
 
 // SetFields sets the fields of the options structure
-func (o *Options) SetFields(fields map[string]interface{}) error {
-	for field, value := range fields {
-		option, ok := optionMap[field]
-		if !ok {
-			return errors.New("setfields: " + field + " is not a field")
-		}
-		if is_enum_option(option.OptionTypeName) {
-			err := o.SetEnum(field, value)
-			if err != nil {
-				errors.New("setfelids: error setting field " + field + ": " + err.Error())
-			}
-			continue
-		}
-		mut := reflect.ValueOf(o).Elem()
-		switch t := value.(type) {
-		case float64:
-			mut.FieldByName(field).SetFloat(t)
-		case string:
-			mut.FieldByName(field).SetString(t)
-		case bool:
-			mut.FieldByName(field).SetBool(t)
-		case []float64:
-			iface := mut.FieldByName(field).Interface()
-			slice := iface.([]float64)
-			slice = t
-			fmt.Println("confirm this works")
-		case []string:
-			iface := mut.FieldByName(field).Interface()
-			slice := iface.([]string)
-			slice = t
-			fmt.Println("confirm this works")
-		default:
-			panic("field type not implemented")
-		}
+func (o *Options) SetFields(fieldMap map[string]interface{}) error {
+	for field, value := range fieldMap {
+		o.SetField(field, value)
 	}
+	return nil
 }
 
 // WriteConfig writes a config file to the writer with the options given in list
@@ -88,7 +86,6 @@ func (o *Options) WriteConfig(writer io.Writer, list OptionList) error {
 	currentHeading := -1
 	for _, option := range optionOrder {
 		catNumber := categoryOrder[option.Category]
-		fmt.Println("cat # = ", catNumber)
 		if catNumber > currentHeading {
 			buf.WriteString("\n\n")
 			buf.WriteString("%" + categoryBookend + option.Category + categoryBookend + "% \n")
@@ -158,49 +155,96 @@ func (o *Options) marshalSU2StructValue(structName string) ([]byte, error) {
 }
 
 func ReadConfig(reader io.Reader) (*Options, error) {
-	setter := make(map[string]interface{})
+	//setter := make(map[string]interface{})
 	// turn it into a scanner
 	scanner := bufio.NewScanner(reader)
 
+	options := NewOptions()
 	for scanner.Scan() {
+		if len(scanner.Bytes()) == 0 {
+			continue
+		}
 		if scanner.Bytes()[0] == '%' {
 			continue
 		}
-		line = string(scanner.Bytes())
+		line := string(scanner.Bytes())
 		// split the line at the equals sign
 		parts := strings.Split(line, "=")
 		if len(parts) > 2 {
-			return errors.New("readconfig: option line has two equals signs")
+			return nil, errors.New("readconfig: option line has two equals signs")
 		}
 		for i := range parts {
 			parts[i] = strings.TrimSpace(parts[i])
 		}
-		goFieldName, ok = su2ToGoFieldMap[parts[0]]
+		goFieldName, ok := su2ToGoFieldMap[parts[0]]
 		if !ok {
-			return errors.New("readconfig: option " + parts[0] + " not in struct")
+			return nil, errors.New("readconfig: option " + parts[0] + " not in struct")
 		}
 		option := optionMap[goFieldName]
 		value, err := valueFromString(option, parts[1])
-
-		//LEFT OFF HERE AND VALUE_FROM_STRING
+		if err != nil {
+			return nil, errors.New("readconfig: error parsing " + parts[0] + ": " + err.Error())
+		}
+		options.SetField(goFieldName, value)
 	}
-
-	options := NewOptions()
-	_ = scanner
-	_ = setter
-	return nil
+	err := scanner.Err()
+	if err != nil {
+		return nil, errors.New("readconfig: " + err.Error())
+	}
+	//_ = setter
+	return options, nil
 }
 
-// TODO: Avoid replication in the generator
-
-func valueFromString(option OptionPrint, str string) (interface{}, error) {
-
-	//LEFT OFF HERE
-
+func valueFromString(option *OptionPrint, str string) (interface{}, error) {
 	switch option.Type {
 	case "float64":
 		return strconv.ParseFloat(str, 64)
+	case "bool":
+		switch str {
+		case "NO":
+			return false, nil
+		case "YES":
+			return true, nil
+		default:
+			return false, errors.New("boolean string not YES or NO")
+		}
+	case "string":
+		return str, nil
+	case "[]float64":
+		// parse the string
+		strs, err := splitStringList(str)
+		if err != nil {
+			return nil, err
+		}
+		fs := make([]float64, len(strs))
+		for i, str := range strs {
+			f, err := strconv.ParseFloat(str, 64)
+			if err != nil {
+				return nil, err
+			}
+			fs[i] = f
+		}
+		return fs, nil
+	case "[]string":
+		return splitStringList(str)
 	default:
-		return nil, "Unknown case"
+		return nil, errors.New("Unknown case " + option.Type)
 	}
+}
+
+// CODE DUPLICATION HERE WITH CODE GENERATOR
+func splitStringList(str string) ([]string, error) {
+	// Check that the beginning and ending are ( and ]
+	if str[0] != '(' {
+		return nil, errors.New("no ( at start of string")
+	}
+	if str[len(str)-1] != ')' {
+		return nil, errors.New("no ) at end of string")
+	}
+	str = str[1 : len(str)-1]
+	strs := strings.Split(str, ",")
+	for i := range strs {
+		strs[i] = strings.TrimSpace(strs[i])
+	}
+	return strs, nil
 }

@@ -73,6 +73,7 @@ type OptionPrint struct {
 	Type           string // go type string
 	StructName     string
 	enumOptions    []string
+	ValueString    string //enum string list
 }
 
 // OptionList is a list of options to print while writing the config file

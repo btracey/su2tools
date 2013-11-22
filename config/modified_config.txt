@@ -1,0 +1,1402 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                               %
+% Stanford University unstructured (SU2) configuration file     %
+%                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% ----------- Problem Definition ----------- % 
+
+% Axisymmetric simulation
+% Type: SpecialOption Default: NO
+AXISYMMETRIC= NO
+
+% Write extra output
+% Type: SpecialOption Default: NO
+EXTRA_OUTPUT= NO
+
+% Add the gravity force
+% Type: SpecialOption Default: NO
+GRAVITY_FORCE= NO
+
+% Specify transition model
+% Type: EnumOption Default: NONE
+% Options: (NONE, LM )
+KIND_TRANS_MODEL= NONE
+
+% Specify turbulence model
+% Type: EnumOption Default: NONE
+% Options: (NONE, SA, SST, ML )
+KIND_TURB_MODEL= NONE
+
+% Perform a low fidelity simulation
+% Type: SpecialOption Default: NO
+LOW_FIDELITY_SIMULATION= NO
+
+% Mathematical problem
+% Type: MathProblem Default: DIRECT
+% Options: (DIRECT, ADJOINT, LINEARIZED )
+MATH_PROBLEM= DIRECT
+
+% Location of the check for the proper loading of the turbulence model
+% Type: ScalarOption Default: check_model.txt
+ML_TURB_MODEL_CHECK_FILE= check_model.txt
+
+% Location of the turb model itself
+% Type: ScalarOption Default: model.json
+ML_TURB_MODEL_FILE= model.json
+
+% Physical governing equations
+% Type: EnumOption Default: NONE
+% Options: (NONE, EULER, NAVIER_STOKES, RANS, POISSON_EQUATION, ADJ_EULER, ADJ_NAVIER_STOKES, ADJ_RANS, LIN_EULER, LIN_NAVIER_STOKES, TNE2_EULER, TNE2_NAVIER_STOKES, ADJ_TNE2_EULER, ADJ_TNE2_NAVIER_STOKES, WAVE_EQUATION, HEAT_EQUATION, LINEAR_ELASTICITY, FLUID_STRUCTURE_EULER, FLUID_STRUCTURE_NAVIER_STOKES, FLUID_STRUCTURE_RANS, TEMPLATE_SOLVER )
+PHYSICAL_PROBLEM= RANS
+
+% Adjoint type
+% Type: EnumOption Default: COMPRESSIBLE
+% Options: (COMPRESSIBLE, INCOMPRESSIBLE, FREESURFACE )
+REGIME_TYPE= COMPRESSIBLE
+
+% Restart solution from native solution file
+% Type: SpecialOption Default: NO
+RESTART_SOL= NO
+
+% Write a tecplot file for each partition
+% Type: SpecialOption Default: NO
+VISUALIZE_PART= NO
+
+
+% ----------- Boundary Markers ----------- % 
+
+% Damping factor for engine inlet condition
+% Type: ScalarOption Default: 0.1
+DAMP_NACELLE_INFLOW= 0.1
+
+% poisson dirichlet boundary marker(s)
+% Type: MarkerDirichlet Default: Dirichlet_Value
+ELEC_DIRICHLET= Dirichlet_Value
+
+% poisson neumann boundary marker(s)
+% Type: MarkerOption Default: Marker_Neumann_Elec
+ELEC_NEUMANN= Marker_Neumann_Elec
+
+% Inlet boundary type
+% Type: EnumOption Default: TOTAL_CONDITIONS
+% Options: (TOTAL_CONDITIONS, MASS_FLOW )
+INLET_TYPE= TOTAL_CONDITIONS
+
+% Custom boundary marker(s)
+% Type: MarkerOption Default: Marker_Custom
+MARKER_CUSTOM= Marker_Custom
+
+% Marker(s) of the surface where objective function (design problem) will be evaluated
+% Type: MarkerOption Default: Marker_Designing
+MARKER_DESIGNING= Marker_Designing
+
+% Dirichlet boundary marker(s)
+% Type: MarkerOption Default: Marker_Dirichlet
+MARKER_DIRICHLET= Marker_Dirichlet
+
+% Euler wall boundary marker(s)
+% Type: MarkerOption Default: Marker_Euler
+MARKER_EULER= Marker_Euler
+
+% Far-field boundary marker(s)
+% Type: MarkerOption Default: Marker_FarField
+MARKER_FAR= Marker_FarField
+
+% Flow load boundary marker(s)
+% Type: MarkerFlowLoad Default: FlowLoad_Value
+MARKER_FLOWLOAD= FlowLoad_Value
+
+% No description
+% Type: MarkerOutlet Default: Heat_Flux
+MARKER_HEATFLUX= Heat_Flux
+
+% No description
+% Type: MarkerInlet Default: Inlet_FlowDir
+MARKER_INLET= Inlet_FlowDir
+
+% Zone interface boundary marker(s)
+% Type: MarkerOption Default: Marker_InterfaceBound
+MARKER_INTERFACE= Marker_InterfaceBound
+
+% No description
+% Type: MarkerOutlet Default: Isothermal_Temperature
+MARKER_ISOTHERMAL= Isothermal_Temperature
+
+% Marker(s) of the surface where evaluate the non-dimensional coefficients
+% Type: MarkerOption Default: Marker_Monitoring
+MARKER_MONITORING= Marker_Monitoring
+
+% No description
+% Type: MarkerInlet Default: Nozzle_Ptotal
+MARKER_NACELLE_EXHAUST= Nozzle_Ptotal
+
+% No description
+% Type: MarkerOutlet Default: FanFace_Mach_Target
+MARKER_NACELLE_INFLOW= FanFace_Mach_Target
+
+% Near-Field boundary condition
+% Type: MarkerOption Default: Marker_NearFieldBound
+MARKER_NEARFIELD= Marker_NearFieldBound
+
+% Neumann boundary marker(s)
+% Type: MarkerOption Default: Marker_Neumann
+MARKER_NEUMANN= Marker_Neumann
+
+% Displacement boundary marker(s)
+% Type: MarkerDisplacement Default: Displ_Value
+MARKER_NORMAL_DISPL= Displ_Value
+
+% Load boundary marker(s)
+% Type: MarkerLoad Default: Load_Value
+MARKER_NORMAL_LOAD= Load_Value
+
+% No description
+% Type: MarkerOutlet Default: Outlet_Pressure
+MARKER_OUTLET= Outlet_Pressure
+
+% No description
+% Type: MarkerPeriodic Default: Periodic_Translation
+MARKER_PERIODIC= Periodic_Translation
+
+% Marker(s) of the surface in the surface flow solution file
+% Type: MarkerOption Default: Marker_Plotting
+MARKER_PLOTTING= Marker_Plotting
+
+% Symmetry boundary condition
+% Type: MarkerOption Default: Marker_Pressure
+MARKER_PRESSURE= Marker_Pressure
+
+% No description
+% Type: MarkerInlet Default: Inlet_Velocity
+MARKER_SUPERSONIC_INLET= Inlet_Velocity
+
+% Symmetry boundary condition
+% Type: MarkerOption Default: Marker_SymWall
+MARKER_SYM= Marker_SymWall
+
+% Engine subsonic intake region
+% Type: SpecialOption Default: NO
+SUBSONIC_NACELLE_INFLOW= NO
+
+
+% ----------- Grid adaptation ----------- % 
+
+% Adapt the boundary elements
+% Type: SpecialOption Default: YES
+ADAPT_BOUNDARY= YES
+
+% Use analytical definition for surfaces
+% Type: EnumOption Default: NONE
+% Options: (NONE, NACA0012_AIRFOIL, NACA4412_AIRFOIL, CYLINDER, BIPARABOLIC )
+ANALYTICAL_SURFDEF= NONE
+
+% Divide rectangles into triangles
+% Type: SpecialOption Default: NO
+DIVIDE_ELEMENTS= NO
+
+% Scale factor for the dual volume
+% Type: ScalarOption Default: 0.5
+DUALVOL_POWER= 0.5
+
+% Kind of grid adaptation
+% Type: EnumOption Default: NONE
+% Options: (NONE, FULL, FULL_FLOW, FULL_ADJOINT, FULL_LINEAR, GRAD_FLOW, GRAD_ADJOINT, GRAD_FLOW_ADJ, ROBUST, COMPUTABLE, REMAINING, COMPUTABLE_ROBUST, WAKE, SMOOTHING, SUPERSONIC_SHOCK, TWOPHASE )
+KIND_ADAPT= NONE
+
+% Percentage of new elements (% of the original number of elements)
+% Type: ScalarOption Default: -1.0
+NEW_ELEMS= -1
+
+% Before each computation, implicitly smooth the nodal coordinates
+% Type: SpecialOption Default: NO
+SMOOTH_GEOMETRY= NO
+
+
+% ----------- Time-marching ----------- % 
+
+% Reduction factor of the CFL coefficient in the turbulent adjoint problem
+% Type: ScalarOption Default: 1.0
+ADJTURB_CFL_REDUCTION= 1
+
+% Reduction factor of the CFL coefficient in the adjoint problem
+% Type: ScalarOption Default: 0.8
+ADJ_CFL_REDUCTION= 0.8
+
+% Courant-Friedrichs-Lewy condition of the finest grid
+% Type: ScalarOption Default: 1.25
+CFL_NUMBER= 12
+
+% No description
+% Type: ArrayOption Default: (1.0, 100.0, 1.0)
+CFL_RAMP= ( 1, 30, 45 )
+
+% Number of total iterations
+% Type: ScalarOption Default: 999999
+EXT_ITER= 999999
+
+% Runge-Kutta alpha coefficients
+% Type: ListOption Default: ( 0.66667, 0.66667, 1.000000 )
+RK_ALPHA_COEFF= ( 0.66667, 0.66667, 1.000000 )
+
+% Time discretization
+% Type: EnumOption Default: EULER_IMPLICIT
+% Options: (EULER_IMPLICIT, RUNGE-KUTTA_EXPLICIT, EULER_EXPLICIT )
+TIME_DISCRE_ADJ= EULER_IMPLICIT
+
+% Time discretization
+% Type: EnumOption Default: EULER_IMPLICIT
+% Options: (EULER_IMPLICIT, RUNGE-KUTTA_EXPLICIT, EULER_EXPLICIT )
+TIME_DISCRE_ADJLEVELSET= EULER_IMPLICIT
+
+% Time discretization
+% Type: EnumOption Default: EULER_IMPLICIT
+% Options: (EULER_IMPLICIT, RUNGE-KUTTA_EXPLICIT, EULER_EXPLICIT )
+TIME_DISCRE_ADJTNE2= EULER_IMPLICIT
+
+% Time discretization
+% Type: EnumOption Default: EULER_IMPLICIT
+% Options: (EULER_IMPLICIT, RUNGE-KUTTA_EXPLICIT, EULER_EXPLICIT )
+TIME_DISCRE_ADJTURB= EULER_IMPLICIT
+
+% Time discretization
+% Type: EnumOption Default: EULER_IMPLICIT
+% Options: (EULER_IMPLICIT, RUNGE-KUTTA_EXPLICIT, EULER_EXPLICIT )
+TIME_DISCRE_FEA= EULER_IMPLICIT
+
+% Time discretization
+% Type: EnumOption Default: EULER_IMPLICIT
+% Options: (EULER_IMPLICIT, RUNGE-KUTTA_EXPLICIT, EULER_EXPLICIT )
+TIME_DISCRE_FLOW= EULER_IMPLICIT
+
+% Time discretization
+% Type: EnumOption Default: EULER_IMPLICIT
+% Options: (EULER_IMPLICIT, RUNGE-KUTTA_EXPLICIT, EULER_EXPLICIT )
+TIME_DISCRE_HEAT= EULER_IMPLICIT
+
+% Time discretization
+% Type: EnumOption Default: EULER_IMPLICIT
+% Options: (EULER_IMPLICIT, RUNGE-KUTTA_EXPLICIT, EULER_EXPLICIT )
+TIME_DISCRE_LIN= EULER_IMPLICIT
+
+% Time discretization
+% Type: EnumOption Default: EULER_IMPLICIT
+% Options: (EULER_IMPLICIT, RUNGE-KUTTA_EXPLICIT, EULER_EXPLICIT )
+TIME_DISCRE_POISSON= EULER_IMPLICIT
+
+% Time discretization
+% Type: EnumOption Default: EULER_IMPLICIT
+% Options: (EULER_IMPLICIT, RUNGE-KUTTA_EXPLICIT, EULER_EXPLICIT )
+TIME_DISCRE_TNE2= EULER_IMPLICIT
+
+% Time discretization
+% Type: EnumOption Default: EULER_IMPLICIT
+% Options: (EULER_IMPLICIT, RUNGE-KUTTA_EXPLICIT, EULER_EXPLICIT )
+TIME_DISCRE_TURB= EULER_IMPLICIT
+
+% Time discretization
+% Type: EnumOption Default: EULER_IMPLICIT
+% Options: (EULER_IMPLICIT, RUNGE-KUTTA_EXPLICIT, EULER_EXPLICIT )
+TIME_DISCRE_WAVE= EULER_IMPLICIT
+
+% Integer number of periodic time instances for Time Spectral
+% Type: ScalarOption Default: 1
+TIME_INSTANCES= 1
+
+% Reduction factor of the CFL coefficient in the level set problem
+% Type: ScalarOption Default: 1.0
+TURB_CFL_REDUCTION= 1
+
+% Unsteady farfield boundaries
+% Type: SpecialOption Default: NO
+UNSTEADY_FARFIELD= NO
+
+% Unsteady simulation
+% Type: EnumOption Default: NO
+% Options: (NO, TIME_STEPPING, DUAL_TIME_STEPPING-1ST_ORDER, DUAL_TIME_STEPPING-2ND_ORDER, TIME_SPECTRAL, ROTATIONAL_FRAME )
+UNSTEADY_SIMULATION= NO
+
+% Starting direct solver iteration for the unsteady adjoint
+% Type: ScalarOption Default: 0
+UNST_ADJOINT_ITER= 0
+
+% Unsteady Courant-Friedrichs-Lewy number of the finest grid
+% Type: ScalarOption Default: 0.0
+UNST_CFL_NUMBER= 0
+
+% Number of internal iterations (dual time method)
+% Type: ScalarOption Default: 100
+UNST_INT_ITER= 100
+
+% Iteration number to begin unsteady restarts (dual time method)
+% Type: ScalarOption Default: 0
+UNST_RESTART_ITER= 0
+
+% Total Physical Time for dual time stepping simulations (s)
+% Type: ScalarOption Default: 1.0
+UNST_TIME= 1
+
+% Time Step for dual time stepping simulations (s)
+% Type: ScalarOption Default: 0.0
+UNST_TIMESTEP= 0
+
+
+% ----------- Linear solver definition ----------- % 
+
+% Minimum error threshold for the turbulent adjoint linear solver for the implicit formulation
+% Type: ScalarOption Default: 1E-5
+ADJTURB_LIN_ERROR= 1e-05
+
+% Maximum number of iterations of the turbulent adjoint linear solver for the implicit formulation
+% Type: ScalarOption Default: 10
+ADJTURB_LIN_ITER= 10
+
+% Preconditioner for the turbulent adjoint Krylov linear solvers
+% Type: EnumOption Default: LU_SGS
+% Options: (LU_SGS, JACOBI, LINELET )
+ADJTURB_LIN_PREC= LU_SGS
+
+% Linear solver for the turbulent adjoint systems
+% Type: EnumOption Default: FGMRES
+% Options: (FGMRES, STEEPEST_DESCENT, NEWTON, QUASI_NEWTON, CONJUGATE_GRADIENT, BCGSTAB )
+ADJTURB_LIN_SOLVER= FGMRES
+
+% Linear solver for the implicit, mesh deformation, or discrete adjoint systems
+% Type: EnumOption Default: FGMRES
+% Options: (FGMRES, STEEPEST_DESCENT, NEWTON, QUASI_NEWTON, CONJUGATE_GRADIENT, BCGSTAB )
+LINEAR_SOLVER= FGMRES
+
+% Minimum error threshold for the linear solver for the implicit formulation
+% Type: ScalarOption Default: 1E-5
+LINEAR_SOLVER_ERROR= 1e-05
+
+% Maximum number of iterations of the linear solver for the implicit formulation
+% Type: ScalarOption Default: 10
+LINEAR_SOLVER_ITER= 10
+
+% Preconditioner for the Krylov linear solvers
+% Type: EnumOption Default: LU_SGS
+% Options: (LU_SGS, JACOBI, LINELET )
+LINEAR_SOLVER_PREC= LU_SGS
+
+% Relaxation of the linear solver for the implicit formulation
+% Type: ScalarOption Default: 1.0
+LINEAR_SOLVER_RELAX= 1
+
+% Time Step for dual time stepping simulations (s)
+% Type: ScalarOption Default: 0.2
+MAX_ROE_TURKEL_PREC= 0.2
+
+% Time Step for dual time stepping simulations (s)
+% Type: ScalarOption Default: 0.01
+MIN_ROE_TURKEL_PREC= 0.01
+
+% Roe-Turkel preconditioning for low Mach number flows
+% Type: SpecialOption Default: NO
+ROE_TURKEL_PREC= NO
+
+
+% ----------- Dynamic mesh definition ----------- % 
+
+% Uncoupled Aeroelastic Frequency Pitch.
+% Type: ScalarOption Default: 100
+FREQ_PITCH_AEROELASTIC= 100
+
+% Uncoupled Aeroelastic Frequency Plunge.
+% Type: ScalarOption Default: 100
+FREQ_PLUNGE_AEROELASTIC= 100
+
+% Mesh motion for unsteady simulations
+% Type: SpecialOption Default: NO
+GRID_MOVEMENT= NO
+
+% Type of mesh motion
+% Type: EnumListOption Default: GridMovement_Map
+% Options: (Enum list )
+GRID_MOVEMENT_KIND= ( )
+
+% Mach number (non-dimensional, based on the mesh velocity and freestream vals.)
+% Type: ScalarOption Default: 0.0
+MACH_MOTION= 0
+
+% Marker(s) of moving surfaces (MOVING_WALL or DEFORMING grid motion).
+% Type: MarkerOption Default: Marker_Moving
+MARKER_MOVING= Marker_Moving
+
+% 
+% Type: ScalarOption Default: mesh_motion.dat
+MOTION_FILENAME= mesh_motion.dat
+
+% Coordinates of the rigid motion origin
+% Type: ListOption Default: Motion_Origin_X
+MOTION_ORIGIN_X= Motion_Origin_X
+
+% Coordinates of the rigid motion origin
+% Type: ListOption Default: Motion_Origin_Y
+MOTION_ORIGIN_Y= Motion_Origin_Y
+
+% Coordinates of the rigid motion origin
+% Type: ListOption Default: Motion_Origin_Z
+MOTION_ORIGIN_Z= Motion_Origin_Z
+
+% Value to move motion origins (1 or 0)
+% Type: ListOption Default: MoveMotion_Origin
+MOVE_MOTION_ORIGIN= MoveMotion_Origin
+
+% Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
+% Type: ListOption Default: Pitching_Ampl_X
+PITCHING_AMPL_X= Pitching_Ampl_X
+
+% Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
+% Type: ListOption Default: Pitching_Ampl_Y
+PITCHING_AMPL_Y= Pitching_Ampl_Y
+
+% Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
+% Type: ListOption Default: Pitching_Ampl_Z
+PITCHING_AMPL_Z= Pitching_Ampl_Z
+
+% Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
+% Type: ListOption Default: Pitching_Omega_X
+PITCHING_OMEGA_X= Pitching_Omega_X
+
+% Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
+% Type: ListOption Default: Pitching_Omega_Y
+PITCHING_OMEGA_Y= Pitching_Omega_Y
+
+% Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
+% Type: ListOption Default: Pitching_Omega_Z
+PITCHING_OMEGA_Z= Pitching_Omega_Z
+
+% Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
+% Type: ListOption Default: Pitching_Phase_X
+PITCHING_PHASE_X= Pitching_Phase_X
+
+% Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
+% Type: ListOption Default: Pitching_Phase_Y
+PITCHING_PHASE_Y= Pitching_Phase_Y
+
+% Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
+% Type: ListOption Default: Pitching_Phase_Z
+PITCHING_PHASE_Z= Pitching_Phase_Z
+
+% Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
+% Type: ListOption Default: Plunging_Ampl_X
+PLUNGING_AMPL_X= Plunging_Ampl_X
+
+% Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
+% Type: ListOption Default: Plunging_Ampl_Y
+PLUNGING_AMPL_Y= Plunging_Ampl_Y
+
+% Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
+% Type: ListOption Default: Plunging_Ampl_Z
+PLUNGING_AMPL_Z= Plunging_Ampl_Z
+
+% Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
+% Type: ListOption Default: Plunging_Omega_X
+PLUNGING_OMEGA_X= Plunging_Omega_X
+
+% Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
+% Type: ListOption Default: Plunging_Omega_Y
+PLUNGING_OMEGA_Y= Plunging_Omega_Y
+
+% Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
+% Type: ListOption Default: Plunging_Omega_Z
+PLUNGING_OMEGA_Z= Plunging_Omega_Z
+
+% Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
+% Type: ListOption Default: Rotation_Rate_X
+ROTATION_RATE_X= Rotation_Rate_X
+
+% Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
+% Type: ListOption Default: Rotation_Rate_Y
+ROTATION_RATE_Y= Rotation_Rate_Y
+
+% Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
+% Type: ListOption Default: Rotation_Rate_Z
+ROTATION_RATE_Z= Rotation_Rate_Z
+
+% Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
+% Type: ListOption Default: Translation_Rate_X
+TRANSLATION_RATE_X= Translation_Rate_X
+
+% Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
+% Type: ListOption Default: Translation_Rate_Y
+TRANSLATION_RATE_Y= Translation_Rate_Y
+
+% Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
+% Type: ListOption Default: Translation_Rate_Z
+TRANSLATION_RATE_Z= Translation_Rate_Z
+
+
+% ----------- Wind Gust ----------- % 
+
+% Gust amplitude (m/s)
+% Type: ScalarOption Default: 0.0
+GUST_AMPL= 0
+
+% Location at which the gust begins (meters)
+% Type: ScalarOption Default: 0.0
+GUST_BEGIN_LOC= 0
+
+% Time at which to begin the gust (sec)
+% Type: ScalarOption Default: 0.0
+GUST_BEGIN_TIME= 0
+
+% Direction of the gust X or Y dir
+% Type: EnumOption Default: Y_DIR
+% Options: (Y_DIR, X_DIR )
+GUST_DIR= Y_DIR
+
+% Number of gust periods
+% Type: ScalarOption Default: 1.0
+GUST_PERIODS= 1
+
+% Type of gust
+% Type: EnumOption Default: NONE
+% Options: (NONE, TOP_HAT, SINE, ONE_M_COSINE )
+GUST_TYPE= NONE
+
+% Gust wavelenght (meters)
+% Type: ScalarOption Default: 0.0
+GUST_WAVELENGTH= 0
+
+% Apply a wind gust
+% Type: SpecialOption Default: NO
+WIND_GUST= NO
+
+
+% ----------- Convergence ----------- % 
+
+% Number of elements to apply the criteria
+% Type: ScalarOption Default: 100
+CAUCHY_ELEMS= 100
+
+% Epsilon to control the series convergence
+% Type: ScalarOption Default: 1E-10
+CAUCHY_EPS= 1e-10
+
+% Adjoint functional for the Cauchy criteria
+% Type: EnumOption Default: SENS_GEOMETRY
+% Options: (SENS_GEOMETRY, SENS_MACH, SENS_AOA, SENS_AOS )
+CAUCHY_FUNC_ADJ= SENS_GEOMETRY
+
+% Flow functional for the Cauchy criteria
+% Type: EnumOption Default: DRAG
+% Options: (DRAG, LIFT, SIDEFORCE, EFFICIENCY, PRESSURE, MOMENT_X, MOMENT_Y, MOMENT_Z, EQUIVALENT_AREA, NEARFIELD_PRESSURE, FORCE_X, FORCE_Y, FORCE_Z, THRUST, TORQUE, HEAT_LOAD, FIGURE_OF_MERIT, FREE_SURFACE, TOTAL_VOLUME, MAX_THICKNESS, CLEARANCE, MIN_THICKNESS, MAX_THICK_SEC1, MAX_THICK_SEC2, MAX_THICK_SEC3, MAX_THICK_SEC4, MAX_THICK_SEC5 )
+CAUCHY_FUNC_FLOW= DRAG
+
+% Linearized functional for the Cauchy criteria
+% Type: EnumOption Default: DELTA_DRAG
+% Options: (DELTA_DRAG, DELTA_LIFT )
+CAUCHY_FUNC_LIN= DELTA_DRAG
+
+% Convergence criteria
+% Type: EnumOption Default: RESIDUAL
+% Options: (RESIDUAL, CAUCHY )
+CONV_CRITERIA= RESIDUAL
+
+% Epsilon for a full multigrid method evaluation
+% Type: ScalarOption Default: 1E-4
+FULLMG_CAUCHY_EPS= 0.0001
+
+% Min value of the residual (log10 of the residual)
+% Type: ScalarOption Default: -8.0
+RESIDUAL_MINVAL= -8
+
+% Residual reduction (order of magnitude with respect to the initial value)
+% Type: ScalarOption Default: 3.0
+RESIDUAL_REDUCTION= 3
+
+% Iteration number to begin convergence monitoring
+% Type: ScalarOption Default: 5
+STARTCONV_ITER= 5
+
+
+% ----------- Multi-grid ----------- % 
+
+% Full multi-grid
+% Type: SpecialOption Default: NO
+FULLMG= NO
+
+% Maximum number of children in the agglomeration stage
+% Type: ScalarOption Default: 500
+MAX_CHILDREN= 500
+
+% Maximum length of an agglomerated element (relative to the domain)
+% Type: ScalarOption Default: 0.1
+MAX_DIMENSION= 0.1
+
+% Multi-grid Cycle (0 = V cycle, 1 = W Cycle)
+% Type: ScalarOption Default: 0
+MGCYCLE= 0
+
+% Multi-grid Levels
+% Type: ScalarOption Default: 3
+MGLEVEL= 3
+
+% CFL reduction factor on the coarse levels
+% Type: ScalarOption Default: 0.9
+MG_CFL_REDUCTION= 0.9
+
+% Jacobi implicit smoothing of the correction
+% Type: ListOption Default: MG_CorrecSmooth
+MG_CORRECTION_SMOOTH= MG_CorrecSmooth
+
+% Damping factor for the correction prolongation
+% Type: ScalarOption Default: 0.9
+MG_DAMP_PROLONGATION= 0.9
+
+% Damping factor for the residual restriction
+% Type: ScalarOption Default: 0.9
+MG_DAMP_RESTRICTION= 0.9
+
+% Multi-grid post-smoothing level
+% Type: ListOption Default: MG_PostSmooth
+MG_POST_SMOOTH= MG_PostSmooth
+
+% Multi-grid pre-smoothing level
+% Type: ListOption Default: MG_PreSmooth
+MG_PRE_SMOOTH= MG_PreSmooth
+
+% Start up iterations using the fine grid only
+% Type: ScalarOption Default: 0
+START_UP_ITER= 0
+
+
+% ----------- Spatial Discretization ----------- % 
+
+% 1st, 2nd and 4th order artificial dissipation coefficients
+% Type: ArrayOption Default: (1.0, 100.0, 1.0)
+AD_COEFF_ADJ= ( 1, 100, 1 )
+
+% 1st, 2nd and 4th order artificial dissipation coefficients
+% Type: ArrayOption Default: (1.0, 100.0, 1.0)
+AD_COEFF_ADJTNE2= ( 1, 100, 1 )
+
+% 1st, 2nd and 4th order artificial dissipation coefficients
+% Type: ArrayOption Default: (1.0, 100.0, 1.0)
+AD_COEFF_FLOW= ( 1, 100, 1 )
+
+% 1st, 2nd and 4th order artificial dissipation coefficients
+% Type: ArrayOption Default: (1.0, 100.0, 1.0)
+AD_COEFF_LIN= ( 1, 100, 1 )
+
+% 1st, 2nd and 4th order artificial dissipation coefficients
+% Type: ArrayOption Default: (1.0, 100.0, 1.0)
+AD_COEFF_TNE2= ( 1, 100, 1 )
+
+% No description
+% Type: ConvectOption Default: ROE-1ST_ORDER
+% Options: (ROE-1ST_ORDER, NONE, ROE-2ND_ORDER, ROE_TURKEL_1ST, ROE_TURKEL_2ND, AUSM-1ST_ORDER, AUSM-2ND_ORDER, AUSMPW+-1ST_ORDER, AUSMPW+-2ND_ORDER, HLLC-1ST_ORDER, HLLC-2ND_ORDER, SW-1ST_ORDER, SW-2ND_ORDER, MSW-1ST_ORDER, MSW-2ND_ORDER, SCALAR_UPWIND-1ST_ORDER, SCALAR_UPWIND-2ND_ORDER, CONVECTIVE_TEMPLATE, JST, LAX-FRIEDRICH )
+CONV_NUM_METHOD_ADJ= ROE-1ST_ORDER
+
+% Convective numerical method
+% Type: ConvectOption Default: ROE-1ST_ORDER
+% Options: (ROE-1ST_ORDER, NONE, ROE-2ND_ORDER, ROE_TURKEL_1ST, ROE_TURKEL_2ND, AUSM-1ST_ORDER, AUSM-2ND_ORDER, AUSMPW+-1ST_ORDER, AUSMPW+-2ND_ORDER, HLLC-1ST_ORDER, HLLC-2ND_ORDER, SW-1ST_ORDER, SW-2ND_ORDER, MSW-1ST_ORDER, MSW-2ND_ORDER, SCALAR_UPWIND-1ST_ORDER, SCALAR_UPWIND-2ND_ORDER, CONVECTIVE_TEMPLATE, JST, LAX-FRIEDRICH )
+CONV_NUM_METHOD_ADJLEVELSET= ROE-1ST_ORDER
+
+% Convective numerical method
+% Type: ConvectOption Default: ROE-1ST_ORDER
+% Options: (ROE-1ST_ORDER, NONE, ROE-2ND_ORDER, ROE_TURKEL_1ST, ROE_TURKEL_2ND, AUSM-1ST_ORDER, AUSM-2ND_ORDER, AUSMPW+-1ST_ORDER, AUSMPW+-2ND_ORDER, HLLC-1ST_ORDER, HLLC-2ND_ORDER, SW-1ST_ORDER, SW-2ND_ORDER, MSW-1ST_ORDER, MSW-2ND_ORDER, SCALAR_UPWIND-1ST_ORDER, SCALAR_UPWIND-2ND_ORDER, CONVECTIVE_TEMPLATE, JST, LAX-FRIEDRICH )
+CONV_NUM_METHOD_ADJTNE2= ROE-1ST_ORDER
+
+% Convective numerical method
+% Type: ConvectOption Default: ROE-1ST_ORDER
+% Options: (ROE-1ST_ORDER, NONE, ROE-2ND_ORDER, ROE_TURKEL_1ST, ROE_TURKEL_2ND, AUSM-1ST_ORDER, AUSM-2ND_ORDER, AUSMPW+-1ST_ORDER, AUSMPW+-2ND_ORDER, HLLC-1ST_ORDER, HLLC-2ND_ORDER, SW-1ST_ORDER, SW-2ND_ORDER, MSW-1ST_ORDER, MSW-2ND_ORDER, SCALAR_UPWIND-1ST_ORDER, SCALAR_UPWIND-2ND_ORDER, CONVECTIVE_TEMPLATE, JST, LAX-FRIEDRICH )
+CONV_NUM_METHOD_ADJTURB= ROE-1ST_ORDER
+
+% No description
+% Type: ConvectOption Default: ROE-1ST_ORDER
+% Options: (ROE-1ST_ORDER, NONE, ROE-2ND_ORDER, ROE_TURKEL_1ST, ROE_TURKEL_2ND, AUSM-1ST_ORDER, AUSM-2ND_ORDER, AUSMPW+-1ST_ORDER, AUSMPW+-2ND_ORDER, HLLC-1ST_ORDER, HLLC-2ND_ORDER, SW-1ST_ORDER, SW-2ND_ORDER, MSW-1ST_ORDER, MSW-2ND_ORDER, SCALAR_UPWIND-1ST_ORDER, SCALAR_UPWIND-2ND_ORDER, CONVECTIVE_TEMPLATE, JST, LAX-FRIEDRICH )
+CONV_NUM_METHOD_FLOW= ROE-1ST_ORDER
+
+% Convective numerical method
+% Type: ConvectOption Default: ROE-1ST_ORDER
+% Options: (ROE-1ST_ORDER, NONE, ROE-2ND_ORDER, ROE_TURKEL_1ST, ROE_TURKEL_2ND, AUSM-1ST_ORDER, AUSM-2ND_ORDER, AUSMPW+-1ST_ORDER, AUSMPW+-2ND_ORDER, HLLC-1ST_ORDER, HLLC-2ND_ORDER, SW-1ST_ORDER, SW-2ND_ORDER, MSW-1ST_ORDER, MSW-2ND_ORDER, SCALAR_UPWIND-1ST_ORDER, SCALAR_UPWIND-2ND_ORDER, CONVECTIVE_TEMPLATE, JST, LAX-FRIEDRICH )
+CONV_NUM_METHOD_LIN= ROE-1ST_ORDER
+
+% Convective numerical method
+% Type: ConvectOption Default: ROE-1ST_ORDER
+% Options: (ROE-1ST_ORDER, NONE, ROE-2ND_ORDER, ROE_TURKEL_1ST, ROE_TURKEL_2ND, AUSM-1ST_ORDER, AUSM-2ND_ORDER, AUSMPW+-1ST_ORDER, AUSMPW+-2ND_ORDER, HLLC-1ST_ORDER, HLLC-2ND_ORDER, SW-1ST_ORDER, SW-2ND_ORDER, MSW-1ST_ORDER, MSW-2ND_ORDER, SCALAR_UPWIND-1ST_ORDER, SCALAR_UPWIND-2ND_ORDER, CONVECTIVE_TEMPLATE, JST, LAX-FRIEDRICH )
+CONV_NUM_METHOD_TNE2= ROE-1ST_ORDER
+
+% Convective numerical method
+% Type: ConvectOption Default: ROE-1ST_ORDER
+% Options: (ROE-1ST_ORDER, NONE, ROE-2ND_ORDER, ROE_TURKEL_1ST, ROE_TURKEL_2ND, AUSM-1ST_ORDER, AUSM-2ND_ORDER, AUSMPW+-1ST_ORDER, AUSMPW+-2ND_ORDER, HLLC-1ST_ORDER, HLLC-2ND_ORDER, SW-1ST_ORDER, SW-2ND_ORDER, MSW-1ST_ORDER, MSW-2ND_ORDER, SCALAR_UPWIND-1ST_ORDER, SCALAR_UPWIND-2ND_ORDER, CONVECTIVE_TEMPLATE, JST, LAX-FRIEDRICH )
+CONV_NUM_METHOD_TURB= ROE-1ST_ORDER
+
+% Coefficient for the limiter
+% Type: ScalarOption Default: 0.5
+LIMITER_COEFF= 0.5
+
+% Numerical method for spatial gradients
+% Type: EnumOption Default: WEIGHTED_LEAST_SQUARES
+% Options: (WEIGHTED_LEAST_SQUARES, GREEN_GAUSS )
+NUM_METHOD_GRAD= WEIGHTED_LEAST_SQUARES
+
+% Coefficient for detecting the limit of the sharp edges
+% Type: ScalarOption Default: 3.0
+SHARP_EDGES_COEFF= 3
+
+% Slope limiter
+% Type: EnumOption Default: NONE
+% Options: (NONE, VENKATAKRISHNAN, MINMOD, SHARP_EDGES )
+SLOPE_LIMITER_ADJFLOW= NONE
+
+% Slope limiter
+% Type: EnumOption Default: NONE
+% Options: (NONE, VENKATAKRISHNAN, MINMOD, SHARP_EDGES )
+SLOPE_LIMITER_ADJLEVELSET= NONE
+
+% Slope limiter
+% Type: EnumOption Default: NONE
+% Options: (NONE, VENKATAKRISHNAN, MINMOD, SHARP_EDGES )
+SLOPE_LIMITER_ADJTNE2= NONE
+
+% Slope limiter
+% Type: EnumOption Default: NONE
+% Options: (NONE, VENKATAKRISHNAN, MINMOD, SHARP_EDGES )
+SLOPE_LIMITER_ADJTURB= NONE
+
+% Slope limiter
+% Type: EnumOption Default: VENKATAKRISHNAN
+% Options: (VENKATAKRISHNAN, NONE, MINMOD, SHARP_EDGES )
+SLOPE_LIMITER_FLOW= VENKATAKRISHNAN
+
+% Slope limiter
+% Type: EnumOption Default: NONE
+% Options: (NONE, VENKATAKRISHNAN, MINMOD, SHARP_EDGES )
+SLOPE_LIMITER_TNE2= NONE
+
+% Slope limiter
+% Type: EnumOption Default: VENKATAKRISHNAN
+% Options: (VENKATAKRISHNAN, NONE, MINMOD, SHARP_EDGES )
+SLOPE_LIMITER_TURB= VENKATAKRISHNAN
+
+% Source term numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, PIECEWISE_CONSTANT, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_ADJ= NONE
+
+% Source term numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, PIECEWISE_CONSTANT, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_ADJLEVELSET= NONE
+
+% Source term numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, PIECEWISE_CONSTANT, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_ADJTNE2= NONE
+
+% Source term numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, PIECEWISE_CONSTANT, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_ADJTURB= NONE
+
+% Source term numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, PIECEWISE_CONSTANT, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_FEA= NONE
+
+% Source term numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, PIECEWISE_CONSTANT, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_FLOW= NONE
+
+% Source term numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, PIECEWISE_CONSTANT, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_HEAT= NONE
+
+% Source term numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, PIECEWISE_CONSTANT, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_LIN= NONE
+
+% Source term numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, PIECEWISE_CONSTANT, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_POISSON= NONE
+
+% Source term numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, PIECEWISE_CONSTANT, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_TEMPLATE= NONE
+
+% Source term numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, PIECEWISE_CONSTANT, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_TNE2= NONE
+
+% Source term numerical method
+% Type: EnumOption Default: PIECEWISE_CONSTANT
+% Options: (PIECEWISE_CONSTANT, NONE, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_TURB= PIECEWISE_CONSTANT
+
+% Source term numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, PIECEWISE_CONSTANT, CHARGE_DIST, TEMPLATE_SOURCE_METHOD )
+SOUR_NUM_METHOD_WAVE= NONE
+
+% Viscous numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, AVG_GRAD, AVG_GRAD_CORRECTED, GALERKIN )
+VISC_NUM_METHOD_ADJ= NONE
+
+% Viscous numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, AVG_GRAD, AVG_GRAD_CORRECTED, GALERKIN )
+VISC_NUM_METHOD_ADJLEVELSET= NONE
+
+% Viscous numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, AVG_GRAD, AVG_GRAD_CORRECTED, GALERKIN )
+VISC_NUM_METHOD_ADJTNE2= NONE
+
+% Viscous numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, AVG_GRAD, AVG_GRAD_CORRECTED, GALERKIN )
+VISC_NUM_METHOD_ADJTURB= NONE
+
+% Viscous numerical method
+% Type: EnumOption Default: GALERKIN
+% Options: (GALERKIN, NONE, AVG_GRAD, AVG_GRAD_CORRECTED )
+VISC_NUM_METHOD_FEA= GALERKIN
+
+% Viscous numerical method
+% Type: EnumOption Default: AVG_GRAD_CORRECTED
+% Options: (AVG_GRAD_CORRECTED, NONE, AVG_GRAD, GALERKIN )
+VISC_NUM_METHOD_FLOW= AVG_GRAD_CORRECTED
+
+% Viscous numerical method
+% Type: EnumOption Default: GALERKIN
+% Options: (GALERKIN, NONE, AVG_GRAD, AVG_GRAD_CORRECTED )
+VISC_NUM_METHOD_HEAT= GALERKIN
+
+% Viscous numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, AVG_GRAD, AVG_GRAD_CORRECTED, GALERKIN )
+VISC_NUM_METHOD_LIN= NONE
+
+% Viscous numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, AVG_GRAD, AVG_GRAD_CORRECTED, GALERKIN )
+VISC_NUM_METHOD_POISSON= NONE
+
+% Viscous numerical method
+% Type: EnumOption Default: NONE
+% Options: (NONE, AVG_GRAD, AVG_GRAD_CORRECTED, GALERKIN )
+VISC_NUM_METHOD_TNE2= NONE
+
+% Viscous numerical method
+% Type: EnumOption Default: AVG_GRAD_CORRECTED
+% Options: (AVG_GRAD_CORRECTED, NONE, AVG_GRAD, GALERKIN )
+VISC_NUM_METHOD_TURB= AVG_GRAD_CORRECTED
+
+% Viscous numerical method
+% Type: EnumOption Default: GALERKIN
+% Options: (GALERKIN, NONE, AVG_GRAD, AVG_GRAD_CORRECTED )
+VISC_NUM_METHOD_WAVE= GALERKIN
+
+
+% ----------- Adjoint and Gradient ----------- % 
+
+% Limit value for the adjoint variable
+% Type: ScalarOption Default: 1E6
+ADJ_LIMIT= 1e+06
+
+% Adjoint problem boundary condition
+% Type: EnumOption Default: DRAG
+% Options: (DRAG, LIFT, SIDEFORCE, EFFICIENCY, PRESSURE, MOMENT_X, MOMENT_Y, MOMENT_Z, EQUIVALENT_AREA, NEARFIELD_PRESSURE, FORCE_X, FORCE_Y, FORCE_Z, THRUST, TORQUE, HEAT_LOAD, FIGURE_OF_MERIT, FREE_SURFACE, TOTAL_VOLUME, MAX_THICKNESS, CLEARANCE, MIN_THICKNESS, MAX_THICK_SEC1, MAX_THICK_SEC2, MAX_THICK_SEC3, MAX_THICK_SEC4, MAX_THICK_SEC5 )
+ADJ_OBJFUNC= DRAG
+
+% Continuous governing equation set
+% Type: EnumOption Default: EULER
+% Options: (EULER, NAVIER_STOKES )
+CONTINUOUS_EQNS= EULER
+
+% 
+% Type: ScalarOption Default: 0.0
+CTE_VISCOUS_DRAG= 0
+
+% Discrete governing equation set
+% Type: EnumOption Default: NONE
+% Options: (NONE, SA, SST )
+DISCRETE_EQNS= NONE
+
+% Drag weight in sonic boom Objective Function (from 0.0 to 1.0)
+% Type: ScalarOption Default: 0.0
+DRAG_IN_SONICBOOM= 0
+
+% Adjoint frozen viscosity
+% Type: SpecialOption Default: YES
+FROZEN_VISC= YES
+
+% Mode of the GDC code (analysis, or gradient)
+% Type: EnumOption Default: FUNCTION
+% Options: (FUNCTION, GRADIENT )
+GEO_MODE= FUNCTION
+
+% No description
+% Type: ArrayOption Default: (1.0, 100.0, 1.0)
+GEO_SECTION_LIMIT= ( 1, 100, 1 )
+
+% Remove sharp edges from the sensitivity evaluation
+% Type: SpecialOption Default: NO
+SENS_REMOVE_SHARP= NO
+
+% Sensitivity smoothing
+% Type: EnumOption Default: NONE
+% Options: (NONE, SOBOLEV, BIGRID )
+SENS_SMOOTHING= NONE
+
+
+% ----------- Input/output files and formats ----------- % 
+
+% Convert a CGNS mesh to SU2 format
+% Type: SpecialOption Default: NO
+CGNS_TO_SU2= NO
+
+% Output file convergence history (w/o extension)
+% Type: ScalarOption Default: history
+CONV_FILENAME= history
+
+% Restart flow input file
+% Type: ScalarOption Default: farfield.dat
+FARFIELD_FILENAME= farfield.dat
+
+% Output objective function gradient
+% Type: ScalarOption Default: of_grad.dat
+GRAD_OBJFUNC_FILENAME= of_grad.dat
+
+% Mesh input file
+% Type: ScalarOption Default: mesh.su2
+MESH_FILENAME= mesh.su2
+
+% Mesh input file format
+% Type: EnumOption Default: SU2
+% Options: (SU2, CGNS, NETCDF_ASCII )
+MESH_FORMAT= SU2
+
+% Mesh output file
+% Type: ScalarOption Default: mesh_out.su2
+MESH_OUT_FILENAME= mesh_out.su2
+
+% I/O
+% Type: EnumOption Default: TECPLOT
+% Options: (TECPLOT, EXCEL, CSV, STL, TECPLOT_BINARY, CGNS, PARAVIEW )
+OUTPUT_FORMAT= TECPLOT
+
+% Output file restart adjoint
+% Type: ScalarOption Default: restart_adj.dat
+RESTART_ADJ_FILENAME= restart_adj.dat
+
+% Output file restart flow
+% Type: ScalarOption Default: restart_flow.dat
+RESTART_FLOW_FILENAME= restart_flow.dat
+
+% Output file linear flow
+% Type: ScalarOption Default: restart_lin.dat
+RESTART_LIN_FILENAME= restart_lin.dat
+
+% Output file restart wave
+% Type: ScalarOption Default: restart_wave.dat
+RESTART_WAVE_FILENAME= restart_wave.dat
+
+% Restart adjoint input file
+% Type: ScalarOption Default: solution_adj.dat
+SOLUTION_ADJ_FILENAME= solution_adj.dat
+
+% Restart flow input file
+% Type: ScalarOption Default: solution_flow.dat
+SOLUTION_FLOW_FILENAME= solution_flow.dat
+
+% Restart linear flow input file
+% Type: ScalarOption Default: solution_lin.dat
+SOLUTION_LIN_FILENAME= solution_lin.dat
+
+% Output file surface adjoint coefficient (w/o extension)
+% Type: ScalarOption Default: surface_adjoint
+SURFACE_ADJ_FILENAME= surface_adjoint
+
+% Output file surface flow coefficient (w/o extension)
+% Type: ScalarOption Default: surface_flow
+SURFACE_FLOW_FILENAME= surface_flow
+
+% Output file structure (w/o extension) variables
+% Type: ScalarOption Default: surface_heat
+SURFACE_HEAT_FILENAME= surface_heat
+
+% Output file surface linear coefficient (w/o extension)
+% Type: ScalarOption Default: surface_linear
+SURFACE_LIN_FILENAME= surface_linear
+
+% Output file structure (w/o extension) variables
+% Type: ScalarOption Default: surface_structure
+SURFACE_STRUCTURE_FILENAME= surface_structure
+
+% Output file structure (w/o extension) variables
+% Type: ScalarOption Default: surface_wave
+SURFACE_WAVE_FILENAME= surface_wave
+
+% Output objective function
+% Type: ScalarOption Default: of_func.dat
+VALUE_OBJFUNC_FILENAME= of_func.dat
+
+% Output file adj. wave (w/o extension) variables
+% Type: ScalarOption Default: adjoint_wave
+VOLUME_ADJWAVE_FILENAME= adjoint_wave
+
+% Output file adjoint (w/o extension) variables
+% Type: ScalarOption Default: adjoint
+VOLUME_ADJ_FILENAME= adjoint
+
+% Output file flow (w/o extension) variables
+% Type: ScalarOption Default: flow
+VOLUME_FLOW_FILENAME= flow
+
+% Output file wave (w/o extension) variables
+% Type: ScalarOption Default: heat
+VOLUME_HEAT_FILENAME= heat
+
+% Output file linear (w/o extension) variables
+% Type: ScalarOption Default: linearized
+VOLUME_LIN_FILENAME= linearized
+
+% Output file structure (w/o extension) variables
+% Type: ScalarOption Default: structure
+VOLUME_STRUCTURE_FILENAME= structure
+
+% Output file wave (w/o extension) variables
+% Type: ScalarOption Default: wave
+VOLUME_WAVE_FILENAME= wave
+
+% Writing convergence history frequency
+% Type: ScalarOption Default: 1
+WRT_CON_FREQ= 1
+
+% Writing convergence history frequency for the dual time
+% Type: ScalarOption Default: 10
+WRT_CON_FREQ_DUALTIME= 10
+
+% Write a surface CSV solution file
+% Type: SpecialOption Default: YES
+WRT_CSV_SOL= YES
+
+% Output the rind layers in the solution files
+% Type: SpecialOption Default: NO
+WRT_HALO= NO
+
+% Output residual info to solution/restart file
+% Type: SpecialOption Default: NO
+WRT_RESIDUALS= NO
+
+% Write a restart solution file
+% Type: SpecialOption Default: YES
+WRT_RESTART= YES
+
+% Output sectional forces for specified markers.
+% Type: SpecialOption Default: NO
+WRT_SECTIONAL_FORCES= NO
+
+% Writing solution file frequency
+% Type: ScalarOption Default: 1000
+WRT_SOL_FREQ= 1000
+
+% Writing solution file frequency
+% Type: ScalarOption Default: 1
+WRT_SOL_FREQ_DUALTIME= 1
+
+% Write a surface solution file
+% Type: SpecialOption Default: YES
+WRT_SRF_SOL= YES
+
+% Write a volume solution file
+% Type: SpecialOption Default: YES
+WRT_VOL_SOL= YES
+
+
+% ----------- Equivalent Area ----------- % 
+
+% Integration limits of the equivalent area ( xmin, xmax, Dist_NearField )
+% Type: ArrayOption Default: (1.0, 100.0, 1.0)
+EA_INT_LIMIT= ( 1, 100, 1 )
+
+% Evaluate equivalent area on the Near-Field
+% Type: SpecialOption Default: NO
+EQUIV_AREA= NO
+
+
+% ----------- Freestream Conditions ----------- % 
+
+% Angle of attack (degrees, only for compressible flows)
+% Type: ScalarOption Default: 0.0
+AOA= 0
+
+% Artifical compressibility factor
+% Type: ScalarOption Default: 1.0
+ARTCOMP_FACTOR= 1
+
+% Value of the Bulk Modulus
+% Type: ScalarOption Default: 2.15E9
+BULK_MODULUS= 2.15e+09
+
+% Free-stream density (1.2886 Kg/m^3 (air), 998.2 Kg/m^3 (water))
+% Type: ScalarOption Default: -1.0
+FREESTREAM_DENSITY= -1
+
+% 
+% Type: ScalarOption Default: 1.0
+FREESTREAM_INTERMITTENCY= 1
+
+% 
+% Type: ScalarOption Default: 3.0
+FREESTREAM_NU_FACTOR= 3
+
+% Free-stream pressure (101325.0 N/m^2 by default)
+% Type: ScalarOption Default: 101325.0
+FREESTREAM_PRESSURE= 101325
+
+% Free-stream temperature (273.15 K by default)
+% Type: ScalarOption Default: 273.15
+FREESTREAM_TEMPERATURE= 273.15
+
+% Free-stream vibrational-electronic temperature (273.15 K by default)
+% Type: ScalarOption Default: 273.15
+FREESTREAM_TEMPERATURE_VE= 273.15
+
+% 
+% Type: ScalarOption Default: 10.0
+FREESTREAM_TURB2LAMVISCRATIO= 10
+
+% 
+% Type: ScalarOption Default: 0.05
+FREESTREAM_TURBULENCEINTENSITY= 0.05
+
+% Free-stream velocity (m/s)
+% Type: ArrayOption Default: (1.0, 100.0, 1.0)
+FREESTREAM_VELOCITY= ( 1, 100, 1 )
+
+% Free-stream viscosity (1.853E-5 Ns/m^2 (air), 0.798E-3 Ns/m^2 (water))
+% Type: ScalarOption Default: -1.0
+FREESTREAM_VISCOSITY= -1
+
+% Ratio of specific heats (1.4 (air), only for compressible flows)
+% Type: ScalarOption Default: 1.4
+GAMMA_VALUE= 1.4
+
+% Specific gas constant (287.87 J/kg*K (air), only for compressible flows)
+% Type: ScalarOption Default: 287.87
+GAS_CONSTANT= 287.87
+
+% Mach number (non-dimensional, based on the free-stream values)
+% Type: ScalarOption Default: 0.0
+MACH_NUMBER= 0
+
+% No description
+% Type: ScalarOption Default: 28.97
+MIXTURE_MOLAR_MASS= 28.97
+
+% Laminar Prandtl number (0.72 (air), only for compressible flows)
+% Type: ScalarOption Default: 0.72
+PRANDTL_LAM= 0.72
+
+% Turbulent Prandtl number (0.9 (air), only for compressible flows)
+% Type: ScalarOption Default: 0.90
+PRANDTL_TURB= 0.9
+
+% Reynolds length (1 m by default)
+% Type: ScalarOption Default: 1.0
+REYNOLDS_LENGTH= 1
+
+% Reynolds number (non-dimensional, based on the free-stream values)
+% Type: ScalarOption Default: 0.0
+REYNOLDS_NUMBER= 0
+
+% Side-slip angle (degrees, only for compressible flows)
+% Type: ScalarOption Default: 0.0
+SIDESLIP_ANGLE= 0
+
+
+% ----------- Reference Conditions ----------- % 
+
+% Factor for converting the grid to meters
+% Type: ScalarOption Default: 1.0
+CONVERT_TO_METER= 1
+
+% Reference area for force coefficients (0 implies automatic calculation)
+% Type: ScalarOption Default: 1.0
+REF_AREA= 1
+
+% Reference density (1.0 Kg/m^3 by default, only for compressible flows)
+% Type: ScalarOption Default: 1.0
+REF_DENSITY= 1
+
+% Reference element length for computing the slope limiter epsilon
+% Type: ScalarOption Default: 0.1
+REF_ELEM_LENGTH= 0.1
+
+% Reference length for pitching, rolling, and yawing non-dimensional moment
+% Type: ScalarOption Default: 1.0
+REF_LENGTH_MOMENT= 1
+
+% X Reference origin for moment computation
+% Type: ListOption Default: RefOriginMoment_X
+REF_ORIGIN_MOMENT_X= RefOriginMoment_X
+
+% Y Reference origin for moment computation
+% Type: ListOption Default: RefOriginMoment_Y
+REF_ORIGIN_MOMENT_Y= RefOriginMoment_Y
+
+% Z Reference origin for moment computation
+% Type: ListOption Default: RefOriginMoment_Z
+REF_ORIGIN_MOMENT_Z= RefOriginMoment_Z
+
+% Reference pressure (1.0 N/m^2 by default, only for compressible flows)
+% Type: ScalarOption Default: 1.0
+REF_PRESSURE= 1
+
+% Reference coefficient for detecting sharp edges
+% Type: ScalarOption Default: 3.0
+REF_SHARP_EDGES= 3
+
+% Reference temperature (1.0 K by default, only for compressible flows)
+% Type: ScalarOption Default: 1.0
+REF_TEMPERATURE= 1
+
+% Reference velocity (incompressible only)
+% Type: ScalarOption Default: -1.0
+REF_VELOCITY= -1
+
+% Reference viscosity (incompressible only)
+% Type: ScalarOption Default: -1.0
+REF_VISCOSITY= -1
+
+% Write a new mesh converted to meters
+% Type: SpecialOption Default: NO
+WRITE_CONVERTED_MESH= NO
+
+
+% ----------- Reacting Flow ----------- % 
+
+% 
+% Type: ListOption Default: Gas_Composition
+GAS_COMPOSITION= Gas_Composition
+
+% Specify chemical model for multi-species simulations
+% Type: EnumOption Default: ARGON
+% Options: (ARGON, NONE, AIR-7, AIR-21, O2, N2, AIR-5, ARGON-SID, ONESPECIES )
+GAS_MODEL= ARGON
+
+
+% ----------- Free surface simulation ----------- % 
+
+% Free surface damping coefficient
+% Type: ScalarOption Default: 0.0
+FREESURFACE_DAMPING_COEFF= 0
+
+% Free surface damping length (times the baseline wave)
+% Type: ScalarOption Default: 1.0
+FREESURFACE_DAMPING_LENGTH= 1
+
+% Free surface depth surface (x or y coordinate)
+% Type: ScalarOption Default: 1.0
+FREESURFACE_DEPTH= 1
+
+% Location of the free surface outlet surface (x or y coordinate)
+% Type: ScalarOption Default: 0.0
+FREESURFACE_OUTLET= 0
+
+% Thickness of the interface in a free surface problem
+% Type: ScalarOption Default: 0.1
+FREESURFACE_THICKNESS= 0.1
+
+% Location of the freesurface (y or z coordinate)
+% Type: ScalarOption Default: 0.0
+FREESURFACE_ZERO= 0
+
+% Ratio of density for two phase problems
+% Type: ScalarOption Default: 0.1
+RATIO_DENSITY= 0.1
+
+% Ratio of viscosity for two phase problems
+% Type: ScalarOption Default: 0.1
+RATIO_VISCOSITY= 0.1
+
+
+% ----------- Grid deformation ----------- % 
+
+% Kind of deformation
+% Type: EnumListOption Default: Param_Map
+% Options: (Enum list )
+DV_KIND= ( )
+
+% Marker of the surface to which we are going apply the shape deformation
+% Type: MarkerOption Default: Marker_DV
+DV_MARKER= Marker_DV
+
+% No description
+% Type: DVParamOption Default: Design_Variable
+DV_PARAM= Design_Variable
+
+% New value of the shape deformation
+% Type: ListOption Default: DV_Value
+DV_VALUE= DV_Value
+
+% Number of iterations for FEA mesh deformation (surface deformation increments)
+% Type: ScalarOption Default: 1
+GRID_DEFORM_ITER= 1
+
+% Hold the grid fixed in a region
+% Type: SpecialOption Default: NO
+HOLD_GRID_FIXED= NO
+
+% Coordinates of the box where the grid will be deformed (Xmin, Ymin, Zmin, Xmax, Ymax, Zmax)
+% Type: ArrayOption Default: ( -1E15, -1E15, -1E15, 1E15, 1E15, 1E15 )
+HOLD_GRID_FIXED_COORD= ( -1e+15, -1e+15, -1e+15, 1e+15, 1e+15, 1e+15 )
+
+% Visualize the deformation
+% Type: SpecialOption Default: NO
+VISUALIZE_DEFORMATION= NO
+
+
+% ----------- Rotorcraft problem ----------- % 
+
+% No description
+% Type: ScalarOption Default: 0.0
+COLLECTIVE_PITCH= 0
+
+% No description
+% Type: ScalarOption Default: 0.0
+CYCLIC_PITCH= 0
+
+
+% ----------- FEA solver ----------- % 
+
+% Modulus of elasticity
+% Type: ScalarOption Default: 2E11
+ELASTICITY_MODULUS= 2e+11
+
+% Material density
+% Type: ScalarOption Default: 7854
+MATERIAL_DENSITY= 7854
+
+% Poisson ratio
+% Type: ScalarOption Default: 0.30
+POISSON_RATIO= 0.3
+
+
+% ----------- Wave solver ----------- % 
+
+% Constant wave speed
+% Type: ScalarOption Default: 331.79
+WAVE_SPEED= 331.79
+
+
+% ----------- Heat solver ----------- % 
+
+% Thermal diffusivity constant
+% Type: ScalarOption Default: 1.172E-5
+THERMAL_DIFFUSIVITY= 1.172e-05

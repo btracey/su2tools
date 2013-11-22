@@ -148,6 +148,7 @@ func (o *pythonOption) OptionTypeToGoType() error {
 	return nil
 }
 
+// CODE DUPLICATION HERE WITH CONFIG READER
 func (o *pythonOption) SplitArrayOption(str string) ([]string, error) {
 	// Check that the beginning and ending are ( and ]
 	if str[0] != '(' {
@@ -164,6 +165,7 @@ func (o *pythonOption) SplitArrayOption(str string) ([]string, error) {
 	return strs, nil
 }
 
+// CODE DUPLICATION HERE WITH CONFIG READER
 func (o *pythonOption) IsFloatArray(strs []string) []float64 {
 	fs := make([]float64, len(strs))
 	for i, str := range strs {

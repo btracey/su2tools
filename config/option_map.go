@@ -12,7 +12,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "COMPRESSIBLE",
 		Type:           "string",
 		StructName:     "RegimeType",
-		enumOptions: []string{
+		ValueString:    "['COMPRESSIBLE', 'INCOMPRESSIBLE', 'FREESURFACE']", enumOptions: []string{
 			"COMPRESSIBLE",
 			"INCOMPRESSIBLE",
 			"FREESURFACE",
@@ -26,7 +26,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "ExtraOutput",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"PhysicalProblem": {
 		Description:    "Physical governing equations",
@@ -36,7 +36,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "PhysicalProblem",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'EULER', 'NAVIER_STOKES', 'RANS', 'POISSON_EQUATION', 'ADJ_EULER', 'ADJ_NAVIER_STOKES', 'ADJ_RANS', 'LIN_EULER', 'LIN_NAVIER_STOKES', 'TNE2_EULER', 'TNE2_NAVIER_STOKES', 'ADJ_TNE2_EULER', 'ADJ_TNE2_NAVIER_STOKES', 'WAVE_EQUATION', 'HEAT_EQUATION', 'LINEAR_ELASTICITY', 'FLUID_STRUCTURE_EULER', 'FLUID_STRUCTURE_NAVIER_STOKES', 'FLUID_STRUCTURE_RANS', 'TEMPLATE_SOLVER']", enumOptions: []string{
 			"NONE",
 			"EULER",
 			"NAVIER_STOKES",
@@ -68,7 +68,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "DIRECT",
 		Type:           "string",
 		StructName:     "MathProblem",
-		enumOptions: []string{
+		ValueString:    "['DIRECT', 'ADJOINT', 'LINEARIZED']", enumOptions: []string{
 			"DIRECT",
 			"ADJOINT",
 			"LINEARIZED",
@@ -82,7 +82,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "KindTurbModel",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'SA', 'SST', 'ML']", enumOptions: []string{
 			"NONE",
 			"SA",
 			"SST",
@@ -97,7 +97,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "model.json",
 		Type:           "string",
 		StructName:     "MlTurbModelFile",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"MlTurbModelCheckFile": {
 		Description:    "Location of the check for the proper loading of the turbulence model",
@@ -107,7 +107,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "check_model.txt",
 		Type:           "string",
 		StructName:     "MlTurbModelCheckFile",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"KindTransModel": {
 		Description:    "Specify transition model",
@@ -117,7 +117,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "KindTransModel",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'LM']", enumOptions: []string{
 			"NONE",
 			"LM",
 		},
@@ -130,7 +130,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "Axisymmetric",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"GravityForce": {
 		Description:    "Add the gravity force",
@@ -140,7 +140,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "GravityForce",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"LowFidelitySimulation": {
 		Description:    "Perform a low fidelity simulation",
@@ -150,7 +150,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "LowFidelitySimulation",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"RestartSol": {
 		Description:    "Restart solution from native solution file",
@@ -160,7 +160,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "RestartSol",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"VisualizePart": {
 		Description:    "Write a tecplot file for each partition",
@@ -170,7 +170,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "VisualizePart",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"MarkerPlotting": {
 		Description:    "Marker(s) of the surface in the surface flow solution file",
@@ -180,7 +180,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_Plotting",
 		Type:           "string",
 		StructName:     "MarkerPlotting",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerMonitoring": {
 		Description:    "Marker(s) of the surface where evaluate the non-dimensional coefficients",
@@ -190,7 +190,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_Monitoring",
 		Type:           "string",
 		StructName:     "MarkerMonitoring",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerDesigning": {
 		Description:    "Marker(s) of the surface where objective function (design problem) will be evaluated",
@@ -200,7 +200,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_Designing",
 		Type:           "string",
 		StructName:     "MarkerDesigning",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerEuler": {
 		Description:    "Euler wall boundary marker(s)",
@@ -210,7 +210,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_Euler",
 		Type:           "string",
 		StructName:     "MarkerEuler",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerFar": {
 		Description:    "Far-field boundary marker(s)",
@@ -220,7 +220,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_FarField",
 		Type:           "string",
 		StructName:     "MarkerFar",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerSym": {
 		Description:    "Symmetry boundary condition",
@@ -230,7 +230,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_SymWall",
 		Type:           "string",
 		StructName:     "MarkerSym",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerPressure": {
 		Description:    "Symmetry boundary condition",
@@ -240,7 +240,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_Pressure",
 		Type:           "string",
 		StructName:     "MarkerPressure",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerNearfield": {
 		Description:    "Near-Field boundary condition",
@@ -250,7 +250,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_NearFieldBound",
 		Type:           "string",
 		StructName:     "MarkerNearfield",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerInterface": {
 		Description:    "Zone interface boundary marker(s)",
@@ -260,7 +260,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_InterfaceBound",
 		Type:           "string",
 		StructName:     "MarkerInterface",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerDirichlet": {
 		Description:    "Dirichlet boundary marker(s)",
@@ -270,7 +270,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_Dirichlet",
 		Type:           "string",
 		StructName:     "MarkerDirichlet",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerNeumann": {
 		Description:    "Neumann boundary marker(s)",
@@ -280,7 +280,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_Neumann",
 		Type:           "string",
 		StructName:     "MarkerNeumann",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"ElecDirichlet": {
 		Description:    "poisson dirichlet boundary marker(s)",
@@ -290,7 +290,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Dirichlet_Value",
 		Type:           "string",
 		StructName:     "ElecDirichlet",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"ElecNeumann": {
 		Description:    "poisson neumann boundary marker(s)",
@@ -300,7 +300,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_Neumann_Elec",
 		Type:           "string",
 		StructName:     "ElecNeumann",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerCustom": {
 		Description:    "Custom boundary marker(s)",
@@ -310,7 +310,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_Custom",
 		Type:           "string",
 		StructName:     "MarkerCustom",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerPeriodic": {
 		Description:    "No description",
@@ -320,7 +320,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Periodic_Translation",
 		Type:           "string",
 		StructName:     "MarkerPeriodic",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"InletType": {
 		Description:    "Inlet boundary type",
@@ -330,7 +330,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "TOTAL_CONDITIONS",
 		Type:           "string",
 		StructName:     "InletType",
-		enumOptions: []string{
+		ValueString:    "['TOTAL_CONDITIONS', 'MASS_FLOW']", enumOptions: []string{
 			"TOTAL_CONDITIONS",
 			"MASS_FLOW",
 		},
@@ -343,7 +343,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Inlet_FlowDir",
 		Type:           "string",
 		StructName:     "MarkerInlet",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerSupersonicInlet": {
 		Description:    "No description",
@@ -353,7 +353,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Inlet_Velocity",
 		Type:           "string",
 		StructName:     "MarkerSupersonicInlet",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerOutlet": {
 		Description:    "No description",
@@ -363,7 +363,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Outlet_Pressure",
 		Type:           "string",
 		StructName:     "MarkerOutlet",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerIsothermal": {
 		Description:    "No description",
@@ -373,7 +373,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Isothermal_Temperature",
 		Type:           "string",
 		StructName:     "MarkerIsothermal",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerHeatflux": {
 		Description:    "No description",
@@ -383,7 +383,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Heat_Flux",
 		Type:           "string",
 		StructName:     "MarkerHeatflux",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerNacelleInflow": {
 		Description:    "No description",
@@ -393,7 +393,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "FanFace_Mach_Target",
 		Type:           "string",
 		StructName:     "MarkerNacelleInflow",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"SubsonicNacelleInflow": {
 		Description:    "Engine subsonic intake region",
@@ -403,7 +403,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "SubsonicNacelleInflow",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"MarkerNacelleExhaust": {
 		Description:    "No description",
@@ -413,7 +413,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Nozzle_Ptotal",
 		Type:           "string",
 		StructName:     "MarkerNacelleExhaust",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerNormalDispl": {
 		Description:    "Displacement boundary marker(s)",
@@ -423,7 +423,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Displ_Value",
 		Type:           "string",
 		StructName:     "MarkerNormalDispl",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerNormalLoad": {
 		Description:    "Load boundary marker(s)",
@@ -433,7 +433,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Load_Value",
 		Type:           "string",
 		StructName:     "MarkerNormalLoad",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MarkerFlowload": {
 		Description:    "Flow load boundary marker(s)",
@@ -443,7 +443,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "FlowLoad_Value",
 		Type:           "string",
 		StructName:     "MarkerFlowload",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"DampNacelleInflow": {
 		Description:    "Damping factor for engine inlet condition",
@@ -453,7 +453,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.1",
 		Type:           "float64",
 		StructName:     "DampNacelleInflow",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"KindAdapt": {
 		Description:    "Kind of grid adaptation",
@@ -463,7 +463,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "KindAdapt",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'FULL', 'FULL_FLOW', 'FULL_ADJOINT', 'FULL_LINEAR', 'GRAD_FLOW', 'GRAD_ADJOINT', 'GRAD_FLOW_ADJ', 'ROBUST', 'COMPUTABLE', 'REMAINING', 'COMPUTABLE_ROBUST', 'WAKE', 'SMOOTHING', 'SUPERSONIC_SHOCK', 'TWOPHASE']", enumOptions: []string{
 			"NONE",
 			"FULL",
 			"FULL_FLOW",
@@ -490,7 +490,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "-1.0",
 		Type:           "float64",
 		StructName:     "NewElems",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"DualvolPower": {
 		Description:    "Scale factor for the dual volume",
@@ -500,7 +500,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.5",
 		Type:           "float64",
 		StructName:     "DualvolPower",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"AnalyticalSurfdef": {
 		Description:    "Use analytical definition for surfaces",
@@ -510,7 +510,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "AnalyticalSurfdef",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'NACA0012_AIRFOIL', 'NACA4412_AIRFOIL', 'CYLINDER', 'BIPARABOLIC']", enumOptions: []string{
 			"NONE",
 			"NACA0012_AIRFOIL",
 			"NACA4412_AIRFOIL",
@@ -526,7 +526,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "SmoothGeometry",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"AdaptBoundary": {
 		Description:    "Adapt the boundary elements",
@@ -536,7 +536,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "YES",
 		Type:           "bool",
 		StructName:     "AdaptBoundary",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"DivideElements": {
 		Description:    "Divide rectangles into triangles",
@@ -546,7 +546,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "DivideElements",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"UnsteadySimulation": {
 		Description:    "Unsteady simulation",
@@ -556,7 +556,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "string",
 		StructName:     "UnsteadySimulation",
-		enumOptions: []string{
+		ValueString:    "['NO', 'TIME_STEPPING', 'DUAL_TIME_STEPPING-1ST_ORDER', 'DUAL_TIME_STEPPING-2ND_ORDER', 'TIME_SPECTRAL', 'ROTATIONAL_FRAME']", enumOptions: []string{
 			"NO",
 			"TIME_STEPPING",
 			"DUAL_TIME_STEPPING-1ST_ORDER",
@@ -573,7 +573,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "UnsteadyFarfield",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"CflNumber": {
 		Description:    "Courant-Friedrichs-Lewy condition of the finest grid",
@@ -583,7 +583,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.25",
 		Type:           "float64",
 		StructName:     "CflNumber",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"CflRamp": {
 		Description:    "No description",
@@ -593,7 +593,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "(1.0, 100.0, 1.0)",
 		Type:           "[]float64",
 		StructName:     "CflRamp",
-		enumOptions:    []string{},
+		ValueString:    "['Array']", enumOptions: []string{},
 	},
 	"AdjCflReduction": {
 		Description:    "Reduction factor of the CFL coefficient in the adjoint problem",
@@ -603,7 +603,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.8",
 		Type:           "float64",
 		StructName:     "AdjCflReduction",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"TurbCflReduction": {
 		Description:    "Reduction factor of the CFL coefficient in the level set problem",
@@ -613,7 +613,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "TurbCflReduction",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"AdjturbCflReduction": {
 		Description:    "Reduction factor of the CFL coefficient in the turbulent adjoint problem",
@@ -623,7 +623,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "AdjturbCflReduction",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"ExtIter": {
 		Description:    "Number of total iterations",
@@ -633,7 +633,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "999999",
 		Type:           "float64",
 		StructName:     "ExtIter",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RkAlphaCoeff": {
 		Description:    "Runge-Kutta alpha coefficients",
@@ -643,7 +643,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "( 0.66667, 0.66667, 1.000000 )",
 		Type:           "string",
 		StructName:     "RkAlphaCoeff",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"UnstTimestep": {
 		Description:    "Time Step for dual time stepping simulations (s)",
@@ -653,7 +653,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "UnstTimestep",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"UnstTime": {
 		Description:    "Total Physical Time for dual time stepping simulations (s)",
@@ -663,7 +663,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "UnstTime",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"UnstCflNumber": {
 		Description:    "Unsteady Courant-Friedrichs-Lewy number of the finest grid",
@@ -673,7 +673,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "UnstCflNumber",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"UnstIntIter": {
 		Description:    "Number of internal iterations (dual time method)",
@@ -683,7 +683,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "100",
 		Type:           "float64",
 		StructName:     "UnstIntIter",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"TimeInstances": {
 		Description:    "Integer number of periodic time instances for Time Spectral",
@@ -693,7 +693,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1",
 		Type:           "float64",
 		StructName:     "TimeInstances",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"UnstRestartIter": {
 		Description:    "Iteration number to begin unsteady restarts (dual time method)",
@@ -703,7 +703,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0",
 		Type:           "float64",
 		StructName:     "UnstRestartIter",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"UnstAdjointIter": {
 		Description:    "Starting direct solver iteration for the unsteady adjoint",
@@ -713,7 +713,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0",
 		Type:           "float64",
 		StructName:     "UnstAdjointIter",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"TimeDiscreFlow": {
 		Description:    "Time discretization",
@@ -723,7 +723,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER_IMPLICIT",
 		Type:           "string",
 		StructName:     "TimeDiscreFlow",
-		enumOptions: []string{
+		ValueString:    "['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']", enumOptions: []string{
 			"EULER_IMPLICIT",
 			"RUNGE-KUTTA_EXPLICIT",
 			"EULER_EXPLICIT",
@@ -737,7 +737,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER_IMPLICIT",
 		Type:           "string",
 		StructName:     "TimeDiscreTne2",
-		enumOptions: []string{
+		ValueString:    "['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']", enumOptions: []string{
 			"EULER_IMPLICIT",
 			"RUNGE-KUTTA_EXPLICIT",
 			"EULER_EXPLICIT",
@@ -751,7 +751,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER_IMPLICIT",
 		Type:           "string",
 		StructName:     "TimeDiscreAdjtne2",
-		enumOptions: []string{
+		ValueString:    "['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']", enumOptions: []string{
 			"EULER_IMPLICIT",
 			"RUNGE-KUTTA_EXPLICIT",
 			"EULER_EXPLICIT",
@@ -765,7 +765,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER_IMPLICIT",
 		Type:           "string",
 		StructName:     "TimeDiscreAdjlevelset",
-		enumOptions: []string{
+		ValueString:    "['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']", enumOptions: []string{
 			"EULER_IMPLICIT",
 			"RUNGE-KUTTA_EXPLICIT",
 			"EULER_EXPLICIT",
@@ -779,7 +779,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER_IMPLICIT",
 		Type:           "string",
 		StructName:     "TimeDiscreAdj",
-		enumOptions: []string{
+		ValueString:    "['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']", enumOptions: []string{
 			"EULER_IMPLICIT",
 			"RUNGE-KUTTA_EXPLICIT",
 			"EULER_EXPLICIT",
@@ -793,7 +793,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER_IMPLICIT",
 		Type:           "string",
 		StructName:     "TimeDiscreLin",
-		enumOptions: []string{
+		ValueString:    "['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']", enumOptions: []string{
 			"EULER_IMPLICIT",
 			"RUNGE-KUTTA_EXPLICIT",
 			"EULER_EXPLICIT",
@@ -807,7 +807,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER_IMPLICIT",
 		Type:           "string",
 		StructName:     "TimeDiscreTurb",
-		enumOptions: []string{
+		ValueString:    "['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']", enumOptions: []string{
 			"EULER_IMPLICIT",
 			"RUNGE-KUTTA_EXPLICIT",
 			"EULER_EXPLICIT",
@@ -821,7 +821,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER_IMPLICIT",
 		Type:           "string",
 		StructName:     "TimeDiscreAdjturb",
-		enumOptions: []string{
+		ValueString:    "['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']", enumOptions: []string{
 			"EULER_IMPLICIT",
 			"RUNGE-KUTTA_EXPLICIT",
 			"EULER_EXPLICIT",
@@ -835,7 +835,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER_IMPLICIT",
 		Type:           "string",
 		StructName:     "TimeDiscreWave",
-		enumOptions: []string{
+		ValueString:    "['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']", enumOptions: []string{
 			"EULER_IMPLICIT",
 			"RUNGE-KUTTA_EXPLICIT",
 			"EULER_EXPLICIT",
@@ -849,7 +849,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER_IMPLICIT",
 		Type:           "string",
 		StructName:     "TimeDiscreFea",
-		enumOptions: []string{
+		ValueString:    "['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']", enumOptions: []string{
 			"EULER_IMPLICIT",
 			"RUNGE-KUTTA_EXPLICIT",
 			"EULER_EXPLICIT",
@@ -863,7 +863,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER_IMPLICIT",
 		Type:           "string",
 		StructName:     "TimeDiscreHeat",
-		enumOptions: []string{
+		ValueString:    "['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']", enumOptions: []string{
 			"EULER_IMPLICIT",
 			"RUNGE-KUTTA_EXPLICIT",
 			"EULER_EXPLICIT",
@@ -877,7 +877,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER_IMPLICIT",
 		Type:           "string",
 		StructName:     "TimeDiscrePoisson",
-		enumOptions: []string{
+		ValueString:    "['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']", enumOptions: []string{
 			"EULER_IMPLICIT",
 			"RUNGE-KUTTA_EXPLICIT",
 			"EULER_EXPLICIT",
@@ -891,7 +891,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "FGMRES",
 		Type:           "string",
 		StructName:     "LinearSolver",
-		enumOptions: []string{
+		ValueString:    "['STEEPEST_DESCENT', 'NEWTON', 'QUASI_NEWTON', 'CONJUGATE_GRADIENT', 'BCGSTAB', 'FGMRES']", enumOptions: []string{
 			"FGMRES",
 			"STEEPEST_DESCENT",
 			"NEWTON",
@@ -908,7 +908,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "LU_SGS",
 		Type:           "string",
 		StructName:     "LinearSolverPrec",
-		enumOptions: []string{
+		ValueString:    "['JACOBI', 'LU_SGS', 'LINELET']", enumOptions: []string{
 			"LU_SGS",
 			"JACOBI",
 			"LINELET",
@@ -922,7 +922,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1E-5",
 		Type:           "float64",
 		StructName:     "LinearSolverError",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"LinearSolverIter": {
 		Description:    "Maximum number of iterations of the linear solver for the implicit formulation",
@@ -932,7 +932,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "10",
 		Type:           "float64",
 		StructName:     "LinearSolverIter",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"LinearSolverRelax": {
 		Description:    "Relaxation of the linear solver for the implicit formulation",
@@ -942,7 +942,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "LinearSolverRelax",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RoeTurkelPrec": {
 		Description:    "Roe-Turkel preconditioning for low Mach number flows",
@@ -952,7 +952,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "RoeTurkelPrec",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"MinRoeTurkelPrec": {
 		Description:    "Time Step for dual time stepping simulations (s)",
@@ -962,7 +962,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.01",
 		Type:           "float64",
 		StructName:     "MinRoeTurkelPrec",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"MaxRoeTurkelPrec": {
 		Description:    "Time Step for dual time stepping simulations (s)",
@@ -972,7 +972,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.2",
 		Type:           "float64",
 		StructName:     "MaxRoeTurkelPrec",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"AdjturbLinSolver": {
 		Description:    "Linear solver for the turbulent adjoint systems",
@@ -982,7 +982,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "FGMRES",
 		Type:           "string",
 		StructName:     "AdjturbLinSolver",
-		enumOptions: []string{
+		ValueString:    "['STEEPEST_DESCENT', 'NEWTON', 'QUASI_NEWTON', 'CONJUGATE_GRADIENT', 'BCGSTAB', 'FGMRES']", enumOptions: []string{
 			"FGMRES",
 			"STEEPEST_DESCENT",
 			"NEWTON",
@@ -999,7 +999,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "LU_SGS",
 		Type:           "string",
 		StructName:     "AdjturbLinPrec",
-		enumOptions: []string{
+		ValueString:    "['JACOBI', 'LU_SGS', 'LINELET']", enumOptions: []string{
 			"LU_SGS",
 			"JACOBI",
 			"LINELET",
@@ -1013,7 +1013,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1E-5",
 		Type:           "float64",
 		StructName:     "AdjturbLinError",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"AdjturbLinIter": {
 		Description:    "Maximum number of iterations of the turbulent adjoint linear solver for the implicit formulation",
@@ -1023,7 +1023,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "10",
 		Type:           "float64",
 		StructName:     "AdjturbLinIter",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"GridMovement": {
 		Description:    "Mesh motion for unsteady simulations",
@@ -1033,7 +1033,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "GridMovement",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"GridMovementKind": {
 		Description:    "Type of mesh motion",
@@ -1043,7 +1043,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "GridMovement_Map",
 		Type:           "[]string",
 		StructName:     "GridMovementKind",
-		enumOptions: []string{
+		ValueString:    "['Enum list']", enumOptions: []string{
 			"Enum list",
 		},
 	},
@@ -1055,7 +1055,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_Moving",
 		Type:           "string",
 		StructName:     "MarkerMoving",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"MachMotion": {
 		Description:    "Mach number (non-dimensional, based on the mesh velocity and freestream vals.)",
@@ -1065,7 +1065,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "MachMotion",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"MotionOriginX": {
 		Description:    "Coordinates of the rigid motion origin",
@@ -1075,7 +1075,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Motion_Origin_X",
 		Type:           "string",
 		StructName:     "MotionOriginX",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"MotionOriginY": {
 		Description:    "Coordinates of the rigid motion origin",
@@ -1085,7 +1085,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Motion_Origin_Y",
 		Type:           "string",
 		StructName:     "MotionOriginY",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"MotionOriginZ": {
 		Description:    "Coordinates of the rigid motion origin",
@@ -1095,7 +1095,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Motion_Origin_Z",
 		Type:           "string",
 		StructName:     "MotionOriginZ",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"TranslationRateX": {
 		Description:    "Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)",
@@ -1105,7 +1105,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Translation_Rate_X",
 		Type:           "string",
 		StructName:     "TranslationRateX",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"TranslationRateY": {
 		Description:    "Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)",
@@ -1115,7 +1115,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Translation_Rate_Y",
 		Type:           "string",
 		StructName:     "TranslationRateY",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"TranslationRateZ": {
 		Description:    "Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)",
@@ -1125,7 +1125,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Translation_Rate_Z",
 		Type:           "string",
 		StructName:     "TranslationRateZ",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"RotationRateX": {
 		Description:    "Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)",
@@ -1135,7 +1135,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Rotation_Rate_X",
 		Type:           "string",
 		StructName:     "RotationRateX",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"RotationRateY": {
 		Description:    "Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)",
@@ -1145,7 +1145,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Rotation_Rate_Y",
 		Type:           "string",
 		StructName:     "RotationRateY",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"RotationRateZ": {
 		Description:    "Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)",
@@ -1155,7 +1155,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Rotation_Rate_Z",
 		Type:           "string",
 		StructName:     "RotationRateZ",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PitchingOmegaX": {
 		Description:    "Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)",
@@ -1165,7 +1165,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Pitching_Omega_X",
 		Type:           "string",
 		StructName:     "PitchingOmegaX",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PitchingOmegaY": {
 		Description:    "Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)",
@@ -1175,7 +1175,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Pitching_Omega_Y",
 		Type:           "string",
 		StructName:     "PitchingOmegaY",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PitchingOmegaZ": {
 		Description:    "Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)",
@@ -1185,7 +1185,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Pitching_Omega_Z",
 		Type:           "string",
 		StructName:     "PitchingOmegaZ",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PitchingAmplX": {
 		Description:    "Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)",
@@ -1195,7 +1195,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Pitching_Ampl_X",
 		Type:           "string",
 		StructName:     "PitchingAmplX",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PitchingAmplY": {
 		Description:    "Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)",
@@ -1205,7 +1205,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Pitching_Ampl_Y",
 		Type:           "string",
 		StructName:     "PitchingAmplY",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PitchingAmplZ": {
 		Description:    "Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)",
@@ -1215,7 +1215,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Pitching_Ampl_Z",
 		Type:           "string",
 		StructName:     "PitchingAmplZ",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PitchingPhaseX": {
 		Description:    "Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)",
@@ -1225,7 +1225,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Pitching_Phase_X",
 		Type:           "string",
 		StructName:     "PitchingPhaseX",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PitchingPhaseY": {
 		Description:    "Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)",
@@ -1235,7 +1235,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Pitching_Phase_Y",
 		Type:           "string",
 		StructName:     "PitchingPhaseY",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PitchingPhaseZ": {
 		Description:    "Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)",
@@ -1245,7 +1245,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Pitching_Phase_Z",
 		Type:           "string",
 		StructName:     "PitchingPhaseZ",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PlungingOmegaX": {
 		Description:    "Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)",
@@ -1255,7 +1255,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Plunging_Omega_X",
 		Type:           "string",
 		StructName:     "PlungingOmegaX",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PlungingOmegaY": {
 		Description:    "Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)",
@@ -1265,7 +1265,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Plunging_Omega_Y",
 		Type:           "string",
 		StructName:     "PlungingOmegaY",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PlungingOmegaZ": {
 		Description:    "Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)",
@@ -1275,7 +1275,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Plunging_Omega_Z",
 		Type:           "string",
 		StructName:     "PlungingOmegaZ",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PlungingAmplX": {
 		Description:    "Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)",
@@ -1285,7 +1285,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Plunging_Ampl_X",
 		Type:           "string",
 		StructName:     "PlungingAmplX",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PlungingAmplY": {
 		Description:    "Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)",
@@ -1295,7 +1295,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Plunging_Ampl_Y",
 		Type:           "string",
 		StructName:     "PlungingAmplY",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"PlungingAmplZ": {
 		Description:    "Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)",
@@ -1305,7 +1305,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Plunging_Ampl_Z",
 		Type:           "string",
 		StructName:     "PlungingAmplZ",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"MoveMotionOrigin": {
 		Description:    "Value to move motion origins (1 or 0)",
@@ -1315,7 +1315,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "MoveMotion_Origin",
 		Type:           "string",
 		StructName:     "MoveMotionOrigin",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"MotionFilename": {
 		Description:    "",
@@ -1325,7 +1325,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "mesh_motion.dat",
 		Type:           "string",
 		StructName:     "MotionFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreqPlungeAeroelastic": {
 		Description:    "Uncoupled Aeroelastic Frequency Plunge.",
@@ -1335,7 +1335,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "100",
 		Type:           "float64",
 		StructName:     "FreqPlungeAeroelastic",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreqPitchAeroelastic": {
 		Description:    "Uncoupled Aeroelastic Frequency Pitch.",
@@ -1345,7 +1345,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "100",
 		Type:           "float64",
 		StructName:     "FreqPitchAeroelastic",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"WindGust": {
 		Description:    "Apply a wind gust",
@@ -1355,7 +1355,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "WindGust",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"GustType": {
 		Description:    "Type of gust",
@@ -1365,7 +1365,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "GustType",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'TOP_HAT', 'SINE', 'ONE_M_COSINE']", enumOptions: []string{
 			"NONE",
 			"TOP_HAT",
 			"SINE",
@@ -1380,7 +1380,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "GustWavelength",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"GustPeriods": {
 		Description:    "Number of gust periods",
@@ -1390,7 +1390,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "GustPeriods",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"GustAmpl": {
 		Description:    "Gust amplitude (m/s)",
@@ -1400,7 +1400,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "GustAmpl",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"GustBeginTime": {
 		Description:    "Time at which to begin the gust (sec)",
@@ -1410,7 +1410,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "GustBeginTime",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"GustBeginLoc": {
 		Description:    "Location at which the gust begins (meters)",
@@ -1420,7 +1420,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "GustBeginLoc",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"GustDir": {
 		Description:    "Direction of the gust X or Y dir",
@@ -1430,7 +1430,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Y_DIR",
 		Type:           "string",
 		StructName:     "GustDir",
-		enumOptions: []string{
+		ValueString:    "['X_DIR', 'Y_DIR']", enumOptions: []string{
 			"Y_DIR",
 			"X_DIR",
 		},
@@ -1443,7 +1443,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "RESIDUAL",
 		Type:           "string",
 		StructName:     "ConvCriteria",
-		enumOptions: []string{
+		ValueString:    "['CAUCHY', 'RESIDUAL']", enumOptions: []string{
 			"RESIDUAL",
 			"CAUCHY",
 		},
@@ -1456,7 +1456,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "3.0",
 		Type:           "float64",
 		StructName:     "ResidualReduction",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"ResidualMinval": {
 		Description:    "Min value of the residual (log10 of the residual)",
@@ -1466,7 +1466,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "-8.0",
 		Type:           "float64",
 		StructName:     "ResidualMinval",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"StartconvIter": {
 		Description:    "Iteration number to begin convergence monitoring",
@@ -1476,7 +1476,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "5",
 		Type:           "float64",
 		StructName:     "StartconvIter",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"CauchyElems": {
 		Description:    "Number of elements to apply the criteria",
@@ -1486,7 +1486,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "100",
 		Type:           "float64",
 		StructName:     "CauchyElems",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"CauchyEps": {
 		Description:    "Epsilon to control the series convergence",
@@ -1496,7 +1496,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1E-10",
 		Type:           "float64",
 		StructName:     "CauchyEps",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"CauchyFuncFlow": {
 		Description:    "Flow functional for the Cauchy criteria",
@@ -1506,7 +1506,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "DRAG",
 		Type:           "string",
 		StructName:     "CauchyFuncFlow",
-		enumOptions: []string{
+		ValueString:    "['DRAG', 'LIFT', 'SIDEFORCE', 'EFFICIENCY', 'PRESSURE', 'MOMENT_X', 'MOMENT_Y', 'MOMENT_Z', 'EQUIVALENT_AREA', 'NEARFIELD_PRESSURE', 'FORCE_X', 'FORCE_Y', 'FORCE_Z', 'THRUST', 'TORQUE', 'HEAT_LOAD', 'FIGURE_OF_MERIT', 'FREE_SURFACE', 'TOTAL_VOLUME', 'MAX_THICKNESS', 'CLEARANCE', 'MIN_THICKNESS', 'MAX_THICK_SEC1', 'MAX_THICK_SEC2', 'MAX_THICK_SEC3', 'MAX_THICK_SEC4', 'MAX_THICK_SEC5']", enumOptions: []string{
 			"DRAG",
 			"LIFT",
 			"SIDEFORCE",
@@ -1544,7 +1544,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "SENS_GEOMETRY",
 		Type:           "string",
 		StructName:     "CauchyFuncAdj",
-		enumOptions: []string{
+		ValueString:    "['SENS_GEOMETRY', 'SENS_MACH', 'SENS_AOA', 'SENS_AOS']", enumOptions: []string{
 			"SENS_GEOMETRY",
 			"SENS_MACH",
 			"SENS_AOA",
@@ -1559,7 +1559,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "DELTA_DRAG",
 		Type:           "string",
 		StructName:     "CauchyFuncLin",
-		enumOptions: []string{
+		ValueString:    "['DELTA_DRAG', 'DELTA_LIFT']", enumOptions: []string{
 			"DELTA_DRAG",
 			"DELTA_LIFT",
 		},
@@ -1572,7 +1572,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1E-4",
 		Type:           "float64",
 		StructName:     "FullmgCauchyEps",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"Fullmg": {
 		Description:    "Full multi-grid",
@@ -1582,7 +1582,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "Fullmg",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"StartUpIter": {
 		Description:    "Start up iterations using the fine grid only",
@@ -1592,7 +1592,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0",
 		Type:           "float64",
 		StructName:     "StartUpIter",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"Mglevel": {
 		Description:    "Multi-grid Levels",
@@ -1602,7 +1602,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "3",
 		Type:           "float64",
 		StructName:     "Mglevel",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"Mgcycle": {
 		Description:    "Multi-grid Cycle (0 = V cycle, 1 = W Cycle)",
@@ -1612,7 +1612,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0",
 		Type:           "float64",
 		StructName:     "Mgcycle",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"MgPreSmooth": {
 		Description:    "Multi-grid pre-smoothing level",
@@ -1622,7 +1622,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "MG_PreSmooth",
 		Type:           "string",
 		StructName:     "MgPreSmooth",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"MgPostSmooth": {
 		Description:    "Multi-grid post-smoothing level",
@@ -1632,7 +1632,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "MG_PostSmooth",
 		Type:           "string",
 		StructName:     "MgPostSmooth",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"MgCorrectionSmooth": {
 		Description:    "Jacobi implicit smoothing of the correction",
@@ -1642,7 +1642,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "MG_CorrecSmooth",
 		Type:           "string",
 		StructName:     "MgCorrectionSmooth",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"MgDampRestriction": {
 		Description:    "Damping factor for the residual restriction",
@@ -1652,7 +1652,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.9",
 		Type:           "float64",
 		StructName:     "MgDampRestriction",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"MgDampProlongation": {
 		Description:    "Damping factor for the correction prolongation",
@@ -1662,7 +1662,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.9",
 		Type:           "float64",
 		StructName:     "MgDampProlongation",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"MgCflReduction": {
 		Description:    "CFL reduction factor on the coarse levels",
@@ -1672,7 +1672,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.9",
 		Type:           "float64",
 		StructName:     "MgCflReduction",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"MaxChildren": {
 		Description:    "Maximum number of children in the agglomeration stage",
@@ -1682,7 +1682,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "500",
 		Type:           "float64",
 		StructName:     "MaxChildren",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"MaxDimension": {
 		Description:    "Maximum length of an agglomerated element (relative to the domain)",
@@ -1692,7 +1692,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.1",
 		Type:           "float64",
 		StructName:     "MaxDimension",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"NumMethodGrad": {
 		Description:    "Numerical method for spatial gradients",
@@ -1702,7 +1702,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "WEIGHTED_LEAST_SQUARES",
 		Type:           "string",
 		StructName:     "NumMethodGrad",
-		enumOptions: []string{
+		ValueString:    "['GREEN_GAUSS', 'WEIGHTED_LEAST_SQUARES']", enumOptions: []string{
 			"WEIGHTED_LEAST_SQUARES",
 			"GREEN_GAUSS",
 		},
@@ -1715,7 +1715,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.5",
 		Type:           "float64",
 		StructName:     "LimiterCoeff",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SharpEdgesCoeff": {
 		Description:    "Coefficient for detecting the limit of the sharp edges",
@@ -1725,7 +1725,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "3.0",
 		Type:           "float64",
 		StructName:     "SharpEdgesCoeff",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"ConvNumMethodFlow": {
 		Description:    "No description",
@@ -1735,7 +1735,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "ROE-1ST_ORDER",
 		Type:           "string",
 		StructName:     "ConvNumMethodFlow",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']", enumOptions: []string{
 			"ROE-1ST_ORDER",
 			"NONE",
 			"ROE-2ND_ORDER",
@@ -1766,7 +1766,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "AVG_GRAD_CORRECTED",
 		Type:           "string",
 		StructName:     "ViscNumMethodFlow",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']", enumOptions: []string{
 			"AVG_GRAD_CORRECTED",
 			"NONE",
 			"AVG_GRAD",
@@ -1781,7 +1781,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SourNumMethodFlow",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"NONE",
 			"PIECEWISE_CONSTANT",
 			"CHARGE_DIST",
@@ -1796,7 +1796,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "VENKATAKRISHNAN",
 		Type:           "string",
 		StructName:     "SlopeLimiterFlow",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']", enumOptions: []string{
 			"VENKATAKRISHNAN",
 			"NONE",
 			"MINMOD",
@@ -1811,7 +1811,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "(1.0, 100.0, 1.0)",
 		Type:           "[]float64",
 		StructName:     "AdCoeffFlow",
-		enumOptions:    []string{},
+		ValueString:    "['Array']", enumOptions: []string{},
 	},
 	"ConvNumMethodAdj": {
 		Description:    "No description",
@@ -1821,7 +1821,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "ROE-1ST_ORDER",
 		Type:           "string",
 		StructName:     "ConvNumMethodAdj",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']", enumOptions: []string{
 			"ROE-1ST_ORDER",
 			"NONE",
 			"ROE-2ND_ORDER",
@@ -1852,7 +1852,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "ViscNumMethodAdj",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']", enumOptions: []string{
 			"NONE",
 			"AVG_GRAD",
 			"AVG_GRAD_CORRECTED",
@@ -1867,7 +1867,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SourNumMethodAdj",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"NONE",
 			"PIECEWISE_CONSTANT",
 			"CHARGE_DIST",
@@ -1882,7 +1882,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SlopeLimiterAdjflow",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']", enumOptions: []string{
 			"NONE",
 			"VENKATAKRISHNAN",
 			"MINMOD",
@@ -1897,7 +1897,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "(1.0, 100.0, 1.0)",
 		Type:           "[]float64",
 		StructName:     "AdCoeffAdj",
-		enumOptions:    []string{},
+		ValueString:    "['Array']", enumOptions: []string{},
 	},
 	"SlopeLimiterTurb": {
 		Description:    "Slope limiter",
@@ -1907,7 +1907,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "VENKATAKRISHNAN",
 		Type:           "string",
 		StructName:     "SlopeLimiterTurb",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']", enumOptions: []string{
 			"VENKATAKRISHNAN",
 			"NONE",
 			"MINMOD",
@@ -1922,7 +1922,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "ROE-1ST_ORDER",
 		Type:           "string",
 		StructName:     "ConvNumMethodTurb",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']", enumOptions: []string{
 			"ROE-1ST_ORDER",
 			"NONE",
 			"ROE-2ND_ORDER",
@@ -1953,7 +1953,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "AVG_GRAD_CORRECTED",
 		Type:           "string",
 		StructName:     "ViscNumMethodTurb",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']", enumOptions: []string{
 			"AVG_GRAD_CORRECTED",
 			"NONE",
 			"AVG_GRAD",
@@ -1968,7 +1968,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "PIECEWISE_CONSTANT",
 		Type:           "string",
 		StructName:     "SourNumMethodTurb",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"PIECEWISE_CONSTANT",
 			"NONE",
 			"CHARGE_DIST",
@@ -1983,7 +1983,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SlopeLimiterAdjturb",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']", enumOptions: []string{
 			"NONE",
 			"VENKATAKRISHNAN",
 			"MINMOD",
@@ -1998,7 +1998,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "ROE-1ST_ORDER",
 		Type:           "string",
 		StructName:     "ConvNumMethodAdjturb",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']", enumOptions: []string{
 			"ROE-1ST_ORDER",
 			"NONE",
 			"ROE-2ND_ORDER",
@@ -2029,7 +2029,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "ViscNumMethodAdjturb",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']", enumOptions: []string{
 			"NONE",
 			"AVG_GRAD",
 			"AVG_GRAD_CORRECTED",
@@ -2044,7 +2044,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SourNumMethodAdjturb",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"NONE",
 			"PIECEWISE_CONSTANT",
 			"CHARGE_DIST",
@@ -2059,7 +2059,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "ROE-1ST_ORDER",
 		Type:           "string",
 		StructName:     "ConvNumMethodLin",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']", enumOptions: []string{
 			"ROE-1ST_ORDER",
 			"NONE",
 			"ROE-2ND_ORDER",
@@ -2090,7 +2090,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "ViscNumMethodLin",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']", enumOptions: []string{
 			"NONE",
 			"AVG_GRAD",
 			"AVG_GRAD_CORRECTED",
@@ -2105,7 +2105,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SourNumMethodLin",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"NONE",
 			"PIECEWISE_CONSTANT",
 			"CHARGE_DIST",
@@ -2120,7 +2120,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "(1.0, 100.0, 1.0)",
 		Type:           "[]float64",
 		StructName:     "AdCoeffLin",
-		enumOptions:    []string{},
+		ValueString:    "['Array']", enumOptions: []string{},
 	},
 	"SlopeLimiterAdjlevelset": {
 		Description:    "Slope limiter",
@@ -2130,7 +2130,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SlopeLimiterAdjlevelset",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']", enumOptions: []string{
 			"NONE",
 			"VENKATAKRISHNAN",
 			"MINMOD",
@@ -2145,7 +2145,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "ROE-1ST_ORDER",
 		Type:           "string",
 		StructName:     "ConvNumMethodAdjlevelset",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']", enumOptions: []string{
 			"ROE-1ST_ORDER",
 			"NONE",
 			"ROE-2ND_ORDER",
@@ -2176,7 +2176,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "ViscNumMethodAdjlevelset",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']", enumOptions: []string{
 			"NONE",
 			"AVG_GRAD",
 			"AVG_GRAD_CORRECTED",
@@ -2191,7 +2191,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SourNumMethodAdjlevelset",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"NONE",
 			"PIECEWISE_CONSTANT",
 			"CHARGE_DIST",
@@ -2206,7 +2206,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "ROE-1ST_ORDER",
 		Type:           "string",
 		StructName:     "ConvNumMethodTne2",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']", enumOptions: []string{
 			"ROE-1ST_ORDER",
 			"NONE",
 			"ROE-2ND_ORDER",
@@ -2237,7 +2237,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "ViscNumMethodTne2",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']", enumOptions: []string{
 			"NONE",
 			"AVG_GRAD",
 			"AVG_GRAD_CORRECTED",
@@ -2252,7 +2252,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SourNumMethodTne2",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"NONE",
 			"PIECEWISE_CONSTANT",
 			"CHARGE_DIST",
@@ -2267,7 +2267,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SlopeLimiterTne2",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']", enumOptions: []string{
 			"NONE",
 			"VENKATAKRISHNAN",
 			"MINMOD",
@@ -2282,7 +2282,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "(1.0, 100.0, 1.0)",
 		Type:           "[]float64",
 		StructName:     "AdCoeffTne2",
-		enumOptions:    []string{},
+		ValueString:    "['Array']", enumOptions: []string{},
 	},
 	"ConvNumMethodAdjtne2": {
 		Description:    "Convective numerical method",
@@ -2292,7 +2292,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "ROE-1ST_ORDER",
 		Type:           "string",
 		StructName:     "ConvNumMethodAdjtne2",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']", enumOptions: []string{
 			"ROE-1ST_ORDER",
 			"NONE",
 			"ROE-2ND_ORDER",
@@ -2323,7 +2323,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "ViscNumMethodAdjtne2",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']", enumOptions: []string{
 			"NONE",
 			"AVG_GRAD",
 			"AVG_GRAD_CORRECTED",
@@ -2338,7 +2338,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SourNumMethodAdjtne2",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"NONE",
 			"PIECEWISE_CONSTANT",
 			"CHARGE_DIST",
@@ -2353,7 +2353,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SlopeLimiterAdjtne2",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']", enumOptions: []string{
 			"NONE",
 			"VENKATAKRISHNAN",
 			"MINMOD",
@@ -2368,7 +2368,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "(1.0, 100.0, 1.0)",
 		Type:           "[]float64",
 		StructName:     "AdCoeffAdjtne2",
-		enumOptions:    []string{},
+		ValueString:    "['Array']", enumOptions: []string{},
 	},
 	"ViscNumMethodWave": {
 		Description:    "Viscous numerical method",
@@ -2378,7 +2378,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "GALERKIN",
 		Type:           "string",
 		StructName:     "ViscNumMethodWave",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']", enumOptions: []string{
 			"GALERKIN",
 			"NONE",
 			"AVG_GRAD",
@@ -2393,7 +2393,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SourNumMethodWave",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"NONE",
 			"PIECEWISE_CONSTANT",
 			"CHARGE_DIST",
@@ -2408,7 +2408,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "ViscNumMethodPoisson",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']", enumOptions: []string{
 			"NONE",
 			"AVG_GRAD",
 			"AVG_GRAD_CORRECTED",
@@ -2423,7 +2423,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SourNumMethodPoisson",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"NONE",
 			"PIECEWISE_CONSTANT",
 			"CHARGE_DIST",
@@ -2438,7 +2438,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "GALERKIN",
 		Type:           "string",
 		StructName:     "ViscNumMethodFea",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']", enumOptions: []string{
 			"GALERKIN",
 			"NONE",
 			"AVG_GRAD",
@@ -2453,7 +2453,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SourNumMethodFea",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"NONE",
 			"PIECEWISE_CONSTANT",
 			"CHARGE_DIST",
@@ -2468,7 +2468,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "GALERKIN",
 		Type:           "string",
 		StructName:     "ViscNumMethodHeat",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']", enumOptions: []string{
 			"GALERKIN",
 			"NONE",
 			"AVG_GRAD",
@@ -2483,7 +2483,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SourNumMethodHeat",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"NONE",
 			"PIECEWISE_CONSTANT",
 			"CHARGE_DIST",
@@ -2498,7 +2498,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SourNumMethodTemplate",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']", enumOptions: []string{
 			"NONE",
 			"PIECEWISE_CONSTANT",
 			"CHARGE_DIST",
@@ -2513,7 +2513,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1E6",
 		Type:           "float64",
 		StructName:     "AdjLimit",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"AdjObjfunc": {
 		Description:    "Adjoint problem boundary condition",
@@ -2523,7 +2523,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "DRAG",
 		Type:           "string",
 		StructName:     "AdjObjfunc",
-		enumOptions: []string{
+		ValueString:    "['DRAG', 'LIFT', 'SIDEFORCE', 'EFFICIENCY', 'PRESSURE', 'MOMENT_X', 'MOMENT_Y', 'MOMENT_Z', 'EQUIVALENT_AREA', 'NEARFIELD_PRESSURE', 'FORCE_X', 'FORCE_Y', 'FORCE_Z', 'THRUST', 'TORQUE', 'HEAT_LOAD', 'FIGURE_OF_MERIT', 'FREE_SURFACE', 'TOTAL_VOLUME', 'MAX_THICKNESS', 'CLEARANCE', 'MIN_THICKNESS', 'MAX_THICK_SEC1', 'MAX_THICK_SEC2', 'MAX_THICK_SEC3', 'MAX_THICK_SEC4', 'MAX_THICK_SEC5']", enumOptions: []string{
 			"DRAG",
 			"LIFT",
 			"SIDEFORCE",
@@ -2561,7 +2561,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "(1.0, 100.0, 1.0)",
 		Type:           "[]float64",
 		StructName:     "GeoSectionLimit",
-		enumOptions:    []string{},
+		ValueString:    "['Array']", enumOptions: []string{},
 	},
 	"GeoMode": {
 		Description:    "Mode of the GDC code (analysis, or gradient)",
@@ -2571,7 +2571,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "FUNCTION",
 		Type:           "string",
 		StructName:     "GeoMode",
-		enumOptions: []string{
+		ValueString:    "['FUNCTION', 'GRADIENT']", enumOptions: []string{
 			"FUNCTION",
 			"GRADIENT",
 		},
@@ -2584,7 +2584,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "DragInSonicboom",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SensSmoothing": {
 		Description:    "Sensitivity smoothing",
@@ -2594,7 +2594,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "SensSmoothing",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'SOBOLEV', 'BIGRID']", enumOptions: []string{
 			"NONE",
 			"SOBOLEV",
 			"BIGRID",
@@ -2608,7 +2608,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "EULER",
 		Type:           "string",
 		StructName:     "ContinuousEqns",
-		enumOptions: []string{
+		ValueString:    "['EULER', 'NAVIER_STOKES']", enumOptions: []string{
 			"EULER",
 			"NAVIER_STOKES",
 		},
@@ -2621,7 +2621,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NONE",
 		Type:           "string",
 		StructName:     "DiscreteEqns",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'SA', 'SST']", enumOptions: []string{
 			"NONE",
 			"SA",
 			"SST",
@@ -2635,7 +2635,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "YES",
 		Type:           "bool",
 		StructName:     "FrozenVisc",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"CteViscousDrag": {
 		Description:    "",
@@ -2645,7 +2645,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "CteViscousDrag",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SensRemoveSharp": {
 		Description:    "Remove sharp edges from the sensitivity evaluation",
@@ -2655,7 +2655,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "SensRemoveSharp",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"OutputFormat": {
 		Description:    "I/O",
@@ -2665,7 +2665,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "TECPLOT",
 		Type:           "string",
 		StructName:     "OutputFormat",
-		enumOptions: []string{
+		ValueString:    "['TECPLOT', 'EXCEL', 'CSV', 'STL', 'TECPLOT_BINARY', 'CGNS', 'PARAVIEW']", enumOptions: []string{
 			"TECPLOT",
 			"EXCEL",
 			"CSV",
@@ -2683,7 +2683,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "SU2",
 		Type:           "string",
 		StructName:     "MeshFormat",
-		enumOptions: []string{
+		ValueString:    "['SU2', 'CGNS', 'NETCDF_ASCII']", enumOptions: []string{
 			"SU2",
 			"CGNS",
 			"NETCDF_ASCII",
@@ -2697,7 +2697,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "CgnsToSu2",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"MeshFilename": {
 		Description:    "Mesh input file",
@@ -2707,7 +2707,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "mesh.su2",
 		Type:           "string",
 		StructName:     "MeshFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"MeshOutFilename": {
 		Description:    "Mesh output file",
@@ -2717,7 +2717,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "mesh_out.su2",
 		Type:           "string",
 		StructName:     "MeshOutFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"ConvFilename": {
 		Description:    "Output file convergence history (w/o extension)",
@@ -2727,7 +2727,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "history",
 		Type:           "string",
 		StructName:     "ConvFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SolutionFlowFilename": {
 		Description:    "Restart flow input file",
@@ -2737,7 +2737,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "solution_flow.dat",
 		Type:           "string",
 		StructName:     "SolutionFlowFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FarfieldFilename": {
 		Description:    "Restart flow input file",
@@ -2747,7 +2747,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "farfield.dat",
 		Type:           "string",
 		StructName:     "FarfieldFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SolutionLinFilename": {
 		Description:    "Restart linear flow input file",
@@ -2757,7 +2757,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "solution_lin.dat",
 		Type:           "string",
 		StructName:     "SolutionLinFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SolutionAdjFilename": {
 		Description:    "Restart adjoint input file",
@@ -2767,7 +2767,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "solution_adj.dat",
 		Type:           "string",
 		StructName:     "SolutionAdjFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RestartFlowFilename": {
 		Description:    "Output file restart flow",
@@ -2777,7 +2777,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "restart_flow.dat",
 		Type:           "string",
 		StructName:     "RestartFlowFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RestartLinFilename": {
 		Description:    "Output file linear flow",
@@ -2787,7 +2787,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "restart_lin.dat",
 		Type:           "string",
 		StructName:     "RestartLinFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RestartAdjFilename": {
 		Description:    "Output file restart adjoint",
@@ -2797,7 +2797,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "restart_adj.dat",
 		Type:           "string",
 		StructName:     "RestartAdjFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RestartWaveFilename": {
 		Description:    "Output file restart wave",
@@ -2807,7 +2807,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "restart_wave.dat",
 		Type:           "string",
 		StructName:     "RestartWaveFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"VolumeFlowFilename": {
 		Description:    "Output file flow (w/o extension) variables",
@@ -2817,7 +2817,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "flow",
 		Type:           "string",
 		StructName:     "VolumeFlowFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"VolumeStructureFilename": {
 		Description:    "Output file structure (w/o extension) variables",
@@ -2827,7 +2827,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "structure",
 		Type:           "string",
 		StructName:     "VolumeStructureFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SurfaceStructureFilename": {
 		Description:    "Output file structure (w/o extension) variables",
@@ -2837,7 +2837,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "surface_structure",
 		Type:           "string",
 		StructName:     "SurfaceStructureFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SurfaceWaveFilename": {
 		Description:    "Output file structure (w/o extension) variables",
@@ -2847,7 +2847,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "surface_wave",
 		Type:           "string",
 		StructName:     "SurfaceWaveFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SurfaceHeatFilename": {
 		Description:    "Output file structure (w/o extension) variables",
@@ -2857,7 +2857,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "surface_heat",
 		Type:           "string",
 		StructName:     "SurfaceHeatFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"VolumeWaveFilename": {
 		Description:    "Output file wave (w/o extension) variables",
@@ -2867,7 +2867,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "wave",
 		Type:           "string",
 		StructName:     "VolumeWaveFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"VolumeHeatFilename": {
 		Description:    "Output file wave (w/o extension) variables",
@@ -2877,7 +2877,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "heat",
 		Type:           "string",
 		StructName:     "VolumeHeatFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"VolumeAdjwaveFilename": {
 		Description:    "Output file adj. wave (w/o extension) variables",
@@ -2887,7 +2887,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "adjoint_wave",
 		Type:           "string",
 		StructName:     "VolumeAdjwaveFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"VolumeAdjFilename": {
 		Description:    "Output file adjoint (w/o extension) variables",
@@ -2897,7 +2897,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "adjoint",
 		Type:           "string",
 		StructName:     "VolumeAdjFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"VolumeLinFilename": {
 		Description:    "Output file linear (w/o extension) variables",
@@ -2907,7 +2907,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "linearized",
 		Type:           "string",
 		StructName:     "VolumeLinFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"GradObjfuncFilename": {
 		Description:    "Output objective function gradient",
@@ -2917,7 +2917,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "of_grad.dat",
 		Type:           "string",
 		StructName:     "GradObjfuncFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"ValueObjfuncFilename": {
 		Description:    "Output objective function",
@@ -2927,7 +2927,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "of_func.dat",
 		Type:           "string",
 		StructName:     "ValueObjfuncFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SurfaceFlowFilename": {
 		Description:    "Output file surface flow coefficient (w/o extension)",
@@ -2937,7 +2937,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "surface_flow",
 		Type:           "string",
 		StructName:     "SurfaceFlowFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SurfaceAdjFilename": {
 		Description:    "Output file surface adjoint coefficient (w/o extension)",
@@ -2947,7 +2947,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "surface_adjoint",
 		Type:           "string",
 		StructName:     "SurfaceAdjFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SurfaceLinFilename": {
 		Description:    "Output file surface linear coefficient (w/o extension)",
@@ -2957,7 +2957,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "surface_linear",
 		Type:           "string",
 		StructName:     "SurfaceLinFilename",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"WrtSolFreq": {
 		Description:    "Writing solution file frequency",
@@ -2967,7 +2967,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1000",
 		Type:           "float64",
 		StructName:     "WrtSolFreq",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"WrtSolFreqDualtime": {
 		Description:    "Writing solution file frequency",
@@ -2977,7 +2977,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1",
 		Type:           "float64",
 		StructName:     "WrtSolFreqDualtime",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"WrtConFreq": {
 		Description:    "Writing convergence history frequency",
@@ -2987,7 +2987,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1",
 		Type:           "float64",
 		StructName:     "WrtConFreq",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"WrtConFreqDualtime": {
 		Description:    "Writing convergence history frequency for the dual time",
@@ -2997,7 +2997,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "10",
 		Type:           "float64",
 		StructName:     "WrtConFreqDualtime",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"WrtVolSol": {
 		Description:    "Write a volume solution file",
@@ -3007,7 +3007,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "YES",
 		Type:           "bool",
 		StructName:     "WrtVolSol",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"WrtSrfSol": {
 		Description:    "Write a surface solution file",
@@ -3017,7 +3017,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "YES",
 		Type:           "bool",
 		StructName:     "WrtSrfSol",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"WrtCsvSol": {
 		Description:    "Write a surface CSV solution file",
@@ -3027,7 +3027,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "YES",
 		Type:           "bool",
 		StructName:     "WrtCsvSol",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"WrtRestart": {
 		Description:    "Write a restart solution file",
@@ -3037,7 +3037,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "YES",
 		Type:           "bool",
 		StructName:     "WrtRestart",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"WrtResiduals": {
 		Description:    "Output residual info to solution/restart file",
@@ -3047,7 +3047,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "WrtResiduals",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"WrtHalo": {
 		Description:    "Output the rind layers in the solution files",
@@ -3057,7 +3057,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "WrtHalo",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"WrtSectionalForces": {
 		Description:    "Output sectional forces for specified markers.",
@@ -3067,7 +3067,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "WrtSectionalForces",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"EquivArea": {
 		Description:    "Evaluate equivalent area on the Near-Field",
@@ -3077,7 +3077,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "EquivArea",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"EaIntLimit": {
 		Description:    "Integration limits of the equivalent area ( xmin, xmax, Dist_NearField )",
@@ -3087,7 +3087,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "(1.0, 100.0, 1.0)",
 		Type:           "[]float64",
 		StructName:     "EaIntLimit",
-		enumOptions:    []string{},
+		ValueString:    "['Array']", enumOptions: []string{},
 	},
 	"GasConstant": {
 		Description:    "Specific gas constant (287.87 J/kg*K (air), only for compressible flows)",
@@ -3097,7 +3097,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "287.87",
 		Type:           "float64",
 		StructName:     "GasConstant",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"GammaValue": {
 		Description:    "Ratio of specific heats (1.4 (air), only for compressible flows)",
@@ -3107,7 +3107,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.4",
 		Type:           "float64",
 		StructName:     "GammaValue",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"ReynoldsNumber": {
 		Description:    "Reynolds number (non-dimensional, based on the free-stream values)",
@@ -3117,7 +3117,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "ReynoldsNumber",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"ReynoldsLength": {
 		Description:    "Reynolds length (1 m by default)",
@@ -3127,7 +3127,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "ReynoldsLength",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"PrandtlLam": {
 		Description:    "Laminar Prandtl number (0.72 (air), only for compressible flows)",
@@ -3137,7 +3137,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.72",
 		Type:           "float64",
 		StructName:     "PrandtlLam",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"PrandtlTurb": {
 		Description:    "Turbulent Prandtl number (0.9 (air), only for compressible flows)",
@@ -3147,7 +3147,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.90",
 		Type:           "float64",
 		StructName:     "PrandtlTurb",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"BulkModulus": {
 		Description:    "Value of the Bulk Modulus",
@@ -3157,7 +3157,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "2.15E9",
 		Type:           "float64",
 		StructName:     "BulkModulus",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"ArtcompFactor": {
 		Description:    "Artifical compressibility factor",
@@ -3167,7 +3167,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "ArtcompFactor",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"MachNumber": {
 		Description:    "Mach number (non-dimensional, based on the free-stream values)",
@@ -3177,7 +3177,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "MachNumber",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"MixtureMolarMass": {
 		Description:    "No description",
@@ -3187,7 +3187,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "28.97",
 		Type:           "float64",
 		StructName:     "MixtureMolarMass",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreestreamPressure": {
 		Description:    "Free-stream pressure (101325.0 N/m^2 by default)",
@@ -3197,7 +3197,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "101325.0",
 		Type:           "float64",
 		StructName:     "FreestreamPressure",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreestreamDensity": {
 		Description:    "Free-stream density (1.2886 Kg/m^3 (air), 998.2 Kg/m^3 (water))",
@@ -3207,7 +3207,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "-1.0",
 		Type:           "float64",
 		StructName:     "FreestreamDensity",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreestreamTemperature": {
 		Description:    "Free-stream temperature (273.15 K by default)",
@@ -3217,7 +3217,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "273.15",
 		Type:           "float64",
 		StructName:     "FreestreamTemperature",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreestreamTemperatureVe": {
 		Description:    "Free-stream vibrational-electronic temperature (273.15 K by default)",
@@ -3227,7 +3227,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "273.15",
 		Type:           "float64",
 		StructName:     "FreestreamTemperatureVe",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreestreamVelocity": {
 		Description:    "Free-stream velocity (m/s)",
@@ -3237,7 +3237,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "(1.0, 100.0, 1.0)",
 		Type:           "[]float64",
 		StructName:     "FreestreamVelocity",
-		enumOptions:    []string{},
+		ValueString:    "['Array']", enumOptions: []string{},
 	},
 	"FreestreamViscosity": {
 		Description:    "Free-stream viscosity (1.853E-5 Ns/m^2 (air), 0.798E-3 Ns/m^2 (water))",
@@ -3247,7 +3247,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "-1.0",
 		Type:           "float64",
 		StructName:     "FreestreamViscosity",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreestreamIntermittency": {
 		Description:    "",
@@ -3257,7 +3257,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "FreestreamIntermittency",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreestreamTurbulenceintensity": {
 		Description:    "",
@@ -3267,7 +3267,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.05",
 		Type:           "float64",
 		StructName:     "FreestreamTurbulenceintensity",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreestreamNuFactor": {
 		Description:    "",
@@ -3277,7 +3277,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "3.0",
 		Type:           "float64",
 		StructName:     "FreestreamNuFactor",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreestreamTurb2lamviscratio": {
 		Description:    "",
@@ -3287,7 +3287,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "10.0",
 		Type:           "float64",
 		StructName:     "FreestreamTurb2lamviscratio",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"SideslipAngle": {
 		Description:    "Side-slip angle (degrees, only for compressible flows)",
@@ -3297,7 +3297,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "SideslipAngle",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"Aoa": {
 		Description:    "Angle of attack (degrees, only for compressible flows)",
@@ -3307,7 +3307,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "Aoa",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RefOriginMomentX": {
 		Description:    "X Reference origin for moment computation",
@@ -3317,7 +3317,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "RefOriginMoment_X",
 		Type:           "string",
 		StructName:     "RefOriginMomentX",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"RefOriginMomentY": {
 		Description:    "Y Reference origin for moment computation",
@@ -3327,7 +3327,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "RefOriginMoment_Y",
 		Type:           "string",
 		StructName:     "RefOriginMomentY",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"RefOriginMomentZ": {
 		Description:    "Z Reference origin for moment computation",
@@ -3337,7 +3337,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "RefOriginMoment_Z",
 		Type:           "string",
 		StructName:     "RefOriginMomentZ",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"RefArea": {
 		Description:    "Reference area for force coefficients (0 implies automatic calculation)",
@@ -3347,7 +3347,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "RefArea",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RefLengthMoment": {
 		Description:    "Reference length for pitching, rolling, and yawing non-dimensional moment",
@@ -3357,7 +3357,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "RefLengthMoment",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RefElemLength": {
 		Description:    "Reference element length for computing the slope limiter epsilon",
@@ -3367,7 +3367,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.1",
 		Type:           "float64",
 		StructName:     "RefElemLength",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RefSharpEdges": {
 		Description:    "Reference coefficient for detecting sharp edges",
@@ -3377,7 +3377,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "3.0",
 		Type:           "float64",
 		StructName:     "RefSharpEdges",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RefPressure": {
 		Description:    "Reference pressure (1.0 N/m^2 by default, only for compressible flows)",
@@ -3387,7 +3387,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "RefPressure",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RefTemperature": {
 		Description:    "Reference temperature (1.0 K by default, only for compressible flows)",
@@ -3397,7 +3397,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "RefTemperature",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RefDensity": {
 		Description:    "Reference density (1.0 Kg/m^3 by default, only for compressible flows)",
@@ -3407,7 +3407,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "RefDensity",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RefVelocity": {
 		Description:    "Reference velocity (incompressible only)",
@@ -3417,7 +3417,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "-1.0",
 		Type:           "float64",
 		StructName:     "RefVelocity",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RefViscosity": {
 		Description:    "Reference viscosity (incompressible only)",
@@ -3427,7 +3427,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "-1.0",
 		Type:           "float64",
 		StructName:     "RefViscosity",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"ConvertToMeter": {
 		Description:    "Factor for converting the grid to meters",
@@ -3437,7 +3437,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "ConvertToMeter",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"WriteConvertedMesh": {
 		Description:    "Write a new mesh converted to meters",
@@ -3447,7 +3447,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "WriteConvertedMesh",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"GasModel": {
 		Description:    "Specify chemical model for multi-species simulations",
@@ -3457,7 +3457,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "ARGON",
 		Type:           "string",
 		StructName:     "GasModel",
-		enumOptions: []string{
+		ValueString:    "['NONE', 'ARGON', 'AIR-7', 'AIR-21', 'O2', 'N2', 'AIR-5', 'ARGON-SID', 'ONESPECIES']", enumOptions: []string{
 			"ARGON",
 			"NONE",
 			"AIR-7",
@@ -3477,7 +3477,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Gas_Composition",
 		Type:           "string",
 		StructName:     "GasComposition",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"RatioDensity": {
 		Description:    "Ratio of density for two phase problems",
@@ -3487,7 +3487,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.1",
 		Type:           "float64",
 		StructName:     "RatioDensity",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"RatioViscosity": {
 		Description:    "Ratio of viscosity for two phase problems",
@@ -3497,7 +3497,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.1",
 		Type:           "float64",
 		StructName:     "RatioViscosity",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreesurfaceZero": {
 		Description:    "Location of the freesurface (y or z coordinate)",
@@ -3507,7 +3507,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "FreesurfaceZero",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreesurfaceDepth": {
 		Description:    "Free surface depth surface (x or y coordinate)",
@@ -3517,7 +3517,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "FreesurfaceDepth",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreesurfaceThickness": {
 		Description:    "Thickness of the interface in a free surface problem",
@@ -3527,7 +3527,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.1",
 		Type:           "float64",
 		StructName:     "FreesurfaceThickness",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreesurfaceDampingCoeff": {
 		Description:    "Free surface damping coefficient",
@@ -3537,7 +3537,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "FreesurfaceDampingCoeff",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreesurfaceDampingLength": {
 		Description:    "Free surface damping length (times the baseline wave)",
@@ -3547,7 +3547,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.0",
 		Type:           "float64",
 		StructName:     "FreesurfaceDampingLength",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"FreesurfaceOutlet": {
 		Description:    "Location of the free surface outlet surface (x or y coordinate)",
@@ -3557,7 +3557,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "FreesurfaceOutlet",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"DvKind": {
 		Description:    "Kind of deformation",
@@ -3567,7 +3567,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Param_Map",
 		Type:           "[]string",
 		StructName:     "DvKind",
-		enumOptions: []string{
+		ValueString:    "['Enum list']", enumOptions: []string{
 			"Enum list",
 		},
 	},
@@ -3579,7 +3579,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Marker_DV",
 		Type:           "string",
 		StructName:     "DvMarker",
-		enumOptions:    []string{},
+		ValueString:    "['Valid marker name from grid file']", enumOptions: []string{},
 	},
 	"DvValue": {
 		Description:    "New value of the shape deformation",
@@ -3589,7 +3589,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "DV_Value",
 		Type:           "string",
 		StructName:     "DvValue",
-		enumOptions:    []string{},
+		ValueString:    "['List']", enumOptions: []string{},
 	},
 	"DvParam": {
 		Description:    "No description",
@@ -3599,7 +3599,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "Design_Variable",
 		Type:           "string",
 		StructName:     "DvParam",
-		enumOptions:    []string{},
+		ValueString:    "['DV Param']", enumOptions: []string{},
 	},
 	"HoldGridFixed": {
 		Description:    "Hold the grid fixed in a region",
@@ -3609,7 +3609,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "HoldGridFixed",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"HoldGridFixedCoord": {
 		Description:    "Coordinates of the box where the grid will be deformed (Xmin, Ymin, Zmin, Xmax, Ymax, Zmax)",
@@ -3619,7 +3619,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "( -1E15, -1E15, -1E15, 1E15, 1E15, 1E15 )",
 		Type:           "[]float64",
 		StructName:     "HoldGridFixedCoord",
-		enumOptions:    []string{},
+		ValueString:    "['Array']", enumOptions: []string{},
 	},
 	"VisualizeDeformation": {
 		Description:    "Visualize the deformation",
@@ -3629,7 +3629,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "NO",
 		Type:           "bool",
 		StructName:     "VisualizeDeformation",
-		enumOptions:    []string{},
+		ValueString:    "['YES', 'NO']", enumOptions: []string{},
 	},
 	"GridDeformIter": {
 		Description:    "Number of iterations for FEA mesh deformation (surface deformation increments)",
@@ -3639,7 +3639,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1",
 		Type:           "float64",
 		StructName:     "GridDeformIter",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"CyclicPitch": {
 		Description:    "No description",
@@ -3649,7 +3649,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "CyclicPitch",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"CollectivePitch": {
 		Description:    "No description",
@@ -3659,7 +3659,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.0",
 		Type:           "float64",
 		StructName:     "CollectivePitch",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"ElasticityModulus": {
 		Description:    "Modulus of elasticity",
@@ -3669,7 +3669,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "2E11",
 		Type:           "float64",
 		StructName:     "ElasticityModulus",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"PoissonRatio": {
 		Description:    "Poisson ratio",
@@ -3679,7 +3679,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "0.30",
 		Type:           "float64",
 		StructName:     "PoissonRatio",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"MaterialDensity": {
 		Description:    "Material density",
@@ -3689,7 +3689,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "7854",
 		Type:           "float64",
 		StructName:     "MaterialDensity",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"WaveSpeed": {
 		Description:    "Constant wave speed",
@@ -3699,7 +3699,7 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "331.79",
 		Type:           "float64",
 		StructName:     "WaveSpeed",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 	"ThermalDiffusivity": {
 		Description:    "Thermal diffusivity constant",
@@ -3709,6 +3709,6 @@ var optionMap map[string]*OptionPrint = map[string]*OptionPrint{
 		Default:        "1.172E-5",
 		Type:           "float64",
 		StructName:     "ThermalDiffusivity",
-		enumOptions:    []string{},
+		ValueString:    "['A scalar constant']", enumOptions: []string{},
 	},
 }
