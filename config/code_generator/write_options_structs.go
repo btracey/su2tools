@@ -157,7 +157,7 @@ func main() {
 	if gopath == "" {
 		exit(errors.New("gopath not found"))
 	}
-	basepath := filepath.Join(gopath, "src", "github.com", "btracey", "su2tools", "config_writer", "parser")
+	basepath := filepath.Join(gopath, "src", "github.com", "btracey", "su2tools", "config", "code_generator")
 	newpath := filepath.Join(basepath, "newfiles")
 	//alloptionsFilename := "all_options.go"
 

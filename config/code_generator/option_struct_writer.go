@@ -39,6 +39,10 @@ func (o *optionFile) GetFilename() string {
 }
 
 func (o *optionFile) add_option(option *pythonOption) error {
+	// write a comment
+	o.File.Write([]byte(" // "))
+	o.File.Write([]byte(option.description))
+	o.File.Write([]byte("\n"))
 	// write the field name
 	o.File.Write([]byte(option.structName))
 	// write a space
@@ -47,8 +51,6 @@ func (o *optionFile) add_option(option *pythonOption) error {
 	o.File.Write([]byte(option.go_type))
 
 	// write the description
-	o.File.Write([]byte(" // "))
-	o.File.Write([]byte(option.description))
 	o.File.Write([]byte("\n"))
 	return nil
 }
