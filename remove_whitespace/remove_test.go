@@ -1,4 +1,4 @@
-package main
+package remove_whitespace
 
 import (
 	"bytes"
