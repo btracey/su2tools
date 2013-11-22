@@ -4,316 +4,628 @@ package su2config
 
 // Options is a struct containing all of the possible options in SU^2
 type Options struct {
-	RegimeType                    RegimeTypeEnum               // Adjoint type
-	ExtraOutput                   bool                         // Write extra output
-	PhysicalProblem               PhysicalProblemEnum          // Physical governing equations
-	MathProblem                   MathProblemEnum              // Mathematical problem
-	KindTurbModel                 KindTurbModelEnum            // Specify turbulence model
-	MlTurbModelFile               float64                      // Location of the turb model itself
-	MlTurbModelCheckFile          float64                      // Location of the check for the proper loading of the turbulence model
-	KindTransModel                KindTransModelEnum           // Specify transition model
-	Axisymmetric                  bool                         // Axisymmetric simulation
-	GravityForce                  bool                         // Add the gravity force
-	LowFidelitySimulation         bool                         // Perform a low fidelity simulation
-	RestartSol                    bool                         // Restart solution from native solution file
-	VisualizePart                 bool                         // Write a tecplot file for each partition
-	MarkerPlotting                Marker                       // Marker(s) of the surface in the surface flow solution file
-	MarkerMonitoring              Marker                       // Marker(s) of the surface where evaluate the non-dimensional coefficients
-	MarkerDesigning               Marker                       // Marker(s) of the surface where objective function (design problem) will be evaluated
-	MarkerEuler                   Marker                       // Euler wall boundary marker(s)
-	MarkerFar                     Marker                       // Far-field boundary marker(s)
-	MarkerSym                     Marker                       // Symmetry boundary condition
-	MarkerPressure                Marker                       // Symmetry boundary condition
-	MarkerNearfield               Marker                       // Near-Field boundary condition
-	MarkerInterface               Marker                       // Zone interface boundary marker(s)
-	MarkerDirichlet               Marker                       // Dirichlet boundary marker(s)
-	MarkerNeumann                 Marker                       // Neumann boundary marker(s)
-	ElecDirichlet                 MarkerDirchlet               // poisson dirichlet boundary marker(s)
-	ElecNeumann                   Marker                       // poisson neumann boundary marker(s)
-	MarkerCustom                  Marker                       // Custom boundary marker(s)
-	MarkerPeriodic                MarkerPeriodic               // No description
-	InletType                     InletTypeEnum                // Inlet boundary type
-	MarkerInlet                   MarkerInlet                  // No description
-	MarkerSupersonicInlet         MarkerInlet                  // No description
-	MarkerOutlet                  MarkerOutlet                 // No description
-	MarkerIsothermal              MarkerOutlet                 // No description
-	MarkerHeatflux                MarkerOutlet                 // No description
-	MarkerNacelleInflow           MarkerOutlet                 // No description
-	SubsonicNacelleInflow         bool                         // Engine subsonic intake region
-	MarkerNacelleExhaust          MarkerInlet                  // No description
-	MarkerNormalDispl             MarkerDisplacement           // Displacement boundary marker(s)
-	MarkerNormalLoad              MarkerLoad                   // Load boundary marker(s)
-	MarkerFlowload                MarkerFlowLoad               // Flow load boundary marker(s)
-	DampNacelleInflow             float64                      // Damping factor for engine inlet condition
-	KindAdapt                     KindAdaptEnum                // Kind of grid adaptation
-	NewElems                      float64                      // Percentage of new elements (% of the original number of elements)
-	DualvolPower                  float64                      // Scale factor for the dual volume
-	AnalyticalSurfdef             AnalyticalSurfdefEnum        // Use analytical definition for surfaces
-	SmoothGeometry                bool                         // Before each computation, implicitly smooth the nodal coordinates
-	AdaptBoundary                 bool                         // Adapt the boundary elements
-	DivideElements                bool                         // Divide rectangles into triangles
-	UnsteadySimulation            UnsteadySimulationEnum       // Unsteady simulation
-	UnsteadyFarfield              bool                         // Unsteady farfield boundaries
-	CflNumber                     float64                      // Courant-Friedrichs-Lewy condition of the finest grid
-	CflRamp                       []float64                    // No description
-	AdjCflReduction               float64                      // Reduction factor of the CFL coefficient in the adjoint problem
-	TurbCflReduction              float64                      // Reduction factor of the CFL coefficient in the level set problem
-	AdjturbCflReduction           float64                      // Reduction factor of the CFL coefficient in the turbulent adjoint problem
-	ExtIter                       float64                      // Number of total iterations
-	RkAlphaCoeff                  []float64                    // Runge-Kutta alpha coefficients
-	UnstTimestep                  float64                      // Time Step for dual time stepping simulations (s)
-	UnstTime                      float64                      // Total Physical Time for dual time stepping simulations (s)
-	UnstCflNumber                 float64                      // Unsteady Courant-Friedrichs-Lewy number of the finest grid
-	UnstIntIter                   float64                      // Number of internal iterations (dual time method)
-	TimeInstances                 float64                      // Integer number of periodic time instances for Time Spectral
-	UnstRestartIter               float64                      // Iteration number to begin unsteady restarts (dual time method)
-	UnstAdjointIter               float64                      // Starting direct solver iteration for the unsteady adjoint
-	TimeDiscreFlow                TimeDiscreFlowEnum           // Time discretization
-	TimeDiscreTne2                TimeDiscreTne2Enum           // Time discretization
-	TimeDiscreAdjtne2             TimeDiscreAdjtne2Enum        // Time discretization
-	TimeDiscreAdjlevelset         TimeDiscreAdjlevelsetEnum    // Time discretization
-	TimeDiscreAdj                 TimeDiscreAdjEnum            // Time discretization
-	TimeDiscreLin                 TimeDiscreLinEnum            // Time discretization
-	TimeDiscreTurb                TimeDiscreTurbEnum           // Time discretization
-	TimeDiscreAdjturb             TimeDiscreAdjturbEnum        // Time discretization
-	TimeDiscreWave                TimeDiscreWaveEnum           // Time discretization
-	TimeDiscreFea                 TimeDiscreFeaEnum            // Time discretization
-	TimeDiscreHeat                TimeDiscreHeatEnum           // Time discretization
-	TimeDiscrePoisson             TimeDiscrePoissonEnum        // Time discretization
-	LinearSolver                  LinearSolverEnum             // Linear solver for the implicit, mesh deformation, or discrete adjoint systems
-	LinearSolverPrec              LinearSolverPrecEnum         // Preconditioner for the Krylov linear solvers
-	LinearSolverError             float64                      // Minimum error threshold for the linear solver for the implicit formulation
-	LinearSolverIter              float64                      // Maximum number of iterations of the linear solver for the implicit formulation
-	LinearSolverRelax             float64                      // Relaxation of the linear solver for the implicit formulation
-	RoeTurkelPrec                 bool                         // Roe-Turkel preconditioning for low Mach number flows
-	MinRoeTurkelPrec              float64                      // Time Step for dual time stepping simulations (s)
-	MaxRoeTurkelPrec              float64                      // Time Step for dual time stepping simulations (s)
-	AdjturbLinSolver              AdjturbLinSolverEnum         // Linear solver for the turbulent adjoint systems
-	AdjturbLinPrec                AdjturbLinPrecEnum           // Preconditioner for the turbulent adjoint Krylov linear solvers
-	AdjturbLinError               float64                      // Minimum error threshold for the turbulent adjoint linear solver for the implicit formulation
-	AdjturbLinIter                float64                      // Maximum number of iterations of the turbulent adjoint linear solver for the implicit formulation
-	GridMovement                  bool                         // Mesh motion for unsteady simulations
-	GridMovementKind              GridMovementKindEnum         // Type of mesh motion
-	MarkerMoving                  Marker                       // Marker(s) of moving surfaces (MOVING_WALL or DEFORMING grid motion).
-	MachMotion                    float64                      // Mach number (non-dimensional, based on the mesh velocity and freestream vals.)
-	MotionOriginX                 []float64                    // Coordinates of the rigid motion origin
-	MotionOriginY                 []float64                    // Coordinates of the rigid motion origin
-	MotionOriginZ                 []float64                    // Coordinates of the rigid motion origin
-	TranslationRateX              []float64                    // Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
-	TranslationRateY              []float64                    // Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
-	TranslationRateZ              []float64                    // Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
-	RotationRateX                 []float64                    // Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
-	RotationRateY                 []float64                    // Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
-	RotationRateZ                 []float64                    // Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
-	PitchingOmegaX                []float64                    // Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
-	PitchingOmegaY                []float64                    // Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
-	PitchingOmegaZ                []float64                    // Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
-	PitchingAmplX                 []float64                    // Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
-	PitchingAmplY                 []float64                    // Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
-	PitchingAmplZ                 []float64                    // Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
-	PitchingPhaseX                []float64                    // Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
-	PitchingPhaseY                []float64                    // Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
-	PitchingPhaseZ                []float64                    // Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
-	PlungingOmegaX                []float64                    // Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
-	PlungingOmegaY                []float64                    // Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
-	PlungingOmegaZ                []float64                    // Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
-	PlungingAmplX                 []float64                    // Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
-	PlungingAmplY                 []float64                    // Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
-	PlungingAmplZ                 []float64                    // Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
-	MoveMotionOrigin              []float64                    // Value to move motion origins (1 or 0)
-	MotionFilename                float64                      //
-	FreqPlungeAeroelastic         float64                      // Uncoupled Aeroelastic Frequency Plunge.
-	FreqPitchAeroelastic          float64                      // Uncoupled Aeroelastic Frequency Pitch.
-	WindGust                      bool                         // Apply a wind gust
-	GustType                      GustTypeEnum                 // Type of gust
-	GustWavelength                float64                      // Gust wavelenght (meters)
-	GustPeriods                   float64                      // Number of gust periods
-	GustAmpl                      float64                      // Gust amplitude (m/s)
-	GustBeginTime                 float64                      // Time at which to begin the gust (sec)
-	GustBeginLoc                  float64                      // Location at which the gust begins (meters)
-	GustDir                       GustDirEnum                  // Direction of the gust X or Y dir
-	ConvCriteria                  ConvCriteriaEnum             // Convergence criteria
-	ResidualReduction             float64                      // Residual reduction (order of magnitude with respect to the initial value)
-	ResidualMinval                float64                      // Min value of the residual (log10 of the residual)
-	StartconvIter                 float64                      // Iteration number to begin convergence monitoring
-	CauchyElems                   float64                      // Number of elements to apply the criteria
-	CauchyEps                     float64                      // Epsilon to control the series convergence
-	CauchyFuncFlow                CauchyFuncFlowEnum           // Flow functional for the Cauchy criteria
-	CauchyFuncAdj                 CauchyFuncAdjEnum            // Adjoint functional for the Cauchy criteria
-	CauchyFuncLin                 CauchyFuncLinEnum            // Linearized functional for the Cauchy criteria
-	FullmgCauchyEps               float64                      // Epsilon for a full multigrid method evaluation
-	Fullmg                        bool                         // Full multi-grid
-	StartUpIter                   float64                      // Start up iterations using the fine grid only
-	Mglevel                       float64                      // Multi-grid Levels
-	Mgcycle                       float64                      // Multi-grid Cycle (0 = V cycle, 1 = W Cycle)
-	MgPreSmooth                   []float64                    // Multi-grid pre-smoothing level
-	MgPostSmooth                  []float64                    // Multi-grid post-smoothing level
-	MgCorrectionSmooth            []float64                    // Jacobi implicit smoothing of the correction
-	MgDampRestriction             float64                      // Damping factor for the residual restriction
-	MgDampProlongation            float64                      // Damping factor for the correction prolongation
-	MgCflReduction                float64                      // CFL reduction factor on the coarse levels
-	MaxChildren                   float64                      // Maximum number of children in the agglomeration stage
-	MaxDimension                  float64                      // Maximum length of an agglomerated element (relative to the domain)
-	NumMethodGrad                 NumMethodGradEnum            // Numerical method for spatial gradients
-	LimiterCoeff                  float64                      // Coefficient for the limiter
-	SharpEdgesCoeff               float64                      // Coefficient for detecting the limit of the sharp edges
-	ConvNumMethodFlow             ConvNumMethodFlowEnum        // No description
-	ViscNumMethodFlow             ViscNumMethodFlowEnum        // Viscous numerical method
-	SourNumMethodFlow             SourNumMethodFlowEnum        // Source term numerical method
-	SlopeLimiterFlow              SlopeLimiterFlowEnum         // Slope limiter
-	AdCoeffFlow                   []float64                    // 1st, 2nd and 4th order artificial dissipation coefficients
-	ConvNumMethodAdj              ConvNumMethodAdjEnum         // No description
-	ViscNumMethodAdj              ViscNumMethodAdjEnum         // Viscous numerical method
-	SourNumMethodAdj              SourNumMethodAdjEnum         // Source term numerical method
-	SlopeLimiterAdjflow           SlopeLimiterAdjflowEnum      // Slope limiter
-	AdCoeffAdj                    []float64                    // 1st, 2nd and 4th order artificial dissipation coefficients
-	SlopeLimiterTurb              SlopeLimiterTurbEnum         // Slope limiter
-	ConvNumMethodTurb             ConvNumMethodTurbEnum        // Convective numerical method
-	ViscNumMethodTurb             ViscNumMethodTurbEnum        // Viscous numerical method
-	SourNumMethodTurb             SourNumMethodTurbEnum        // Source term numerical method
-	SlopeLimiterAdjturb           SlopeLimiterAdjturbEnum      // Slope limiter
-	ConvNumMethodAdjturb          ConvNumMethodAdjturbEnum     // Convective numerical method
-	ViscNumMethodAdjturb          ViscNumMethodAdjturbEnum     // Viscous numerical method
-	SourNumMethodAdjturb          SourNumMethodAdjturbEnum     // Source term numerical method
-	ConvNumMethodLin              ConvNumMethodLinEnum         // Convective numerical method
-	ViscNumMethodLin              ViscNumMethodLinEnum         // Viscous numerical method
-	SourNumMethodLin              SourNumMethodLinEnum         // Source term numerical method
-	AdCoeffLin                    []float64                    // 1st, 2nd and 4th order artificial dissipation coefficients
-	SlopeLimiterAdjlevelset       SlopeLimiterAdjlevelsetEnum  // Slope limiter
-	ConvNumMethodAdjlevelset      ConvNumMethodAdjlevelsetEnum // Convective numerical method
-	ViscNumMethodAdjlevelset      ViscNumMethodAdjlevelsetEnum // Viscous numerical method
-	SourNumMethodAdjlevelset      SourNumMethodAdjlevelsetEnum // Source term numerical method
-	ConvNumMethodTne2             ConvNumMethodTne2Enum        // Convective numerical method
-	ViscNumMethodTne2             ViscNumMethodTne2Enum        // Viscous numerical method
-	SourNumMethodTne2             SourNumMethodTne2Enum        // Source term numerical method
-	SlopeLimiterTne2              SlopeLimiterTne2Enum         // Slope limiter
-	AdCoeffTne2                   []float64                    // 1st, 2nd and 4th order artificial dissipation coefficients
-	ConvNumMethodAdjtne2          ConvNumMethodAdjtne2Enum     // Convective numerical method
-	ViscNumMethodAdjtne2          ViscNumMethodAdjtne2Enum     // Viscous numerical method
-	SourNumMethodAdjtne2          SourNumMethodAdjtne2Enum     // Source term numerical method
-	SlopeLimiterAdjtne2           SlopeLimiterAdjtne2Enum      // Slope limiter
-	AdCoeffAdjtne2                []float64                    // 1st, 2nd and 4th order artificial dissipation coefficients
-	ViscNumMethodWave             ViscNumMethodWaveEnum        // Viscous numerical method
-	SourNumMethodWave             SourNumMethodWaveEnum        // Source term numerical method
-	ViscNumMethodPoisson          ViscNumMethodPoissonEnum     // Viscous numerical method
-	SourNumMethodPoisson          SourNumMethodPoissonEnum     // Source term numerical method
-	ViscNumMethodFea              ViscNumMethodFeaEnum         // Viscous numerical method
-	SourNumMethodFea              SourNumMethodFeaEnum         // Source term numerical method
-	ViscNumMethodHeat             ViscNumMethodHeatEnum        // Viscous numerical method
-	SourNumMethodHeat             SourNumMethodHeatEnum        // Source term numerical method
-	SourNumMethodTemplate         SourNumMethodTemplateEnum    // Source term numerical method
-	AdjLimit                      float64                      // Limit value for the adjoint variable
-	AdjObjfunc                    AdjObjfuncEnum               // Adjoint problem boundary condition
-	GeoSectionLimit               []float64                    // No description
-	GeoMode                       GeoModeEnum                  // Mode of the GDC code (analysis, or gradient)
-	DragInSonicboom               float64                      // Drag weight in sonic boom Objective Function (from 0.0 to 1.0)
-	SensSmoothing                 SensSmoothingEnum            // Sensitivity smoothing
-	ContinuousEqns                ContinuousEqnsEnum           // Continuous governing equation set
-	DiscreteEqns                  DiscreteEqnsEnum             // Discrete governing equation set
-	FrozenVisc                    bool                         // Adjoint frozen viscosity
-	CteViscousDrag                float64                      //
-	SensRemoveSharp               bool                         // Remove sharp edges from the sensitivity evaluation
-	OutputFormat                  OutputFormatEnum             // I/O
-	MeshFormat                    MeshFormatEnum               // Mesh input file format
-	CgnsToSu2                     bool                         // Convert a CGNS mesh to SU2 format
-	MeshFilename                  float64                      // Mesh input file
-	MeshOutFilename               float64                      // Mesh output file
-	ConvFilename                  float64                      // Output file convergence history (w/o extension)
-	SolutionFlowFilename          float64                      // Restart flow input file
-	FarfieldFilename              float64                      // Restart flow input file
-	SolutionLinFilename           float64                      // Restart linear flow input file
-	SolutionAdjFilename           float64                      // Restart adjoint input file
-	RestartFlowFilename           float64                      // Output file restart flow
-	RestartLinFilename            float64                      // Output file linear flow
-	RestartAdjFilename            float64                      // Output file restart adjoint
-	RestartWaveFilename           float64                      // Output file restart wave
-	VolumeFlowFilename            float64                      // Output file flow (w/o extension) variables
-	VolumeStructureFilename       float64                      // Output file structure (w/o extension) variables
-	SurfaceStructureFilename      float64                      // Output file structure (w/o extension) variables
-	SurfaceWaveFilename           float64                      // Output file structure (w/o extension) variables
-	SurfaceHeatFilename           float64                      // Output file structure (w/o extension) variables
-	VolumeWaveFilename            float64                      // Output file wave (w/o extension) variables
-	VolumeHeatFilename            float64                      // Output file wave (w/o extension) variables
-	VolumeAdjwaveFilename         float64                      // Output file adj. wave (w/o extension) variables
-	VolumeAdjFilename             float64                      // Output file adjoint (w/o extension) variables
-	VolumeLinFilename             float64                      // Output file linear (w/o extension) variables
-	GradObjfuncFilename           float64                      // Output objective function gradient
-	ValueObjfuncFilename          float64                      // Output objective function
-	SurfaceFlowFilename           float64                      // Output file surface flow coefficient (w/o extension)
-	SurfaceAdjFilename            float64                      // Output file surface adjoint coefficient (w/o extension)
-	SurfaceLinFilename            float64                      // Output file surface linear coefficient (w/o extension)
-	WrtSolFreq                    float64                      // Writing solution file frequency
-	WrtSolFreqDualtime            float64                      // Writing solution file frequency
-	WrtConFreq                    float64                      // Writing convergence history frequency
-	WrtConFreqDualtime            float64                      // Writing convergence history frequency for the dual time
-	WrtVolSol                     bool                         // Write a volume solution file
-	WrtSrfSol                     bool                         // Write a surface solution file
-	WrtCsvSol                     bool                         // Write a surface CSV solution file
-	WrtRestart                    bool                         // Write a restart solution file
-	WrtResiduals                  bool                         // Output residual info to solution/restart file
-	WrtHalo                       bool                         // Output the rind layers in the solution files
-	WrtSectionalForces            bool                         // Output sectional forces for specified markers.
-	EquivArea                     bool                         // Evaluate equivalent area on the Near-Field
-	EaIntLimit                    []float64                    // Integration limits of the equivalent area ( xmin, xmax, Dist_NearField )
-	GasConstant                   float64                      // Specific gas constant (287.87 J/kg*K (air), only for compressible flows)
-	GammaValue                    float64                      // Ratio of specific heats (1.4 (air), only for compressible flows)
-	ReynoldsNumber                float64                      // Reynolds number (non-dimensional, based on the free-stream values)
-	ReynoldsLength                float64                      // Reynolds length (1 m by default)
-	PrandtlLam                    float64                      // Laminar Prandtl number (0.72 (air), only for compressible flows)
-	PrandtlTurb                   float64                      // Turbulent Prandtl number (0.9 (air), only for compressible flows)
-	BulkModulus                   float64                      // Value of the Bulk Modulus
-	ArtcompFactor                 float64                      // Artifical compressibility factor
-	MachNumber                    float64                      // Mach number (non-dimensional, based on the free-stream values)
-	MixtureMolarMass              float64                      // No description
-	FreestreamPressure            float64                      // Free-stream pressure (101325.0 N/m^2 by default)
-	FreestreamDensity             float64                      // Free-stream density (1.2886 Kg/m^3 (air), 998.2 Kg/m^3 (water))
-	FreestreamTemperature         float64                      // Free-stream temperature (273.15 K by default)
-	FreestreamTemperatureVe       float64                      // Free-stream vibrational-electronic temperature (273.15 K by default)
-	FreestreamVelocity            []float64                    // Free-stream velocity (m/s)
-	FreestreamViscosity           float64                      // Free-stream viscosity (1.853E-5 Ns/m^2 (air), 0.798E-3 Ns/m^2 (water))
-	FreestreamIntermittency       float64                      //
-	FreestreamTurbulenceintensity float64                      //
-	FreestreamNuFactor            float64                      //
-	FreestreamTurb2lamviscratio   float64                      //
-	SideslipAngle                 float64                      // Side-slip angle (degrees, only for compressible flows)
-	Aoa                           float64                      // Angle of attack (degrees, only for compressible flows)
-	RefOriginMomentX              []float64                    // X Reference origin for moment computation
-	RefOriginMomentY              []float64                    // Y Reference origin for moment computation
-	RefOriginMomentZ              []float64                    // Z Reference origin for moment computation
-	RefArea                       float64                      // Reference area for force coefficients (0 implies automatic calculation)
-	RefLengthMoment               float64                      // Reference length for pitching, rolling, and yawing non-dimensional moment
-	RefElemLength                 float64                      // Reference element length for computing the slope limiter epsilon
-	RefSharpEdges                 float64                      // Reference coefficient for detecting sharp edges
-	RefPressure                   float64                      // Reference pressure (1.0 N/m^2 by default, only for compressible flows)
-	RefTemperature                float64                      // Reference temperature (1.0 K by default, only for compressible flows)
-	RefDensity                    float64                      // Reference density (1.0 Kg/m^3 by default, only for compressible flows)
-	RefVelocity                   float64                      // Reference velocity (incompressible only)
-	RefViscosity                  float64                      // Reference viscosity (incompressible only)
-	ConvertToMeter                float64                      // Factor for converting the grid to meters
-	WriteConvertedMesh            bool                         // Write a new mesh converted to meters
-	GasModel                      GasModelEnum                 // Specify chemical model for multi-species simulations
-	GasComposition                []float64                    //
-	RatioDensity                  float64                      // Ratio of density for two phase problems
-	RatioViscosity                float64                      // Ratio of viscosity for two phase problems
-	FreesurfaceZero               float64                      // Location of the freesurface (y or z coordinate)
-	FreesurfaceDepth              float64                      // Free surface depth surface (x or y coordinate)
-	FreesurfaceThickness          float64                      // Thickness of the interface in a free surface problem
-	FreesurfaceDampingCoeff       float64                      // Free surface damping coefficient
-	FreesurfaceDampingLength      float64                      // Free surface damping length (times the baseline wave)
-	FreesurfaceOutlet             float64                      // Location of the free surface outlet surface (x or y coordinate)
-	DvKind                        DvKindEnum                   // Kind of deformation
-	DvMarker                      Marker                       // Marker of the surface to which we are going apply the shape deformation
-	DvValue                       []float64                    // New value of the shape deformation
-	DvParam                       string                       // No description
-	HoldGridFixed                 bool                         // Hold the grid fixed in a region
-	HoldGridFixedCoord            []float64                    // Coordinates of the box where the grid will be deformed (Xmin, Ymin, Zmin, Xmax, Ymax, Zmax)
-	VisualizeDeformation          bool                         // Visualize the deformation
-	GridDeformIter                float64                      // Number of iterations for FEA mesh deformation (surface deformation increments)
-	CyclicPitch                   float64                      // No description
-	CollectivePitch               float64                      // No description
-	ElasticityModulus             float64                      // Modulus of elasticity
-	PoissonRatio                  float64                      // Poisson ratio
-	MaterialDensity               float64                      // Material density
-	WaveSpeed                     float64                      // Constant wave speed
-	ThermalDiffusivity            float64                      // Thermal diffusivity constant
+	// Adjoint type
+	RegimeType RegimeTypeEnum
+	// Write extra output
+	ExtraOutput bool
+	// Physical governing equations
+	PhysicalProblem PhysicalProblemEnum
+	// Mathematical problem
+	MathProblem MathProblemEnum
+	// Specify turbulence model
+	KindTurbModel KindTurbModelEnum
+	// Location of the turb model itself
+	MlTurbModelFile float64
+	// Location of the check for the proper loading of the turbulence model
+	MlTurbModelCheckFile float64
+	// Specify transition model
+	KindTransModel KindTransModelEnum
+	// Axisymmetric simulation
+	Axisymmetric bool
+	// Add the gravity force
+	GravityForce bool
+	// Perform a low fidelity simulation
+	LowFidelitySimulation bool
+	// Restart solution from native solution file
+	RestartSol bool
+	// Write a tecplot file for each partition
+	VisualizePart bool
+	// Marker(s) of the surface in the surface flow solution file
+	MarkerPlotting Marker
+	// Marker(s) of the surface where evaluate the non-dimensional coefficients
+	MarkerMonitoring Marker
+	// Marker(s) of the surface where objective function (design problem) will be evaluated
+	MarkerDesigning Marker
+	// Euler wall boundary marker(s)
+	MarkerEuler Marker
+	// Far-field boundary marker(s)
+	MarkerFar Marker
+	// Symmetry boundary condition
+	MarkerSym Marker
+	// Symmetry boundary condition
+	MarkerPressure Marker
+	// Near-Field boundary condition
+	MarkerNearfield Marker
+	// Zone interface boundary marker(s)
+	MarkerInterface Marker
+	// Dirichlet boundary marker(s)
+	MarkerDirichlet Marker
+	// Neumann boundary marker(s)
+	MarkerNeumann Marker
+	// poisson dirichlet boundary marker(s)
+	ElecDirichlet MarkerDirchlet
+	// poisson neumann boundary marker(s)
+	ElecNeumann Marker
+	// Custom boundary marker(s)
+	MarkerCustom Marker
+	// No description
+	MarkerPeriodic MarkerPeriodic
+	// Inlet boundary type
+	InletType InletTypeEnum
+	// No description
+	MarkerInlet MarkerInlet
+	// No description
+	MarkerSupersonicInlet MarkerInlet
+	// No description
+	MarkerOutlet MarkerOutlet
+	// No description
+	MarkerIsothermal MarkerOutlet
+	// No description
+	MarkerHeatflux MarkerOutlet
+	// No description
+	MarkerNacelleInflow MarkerOutlet
+	// Engine subsonic intake region
+	SubsonicNacelleInflow bool
+	// No description
+	MarkerNacelleExhaust MarkerInlet
+	// Displacement boundary marker(s)
+	MarkerNormalDispl MarkerDisplacement
+	// Load boundary marker(s)
+	MarkerNormalLoad MarkerLoad
+	// Flow load boundary marker(s)
+	MarkerFlowload MarkerFlowLoad
+	// Damping factor for engine inlet condition
+	DampNacelleInflow float64
+	// Kind of grid adaptation
+	KindAdapt KindAdaptEnum
+	// Percentage of new elements (% of the original number of elements)
+	NewElems float64
+	// Scale factor for the dual volume
+	DualvolPower float64
+	// Use analytical definition for surfaces
+	AnalyticalSurfdef AnalyticalSurfdefEnum
+	// Before each computation, implicitly smooth the nodal coordinates
+	SmoothGeometry bool
+	// Adapt the boundary elements
+	AdaptBoundary bool
+	// Divide rectangles into triangles
+	DivideElements bool
+	// Unsteady simulation
+	UnsteadySimulation UnsteadySimulationEnum
+	// Unsteady farfield boundaries
+	UnsteadyFarfield bool
+	// Courant-Friedrichs-Lewy condition of the finest grid
+	CflNumber float64
+	// No description
+	CflRamp []float64
+	// Reduction factor of the CFL coefficient in the adjoint problem
+	AdjCflReduction float64
+	// Reduction factor of the CFL coefficient in the level set problem
+	TurbCflReduction float64
+	// Reduction factor of the CFL coefficient in the turbulent adjoint problem
+	AdjturbCflReduction float64
+	// Number of total iterations
+	ExtIter float64
+	// Runge-Kutta alpha coefficients
+	RkAlphaCoeff []float64
+	// Time Step for dual time stepping simulations (s)
+	UnstTimestep float64
+	// Total Physical Time for dual time stepping simulations (s)
+	UnstTime float64
+	// Unsteady Courant-Friedrichs-Lewy number of the finest grid
+	UnstCflNumber float64
+	// Number of internal iterations (dual time method)
+	UnstIntIter float64
+	// Integer number of periodic time instances for Time Spectral
+	TimeInstances float64
+	// Iteration number to begin unsteady restarts (dual time method)
+	UnstRestartIter float64
+	// Starting direct solver iteration for the unsteady adjoint
+	UnstAdjointIter float64
+	// Time discretization
+	TimeDiscreFlow TimeDiscreFlowEnum
+	// Time discretization
+	TimeDiscreTne2 TimeDiscreTne2Enum
+	// Time discretization
+	TimeDiscreAdjtne2 TimeDiscreAdjtne2Enum
+	// Time discretization
+	TimeDiscreAdjlevelset TimeDiscreAdjlevelsetEnum
+	// Time discretization
+	TimeDiscreAdj TimeDiscreAdjEnum
+	// Time discretization
+	TimeDiscreLin TimeDiscreLinEnum
+	// Time discretization
+	TimeDiscreTurb TimeDiscreTurbEnum
+	// Time discretization
+	TimeDiscreAdjturb TimeDiscreAdjturbEnum
+	// Time discretization
+	TimeDiscreWave TimeDiscreWaveEnum
+	// Time discretization
+	TimeDiscreFea TimeDiscreFeaEnum
+	// Time discretization
+	TimeDiscreHeat TimeDiscreHeatEnum
+	// Time discretization
+	TimeDiscrePoisson TimeDiscrePoissonEnum
+	// Linear solver for the implicit, mesh deformation, or discrete adjoint systems
+	LinearSolver LinearSolverEnum
+	// Preconditioner for the Krylov linear solvers
+	LinearSolverPrec LinearSolverPrecEnum
+	// Minimum error threshold for the linear solver for the implicit formulation
+	LinearSolverError float64
+	// Maximum number of iterations of the linear solver for the implicit formulation
+	LinearSolverIter float64
+	// Relaxation of the linear solver for the implicit formulation
+	LinearSolverRelax float64
+	// Roe-Turkel preconditioning for low Mach number flows
+	RoeTurkelPrec bool
+	// Time Step for dual time stepping simulations (s)
+	MinRoeTurkelPrec float64
+	// Time Step for dual time stepping simulations (s)
+	MaxRoeTurkelPrec float64
+	// Linear solver for the turbulent adjoint systems
+	AdjturbLinSolver AdjturbLinSolverEnum
+	// Preconditioner for the turbulent adjoint Krylov linear solvers
+	AdjturbLinPrec AdjturbLinPrecEnum
+	// Minimum error threshold for the turbulent adjoint linear solver for the implicit formulation
+	AdjturbLinError float64
+	// Maximum number of iterations of the turbulent adjoint linear solver for the implicit formulation
+	AdjturbLinIter float64
+	// Mesh motion for unsteady simulations
+	GridMovement bool
+	// Type of mesh motion
+	GridMovementKind GridMovementKindEnum
+	// Marker(s) of moving surfaces (MOVING_WALL or DEFORMING grid motion).
+	MarkerMoving Marker
+	// Mach number (non-dimensional, based on the mesh velocity and freestream vals.)
+	MachMotion float64
+	// Coordinates of the rigid motion origin
+	MotionOriginX []float64
+	// Coordinates of the rigid motion origin
+	MotionOriginY []float64
+	// Coordinates of the rigid motion origin
+	MotionOriginZ []float64
+	// Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
+	TranslationRateX []float64
+	// Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
+	TranslationRateY []float64
+	// Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
+	TranslationRateZ []float64
+	// Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
+	RotationRateX []float64
+	// Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
+	RotationRateY []float64
+	// Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
+	RotationRateZ []float64
+	// Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
+	PitchingOmegaX []float64
+	// Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
+	PitchingOmegaY []float64
+	// Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
+	PitchingOmegaZ []float64
+	// Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
+	PitchingAmplX []float64
+	// Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
+	PitchingAmplY []float64
+	// Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
+	PitchingAmplZ []float64
+	// Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
+	PitchingPhaseX []float64
+	// Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
+	PitchingPhaseY []float64
+	// Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
+	PitchingPhaseZ []float64
+	// Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
+	PlungingOmegaX []float64
+	// Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
+	PlungingOmegaY []float64
+	// Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
+	PlungingOmegaZ []float64
+	// Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
+	PlungingAmplX []float64
+	// Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
+	PlungingAmplY []float64
+	// Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
+	PlungingAmplZ []float64
+	// Value to move motion origins (1 or 0)
+	MoveMotionOrigin []float64
+	//
+	MotionFilename float64
+	// Uncoupled Aeroelastic Frequency Plunge.
+	FreqPlungeAeroelastic float64
+	// Uncoupled Aeroelastic Frequency Pitch.
+	FreqPitchAeroelastic float64
+	// Apply a wind gust
+	WindGust bool
+	// Type of gust
+	GustType GustTypeEnum
+	// Gust wavelenght (meters)
+	GustWavelength float64
+	// Number of gust periods
+	GustPeriods float64
+	// Gust amplitude (m/s)
+	GustAmpl float64
+	// Time at which to begin the gust (sec)
+	GustBeginTime float64
+	// Location at which the gust begins (meters)
+	GustBeginLoc float64
+	// Direction of the gust X or Y dir
+	GustDir GustDirEnum
+	// Convergence criteria
+	ConvCriteria ConvCriteriaEnum
+	// Residual reduction (order of magnitude with respect to the initial value)
+	ResidualReduction float64
+	// Min value of the residual (log10 of the residual)
+	ResidualMinval float64
+	// Iteration number to begin convergence monitoring
+	StartconvIter float64
+	// Number of elements to apply the criteria
+	CauchyElems float64
+	// Epsilon to control the series convergence
+	CauchyEps float64
+	// Flow functional for the Cauchy criteria
+	CauchyFuncFlow CauchyFuncFlowEnum
+	// Adjoint functional for the Cauchy criteria
+	CauchyFuncAdj CauchyFuncAdjEnum
+	// Linearized functional for the Cauchy criteria
+	CauchyFuncLin CauchyFuncLinEnum
+	// Epsilon for a full multigrid method evaluation
+	FullmgCauchyEps float64
+	// Full multi-grid
+	Fullmg bool
+	// Start up iterations using the fine grid only
+	StartUpIter float64
+	// Multi-grid Levels
+	Mglevel float64
+	// Multi-grid Cycle (0 = V cycle, 1 = W Cycle)
+	Mgcycle float64
+	// Multi-grid pre-smoothing level
+	MgPreSmooth []float64
+	// Multi-grid post-smoothing level
+	MgPostSmooth []float64
+	// Jacobi implicit smoothing of the correction
+	MgCorrectionSmooth []float64
+	// Damping factor for the residual restriction
+	MgDampRestriction float64
+	// Damping factor for the correction prolongation
+	MgDampProlongation float64
+	// CFL reduction factor on the coarse levels
+	MgCflReduction float64
+	// Maximum number of children in the agglomeration stage
+	MaxChildren float64
+	// Maximum length of an agglomerated element (relative to the domain)
+	MaxDimension float64
+	// Numerical method for spatial gradients
+	NumMethodGrad NumMethodGradEnum
+	// Coefficient for the limiter
+	LimiterCoeff float64
+	// Coefficient for detecting the limit of the sharp edges
+	SharpEdgesCoeff float64
+	// No description
+	ConvNumMethodFlow ConvNumMethodFlowEnum
+	// Viscous numerical method
+	ViscNumMethodFlow ViscNumMethodFlowEnum
+	// Source term numerical method
+	SourNumMethodFlow SourNumMethodFlowEnum
+	// Slope limiter
+	SlopeLimiterFlow SlopeLimiterFlowEnum
+	// 1st, 2nd and 4th order artificial dissipation coefficients
+	AdCoeffFlow []float64
+	// No description
+	ConvNumMethodAdj ConvNumMethodAdjEnum
+	// Viscous numerical method
+	ViscNumMethodAdj ViscNumMethodAdjEnum
+	// Source term numerical method
+	SourNumMethodAdj SourNumMethodAdjEnum
+	// Slope limiter
+	SlopeLimiterAdjflow SlopeLimiterAdjflowEnum
+	// 1st, 2nd and 4th order artificial dissipation coefficients
+	AdCoeffAdj []float64
+	// Slope limiter
+	SlopeLimiterTurb SlopeLimiterTurbEnum
+	// Convective numerical method
+	ConvNumMethodTurb ConvNumMethodTurbEnum
+	// Viscous numerical method
+	ViscNumMethodTurb ViscNumMethodTurbEnum
+	// Source term numerical method
+	SourNumMethodTurb SourNumMethodTurbEnum
+	// Slope limiter
+	SlopeLimiterAdjturb SlopeLimiterAdjturbEnum
+	// Convective numerical method
+	ConvNumMethodAdjturb ConvNumMethodAdjturbEnum
+	// Viscous numerical method
+	ViscNumMethodAdjturb ViscNumMethodAdjturbEnum
+	// Source term numerical method
+	SourNumMethodAdjturb SourNumMethodAdjturbEnum
+	// Convective numerical method
+	ConvNumMethodLin ConvNumMethodLinEnum
+	// Viscous numerical method
+	ViscNumMethodLin ViscNumMethodLinEnum
+	// Source term numerical method
+	SourNumMethodLin SourNumMethodLinEnum
+	// 1st, 2nd and 4th order artificial dissipation coefficients
+	AdCoeffLin []float64
+	// Slope limiter
+	SlopeLimiterAdjlevelset SlopeLimiterAdjlevelsetEnum
+	// Convective numerical method
+	ConvNumMethodAdjlevelset ConvNumMethodAdjlevelsetEnum
+	// Viscous numerical method
+	ViscNumMethodAdjlevelset ViscNumMethodAdjlevelsetEnum
+	// Source term numerical method
+	SourNumMethodAdjlevelset SourNumMethodAdjlevelsetEnum
+	// Convective numerical method
+	ConvNumMethodTne2 ConvNumMethodTne2Enum
+	// Viscous numerical method
+	ViscNumMethodTne2 ViscNumMethodTne2Enum
+	// Source term numerical method
+	SourNumMethodTne2 SourNumMethodTne2Enum
+	// Slope limiter
+	SlopeLimiterTne2 SlopeLimiterTne2Enum
+	// 1st, 2nd and 4th order artificial dissipation coefficients
+	AdCoeffTne2 []float64
+	// Convective numerical method
+	ConvNumMethodAdjtne2 ConvNumMethodAdjtne2Enum
+	// Viscous numerical method
+	ViscNumMethodAdjtne2 ViscNumMethodAdjtne2Enum
+	// Source term numerical method
+	SourNumMethodAdjtne2 SourNumMethodAdjtne2Enum
+	// Slope limiter
+	SlopeLimiterAdjtne2 SlopeLimiterAdjtne2Enum
+	// 1st, 2nd and 4th order artificial dissipation coefficients
+	AdCoeffAdjtne2 []float64
+	// Viscous numerical method
+	ViscNumMethodWave ViscNumMethodWaveEnum
+	// Source term numerical method
+	SourNumMethodWave SourNumMethodWaveEnum
+	// Viscous numerical method
+	ViscNumMethodPoisson ViscNumMethodPoissonEnum
+	// Source term numerical method
+	SourNumMethodPoisson SourNumMethodPoissonEnum
+	// Viscous numerical method
+	ViscNumMethodFea ViscNumMethodFeaEnum
+	// Source term numerical method
+	SourNumMethodFea SourNumMethodFeaEnum
+	// Viscous numerical method
+	ViscNumMethodHeat ViscNumMethodHeatEnum
+	// Source term numerical method
+	SourNumMethodHeat SourNumMethodHeatEnum
+	// Source term numerical method
+	SourNumMethodTemplate SourNumMethodTemplateEnum
+	// Limit value for the adjoint variable
+	AdjLimit float64
+	// Adjoint problem boundary condition
+	AdjObjfunc AdjObjfuncEnum
+	// No description
+	GeoSectionLimit []float64
+	// Mode of the GDC code (analysis, or gradient)
+	GeoMode GeoModeEnum
+	// Drag weight in sonic boom Objective Function (from 0.0 to 1.0)
+	DragInSonicboom float64
+	// Sensitivity smoothing
+	SensSmoothing SensSmoothingEnum
+	// Continuous governing equation set
+	ContinuousEqns ContinuousEqnsEnum
+	// Discrete governing equation set
+	DiscreteEqns DiscreteEqnsEnum
+	// Adjoint frozen viscosity
+	FrozenVisc bool
+	//
+	CteViscousDrag float64
+	// Remove sharp edges from the sensitivity evaluation
+	SensRemoveSharp bool
+	// I/O
+	OutputFormat OutputFormatEnum
+	// Mesh input file format
+	MeshFormat MeshFormatEnum
+	// Convert a CGNS mesh to SU2 format
+	CgnsToSu2 bool
+	// Mesh input file
+	MeshFilename float64
+	// Mesh output file
+	MeshOutFilename float64
+	// Output file convergence history (w/o extension)
+	ConvFilename float64
+	// Restart flow input file
+	SolutionFlowFilename float64
+	// Restart flow input file
+	FarfieldFilename float64
+	// Restart linear flow input file
+	SolutionLinFilename float64
+	// Restart adjoint input file
+	SolutionAdjFilename float64
+	// Output file restart flow
+	RestartFlowFilename float64
+	// Output file linear flow
+	RestartLinFilename float64
+	// Output file restart adjoint
+	RestartAdjFilename float64
+	// Output file restart wave
+	RestartWaveFilename float64
+	// Output file flow (w/o extension) variables
+	VolumeFlowFilename float64
+	// Output file structure (w/o extension) variables
+	VolumeStructureFilename float64
+	// Output file structure (w/o extension) variables
+	SurfaceStructureFilename float64
+	// Output file structure (w/o extension) variables
+	SurfaceWaveFilename float64
+	// Output file structure (w/o extension) variables
+	SurfaceHeatFilename float64
+	// Output file wave (w/o extension) variables
+	VolumeWaveFilename float64
+	// Output file wave (w/o extension) variables
+	VolumeHeatFilename float64
+	// Output file adj. wave (w/o extension) variables
+	VolumeAdjwaveFilename float64
+	// Output file adjoint (w/o extension) variables
+	VolumeAdjFilename float64
+	// Output file linear (w/o extension) variables
+	VolumeLinFilename float64
+	// Output objective function gradient
+	GradObjfuncFilename float64
+	// Output objective function
+	ValueObjfuncFilename float64
+	// Output file surface flow coefficient (w/o extension)
+	SurfaceFlowFilename float64
+	// Output file surface adjoint coefficient (w/o extension)
+	SurfaceAdjFilename float64
+	// Output file surface linear coefficient (w/o extension)
+	SurfaceLinFilename float64
+	// Writing solution file frequency
+	WrtSolFreq float64
+	// Writing solution file frequency
+	WrtSolFreqDualtime float64
+	// Writing convergence history frequency
+	WrtConFreq float64
+	// Writing convergence history frequency for the dual time
+	WrtConFreqDualtime float64
+	// Write a volume solution file
+	WrtVolSol bool
+	// Write a surface solution file
+	WrtSrfSol bool
+	// Write a surface CSV solution file
+	WrtCsvSol bool
+	// Write a restart solution file
+	WrtRestart bool
+	// Output residual info to solution/restart file
+	WrtResiduals bool
+	// Output the rind layers in the solution files
+	WrtHalo bool
+	// Output sectional forces for specified markers.
+	WrtSectionalForces bool
+	// Evaluate equivalent area on the Near-Field
+	EquivArea bool
+	// Integration limits of the equivalent area ( xmin, xmax, Dist_NearField )
+	EaIntLimit []float64
+	// Specific gas constant (287.87 J/kg*K (air), only for compressible flows)
+	GasConstant float64
+	// Ratio of specific heats (1.4 (air), only for compressible flows)
+	GammaValue float64
+	// Reynolds number (non-dimensional, based on the free-stream values)
+	ReynoldsNumber float64
+	// Reynolds length (1 m by default)
+	ReynoldsLength float64
+	// Laminar Prandtl number (0.72 (air), only for compressible flows)
+	PrandtlLam float64
+	// Turbulent Prandtl number (0.9 (air), only for compressible flows)
+	PrandtlTurb float64
+	// Value of the Bulk Modulus
+	BulkModulus float64
+	// Artifical compressibility factor
+	ArtcompFactor float64
+	// Mach number (non-dimensional, based on the free-stream values)
+	MachNumber float64
+	// No description
+	MixtureMolarMass float64
+	// Free-stream pressure (101325.0 N/m^2 by default)
+	FreestreamPressure float64
+	// Free-stream density (1.2886 Kg/m^3 (air), 998.2 Kg/m^3 (water))
+	FreestreamDensity float64
+	// Free-stream temperature (273.15 K by default)
+	FreestreamTemperature float64
+	// Free-stream vibrational-electronic temperature (273.15 K by default)
+	FreestreamTemperatureVe float64
+	// Free-stream velocity (m/s)
+	FreestreamVelocity []float64
+	// Free-stream viscosity (1.853E-5 Ns/m^2 (air), 0.798E-3 Ns/m^2 (water))
+	FreestreamViscosity float64
+	//
+	FreestreamIntermittency float64
+	//
+	FreestreamTurbulenceintensity float64
+	//
+	FreestreamNuFactor float64
+	//
+	FreestreamTurb2lamviscratio float64
+	// Side-slip angle (degrees, only for compressible flows)
+	SideslipAngle float64
+	// Angle of attack (degrees, only for compressible flows)
+	Aoa float64
+	// X Reference origin for moment computation
+	RefOriginMomentX []float64
+	// Y Reference origin for moment computation
+	RefOriginMomentY []float64
+	// Z Reference origin for moment computation
+	RefOriginMomentZ []float64
+	// Reference area for force coefficients (0 implies automatic calculation)
+	RefArea float64
+	// Reference length for pitching, rolling, and yawing non-dimensional moment
+	RefLengthMoment float64
+	// Reference element length for computing the slope limiter epsilon
+	RefElemLength float64
+	// Reference coefficient for detecting sharp edges
+	RefSharpEdges float64
+	// Reference pressure (1.0 N/m^2 by default, only for compressible flows)
+	RefPressure float64
+	// Reference temperature (1.0 K by default, only for compressible flows)
+	RefTemperature float64
+	// Reference density (1.0 Kg/m^3 by default, only for compressible flows)
+	RefDensity float64
+	// Reference velocity (incompressible only)
+	RefVelocity float64
+	// Reference viscosity (incompressible only)
+	RefViscosity float64
+	// Factor for converting the grid to meters
+	ConvertToMeter float64
+	// Write a new mesh converted to meters
+	WriteConvertedMesh bool
+	// Specify chemical model for multi-species simulations
+	GasModel GasModelEnum
+	//
+	GasComposition []float64
+	// Ratio of density for two phase problems
+	RatioDensity float64
+	// Ratio of viscosity for two phase problems
+	RatioViscosity float64
+	// Location of the freesurface (y or z coordinate)
+	FreesurfaceZero float64
+	// Free surface depth surface (x or y coordinate)
+	FreesurfaceDepth float64
+	// Thickness of the interface in a free surface problem
+	FreesurfaceThickness float64
+	// Free surface damping coefficient
+	FreesurfaceDampingCoeff float64
+	// Free surface damping length (times the baseline wave)
+	FreesurfaceDampingLength float64
+	// Location of the free surface outlet surface (x or y coordinate)
+	FreesurfaceOutlet float64
+	// Kind of deformation
+	DvKind DvKindEnum
+	// Marker of the surface to which we are going apply the shape deformation
+	DvMarker Marker
+	// New value of the shape deformation
+	DvValue []float64
+	// No description
+	DvParam string
+	// Hold the grid fixed in a region
+	HoldGridFixed bool
+	// Coordinates of the box where the grid will be deformed (Xmin, Ymin, Zmin, Xmax, Ymax, Zmax)
+	HoldGridFixedCoord []float64
+	// Visualize the deformation
+	VisualizeDeformation bool
+	// Number of iterations for FEA mesh deformation (surface deformation increments)
+	GridDeformIter float64
+	// No description
+	CyclicPitch float64
+	// No description
+	CollectivePitch float64
+	// Modulus of elasticity
+	ElasticityModulus float64
+	// Poisson ratio
+	PoissonRatio float64
+	// Material density
+	MaterialDensity float64
+	// Constant wave speed
+	WaveSpeed float64
+	// Thermal diffusivity constant
+	ThermalDiffusivity float64
 }
