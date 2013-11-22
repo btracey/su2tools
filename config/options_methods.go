@@ -195,7 +195,7 @@ func ReadConfig(reader io.Reader) (*Options, error) {
 	return options, nil
 }
 
-func valueFromString(option *OptionPrint, str string) (interface{}, error) {
+func valueFromString(option *optionPrint, str string) (interface{}, error) {
 	switch option.Type {
 	case "float64":
 		return strconv.ParseFloat(str, 64)

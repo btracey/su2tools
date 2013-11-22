@@ -22,7 +22,7 @@ func (d *optionMapWriter) init() (err error) {
 	}
 	d.File.WriteString("\n")
 	d.File.WriteString("//optionMap is a map that stores the option printer for each object\n")
-	d.File.WriteString("var optionMap map[string]*OptionPrint = map[string]*OptionPrint{\n")
+	d.File.WriteString("var optionMap map[string]*optionPrint = map[string]*optionPrint{\n")
 	return nil
 }
 

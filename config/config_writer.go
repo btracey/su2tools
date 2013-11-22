@@ -20,7 +20,7 @@ var configHeader []byte = []byte(`
 
 var categoryBookend string = string(` ----------- `)
 
-type optionOrderSorter []*OptionPrint
+type optionOrderSorter []*optionPrint
 
 func (o optionOrderSorter) Len() int {
 	return len(o)
@@ -64,7 +64,7 @@ func makeOptionOrder() {
 }
 
 // OptionPrint is a type for printing an option in SU2 format
-type OptionPrint struct {
+type optionPrint struct {
 	Description    string
 	Category       string
 	SU2OptionName  string
@@ -83,7 +83,7 @@ var PrintAll OptionList = OptionList{"All": true}
 
 //var categoryOrder []string =
 
-func (o *OptionPrint) MarshalSU2Config() ([]byte, error) {
+func (o *optionPrint) MarshalSU2Config() ([]byte, error) {
 	buf := &bytes.Buffer{}
 	buf.WriteString("\n")
 	buf.WriteString("% " + o.Description + "\n")
