@@ -10,6 +10,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"unicode"
 )
@@ -80,7 +81,7 @@ func to_camel_case(s string) string {
 	for i := 0; i < len(r); i++ {
 		if r[i] == '_' {
 			inds = append(inds, i)
-			if i != len(r) {
+			if i != len(r)-1 {
 				r[i+1] = unicode.ToUpper(r[i+1])
 			}
 		} else {
@@ -150,6 +151,15 @@ func exit(err error) {
 	os.Exit(1)
 }
 
+func initializeFile(file *os.File) error {
+	_, err := file.WriteString("package " + pkgName + "\n")
+	if err != nil {
+		return err
+	}
+	file.Write(dynamicGeneration)
+	return nil
+}
+
 func main() {
 	pythonOptionsFilename := "su2options.txt"
 
@@ -157,12 +167,13 @@ func main() {
 	if gopath == "" {
 		exit(errors.New("gopath not found"))
 	}
-	basepath := filepath.Join(gopath, "src", "github.com", "btracey", "su2tools", "config", "code_generator")
-	newpath := filepath.Join(basepath, "newfiles")
+	basepath := filepath.Join(gopath, "src", "github.com", "btracey", "su2tools", "config")
+	thispath := filepath.Join(basepath, "code_generator")
+	newpath := filepath.Join(thispath, "newfiles")
 	//alloptionsFilename := "all_options.go"
 
 	// Open relevant files
-	pythonOptionsFile, err := os.Open(filepath.Join(basepath, pythonOptionsFilename))
+	pythonOptionsFile, err := os.Open(filepath.Join(thispath, pythonOptionsFilename))
 	defer pythonOptionsFile.Close()
 	if err != nil {
 		exit(err)
@@ -170,8 +181,17 @@ func main() {
 
 	generators := []CodeGenerator{
 		&optionFile{Filename: filepath.Join(newpath, "all_options.go")},
-		&enumWriter{Filename: filepath.Join(newpath, "enum_options.go")},
+		// can't make enums their own types. See note in enum_writer
+		//&enumWriter{Filename: filepath.Join(newpath, "enum_options.go")},
+		&defaultWriter{Filename: filepath.Join(newpath, "options_default.go")},
+		&optionMapWriter{Filename: filepath.Join(newpath, "option_map.go")},
 	}
+
+	headerOrderFilename := filepath.Join(newpath, "heading_order.go")
+	headerOrder, err := os.Create(headerOrderFilename)
+
+	initializeFile(headerOrder)
+	headerOrder.WriteString("var categoryOrder map[string]int = map[string]int{\n")
 
 	scanner := bufio.NewScanner(pythonOptionsFile)
 
@@ -183,18 +203,21 @@ func main() {
 		}
 	}
 
-	// Skip to the options
+	var headingNumber int
+	// Write headings until we reach options
 	for scanner.Scan() {
 		b := scanner.Bytes()
 		line := string(b)
-
-		if len(line) < len(optionStart) {
-			continue
+		if len(line) > len(optionStart) {
+			if line[:len(optionStart)] == optionStart {
+				break
+			}
 		}
-		if line[:len(optionStart)] == optionStart {
-			break
-		}
+		headerOrder.WriteString("\"" + line + "\":" + strconv.Itoa(headingNumber) + ",\n")
+		headingNumber++
 	}
+	headerOrder.WriteString("}")
+	headerOrder.Close()
 
 	// stupid loop and a half problem
 	option, err := parseOption(scanner)
@@ -231,13 +254,38 @@ func main() {
 			}
 		}
 	}
-	fmt.Println("Finalizing files")
+
 	// Finish writing files
 	for _, g := range generators {
 		g.finalize()
 	}
-	fmt.Println("Formatting files")
+
+	// Format the go files
 	for _, g := range generators {
-		format_file(g.GetFilename())
+		err := format_file(g.GetFilename())
+		if err != nil {
+			exit(errors.New("error formatting: " + err.Error()))
+		}
+	}
+	err = format_file(headerOrderFilename)
+	if err != nil {
+		exit(errors.New("error formatting header: " + err.Error()))
+	}
+
+	// Move the go files up a directory
+	for _, g := range generators {
+		// get the trailing part of the name
+		oldname := g.GetFilename()
+		newname := filepath.Join(basepath, filepath.Base(g.GetFilename()))
+		err := os.Rename(oldname, newname)
+		if err != nil {
+			exit(errors.New("error moving: " + err.Error()))
+		}
+	}
+	oldname := headerOrderFilename
+	newname := filepath.Join(basepath, filepath.Base(headerOrderFilename))
+	err = os.Rename(oldname, newname)
+	if err != nil {
+		exit(errors.New("error moving: " + err.Error()))
 	}
 }

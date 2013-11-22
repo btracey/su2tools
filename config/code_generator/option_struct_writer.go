@@ -14,19 +14,19 @@ func (o *optionFile) init() (err error) {
 	if err != nil {
 		return err
 	}
-	_, err = o.File.Write([]byte("package " + pkgName + "\n"))
+	_, err = o.File.WriteString("package " + pkgName + "\n")
 	if err != nil {
 		return err
 	}
 	o.File.Write(dynamicGeneration)
-	o.File.Write([]byte("\n"))
-	o.File.Write([]byte("// Options is a struct containing all of the possible options in SU^2\n"))
-	o.File.Write([]byte("type Options struct { \n"))
+	o.File.WriteString("\n")
+	o.File.WriteString("// Options is a struct containing all of the possible options in SU^2\n")
+	o.File.WriteString("type Options struct { \n")
 	return nil
 }
 
 func (o *optionFile) finalize() {
-	o.File.Write([]byte("}"))
+	o.File.WriteString("}")
 	o.File.Close()
 }
 
@@ -39,18 +39,7 @@ func (o *optionFile) GetFilename() string {
 }
 
 func (o *optionFile) add_option(option *pythonOption) error {
-	// write a comment
-	o.File.Write([]byte(" // "))
-	o.File.Write([]byte(option.description))
-	o.File.Write([]byte("\n"))
-	// write the field name
-	o.File.Write([]byte(option.structName))
-	// write a space
-	o.File.Write([]byte(" "))
-	// write type
-	o.File.Write([]byte(option.go_type))
-
-	// write the description
-	o.File.Write([]byte("\n"))
+	o.File.WriteString(" // " + option.description + "\n")
+	o.File.WriteString(option.structName + " " + option.go_type + "\n")
 	return nil
 }

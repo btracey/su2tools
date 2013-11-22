@@ -1,9 +1,15 @@
 package main
 
 import (
-	"os"
+//"errors"
+//"os"
 )
 
+// NOTE: This is a good start, but it won't work nicely due to the way things are done.
+// For example, all the flux routine codes take in the same set of strings. These would
+// have to be hand-coded somehow because SU2 doesn't make that distinction
+
+/*
 type enumWriter struct {
 	Filename string
 	File     *os.File
@@ -50,5 +56,16 @@ func (e *enumWriter) add_option(option *pythonOption) error {
 	e.File.Write([]byte("type " + option.go_type + " int\n"))
 
 	// Print constants with all the values
+	e.File.Write([]byte("const(\n"))
+	if len(option.enumOptions) == 0 {
+		return errors.New("no enum options")
+	}
+	// write the first type
+	e.File.Write([]byte(option.enumGo[0] + " " + option.go_type + " = iota\n"))
+	for i := 1; i < len(option.enumGo); i++ {
+		e.File.Write([]byte(option.enumGo[i] + "\n"))
+	}
+	e.File.Write([]byte(")\n\n"))
 	return nil
 }
+*/
