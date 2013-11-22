@@ -15,7 +15,7 @@ import (
 	"unicode"
 )
 
-var pkgName string = "su2config"
+var pkgName string = "config"
 var optionStart string = "Option Name:"
 var nameBytes []byte = []byte("Option Name:")
 var typeBytes []byte = []byte("Option Type:")
@@ -185,6 +185,8 @@ func main() {
 		//&enumWriter{Filename: filepath.Join(newpath, "enum_options.go")},
 		&defaultWriter{Filename: filepath.Join(newpath, "options_default.go")},
 		&optionMapWriter{Filename: filepath.Join(newpath, "option_map.go")},
+		&fieldMapWriter{Filename: filepath.Join(newpath, "go_to_su2_field_map.go")},
+		&su2ToGoFieldMapWriter{Filename: filepath.Join(newpath, "su2_to_go_field_map.go")},
 	}
 
 	headerOrderFilename := filepath.Join(newpath, "heading_order.go")

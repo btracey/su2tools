@@ -1,14 +1,9 @@
-package su2config
+package config
 
 import (
 	"bytes"
-	"errors"
-	"io"
-	"reflect"
+	//"fmt"
 	"sort"
-	"strconv"
-
-	"fmt"
 )
 
 func init() {
@@ -104,82 +99,4 @@ func (o *OptionPrint) MarshalSU2Config() ([]byte, error) {
 	}
 	buf.WriteString(o.SU2OptionName + "= ")
 	return buf.Bytes(), nil
-}
-
-// WriteConfig writes a config file to the writer with the options given in list
-func (o *Options) WriteConfig(writer io.Writer, list OptionList) error {
-
-	buf := &bytes.Buffer{}
-	buf.Write(configHeader)
-	printAll := list["All"]
-	currentHeading := -1
-	for _, option := range optionOrder {
-		catNumber := categoryOrder[option.Category]
-		fmt.Println("cat # = ", catNumber)
-		if catNumber > currentHeading {
-			buf.WriteString("\n\n")
-			buf.WriteString("%" + categoryBookend + option.Category + categoryBookend + "% \n")
-			currentHeading = catNumber
-		}
-		printOption := list[option.SU2OptionName]
-		if printAll {
-			printOption = true
-		}
-		if printOption {
-			b, _ := option.MarshalSU2Config()
-			b2, err := o.marshalSU2StructValue(option.StructName)
-			if err != nil {
-				return errors.New("WriteConfig " + option.StructName + ": " + err.Error())
-			}
-			buf.Write(b)
-			buf.Write(b2)
-			buf.WriteString("\n")
-		}
-	}
-	writer.Write(buf.Bytes())
-	return nil
-}
-
-// This may need to change to be a switch on the SU2Type
-func (o *Options) marshalSU2StructValue(structName string) ([]byte, error) {
-	// Get the value of the field
-	reflectvalue := reflect.ValueOf(*o)
-	fieldvalue := reflectvalue.FieldByName(structName)
-	switch t := fieldvalue.Interface().(type) {
-	case float64:
-		str := strconv.FormatFloat(t, 'g', -1, 64)
-		return []byte(str), nil
-	case bool:
-		if t == false {
-			return []byte("NO"), nil
-		}
-		return []byte("YES"), nil
-	case string:
-		return []byte(t), nil
-	case []float64:
-		buf := &bytes.Buffer{}
-		buf.WriteString("( ")
-		for i, val := range t {
-			str := strconv.FormatFloat(val, 'g', -1, 64)
-			buf.WriteString(str)
-			if i != len(t)-1 {
-				buf.WriteString(", ")
-			}
-		}
-		buf.WriteString(" )")
-		return buf.Bytes(), nil
-	case []string:
-		buf := &bytes.Buffer{}
-		buf.WriteString("(")
-		for i, val := range t {
-			buf.WriteString(val)
-			if i != len(t)-1 {
-				buf.WriteString(", ")
-			}
-		}
-		buf.WriteString(" )")
-		return buf.Bytes(), nil
-	default:
-		panic("type not implemented for " + structName)
-	}
 }
