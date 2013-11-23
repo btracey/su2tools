@@ -6,71 +6,66 @@ import (
 	"errors"
 	"io"
 	"reflect"
-	"strconv"
 	"strings"
+
+	"github.com/btracey/su2tools/config/common"
 
 	//"fmt"
 )
 
-func is_enum_option(t string) bool {
-	switch t {
-	default:
-		return false
-	case "ConvectOption", "EnumListOption", "MathProblem", "EnumOption":
-		return true
-
-	}
-}
-
-// IsField returns true if field is a field of SU2
-func (o *Options) IsConfigOption(configString string) bool {
+/*
+// IsConfigOption returns true if configString is a valid option string
+// in the config file
+func (o *Options) IsConfigOption(configString common.ConfigOptionType) bool {
 	goField := su2ToGoFieldMap[configString]
 	_, ok := optionMap[goField]
 	return ok
 }
+*/
 
 // IsEnum returns true if the options field is an enumable
-func (o *Options) IsEnum(field string) bool {
+func (o *Options) IsEnum(field common.OptionsField) bool {
 	option := optionMap[field]
-	return is_enum_option(option.OptionTypeName)
+	return common.IsEnumOption(option.ConfigType)
 }
 
 // SetEnum  sets the enumerable field, checking that it is a valid option.
 // Returns an error if it is not a valid option or if
-func (o *Options) SetEnum(field string, val string) error {
+func (o *Options) SetEnum(field common.OptionsField, val common.Enum) error {
 	// First, check that it's a real field
 	option, ok := optionMap[field]
 	if !ok {
-		return errors.New("setenum: " + field + " is not a valid field")
+		return errors.New("setenum: " + string(field) + " is not a valid field")
 	}
 	// check that the value is any of the possible options
 	for _, str := range option.enumOptions {
 		if str == val {
-			reflect.ValueOf(o).Elem().FieldByName(field).SetString(val)
+			reflect.ValueOf(o).Elem().FieldByName(string(field)).Set(reflect.ValueOf(val))
 			return nil
 		}
 	}
-	return errors.New("setenum: " + " val is not a valid option " + option.ValueString)
+	return errors.New("setenum: " + string(val) + " is not a valid option ")
 }
 
-func (o *Options) SetField(field string, val interface{}) error {
+// SetField sets the field with the value. It calls SetEnum if it is an enumerable option
+func (o *Options) SetField(field common.OptionsField, val interface{}) error {
 	option, ok := optionMap[field]
 	if !ok {
-		return errors.New("setfields: " + field + " is not a field")
+		return errors.New("setfields: " + string(field) + " is not a field")
 	}
-	if is_enum_option(option.OptionTypeName) && option.OptionTypeName != "EnumListOption" {
-		err := o.SetEnum(field, val.(string))
+	if common.IsEnumOption(option.ConfigType) {
+		err := o.SetEnum(field, val.(common.Enum))
 		if err != nil {
-			errors.New("setfelids: error setting field " + field + ": " + err.Error())
+			errors.New("setfelids: error setting field " + string(field) + ": " + err.Error())
 		}
 		return nil
 	}
-	reflect.ValueOf(o).Elem().FieldByName(field).Set(reflect.ValueOf(val))
+	reflect.ValueOf(o).Elem().FieldByName(string(field)).Set(reflect.ValueOf(val))
 	return nil
 }
 
 // SetFields sets the fields of the options structure
-func (o *Options) SetFields(fieldMap map[string]interface{}) error {
+func (o *Options) SetFields(fieldMap map[common.OptionsField]interface{}) error {
 	for field, value := range fieldMap {
 		o.SetField(field, value)
 	}
@@ -85,73 +80,34 @@ func (o *Options) WriteConfig(writer io.Writer, list OptionList) error {
 	printAll := list["All"]
 	currentHeading := -1
 	for _, option := range optionOrder {
-		catNumber := categoryOrder[option.Category]
+		catNumber := categoryOrder[option.ConfigCategory]
 		if catNumber > currentHeading {
 			buf.WriteString("\n\n")
-			buf.WriteString("%" + categoryBookend + option.Category + categoryBookend + "% \n")
+			buf.WriteString("%" + categoryBookend + string(option.ConfigCategory) + categoryBookend + "% \n")
 			currentHeading = catNumber
 		}
-		printOption := list[option.SU2OptionName]
+		printOption, ok := list[option.OptionsField]
 		if printAll {
 			printOption = true
+			ok = true
 		}
+		if !ok {
+			return errors.New("unknown options field " + string(option.OptionsField))
+		}
+
 		if printOption {
 			b, _ := option.MarshalSU2Config()
-			b2, err := o.marshalSU2StructValue(option.StructName)
-			if err != nil {
-				return errors.New("WriteConfig " + option.StructName + ": " + err.Error())
-			}
+
+			r := reflect.ValueOf(o).Elem()
+			i := r.FieldByName(string(option.OptionsField)).Interface()
+			b2 := common.ValueAsConfigString(i, option.GoBaseType)
 			buf.Write(b)
-			buf.Write(b2)
+			buf.WriteString(b2)
 			buf.WriteString("\n")
 		}
 	}
 	writer.Write(buf.Bytes())
 	return nil
-}
-
-// This may need to change to be a switch on the SU2Type
-func (o *Options) marshalSU2StructValue(structName string) ([]byte, error) {
-	// Get the value of the field
-	reflectvalue := reflect.ValueOf(*o)
-	fieldvalue := reflectvalue.FieldByName(structName)
-	switch t := fieldvalue.Interface().(type) {
-	case float64:
-		str := strconv.FormatFloat(t, 'g', -1, 64)
-		return []byte(str), nil
-	case bool:
-		if t == false {
-			return []byte("NO"), nil
-		}
-		return []byte("YES"), nil
-	case string:
-		return []byte(t), nil
-	case []float64:
-		buf := &bytes.Buffer{}
-		buf.WriteString("( ")
-		for i, val := range t {
-			str := strconv.FormatFloat(val, 'g', -1, 64)
-			buf.WriteString(str)
-			if i != len(t)-1 {
-				buf.WriteString(", ")
-			}
-		}
-		buf.WriteString(" )")
-		return buf.Bytes(), nil
-	case []string:
-		buf := &bytes.Buffer{}
-		buf.WriteString("(")
-		for i, val := range t {
-			buf.WriteString(val)
-			if i != len(t)-1 {
-				buf.WriteString(", ")
-			}
-		}
-		buf.WriteString(" )")
-		return buf.Bytes(), nil
-	default:
-		panic("type not implemented for " + structName)
-	}
 }
 
 func ReadConfig(reader io.Reader) (*Options, error) {
@@ -176,12 +132,12 @@ func ReadConfig(reader io.Reader) (*Options, error) {
 		for i := range parts {
 			parts[i] = strings.TrimSpace(parts[i])
 		}
-		goFieldName, ok := su2ToGoFieldMap[parts[0]]
+		goFieldName, ok := su2ToGoFieldMap[common.ConfigfileOption(parts[0])]
 		if !ok {
 			return nil, errors.New("readconfig: option " + parts[0] + " not in struct")
 		}
 		option := optionMap[goFieldName]
-		value, err := valueFromString(option, parts[1])
+		value, err := common.InterfaceFromString(parts[1], option.GoBaseType)
 		if err != nil {
 			return nil, errors.New("readconfig: error parsing " + parts[0] + ": " + err.Error())
 		}
@@ -191,60 +147,5 @@ func ReadConfig(reader io.Reader) (*Options, error) {
 	if err != nil {
 		return nil, errors.New("readconfig: " + err.Error())
 	}
-	//_ = setter
 	return options, nil
-}
-
-func valueFromString(option *optionPrint, str string) (interface{}, error) {
-	switch option.Type {
-	case "float64":
-		return strconv.ParseFloat(str, 64)
-	case "bool":
-		switch str {
-		case "NO":
-			return false, nil
-		case "YES":
-			return true, nil
-		default:
-			return false, errors.New("boolean string not YES or NO")
-		}
-	case "string":
-		return str, nil
-	case "[]float64":
-		// parse the string
-		strs, err := splitStringList(str)
-		if err != nil {
-			return nil, err
-		}
-		fs := make([]float64, len(strs))
-		for i, str := range strs {
-			f, err := strconv.ParseFloat(str, 64)
-			if err != nil {
-				return nil, err
-			}
-			fs[i] = f
-		}
-		return fs, nil
-	case "[]string":
-		return splitStringList(str)
-	default:
-		return nil, errors.New("Unknown case " + option.Type)
-	}
-}
-
-// CODE DUPLICATION HERE WITH CODE GENERATOR
-func splitStringList(str string) ([]string, error) {
-	// Check that the beginning and ending are ( and ]
-	if str[0] != '(' {
-		return nil, errors.New("no ( at start of string")
-	}
-	if str[len(str)-1] != ')' {
-		return nil, errors.New("no ) at end of string")
-	}
-	str = str[1 : len(str)-1]
-	strs := strings.Split(str, ",")
-	for i := range strs {
-		strs[i] = strings.TrimSpace(strs[i])
-	}
-	return strs, nil
 }

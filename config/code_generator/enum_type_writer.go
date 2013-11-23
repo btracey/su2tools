@@ -5,6 +5,8 @@ import (
 //"os"
 )
 
+// DON"T USE
+
 // NOTE: This is a good start, but it won't work nicely due to the way things are done.
 // For example, all the flux routine codes take in the same set of strings. These would
 // have to be hand-coded somehow because SU2 doesn't make that distinction

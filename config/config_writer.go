@@ -4,6 +4,8 @@ import (
 	"bytes"
 	//"fmt"
 	"sort"
+
+	"github.com/btracey/su2tools/config/common"
 )
 
 func init() {
@@ -31,8 +33,8 @@ func (o optionOrderSorter) Swap(i, j int) {
 }
 
 func (o optionOrderSorter) Less(i, j int) bool {
-	iCategory := o[i].Category
-	jCategory := o[j].Category
+	iCategory := o[i].ConfigCategory
+	jCategory := o[j].ConfigCategory
 	iOrder, ok := categoryOrder[iCategory]
 	if !ok {
 		panic("heading not in map")
@@ -48,7 +50,7 @@ func (o optionOrderSorter) Less(i, j int) bool {
 		return false
 	}
 	// Same category, sort by alphabetical order
-	return o[i].SU2OptionName < o[j].SU2OptionName
+	return o[i].ConfigName < o[j].ConfigName
 }
 
 var optionOrder optionOrderSorter
@@ -66,18 +68,19 @@ func makeOptionOrder() {
 // OptionPrint is a type for printing an option in SU2 format
 type optionPrint struct {
 	Description    string
-	Category       string
-	SU2OptionName  string
-	OptionTypeName string
-	Default        string
-	Type           string // go type string
-	StructName     string
-	enumOptions    []string
-	ValueString    string //enum string list
+	ConfigCategory common.ConfigCategory
+	ConfigName     common.ConfigfileOption
+	ConfigType     common.ConfigOptionType
+	Default        string            // default value as a string
+	GoBaseType     common.GoBaseType // go type string
+	OptionsField   common.OptionsField
+	enumOptions    []common.Enum
+	//ValueString    string //enum string list
+	Value interface{} // Default value as a value
 }
 
 // OptionList is a list of options to print while writing the config file
-type OptionList map[string]bool
+type OptionList map[common.OptionsField]bool
 
 var PrintAll OptionList = OptionList{"All": true}
 
@@ -87,17 +90,17 @@ func (o *optionPrint) MarshalSU2Config() ([]byte, error) {
 	buf := &bytes.Buffer{}
 	buf.WriteString("\n")
 	buf.WriteString("% " + o.Description + "\n")
-	buf.WriteString("% Type: " + o.OptionTypeName + " Default: " + o.Default + "\n")
+	buf.WriteString("% Type: " + string(o.ConfigType) + " Default: " + o.Default + "\n")
 	if len(o.enumOptions) > 0 {
 		buf.WriteString("% Options: (")
 		for i, str := range o.enumOptions {
-			buf.WriteString(str)
+			buf.WriteString(string(str))
 			if i != len(o.enumOptions)-1 {
 				buf.WriteString(", ")
 			}
 		}
 		buf.WriteString(" )\n")
 	}
-	buf.WriteString(o.SU2OptionName + "= ")
+	buf.WriteString(string(o.ConfigName) + "= ")
 	return buf.Bytes(), nil
 }

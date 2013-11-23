@@ -2,31 +2,42 @@ package main
 
 import (
 	"errors"
-	"strconv"
+	//"strconv"
 	"strings"
+
+	"github.com/btracey/su2tools/config/common"
 
 	//"fmt"
 )
 
 // typeS and defaultS because type and default are keywords
 type pythonOption struct {
-	name, typeO, category, values, defaultO, description string
-	structName                                           string
-	go_type                                              string
-	enumOptions                                          []string
-	//enumGo                                               []string
-	defaultFloat       float64
-	defaultStringArray []string
-	defaultFloatArray  []float64
+	configName        common.ConfigfileOption
+	configType        common.ConfigOptionType
+	configCategory    common.ConfigCategory
+	enumOptionsString string
+	defaultString     string // string representing the default value
+	description       string
+	optionsField      common.OptionsField
+	goBaseType        common.GoBaseType // string representing the base type
+	enumOptions       []common.Enum     // list of options for the enumerable
+
+	defaultValue interface{}
+	/*
+		defaultFloat       float64
+		defaultStringArray []string
+		defaultFloatArray  []float64
+		defaultBool        bool
+	*/
 }
 
 // ParseEnumOptions parses the enum type options, and puts the default option
 // as the first entry in the list
 func (o *pythonOption) ParseEnumOptions() error {
-	if !is_enum_option(o.typeO) {
+	if !common.IsEnumOption(o.configType) {
 		return nil
 	}
-	values := strings.TrimSpace(o.values)
+	values := strings.TrimSpace(o.enumOptionsString)
 	// check beginning and end are '[' and ']' signifying array list
 	if values[0] != '[' {
 		return errors.New("parse enum: leading descriptor not [")
@@ -53,9 +64,9 @@ func (o *pythonOption) ParseEnumOptions() error {
 	orderedList := make([]string, len(list))
 	defaultInd := -1
 	for i, s := range list {
-		if s == o.defaultO {
+		if s == o.defaultString {
 			if defaultInd != -1 {
-				return errors.New("More than one case of default option")
+				return errors.New("More than one case of enum option")
 			}
 			defaultInd = i
 		}
@@ -72,7 +83,12 @@ func (o *pythonOption) ParseEnumOptions() error {
 		orderedList[i] = s
 	}
 
-	o.enumOptions = orderedList
+	o.enumOptions = make([]common.Enum, len(orderedList))
+	for i := range o.enumOptions {
+		o.enumOptions[i] = common.Enum(orderedList[i])
+	}
+
+	//o.enumOptions = orderedList
 	/*
 		o.enumGo = make([]string, len(o.enumOptions))
 		for i, s := range o.enumOptions {
@@ -82,105 +98,21 @@ func (o *pythonOption) ParseEnumOptions() error {
 	return nil
 }
 
-func (o *pythonOption) OptionTypeToGoType() error {
-	// write the type
-
-	if is_enum_option(o.typeO) {
-		if o.typeO == "EnumListOption" {
-			//o.go_type = "[]" + o.structName + "Enum"
-			o.go_type = "[]string"
-			return nil
-		}
-		//o.go_type = o.structName + "Enum"
-		o.go_type = "string"
-		return nil
+// OptionTypeToGoType
+func (o *pythonOption) SetOptionTypeAndDefault() error {
+	gotype, err := common.ConfigTypeToGoType(o.configType, o.defaultString)
+	if err != nil {
+		return err
 	}
-
-	switch o.typeO {
-	case "ArrayOption":
-		strs, err := o.SplitArrayOption(o.defaultO)
-		if err != nil {
-			return err
-		}
-		// check if it's a float array
-		fs := o.IsFloatArray(strs)
-		if fs != nil {
-			o.defaultFloatArray = fs
-			o.go_type = "[]float64"
-		} else {
-			o.defaultStringArray = strs
-			o.go_type = "[]string"
-		}
-	case "ListOption":
-		o.go_type = "string"
-	case "DVParamOption":
-		o.go_type = "string"
-	case "MarkerOption":
-		o.go_type = "string"
-	case "MarkerDirichlet":
-		o.go_type = "string"
-	case "MarkerPeriodic":
-		o.go_type = "string"
-	case "MarkerInlet":
-		o.go_type = "string"
-	case "MarkerOutlet":
-		o.go_type = "string"
-	case "MarkerDisplacement":
-		o.go_type = "string"
-	case "MarkerLoad":
-		o.go_type = "string"
-	case "MarkerFlowLoad":
-		o.go_type = "string"
-	case "ScalarOption":
-		// See if it looks like a float 64
-		f, err := strconv.ParseFloat(o.defaultO, 64)
-		if err != nil {
-			o.go_type = "string"
-		} else {
-			o.go_type = "float64"
-			o.defaultFloat = f
-		}
-	case "SpecialOption":
-		o.go_type = "bool"
-	default:
-		return errors.New("option type " + o.typeO + " not implemented")
-	}
-	return nil
-}
-
-// CODE DUPLICATION HERE WITH CONFIG READER
-func (o *pythonOption) SplitArrayOption(str string) ([]string, error) {
-	// Check that the beginning and ending are ( and ]
-	if str[0] != '(' {
-		return nil, errors.New("no ( at start of string")
-	}
-	if str[len(str)-1] != ')' {
-		return nil, errors.New("no ) at end of string")
-	}
-	str = str[1 : len(str)-1]
-	strs := strings.Split(str, ",")
-	for i := range strs {
-		strs[i] = strings.TrimSpace(strs[i])
-	}
-	return strs, nil
-}
-
-// CODE DUPLICATION HERE WITH CONFIG READER
-func (o *pythonOption) IsFloatArray(strs []string) []float64 {
-	fs := make([]float64, len(strs))
-	for i, str := range strs {
-		f, err := strconv.ParseFloat(str, 64)
-		if err != nil {
-			return nil
-		}
-		fs[i] = f
-	}
-	return fs
+	o.goBaseType = gotype
+	o.defaultValue, err = common.OptionStringToInterface(gotype, o.defaultString)
+	return err
 }
 
 func (o *pythonOption) ConfigNameToStructName() error {
-	o.structName = to_camel_case(o.name)
-	return nil //to campel case might get error
+	s := to_camel_case(string(o.configName))
+	o.optionsField = common.OptionsField(s)
+	return nil //to campel case might get error checking evenually
 }
 
 func (o *pythonOption) Process() error {
@@ -188,7 +120,7 @@ func (o *pythonOption) Process() error {
 	if err != nil {
 		return err
 	}
-	err = o.OptionTypeToGoType()
+	err = o.SetOptionTypeAndDefault()
 	if err != nil {
 		return err
 	}
@@ -196,5 +128,6 @@ func (o *pythonOption) Process() error {
 	if err != nil {
 		return err
 	}
+	//fmt.Printf("option is: %#v\n", o)
 	return nil
 }

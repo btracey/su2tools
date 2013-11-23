@@ -19,8 +19,9 @@ func (d *fieldMapWriter) init() (err error) {
 		return err
 	}
 	d.File.WriteString("\n")
+	d.File.WriteString("import \"github.com/btracey/su2tools/config/common\"\n")
 	d.File.WriteString("//goToSU2FieldMap is a map that translates the SU2 field to a go field\n")
-	d.File.WriteString("var goToSU2FieldMap map[string]string = map[string]string{\n")
+	d.File.WriteString("var goToSU2FieldMap map[common.OptionsField]common.ConfigfileOption = map[common.OptionsField]common.ConfigfileOption{\n")
 	return nil
 }
 
@@ -38,6 +39,6 @@ func (d *fieldMapWriter) GetFilename() string {
 }
 
 func (d *fieldMapWriter) add_option(option *pythonOption) error {
-	d.File.WriteString("\"" + option.structName + "\"" + ": \"" + option.name + "\",\n")
+	d.File.WriteString("\"" + string(option.optionsField) + "\"" + ": \"" + string(option.configName) + "\",\n")
 	return nil
 }

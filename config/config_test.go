@@ -26,6 +26,10 @@ func TestWriteDefault(t *testing.T) {
 	}
 	f2.Close()
 
+	if !reflect.DeepEqual((*d), (*options)) {
+		t.Errorf("Default and read default not equal")
+	}
+
 	// Set some options
 	options.CflNumber = 12.0
 	err = options.SetEnum("PhysicalProblem", "RANS")
@@ -52,5 +56,21 @@ func TestWriteDefault(t *testing.T) {
 	}
 	if !reflect.DeepEqual(options, options2) {
 		t.Errorf("options do not match")
+
+		for key := range goToSU2FieldMap {
+			v1 := reflect.ValueOf(options).Elem()
+			v2 := reflect.ValueOf(options2).Elem()
+			item1 := v1.FieldByName(string(key)).Interface()
+			item2 := v2.FieldByName(string(key)).Interface()
+			if !reflect.DeepEqual(item1, item2) {
+				t.Errorf(string(key)+" doesn't match. item1 is %v, item2 is %v", item1, item2)
+			}
+		}
 	}
+	/*
+		f3, err := os.Create("modified_config_2.txt")
+		if err != nil {
+			panic(err)
+		}
+	*/
 }
