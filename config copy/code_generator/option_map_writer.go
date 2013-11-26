@@ -57,8 +57,7 @@ func (d *optionMapWriter) add_option(option *pythonOption) error {
 		d.File.WriteString("\"" + string(val) + "\"" + ",\n")
 	}
 	d.File.WriteString("},\n")
-	d.File.WriteString("Value: " + common.ValueAsString(option.defaultValue, option.goBaseType) + ",\n")
-	d.File.WriteString("defaultValue: " + common.ValueAsString(option.defaultValue, option.goBaseType) + ",\n")
+	d.File.WriteString("Value: " + common.ValueAsString(option.defaultValue, option.goBaseType))
 	d.File.WriteString("},\n")
 	return nil
 }

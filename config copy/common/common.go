@@ -4,46 +4,9 @@ import (
 	"errors"
 	"strconv"
 	"strings"
-	//"reflect"
+
 	//"fmt"
 )
-
-// ShoulCommentOut is a fix to the case where the default values for many of the options
-// do not parse properly
-func ShouldCommentOut(value interface{}, defaultValue interface{}, gotype GoBaseType, configtype ConfigOptionType) bool {
-	switch configtype {
-	case ArrayOption:
-		return false
-	case EnumOption:
-		return false
-	case EnumListOption:
-		//fmt.Println("In should comment out")
-		strs, ok := value.([]string)
-		if !ok || len(strs) == 0 {
-			return true
-		}
-		return false
-	case ListOption:
-		return false
-	case DVParamOption:
-		return false
-	case MarkerOption, MarkerDirichlet, MarkerPeriodic, MarkerInlet, MarkerOutlet, MarkerDisplacement, MarkerLoad, MarkerFlowLoad:
-		if value.(string) == defaultValue.(string) {
-			return true
-		}
-		return false
-	case MathProblem:
-		return false
-	case ConvectOption:
-		return false
-	case ScalarOption:
-		return false
-	case SpecialOption:
-		return false
-	default:
-		panic("shouldn't be here. " + string(configtype))
-	}
-}
 
 // ValueAsConfigString sets the value to the string that the config file needs
 func ValueAsConfigString(value interface{}, gotype GoBaseType) string {
@@ -104,9 +67,9 @@ func ValueAsString(value interface{}, gotype GoBaseType) string {
 	case BoolType:
 		b := (value).(bool)
 		if b {
-			return "true"
-		} else {
 			return "false"
+		} else {
+			return "true"
 		}
 	case Float64Type:
 		f := (value).(float64)
@@ -332,7 +295,7 @@ func ConfigTypeToGoType(t ConfigOptionType, defaultValue string) (GoBaseType, er
 	}
 
 	switch t {
-	case ArrayOption:
+	case "ArrayOption":
 		strs, err := SplitArrayOption(defaultValue)
 		if err != nil {
 			return BadType, errors.New(err.Error())
@@ -342,51 +305,41 @@ func ConfigTypeToGoType(t ConfigOptionType, defaultValue string) (GoBaseType, er
 			return Float64ArrayType, nil
 		}
 		return StringArrayType, nil
-	case EnumOption:
-		return StringType, nil
-	case EnumListOption:
+	case "EnumListOption":
 		return StringArrayType, nil
-	case ListOption:
+	case "ListOption":
 		return StringType, nil
-	case DVParamOption:
+	case "DVParamOption":
 		return StringType, nil
-	case MarkerOption, MarkerDirichlet, MarkerPeriodic, MarkerInlet, MarkerOutlet, MarkerDisplacement, MarkerLoad, MarkerFlowLoad:
+	case "MarkerOption":
 		return StringType, nil
-	case MathProblem, ConvectOption:
+	case "MarkerDirichlet":
 		return StringType, nil
-	case ScalarOption:
+	case "MarkerPeriodic":
+		return StringType, nil
+	case "MarkerInlet":
+		return StringType, nil
+	case "MarkerOutlet":
+		return StringType, nil
+	case "MarkerDisplacement":
+		return StringType, nil
+	case "MarkerLoad":
+		return StringType, nil
+	case "MarkerFlowLoad":
+		return StringType, nil
+	case "ScalarOption":
 		// See if it looks like a float 64
 		_, err := strconv.ParseFloat(defaultValue, 64)
 		if err != nil {
 			return StringType, nil
 		}
 		return Float64Type, nil
-	case SpecialOption:
+	case "SpecialOption":
 		return BoolType, nil
 	default:
 		return BadType, errors.New("option type " + string(t) + " not implemented")
 	}
 }
-
-const (
-	ArrayOption        ConfigOptionType = "ArrayOption"
-	ConvectOption      ConfigOptionType = "ConvectOption"
-	EnumOption         ConfigOptionType = "EnumOption"
-	EnumListOption     ConfigOptionType = "EnumListOption"
-	ListOption         ConfigOptionType = "ListOption"
-	DVParamOption      ConfigOptionType = "DVParamOption"
-	MarkerOption       ConfigOptionType = "MarkerOption"
-	MarkerDirichlet    ConfigOptionType = "MarkerDirichlet"
-	MarkerPeriodic     ConfigOptionType = "MarkerPeriodic"
-	MarkerInlet        ConfigOptionType = "MarkerInlet"
-	MarkerOutlet       ConfigOptionType = "MarkerOutlet"
-	MarkerDisplacement ConfigOptionType = "MarkerDisplacement"
-	MarkerLoad         ConfigOptionType = "MarkerLoad"
-	MarkerFlowLoad     ConfigOptionType = "MarkerFlowLoad"
-	MathProblem        ConfigOptionType = "MathProblem"
-	ScalarOption       ConfigOptionType = "ScalarOption"
-	SpecialOption      ConfigOptionType = "SpecialOption"
-)
 
 // ConfigfileOption is a string in the config file
 type ConfigfileOption string

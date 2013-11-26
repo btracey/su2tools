@@ -20,7 +20,7 @@ func TestWriteDefault(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	options, _, err := Read(f2)
+	options, err := ReadConfig(f2)
 	if err != nil {
 		t.Errorf(err.Error())
 	}
@@ -50,7 +50,7 @@ func TestWriteDefault(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	options2, _, err := Read(f4)
+	options2, err := ReadConfig(f4)
 	if err != nil {
 		t.Errorf("error reading: ", err.Error())
 	}

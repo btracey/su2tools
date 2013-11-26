@@ -76,8 +76,7 @@ type optionPrint struct {
 	OptionsField   common.OptionsField
 	enumOptions    []common.Enum
 	//ValueString    string //enum string list
-	Value        interface{} // Actual value
-	defaultValue interface{} // Default value as a value
+	Value interface{} // Default value as a value
 }
 
 // OptionList is a list of options to print while writing the config file
@@ -87,7 +86,7 @@ var PrintAll OptionList = OptionList{"All": true}
 
 //var categoryOrder []string =
 
-func (o *optionPrint) MarshalSU2Config(commentOut bool) ([]byte, error) {
+func (o *optionPrint) MarshalSU2Config() ([]byte, error) {
 	buf := &bytes.Buffer{}
 	buf.WriteString("\n")
 	buf.WriteString("% " + o.Description + "\n")
@@ -101,9 +100,6 @@ func (o *optionPrint) MarshalSU2Config(commentOut bool) ([]byte, error) {
 			}
 		}
 		buf.WriteString(" )\n")
-	}
-	if commentOut {
-		buf.WriteString("% ")
 	}
 	buf.WriteString(string(o.ConfigName) + "= ")
 	return buf.Bytes(), nil

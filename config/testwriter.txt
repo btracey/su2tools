@@ -10,15 +10,15 @@
 
 % Axisymmetric simulation
 % Type: SpecialOption Default: NO
-AXISYMMETRIC= YES
+AXISYMMETRIC= NO
 
 % Write extra output
 % Type: SpecialOption Default: NO
-EXTRA_OUTPUT= YES
+EXTRA_OUTPUT= NO
 
 % Add the gravity force
 % Type: SpecialOption Default: NO
-GRAVITY_FORCE= YES
+GRAVITY_FORCE= NO
 
 % Specify transition model
 % Type: EnumOption Default: NONE
@@ -32,7 +32,7 @@ KIND_TURB_MODEL= NONE
 
 % Perform a low fidelity simulation
 % Type: SpecialOption Default: NO
-LOW_FIDELITY_SIMULATION= YES
+LOW_FIDELITY_SIMULATION= NO
 
 % Mathematical problem
 % Type: MathProblem Default: DIRECT
@@ -59,11 +59,11 @@ REGIME_TYPE= COMPRESSIBLE
 
 % Restart solution from native solution file
 % Type: SpecialOption Default: NO
-RESTART_SOL= YES
+RESTART_SOL= NO
 
 % Write a tecplot file for each partition
 % Type: SpecialOption Default: NO
-VISUALIZE_PART= YES
+VISUALIZE_PART= NO
 
 
 % ----------- Boundary Markers ----------- % 
@@ -74,11 +74,11 @@ DAMP_NACELLE_INFLOW= 0.1
 
 % poisson dirichlet boundary marker(s)
 % Type: MarkerDirichlet Default: Dirichlet_Value
-ELEC_DIRICHLET= Dirichlet_Value
+% ELEC_DIRICHLET= Dirichlet_Value
 
 % poisson neumann boundary marker(s)
 % Type: MarkerOption Default: Marker_Neumann_Elec
-ELEC_NEUMANN= Marker_Neumann_Elec
+% ELEC_NEUMANN= Marker_Neumann_Elec
 
 % Inlet boundary type
 % Type: EnumOption Default: TOTAL_CONDITIONS
@@ -87,106 +87,106 @@ INLET_TYPE= TOTAL_CONDITIONS
 
 % Custom boundary marker(s)
 % Type: MarkerOption Default: Marker_Custom
-MARKER_CUSTOM= Marker_Custom
+% MARKER_CUSTOM= Marker_Custom
 
 % Marker(s) of the surface where objective function (design problem) will be evaluated
 % Type: MarkerOption Default: Marker_Designing
-MARKER_DESIGNING= Marker_Designing
+% MARKER_DESIGNING= Marker_Designing
 
 % Dirichlet boundary marker(s)
 % Type: MarkerOption Default: Marker_Dirichlet
-MARKER_DIRICHLET= Marker_Dirichlet
+% MARKER_DIRICHLET= Marker_Dirichlet
 
 % Euler wall boundary marker(s)
 % Type: MarkerOption Default: Marker_Euler
-MARKER_EULER= Marker_Euler
+% MARKER_EULER= Marker_Euler
 
 % Far-field boundary marker(s)
 % Type: MarkerOption Default: Marker_FarField
-MARKER_FAR= Marker_FarField
+% MARKER_FAR= Marker_FarField
 
 % Flow load boundary marker(s)
 % Type: MarkerFlowLoad Default: FlowLoad_Value
-MARKER_FLOWLOAD= FlowLoad_Value
+% MARKER_FLOWLOAD= FlowLoad_Value
 
 % No description
 % Type: MarkerOutlet Default: Heat_Flux
-MARKER_HEATFLUX= Heat_Flux
+% MARKER_HEATFLUX= Heat_Flux
 
 % No description
 % Type: MarkerInlet Default: Inlet_FlowDir
-MARKER_INLET= Inlet_FlowDir
+% MARKER_INLET= Inlet_FlowDir
 
 % Zone interface boundary marker(s)
 % Type: MarkerOption Default: Marker_InterfaceBound
-MARKER_INTERFACE= Marker_InterfaceBound
+% MARKER_INTERFACE= Marker_InterfaceBound
 
 % No description
 % Type: MarkerOutlet Default: Isothermal_Temperature
-MARKER_ISOTHERMAL= Isothermal_Temperature
+% MARKER_ISOTHERMAL= Isothermal_Temperature
 
 % Marker(s) of the surface where evaluate the non-dimensional coefficients
 % Type: MarkerOption Default: Marker_Monitoring
-MARKER_MONITORING= Marker_Monitoring
+% MARKER_MONITORING= Marker_Monitoring
 
 % No description
 % Type: MarkerInlet Default: Nozzle_Ptotal
-MARKER_NACELLE_EXHAUST= Nozzle_Ptotal
+% MARKER_NACELLE_EXHAUST= Nozzle_Ptotal
 
 % No description
 % Type: MarkerOutlet Default: FanFace_Mach_Target
-MARKER_NACELLE_INFLOW= FanFace_Mach_Target
+% MARKER_NACELLE_INFLOW= FanFace_Mach_Target
 
 % Near-Field boundary condition
 % Type: MarkerOption Default: Marker_NearFieldBound
-MARKER_NEARFIELD= Marker_NearFieldBound
+% MARKER_NEARFIELD= Marker_NearFieldBound
 
 % Neumann boundary marker(s)
 % Type: MarkerOption Default: Marker_Neumann
-MARKER_NEUMANN= Marker_Neumann
+% MARKER_NEUMANN= Marker_Neumann
 
 % Displacement boundary marker(s)
 % Type: MarkerDisplacement Default: Displ_Value
-MARKER_NORMAL_DISPL= Displ_Value
+% MARKER_NORMAL_DISPL= Displ_Value
 
 % Load boundary marker(s)
 % Type: MarkerLoad Default: Load_Value
-MARKER_NORMAL_LOAD= Load_Value
+% MARKER_NORMAL_LOAD= Load_Value
 
 % No description
 % Type: MarkerOutlet Default: Outlet_Pressure
-MARKER_OUTLET= Outlet_Pressure
+% MARKER_OUTLET= Outlet_Pressure
 
 % No description
 % Type: MarkerPeriodic Default: Periodic_Translation
-MARKER_PERIODIC= Periodic_Translation
+% MARKER_PERIODIC= Periodic_Translation
 
 % Marker(s) of the surface in the surface flow solution file
 % Type: MarkerOption Default: Marker_Plotting
-MARKER_PLOTTING= Marker_Plotting
+% MARKER_PLOTTING= Marker_Plotting
 
 % Symmetry boundary condition
 % Type: MarkerOption Default: Marker_Pressure
-MARKER_PRESSURE= Marker_Pressure
+% MARKER_PRESSURE= Marker_Pressure
 
 % No description
 % Type: MarkerInlet Default: Inlet_Velocity
-MARKER_SUPERSONIC_INLET= Inlet_Velocity
+% MARKER_SUPERSONIC_INLET= Inlet_Velocity
 
 % Symmetry boundary condition
 % Type: MarkerOption Default: Marker_SymWall
-MARKER_SYM= Marker_SymWall
+% MARKER_SYM= Marker_SymWall
 
 % Engine subsonic intake region
 % Type: SpecialOption Default: NO
-SUBSONIC_NACELLE_INFLOW= YES
+SUBSONIC_NACELLE_INFLOW= NO
 
 
 % ----------- Grid adaptation ----------- % 
 
 % Adapt the boundary elements
 % Type: SpecialOption Default: YES
-ADAPT_BOUNDARY= NO
+ADAPT_BOUNDARY= YES
 
 % Use analytical definition for surfaces
 % Type: EnumOption Default: NONE
@@ -195,7 +195,7 @@ ANALYTICAL_SURFDEF= NONE
 
 % Divide rectangles into triangles
 % Type: SpecialOption Default: NO
-DIVIDE_ELEMENTS= YES
+DIVIDE_ELEMENTS= NO
 
 % Scale factor for the dual volume
 % Type: ScalarOption Default: 0.5
@@ -212,7 +212,7 @@ NEW_ELEMS= -1
 
 % Before each computation, implicitly smooth the nodal coordinates
 % Type: SpecialOption Default: NO
-SMOOTH_GEOMETRY= YES
+SMOOTH_GEOMETRY= NO
 
 
 % ----------- Time-marching ----------- % 
@@ -311,7 +311,7 @@ TURB_CFL_REDUCTION= 1
 
 % Unsteady farfield boundaries
 % Type: SpecialOption Default: NO
-UNSTEADY_FARFIELD= YES
+UNSTEADY_FARFIELD= NO
 
 % Unsteady simulation
 % Type: EnumOption Default: NO
@@ -395,7 +395,7 @@ MIN_ROE_TURKEL_PREC= 0.01
 
 % Roe-Turkel preconditioning for low Mach number flows
 % Type: SpecialOption Default: NO
-ROE_TURKEL_PREC= YES
+ROE_TURKEL_PREC= NO
 
 
 % ----------- Dynamic mesh definition ----------- % 
@@ -410,11 +410,11 @@ FREQ_PLUNGE_AEROELASTIC= 100
 
 % Mesh motion for unsteady simulations
 % Type: SpecialOption Default: NO
-GRID_MOVEMENT= YES
+GRID_MOVEMENT= NO
 
 % Type of mesh motion
 % Type: EnumListOption Default: GridMovement_Map
-GRID_MOVEMENT_KIND= (  )
+% GRID_MOVEMENT_KIND= (  )
 
 % Mach number (non-dimensional, based on the mesh velocity and freestream vals.)
 % Type: ScalarOption Default: 0.0
@@ -422,7 +422,7 @@ MACH_MOTION= 0
 
 % Marker(s) of moving surfaces (MOVING_WALL or DEFORMING grid motion).
 % Type: MarkerOption Default: Marker_Moving
-MARKER_MOVING= Marker_Moving
+% MARKER_MOVING= Marker_Moving
 
 % 
 % Type: ScalarOption Default: mesh_motion.dat
@@ -563,7 +563,7 @@ GUST_WAVELENGTH= 0
 
 % Apply a wind gust
 % Type: SpecialOption Default: NO
-WIND_GUST= YES
+WIND_GUST= NO
 
 
 % ----------- Convergence ----------- % 
@@ -617,7 +617,7 @@ STARTCONV_ITER= 5
 
 % Full multi-grid
 % Type: SpecialOption Default: NO
-FULLMG= YES
+FULLMG= NO
 
 % Maximum number of children in the agglomeration stage
 % Type: ScalarOption Default: 500
@@ -931,7 +931,7 @@ DRAG_IN_SONICBOOM= 0
 
 % Adjoint frozen viscosity
 % Type: SpecialOption Default: YES
-FROZEN_VISC= NO
+FROZEN_VISC= YES
 
 % Mode of the GDC code (analysis, or gradient)
 % Type: EnumOption Default: FUNCTION
@@ -944,7 +944,7 @@ GEO_SECTION_LIMIT= ( 1, 100, 1 )
 
 % Remove sharp edges from the sensitivity evaluation
 % Type: SpecialOption Default: NO
-SENS_REMOVE_SHARP= YES
+SENS_REMOVE_SHARP= NO
 
 % Sensitivity smoothing
 % Type: EnumOption Default: NONE
@@ -956,7 +956,7 @@ SENS_SMOOTHING= NONE
 
 % Convert a CGNS mesh to SU2 format
 % Type: SpecialOption Default: NO
-CGNS_TO_SU2= YES
+CGNS_TO_SU2= NO
 
 % Output file convergence history (w/o extension)
 % Type: ScalarOption Default: history
@@ -1082,23 +1082,23 @@ WRT_CON_FREQ_DUALTIME= 10
 
 % Write a surface CSV solution file
 % Type: SpecialOption Default: YES
-WRT_CSV_SOL= NO
+WRT_CSV_SOL= YES
 
 % Output the rind layers in the solution files
 % Type: SpecialOption Default: NO
-WRT_HALO= YES
+WRT_HALO= NO
 
 % Output residual info to solution/restart file
 % Type: SpecialOption Default: NO
-WRT_RESIDUALS= YES
+WRT_RESIDUALS= NO
 
 % Write a restart solution file
 % Type: SpecialOption Default: YES
-WRT_RESTART= NO
+WRT_RESTART= YES
 
 % Output sectional forces for specified markers.
 % Type: SpecialOption Default: NO
-WRT_SECTIONAL_FORCES= YES
+WRT_SECTIONAL_FORCES= NO
 
 % Writing solution file frequency
 % Type: ScalarOption Default: 1000
@@ -1110,11 +1110,11 @@ WRT_SOL_FREQ_DUALTIME= 1
 
 % Write a surface solution file
 % Type: SpecialOption Default: YES
-WRT_SRF_SOL= NO
+WRT_SRF_SOL= YES
 
 % Write a volume solution file
 % Type: SpecialOption Default: YES
-WRT_VOL_SOL= NO
+WRT_VOL_SOL= YES
 
 
 % ----------- Equivalent Area ----------- % 
@@ -1125,7 +1125,7 @@ EA_INT_LIMIT= ( 1, 100, 1 )
 
 % Evaluate equivalent area on the Near-Field
 % Type: SpecialOption Default: NO
-EQUIV_AREA= YES
+EQUIV_AREA= NO
 
 
 % ----------- Freestream Conditions ----------- % 
@@ -1275,7 +1275,7 @@ REF_VISCOSITY= -1
 
 % Write a new mesh converted to meters
 % Type: SpecialOption Default: NO
-WRITE_CONVERTED_MESH= YES
+WRITE_CONVERTED_MESH= NO
 
 
 % ----------- Reacting Flow ----------- % 
@@ -1329,11 +1329,11 @@ RATIO_VISCOSITY= 0.1
 
 % Kind of deformation
 % Type: EnumListOption Default: Param_Map
-DV_KIND= (  )
+% DV_KIND= (  )
 
 % Marker of the surface to which we are going apply the shape deformation
 % Type: MarkerOption Default: Marker_DV
-DV_MARKER= Marker_DV
+% DV_MARKER= Marker_DV
 
 % No description
 % Type: DVParamOption Default: Design_Variable
@@ -1349,7 +1349,7 @@ GRID_DEFORM_ITER= 1
 
 % Hold the grid fixed in a region
 % Type: SpecialOption Default: NO
-HOLD_GRID_FIXED= YES
+HOLD_GRID_FIXED= NO
 
 % Coordinates of the box where the grid will be deformed (Xmin, Ymin, Zmin, Xmax, Ymax, Zmax)
 % Type: ArrayOption Default: ( -1E15, -1E15, -1E15, 1E15, 1E15, 1E15 )
@@ -1357,7 +1357,7 @@ HOLD_GRID_FIXED_COORD= ( -1e+15, -1e+15, -1e+15, 1e+15, 1e+15, 1e+15 )
 
 % Visualize the deformation
 % Type: SpecialOption Default: NO
-VISUALIZE_DEFORMATION= YES
+VISUALIZE_DEFORMATION= NO
 
 
 % ----------- Rotorcraft problem ----------- % 
