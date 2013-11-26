@@ -99,9 +99,9 @@ func (o *Options) WriteConfig(writer io.Writer, list OptionList) error {
 		if printOption {
 			r := reflect.ValueOf(o).Elem()
 			i := r.FieldByName(string(option.OptionsField)).Interface()
-			option.Value = i
+			//option.Value = i
 
-			commentOut := common.ShouldCommentOut(option.Value, option.defaultValue, option.GoBaseType, option.ConfigType)
+			commentOut := common.ShouldCommentOut(i, option.defaultValue, option.GoBaseType, option.ConfigType)
 			b, _ := option.MarshalSU2Config(commentOut)
 			b2 := common.ValueAsConfigString(i, option.GoBaseType)
 			buf.Write(b)
