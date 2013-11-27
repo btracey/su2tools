@@ -173,3 +173,17 @@ func getoption(scanner *bufio.Scanner) (common.OptionsField, interface{}, error)
 	}
 	return goFieldName, value, nil
 }
+
+// Copy returns a copy of the options structure
+func (o *Options) Copy() *Options {
+	// Write to a buffer
+	b := &bytes.Buffer{}
+	o.WriteConfig(b, PrintAll)
+
+	// now read
+	options, _, err := Read(b)
+	if err != nil {
+		panic("Error in copy")
+	}
+	return options
+}

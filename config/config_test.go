@@ -73,4 +73,10 @@ func TestWriteDefault(t *testing.T) {
 			panic(err)
 		}
 	*/
+
+	// Test copy
+	options3 := options2.Copy()
+	if !reflect.DeepEqual(options2, options3) {
+		t.Errorf("Error in copy")
+	}
 }
