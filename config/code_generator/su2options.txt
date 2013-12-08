@@ -28,6 +28,7 @@ Rotorcraft problem
 FEA solver
 Wave solver
 Heat solver
+ML Turb Options
 Option Name: REGIME_TYPE 
 Option Type: EnumOption 
 Option Category: Problem Definition 
@@ -62,20 +63,6 @@ Option Category: Problem Definition
 Option values:  ['NONE', 'SA', 'SST', 'ML']
 Option default: NONE
 Option description: Specify turbulence model 
-
-Option Name: ML_TURB_MODEL_FILE 
-Option Type: ScalarOption 
-Option Category: Problem Definition 
-Option values:  ['A scalar constant']
-Option default: model.json
-Option description: Location of the turb model itself 
-
-Option Name: ML_TURB_MODEL_CHECK_FILE 
-Option Type: ScalarOption 
-Option Category: Problem Definition 
-Option values:  ['A scalar constant']
-Option default: check_model.txt
-Option description: Location of the check for the proper loading of the turbulence model  
 
 Option Name: KIND_TRANS_MODEL 
 Option Type: EnumOption 
@@ -2212,3 +2199,16 @@ Option values:  ['A scalar constant']
 Option default: 1.172E-5
 Option description: Thermal diffusivity constant 
 
+Option Name: ML_TURB_MODEL_FILE 
+Option Type: ScalarOption 
+Option Category: ML Turb Options
+Option values:  ['A scalar constant']
+Option default: model.json
+Option description: Location of the turb model itself 
+
+Option Name: ML_TURB_MODEL_NONDIMENSIONALIZATION
+Option Type: ScalarOption
+Option Category: ML Turb Options
+Option values:  ['A scalar constant']
+Option default: none
+Option description: blah

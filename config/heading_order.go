@@ -34,4 +34,5 @@ var categoryOrder map[common.ConfigCategory]int = map[common.ConfigCategory]int{
 	"FEA solver":                                   27,
 	"Wave solver":                                  28,
 	"Heat solver":                                  29,
+	"ML Turb Options":                              30,
 }

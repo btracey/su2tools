@@ -22,6 +22,10 @@ type SU2Syscaller interface {
 	Concurrently() bool
 }
 
+type FileWriter interface {
+	WriteFile(d *Driver) error
+}
+
 // Serial runs SU2 on one processor
 type Serial struct {
 	Concurrent bool
@@ -56,11 +60,35 @@ type Cluster struct {
 }
 
 func (c Cluster) SyscallString(d *Driver) (execname string, args []string) {
-	execname = "sbatch"
+	fmt.Println("In cluster syscall")
+	//execname = "sbatch"
+	//args = []string{"slurm_script.run"}
+
+	execname = "srun"
 	coresStr := strconv.Itoa(c.Cores)
-	args = []string{"--job-name", d.Name, "--nodes", strconv.Itoa(1), "--output", d.Name + "slurm.out", "parallel_computation.py", "-f", d.Config, "-p", coresStr}
+	args = []string{"--job-name", d.Name, "-n", coresStr, "--output", d.Name + "slurm.out", "parallel_computation.py", "-f", d.Config, "-p", coresStr}
 	return
 }
+
+/*
+func (c Cluster) WriteFile(d *Driver) error {
+	fmt.Println("In write string")
+	name := filepath.Join(d.Wd, "slurm_script.run")
+	f, err := os.Create(name)
+	if err != nil {
+		return err
+	}
+	f.WriteString("#!/bin/bash\n")
+	f.WriteString("#SBATCH --job-name=" + d.Name + "\n")
+	f.WriteString("#SBATCH -n" + strconv.Itoa(c.Cores) + "\n")
+	f.WriteString("#SBATCH --output=slurm.out\n")
+	f.WriteString("#SBATCH --error=slurm.err\n")
+	f.WriteString("parallel_computation.py -f " + d.Config + " -p " + strconv.Itoa(c.Cores))
+	f.Close()
+	return nil
+	//panic("check bash script")
+}
+*/
 
 func (c Cluster) Concurrently() bool {
 	return c.Concurrent
@@ -72,40 +100,33 @@ type Driver struct {
 	Options    *config.Options   // OptionList for the case
 	Config     string            // Name of the config filename (relative to working directory)
 	Wd         string            // Working directory of SU2
-	Stdout     io.Writer         // Where should the run output go (relative to working directory or StIO)
+	Stdout     string            // Where should the run output go (relative to working directory or StIO)
 	OptionList config.OptionList // Which options to print
 }
-
-/*
-func New(name string, options *config.Options, filename string, wd string) *Driver {
-	return &Driver{
-		Name:     name,
-		Options:  options,
-		Filename: filename,
-		Wd:       wd,
-	}
-}
-*/
 
 // IsComputed checks if the case specified by the driver has already been run
 func (d *Driver) IsComputed() bool {
 	// First, check if the file exists
 	f, err := os.Open(d.Fullpath(d.Config))
 	if err != nil {
+		fmt.Println("not computed, no config file")
 		return false
 	}
 
 	// Next, check if the options file is the same
 	oldOptions, _, err := config.Read(f)
 	if err != nil {
+		fmt.Println("not computed, error reading config file")
 		return false
 	}
 	if !reflect.DeepEqual(d.Options, oldOptions) {
+		fmt.Println("not computed, config files unequal")
 		return false
 	}
 	// Same config file already exists, see if the solution file exists
 	_, err = os.Open(d.Fullpath(d.Options.SolutionFlowFilename))
 	if err != nil {
+		fmt.Println("not computed, no solution file")
 		return false
 	}
 	return true
@@ -113,20 +134,35 @@ func (d *Driver) IsComputed() bool {
 
 // Run writes the config file and calls SU2 with the output specified
 func (d *Driver) Run(su2call SU2Syscaller) error {
+
+	err := os.MkdirAll(d.Wd, 0700)
+	if err != nil {
+		return err
+	}
 	// Write the config file
 	f, err := os.Create(d.Fullpath(d.Config))
 	if err != nil {
 		return err
 	}
-
 	d.Options.WriteConfig(f, d.OptionList)
 	f.Close()
+
+	// Open the standard out file
+	stdout, err := os.Create(d.Fullpath(d.Stdout))
+	defer stdout.Close()
+	if err != nil {
+		return err
+	}
+
 	// Create the command
 	name, args := su2call.SyscallString(d)
 	cmd := exec.Command(name, args...)
-	cmd.Stdout = d.Stdout
+	cmd.Stdout = stdout
 	cmd.Dir = d.Wd
 	cmd.Stderr = os.Stdout
+	fmt.Println("Command name: ", name)
+	fmt.Println("Command args: ", args)
+
 	return cmd.Run()
 }
 
@@ -147,6 +183,7 @@ func (d *Driver) CopyRestartToSolution() error {
 	return err
 }
 
+/*
 // SetStdout sets the standard output from the filename.
 // isrel specifies if the path is a path relative to the working
 // directory (or is an absolute path)
@@ -155,6 +192,7 @@ func (d *Driver) SetStdout(filename string, isrel bool) error {
 	d.Stdout = f
 	return err
 }
+*/
 
 // Fullpath returns the full path
 func (d *Driver) Fullpath(relpath string) string {
@@ -194,7 +232,14 @@ func (d *Driver) fileFromFilename(filename string, isrel bool, create bool) (*os
 		}
 		filename = d.Fullpath(filename)
 	}
+
+	//fmt.Println("Filename = ", filename)
 	if create {
+		path := filepath.Dir(filename)
+		err := os.MkdirAll(path, 0700)
+		if err != nil {
+			return nil, err
+		}
 		return os.Create(filename)
 	}
 	return os.Open(filename)
@@ -234,7 +279,16 @@ func RunCases(drivers []*Driver, su2call SU2Syscaller, redo bool) []error {
 func runcase(redo bool, driver *Driver, su2call SU2Syscaller) error {
 	if redo || !driver.IsComputed() {
 		fmt.Printf("\t%s: starting: wd: %s, config: %s\n", driver.Name, driver.Wd, driver.Config)
-		//fmt.Println(driver)
+
+		// See if the caller needs to write a file
+		fw, ok := su2call.(FileWriter)
+		if ok {
+			err := fw.WriteFile(driver)
+			if err != nil {
+				return err
+			}
+		}
+
 		err := driver.Run(su2call)
 		if err != nil {
 			fmt.Printf("Error case %s\n", driver.Name)

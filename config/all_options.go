@@ -16,10 +16,6 @@ type Options struct {
 	MathProblem common.Enum
 	// Specify turbulence model
 	KindTurbModel common.Enum
-	// Location of the turb model itself
-	MlTurbModelFile string
-	// Location of the check for the proper loading of the turbulence model
-	MlTurbModelCheckFile string
 	// Specify transition model
 	KindTransModel common.Enum
 	// Axisymmetric simulation
@@ -630,4 +626,8 @@ type Options struct {
 	WaveSpeed float64
 	// Thermal diffusivity constant
 	ThermalDiffusivity float64
+	// Location of the turb model itself
+	MlTurbModelFile string
+	// blah
+	MlTurbModelNondimensionalization string
 }

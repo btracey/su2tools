@@ -21,3 +21,11 @@ func Values(temperature, reynolds, Mach, gasConstant, length, gamma float64) (pr
 	pressure = density * gasConstant * temperature
 	return
 }
+
+func TotalTemperature(temperature, mach, gamma float64) float64 {
+	return temperature * (1 + ((gamma-1)/2)*math.Pow(mach, 2))
+}
+
+func TotalPressure(pressure, mach, gamma float64) float64 {
+	return pressure * math.Pow((1+((gamma-1)/2)*math.Pow(mach, 2)), gamma/(gamma-1))
+}
