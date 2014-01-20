@@ -16,12 +16,13 @@ import (
 	"github.com/btracey/su2tools/config"
 )
 
-// SU2Syscall is a way of running SU2 from a system call
+// SU2Syscall specifies the way to execute SU2 a given Driver
 type SU2Syscaller interface {
-	SyscallString(d *Driver) (string, []string)
-	Concurrently() bool
+	SyscallString(d *Driver) (string, []string) // Returns the exec name and the arguments to be called by exec.Command
+	Concurrently() bool                         // Given a list of drivers, should they be run concurrently or in serial
 }
 
+// A FileWriter is a type that needs to print a file to disk before executing the driver
 type FileWriter interface {
 	WriteFile(d *Driver) error
 }
@@ -39,6 +40,7 @@ func (s Serial) Concurrently() bool {
 	return s.Concurrent
 }
 
+// Parallel runs SU2 in parallel with the specified number of cores
 type Parallel struct {
 	NumCores   int
 	Concurrent bool
@@ -54,6 +56,7 @@ func (p Parallel) Concurrently() bool {
 	return p.Concurrent
 }
 
+// Cluster runs SU2 over a cluster. Not working.
 type Cluster struct {
 	Cores      int
 	Concurrent bool
@@ -94,14 +97,15 @@ func (c Cluster) Concurrently() bool {
 	return c.Concurrent
 }
 
-// Driver is an SU2 case to be run
+// Driver is a config type for running SU2
 type Driver struct {
 	Name       string            // Identifier for the case
 	Options    *config.Options   // OptionList for the case
 	Config     string            // Name of the config filename (relative to working directory)
 	Wd         string            // Working directory of SU2
 	Stdout     string            // Where should the run output go (relative to working directory or StIO)
-	OptionList config.OptionList // Which options to print
+	OptionList config.OptionList // Which options to print to the config file
+	FancyName  string            // Longer name (can be used for plot legends or something)
 }
 
 // IsComputed checks if the case specified by the driver has already been run
@@ -132,7 +136,8 @@ func (d *Driver) IsComputed() bool {
 	return true
 }
 
-// Run writes the config file and calls SU2 with the output specified
+// Run executes SU2 with the given settings. The config file will be written to file,
+// and the appropriate arguments will be taken from the SU2Syscaller
 func (d *Driver) Run(su2call SU2Syscaller) error {
 
 	err := os.MkdirAll(d.Wd, 0700)
@@ -160,9 +165,6 @@ func (d *Driver) Run(su2call SU2Syscaller) error {
 	cmd.Stdout = stdout
 	cmd.Dir = d.Wd
 	cmd.Stderr = os.Stdout
-	fmt.Println("Command name: ", name)
-	fmt.Println("Command args: ", args)
-
 	return cmd.Run()
 }
 
@@ -183,18 +185,8 @@ func (d *Driver) CopyRestartToSolution() error {
 	return err
 }
 
-/*
-// SetStdout sets the standard output from the filename.
-// isrel specifies if the path is a path relative to the working
-// directory (or is an absolute path)
-func (d *Driver) SetStdout(filename string, isrel bool) error {
-	f, err := d.fileFromFilename(filename, isrel, true)
-	d.Stdout = f
-	return err
-}
-*/
-
 // Fullpath returns the full path
+// TODO: Does this need to be public
 func (d *Driver) Fullpath(relpath string) string {
 	return filepath.Join(d.Wd, relpath)
 }
@@ -245,20 +237,22 @@ func (d *Driver) fileFromFilename(filename string, isrel bool, create bool) (*os
 	return os.Open(filename)
 }
 
-// RunCases runs the cases concurrently and wait until they're done.
+// RunCases runs a list of Drivers with the input SU2Syscaller if they have not been computed.
+// Depending on the settings of the Syscaller, the cases will either be
+// run concurrently or in parallel. The return is a list of errors, one for
+// each element in drivers. If there were no errors, nil is returned.
 // If redo is true, recompute the cases even if IsComputed() returns true
 func RunCases(drivers []*Driver, su2call SU2Syscaller, redo bool) []error {
 
 	Errors := make([]error, len(drivers))
-	// TODO: Need to combine parallel and non-parallel code
 	if !su2call.Concurrently() {
+		// Run all of the cases in serial
 		for i, driver := range drivers {
 			Errors[i] = runcase(redo, driver, su2call)
 		}
 	} else {
+		// Run all of the training cases concurrently
 		w := &sync.WaitGroup{}
-		// Run all of the training cases
-
 		for i, driver := range drivers {
 			w.Add(1)
 			go func(i int, driver *Driver) {
@@ -268,6 +262,7 @@ func RunCases(drivers []*Driver, su2call SU2Syscaller, redo bool) []error {
 		}
 		w.Wait()
 	}
+	// If there were any errors, return the list, otherwise return nil
 	for _, err := range Errors {
 		if err != nil {
 			return Errors
@@ -277,27 +272,29 @@ func RunCases(drivers []*Driver, su2call SU2Syscaller, redo bool) []error {
 }
 
 func runcase(redo bool, driver *Driver, su2call SU2Syscaller) error {
-	if redo || !driver.IsComputed() {
-		fmt.Printf("\t%s: starting: wd: %s, config: %s\n", driver.Name, driver.Wd, driver.Config)
-
-		// See if the caller needs to write a file
-		fw, ok := su2call.(FileWriter)
-		if ok {
-			err := fw.WriteFile(driver)
-			if err != nil {
-				return err
-			}
-		}
-
-		err := driver.Run(su2call)
-		if err != nil {
-			fmt.Printf("Error case %s\n", driver.Name)
-		} else {
-			fmt.Printf("Finished running %s\n", driver.Name)
-		}
-		return err
-	} else {
+	// See if the case needs to be run
+	if !redo && driver.IsComputed() {
 		fmt.Printf("\t%s: already valid solution file %s\n", driver.Name, driver.Options.SolutionFlowFilename)
 		return nil
 	}
+
+	// Need to rerun the cases, so do so
+	fmt.Printf("\t%s: starting: wd: %s, config: %s\n", driver.Name, driver.Wd, driver.Config)
+
+	// See if the caller needs to write a file, and if so, write it
+	fw, ok := su2call.(FileWriter)
+	if ok {
+		err := fw.WriteFile(driver)
+		if err != nil {
+			return err
+		}
+	}
+
+	err := driver.Run(su2call)
+	if err != nil {
+		fmt.Printf("Error case %s\n", driver.Name)
+	} else {
+		fmt.Printf("Finished running %s\n", driver.Name)
+	}
+	return err
 }
