@@ -70,6 +70,7 @@ func (c Cluster) SyscallString(d *Driver) (execname string, args []string) {
 	execname = "srun"
 	coresStr := strconv.Itoa(c.Cores)
 	args = []string{"--job-name", d.Name, "-n", coresStr, "--output", d.Name + "slurm.out", "parallel_computation.py", "-f", d.Config, "-p", coresStr}
+
 	return
 }
 
@@ -120,7 +121,7 @@ func (d *Driver) IsComputed() bool {
 	// Next, check if the options file is the same
 	oldOptions, _, err := config.Read(f)
 	if err != nil {
-		fmt.Println("not computed, error reading config file")
+		fmt.Println("not computed, error reading config file ", err)
 		return false
 	}
 	if !reflect.DeepEqual(d.Options, oldOptions) {
@@ -133,6 +134,7 @@ func (d *Driver) IsComputed() bool {
 		fmt.Println("not computed, no solution file")
 		return false
 	}
+	fmt.Println("Is computed")
 	return true
 }
 
@@ -165,6 +167,8 @@ func (d *Driver) Run(su2call SU2Syscaller) error {
 	cmd.Stdout = stdout
 	cmd.Dir = d.Wd
 	cmd.Stderr = os.Stdout
+
+	fmt.Println("executing execname", "name = ", name, " args = ", args)
 	return cmd.Run()
 }
 
