@@ -120,7 +120,7 @@ func (d *Driver) IsComputed() bool {
 	// Next, check if the options file is the same
 	oldOptions, _, err := config.Read(f)
 	if err != nil {
-		fmt.Println("not computed, error reading config file")
+		fmt.Println("not computed, error reading config file ", err)
 		return false
 	}
 	if !reflect.DeepEqual(d.Options, oldOptions) {
@@ -133,6 +133,7 @@ func (d *Driver) IsComputed() bool {
 		fmt.Println("not computed, no solution file")
 		return false
 	}
+	fmt.Println("Is computed")
 	return true
 }
 

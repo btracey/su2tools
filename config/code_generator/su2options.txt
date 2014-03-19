@@ -2206,7 +2206,7 @@ Option values:  ['A scalar constant']
 Option default: model.json
 Option description: Location of the turb model itself 
 
-Option Name: ML_TURB_MODEL_NONDIMENSIONALIZATION
+Option Name: ML_TURB_MODEL_FEATURESET
 Option Type: ScalarOption
 Option Category: ML Turb Options
 Option values:  ['A scalar constant']

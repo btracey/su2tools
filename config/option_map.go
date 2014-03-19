@@ -4321,14 +4321,14 @@ var optionMap map[common.OptionsField]*optionPrint = map[common.OptionsField]*op
 		Value:          "model.json",
 		defaultValue:   "model.json",
 	},
-	"MlTurbModelNondimensionalization": {
+	"MlTurbModelFeatureset": {
 		Description:    "blah",
 		ConfigCategory: "ML Turb Options",
-		ConfigName:     "ML_TURB_MODEL_NONDIMENSIONALIZATION",
+		ConfigName:     "ML_TURB_MODEL_FEATURESET",
 		ConfigType:     "ScalarOption",
 		Default:        "none",
 		GoBaseType:     common.StringType,
-		OptionsField:   "MlTurbModelNondimensionalization",
+		OptionsField:   "MlTurbModelFeatureset",
 		enumOptions:    []common.Enum{},
 		Value:          "none",
 		defaultValue:   "none",

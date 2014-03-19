@@ -629,5 +629,5 @@ type Options struct {
 	// Location of the turb model itself
 	MlTurbModelFile string
 	// blah
-	MlTurbModelNondimensionalization string
+	MlTurbModelFeatureset string
 }
