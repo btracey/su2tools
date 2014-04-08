@@ -20,6 +20,7 @@ import (
 type SU2Syscaller interface {
 	SyscallString(d *Driver) (string, []string) // Returns the exec name and the arguments to be called by exec.Command
 	Concurrently() bool                         // Given a list of drivers, should they be run concurrently or in serial
+	NumCores() int                              // How many cores does it want
 }
 
 // A FileWriter is a type that needs to print a file to disk before executing the driver
@@ -38,6 +39,9 @@ func (s Serial) SyscallString(d *Driver) (execname string, args []string) {
 
 func (s Serial) Concurrently() bool {
 	return s.Concurrent
+}
+func (s Serial) NumCores() int {
+	return 1
 }
 
 // Parallel runs SU2 in parallel with the specified number of cores
@@ -144,7 +148,7 @@ func (d *Driver) Run(su2call SU2Syscaller) error {
 
 	err := os.MkdirAll(d.Wd, 0700)
 	if err != nil {
-		return err
+		return errors.New("driver: error creating working directory: " + err.Error())
 	}
 	// Write the config file
 	f, err := os.Create(d.Fullpath(d.Config))
@@ -158,7 +162,7 @@ func (d *Driver) Run(su2call SU2Syscaller) error {
 	stdout, err := os.Create(d.Fullpath(d.Stdout))
 	defer stdout.Close()
 	if err != nil {
-		return err
+		return errors.New("driver: error creating stdout: " + err.Error())
 	}
 
 	// Create the command
