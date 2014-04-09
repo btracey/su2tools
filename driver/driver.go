@@ -48,10 +48,12 @@ type Syscaller interface {
 	NumCores() int                        // How many cores does it want
 }
 
+/*
 // A FileWriter is a type that needs to print a file to disk before executing the driver
 type FileWriter interface {
 	WriteFile(d *Driver) error
 }
+*/
 
 // Serial runs SU2 on one processor.
 type Serial struct{}
