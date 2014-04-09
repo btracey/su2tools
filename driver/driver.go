@@ -80,7 +80,7 @@ func (p Parallel) NumCores() int {
 	return p.Cores
 }
 
-// Cluster runs SU2 via a call to Slurm. This does not work at present.
+// Slurm runs SU2 via a call to Slurm. This does not work at present.
 type Slurm struct {
 	Cores int
 }
