@@ -97,6 +97,10 @@ func (c Slurm) Syscall(d *Driver) (execname string, args []string) {
 	return
 }
 
+func (c Slurm) NumCores() int {
+	return c.Cores
+}
+
 /*
 func (c Cluster) WriteFile(d *Driver) error {
 	fmt.Println("In write string")
