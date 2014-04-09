@@ -242,6 +242,18 @@ func (d *Driver) fullpath(relpath string) string {
 	return filepath.Join(d.Wd, relpath)
 }
 
+// Load reads in from the input and sets the Options and OptionList fields.
+func (d *Driver) Load(reader io.Reader) error {
+	// TODO: Add example
+	options, optionList, err := config.Read(reader)
+	if err != nil {
+		return err
+	}
+	d.Options = options
+	d.OptionList = optionList
+	return nil
+}
+
 /*
 
 // SetRelativeOptions sets the options structure relative to the from the config file in filename.
