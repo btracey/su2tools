@@ -438,24 +438,45 @@ func (c *DVParam) FromConfigString(values []string) error {
 }
 
 type StringDoubleList struct {
-	String []string
+	Strings []string
+	Doubles []float64
 }
 
 func (c *StringDoubleList) ConfigString() string {
-	if c == nil || len(c.String) == 0 {
+	if c == nil || len(c.Strings) == 0 {
 		return "NONE"
 	}
+	if len(c.Strings) != len(c.Doubles) {
+		panic("lengths must match")
+	}
 	var str string
-	for _, s := range c.String {
-		str += s + "\t"
+	for i, s := range c.Strings {
+		str += s + ", "
+		str += strconv.FormatFloat(c.Doubles[i], 'g', 16, 64)
+		if i != len(c.Strings)-1 {
+			str += ", "
+		}
 	}
 	return str
 }
 
 func (c *StringDoubleList) FromConfigString(values []string) error {
-	c.String = make([]string, len(values))
-	for i, s := range values {
-		c.String[i] = s
+	if len(values) == 1 && values[0] == "NONE" {
+		c.Strings = c.Strings[:0]
+		c.Doubles = c.Doubles[:0]
+	}
+	if (len(values) % 2) != 0 {
+		return errors.New("must have even number of values")
+	}
+	c.Strings = make([]string, len(values)/2)
+	c.Doubles = make([]float64, len(values)/2)
+	for i := range c.Strings {
+		c.Strings[i] = values[2*i]
+		f64, err := strconv.ParseFloat(values[2*i+1], 64)
+		if err != nil {
+			return err
+		}
+		c.Doubles[i] = f64
 	}
 	return nil
 }

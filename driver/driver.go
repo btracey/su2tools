@@ -182,7 +182,7 @@ func (d *Driver) Run(su2call Syscaller) error {
 	if err != nil {
 		return err
 	}
-	d.Options.WriteConfigTo(f, d.OptionList)
+	d.Options.WriteTo(f, d.OptionList)
 	f.Close()
 
 	var stdout io.Writer
