@@ -462,8 +462,9 @@ func (c *StringDoubleList) ConfigString() string {
 
 func (c *StringDoubleList) FromConfigString(values []string) error {
 	if len(values) == 1 && values[0] == "NONE" {
-		c.Strings = c.Strings[:0]
-		c.Doubles = c.Doubles[:0]
+		c.Strings = make([]string, 0)
+		c.Doubles = make([]float64, 0)
+		return
 	}
 	if (len(values) % 2) != 0 {
 		return errors.New("must have even number of values")

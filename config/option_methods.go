@@ -115,12 +115,17 @@ func (o *Options) WriteTo(writer io.Writer, forcePrint map[Option]bool) (int, er
 func (o *Options) Copy() *Options {
 	// Write to a buffer
 	b := &bytes.Buffer{}
-	o.WriteTo(b, ForceAll)
+	_, err := o.WriteTo(b, ForceAll)
+	if err != nil {
+		str := "copy: error writing: " + err.Error()
+		panic(str)
+	}
 
 	// now read
 	options, _, err := Read(b)
 	if err != nil {
-		panic("Error in copy")
+		str := "copy: error reading " + err.Error()
+		panic(str)
 	}
 	return options
 }

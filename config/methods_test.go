@@ -50,7 +50,7 @@ func TestReadAndWrite(t *testing.T) {
 
 	b := make([]byte, 0)
 	buf := bytes.NewBuffer(b)
-	_, err := o.WriteTo(buf, nil)
+	_, err := o.WriteTo(buf, ForceAll)
 	if err != nil {
 		t.Errorf("Error writing: %v", err)
 	}
