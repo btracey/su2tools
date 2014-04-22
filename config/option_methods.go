@@ -120,7 +120,7 @@ func NewOptions() *Options {
 }
 */
 
-func ReadConfig(reader io.Reader) (*Options, map[Option]bool, error) {
+func Read(reader io.Reader) (*Options, map[Option]bool, error) {
 	// First, get a new options struct populated with default values
 	o := NewOptions()
 

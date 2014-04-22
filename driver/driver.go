@@ -125,14 +125,14 @@ func (c Cluster) WriteFile(d *Driver) error {
 
 // Driver specifies a case for running SU2.
 type Driver struct {
-	Name       string            // Identifier for the case
-	Options    *config.Options   // OptionList for the case
-	Config     string            // Name of the config filename (relative to working directory)
-	Wd         string            // Working directory of SU2
-	Stdout     string            // Where to redict Stdout (relative to working directory). Will be set to Stdout if ==""
-	Stderr     string            // Where to redirct Stderr (relative to working directory). Will be set to Stderr if ==""
-	OptionList config.OptionList // Which options to print to the config file
-	FancyName  string            // Longer name (can be used for plot legends or something)
+	Name       string                 // Identifier for the case
+	Options    *config.Options        // OptionList for the case
+	Config     string                 // Name of the config filename (relative to working directory)
+	Wd         string                 // Working directory of SU2
+	Stdout     string                 // Where to redict Stdout (relative to working directory). Will be set to Stdout if ==""
+	Stderr     string                 // Where to redirct Stderr (relative to working directory). Will be set to Stderr if ==""
+	OptionList map[config.Option]bool // Which options to print to the config file
+	FancyName  string                 // Longer name (can be used for plot legends or something)
 }
 
 // IsComputed returns true if driver.Status() == Computed
@@ -182,7 +182,7 @@ func (d *Driver) Run(su2call Syscaller) error {
 	if err != nil {
 		return err
 	}
-	d.Options.WriteConfig(f, d.OptionList)
+	d.Options.WriteConfigTo(f, d.OptionList)
 	f.Close()
 
 	var stdout io.Writer

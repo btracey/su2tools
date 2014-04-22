@@ -59,7 +59,7 @@ func TestReadAndWrite(t *testing.T) {
 
 	reader := bytes.NewReader(b2)
 
-	newOpt, _, err := ReadConfig(reader)
+	newOpt, _, err := Read(reader)
 	if err != nil {
 		t.Errorf("Error reading: %v", err)
 	}
