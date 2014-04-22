@@ -1,0 +1,1484 @@
+{
+	"Adapt": {
+		"Typename": "Adapt",
+		"Option": {
+			"Computable": {
+				"Identifier": "Computable",
+				"ConfigString": "COMPUTABLE"
+			},
+			"ComputableRobust": {
+				"Identifier": "ComputableRobust",
+				"ConfigString": "COMPUTABLE_ROBUST"
+			},
+			"Full": {
+				"Identifier": "Full",
+				"ConfigString": "FULL"
+			},
+			"FullAdjoint": {
+				"Identifier": "FullAdjoint",
+				"ConfigString": "FULL_ADJOINT"
+			},
+			"FullFlow": {
+				"Identifier": "FullFlow",
+				"ConfigString": "FULL_FLOW"
+			},
+			"FullLinear": {
+				"Identifier": "FullLinear",
+				"ConfigString": "FULL_LINEAR"
+			},
+			"GradAdjoint": {
+				"Identifier": "GradAdjoint",
+				"ConfigString": "GRAD_ADJOINT"
+			},
+			"GradFlow": {
+				"Identifier": "GradFlow",
+				"ConfigString": "GRAD_FLOW"
+			},
+			"GradFlowAdj": {
+				"Identifier": "GradFlowAdj",
+				"ConfigString": "GRAD_FLOW_ADJ"
+			},
+			"NoAdapt": {
+				"Identifier": "NoAdapt",
+				"ConfigString": "NONE"
+			},
+			"Remaining": {
+				"Identifier": "Remaining",
+				"ConfigString": "REMAINING"
+			},
+			"Robust": {
+				"Identifier": "Robust",
+				"ConfigString": "ROBUST"
+			},
+			"Smoothing": {
+				"Identifier": "Smoothing",
+				"ConfigString": "SMOOTHING"
+			},
+			"SupersonicShock": {
+				"Identifier": "SupersonicShock",
+				"ConfigString": "SUPERSONIC_SHOCK"
+			},
+			"Twophase": {
+				"Identifier": "Twophase",
+				"ConfigString": "TWOPHASE"
+			},
+			"Wake": {
+				"Identifier": "Wake",
+				"ConfigString": "WAKE"
+			}
+		},
+		"Mapname": "AdaptMap"
+	},
+	"Answer": {
+		"Typename": "Answer",
+		"Option": {
+			"No": {
+				"Identifier": "No",
+				"ConfigString": ""
+			},
+			"None": {
+				"Identifier": "None",
+				"ConfigString": ""
+			},
+			"Yes": {
+				"Identifier": "Yes",
+				"ConfigString": ""
+			}
+		},
+		"Mapname": ""
+	},
+	"AxisOrientation": {
+		"Typename": "AxisOrientation",
+		"Option": {
+			"XAxis": {
+				"Identifier": "XAxis",
+				"ConfigString": "X_AXIS"
+			},
+			"YAxis": {
+				"Identifier": "YAxis",
+				"ConfigString": "Y_AXIS"
+			},
+			"ZAxis": {
+				"Identifier": "ZAxis",
+				"ConfigString": "Z_AXIS"
+			}
+		},
+		"Mapname": "AxisOrientationMap"
+	},
+	"BcType": {
+		"Typename": "BcType",
+		"Option": {
+			"CustomBoundary": {
+				"Identifier": "CustomBoundary",
+				"ConfigString": ""
+			},
+			"DielecBoundary": {
+				"Identifier": "DielecBoundary",
+				"ConfigString": ""
+			},
+			"Dirichlet": {
+				"Identifier": "Dirichlet",
+				"ConfigString": ""
+			},
+			"DisplacementBoundary": {
+				"Identifier": "DisplacementBoundary",
+				"ConfigString": ""
+			},
+			"ElecDielecBoundary": {
+				"Identifier": "ElecDielecBoundary",
+				"ConfigString": ""
+			},
+			"ElecNeumann": {
+				"Identifier": "ElecNeumann",
+				"ConfigString": ""
+			},
+			"ElectrodeBoundary": {
+				"Identifier": "ElectrodeBoundary",
+				"ConfigString": ""
+			},
+			"EulerWall": {
+				"Identifier": "EulerWall",
+				"ConfigString": ""
+			},
+			"FarField": {
+				"Identifier": "FarField",
+				"ConfigString": ""
+			},
+			"FlowloadBoundary": {
+				"Identifier": "FlowloadBoundary",
+				"ConfigString": ""
+			},
+			"HeatFlux": {
+				"Identifier": "HeatFlux",
+				"ConfigString": ""
+			},
+			"HeatFluxCatalytic": {
+				"Identifier": "HeatFluxCatalytic",
+				"ConfigString": ""
+			},
+			"HeatFluxNoncatalytic": {
+				"Identifier": "HeatFluxNoncatalytic",
+				"ConfigString": ""
+			},
+			"InletFlow": {
+				"Identifier": "InletFlow",
+				"ConfigString": ""
+			},
+			"InterfaceBoundary": {
+				"Identifier": "InterfaceBoundary",
+				"ConfigString": ""
+			},
+			"Isothermal": {
+				"Identifier": "Isothermal",
+				"ConfigString": ""
+			},
+			"IsothermalCatalytic": {
+				"Identifier": "IsothermalCatalytic",
+				"ConfigString": ""
+			},
+			"IsothermalNoncatalytic": {
+				"Identifier": "IsothermalNoncatalytic",
+				"ConfigString": ""
+			},
+			"LoadBoundary": {
+				"Identifier": "LoadBoundary",
+				"ConfigString": ""
+			},
+			"NacelleExhaust": {
+				"Identifier": "NacelleExhaust",
+				"ConfigString": ""
+			},
+			"NacelleInflow": {
+				"Identifier": "NacelleInflow",
+				"ConfigString": ""
+			},
+			"NearfieldBoundary": {
+				"Identifier": "NearfieldBoundary",
+				"ConfigString": ""
+			},
+			"Neumann": {
+				"Identifier": "Neumann",
+				"ConfigString": ""
+			},
+			"OutletFlow": {
+				"Identifier": "OutletFlow",
+				"ConfigString": ""
+			},
+			"PeriodicBoundary": {
+				"Identifier": "PeriodicBoundary",
+				"ConfigString": ""
+			},
+			"PressureBoundary": {
+				"Identifier": "PressureBoundary",
+				"ConfigString": ""
+			},
+			"SendReceive": {
+				"Identifier": "SendReceive",
+				"ConfigString": ""
+			},
+			"SupersonicInlet": {
+				"Identifier": "SupersonicInlet",
+				"ConfigString": ""
+			},
+			"SymmetryPlane": {
+				"Identifier": "SymmetryPlane",
+				"ConfigString": ""
+			}
+		},
+		"Mapname": ""
+	},
+	"Centered": {
+		"Typename": "Centered",
+		"Option": {
+			"Jst": {
+				"Identifier": "Jst",
+				"ConfigString": "JST"
+			},
+			"JstKe": {
+				"Identifier": "JstKe",
+				"ConfigString": "JST_KE"
+			},
+			"Lax": {
+				"Identifier": "Lax",
+				"ConfigString": "LAX-FRIEDRICH"
+			},
+			"NoCentered": {
+				"Identifier": "NoCentered",
+				"ConfigString": "NONE"
+			}
+		},
+		"Mapname": "CenteredMap"
+	},
+	"CommType": {
+		"Typename": "CommType",
+		"Option": {
+			"Receive": {
+				"Identifier": "Receive",
+				"ConfigString": ""
+			},
+			"Send": {
+				"Identifier": "Send",
+				"ConfigString": ""
+			}
+		},
+		"Mapname": ""
+	},
+	"ContinuousEqns": {
+		"Typename": "ContinuousEqns",
+		"Option": {
+			"EulerEqns": {
+				"Identifier": "EulerEqns",
+				"ConfigString": "EULER"
+			},
+			"NavierStokesEqns": {
+				"Identifier": "NavierStokesEqns",
+				"ConfigString": "NAVIER_STOKES"
+			}
+		},
+		"Mapname": "ContinuouseqnsMap"
+	},
+	"ConvergeCrit": {
+		"Typename": "ConvergeCrit",
+		"Option": {
+			"Cauchy": {
+				"Identifier": "Cauchy",
+				"ConfigString": "CAUCHY"
+			},
+			"Residual": {
+				"Identifier": "Residual",
+				"ConfigString": "RESIDUAL"
+			}
+		},
+		"Mapname": "ConvergeCritMap"
+	},
+	"DeformStiffness": {
+		"Typename": "DeformStiffness",
+		"Option": {
+			"ConstantStiffness": {
+				"Identifier": "ConstantStiffness",
+				"ConfigString": "CONSTANT_STIFFNESS"
+			},
+			"InverseVolume": {
+				"Identifier": "InverseVolume",
+				"ConfigString": "INVERSE_VOLUME"
+			},
+			"WallDistance": {
+				"Identifier": "WallDistance",
+				"ConfigString": "WALL_DISTANCE"
+			}
+		},
+		"Mapname": "DeformStiffnessMap"
+	},
+	"DiscreteEqns": {
+		"Typename": "DiscreteEqns",
+		"Option": {
+			"NoneEqns": {
+				"Identifier": "NoneEqns",
+				"ConfigString": "NONE"
+			},
+			"SaEqns": {
+				"Identifier": "SaEqns",
+				"ConfigString": "SA"
+			},
+			"SstEqns": {
+				"Identifier": "SstEqns",
+				"ConfigString": "SST"
+			}
+		},
+		"Mapname": "DiscreteeqnsMap"
+	},
+	"FlowGradient": {
+		"Typename": "FlowGradient",
+		"Option": {
+			"GreenGauss": {
+				"Identifier": "GreenGauss",
+				"ConfigString": "GREEN_GAUSS"
+			},
+			"WeightedLeastSquares": {
+				"Identifier": "WeightedLeastSquares",
+				"ConfigString": "WEIGHTED_LEAST_SQUARES"
+			}
+		},
+		"Mapname": "GradientMap"
+	},
+	"Gasmodel": {
+		"Typename": "Gasmodel",
+		"Option": {
+			"Air21": {
+				"Identifier": "Air21",
+				"ConfigString": "AIR-21"
+			},
+			"Air5": {
+				"Identifier": "Air5",
+				"ConfigString": "AIR-5"
+			},
+			"Air7": {
+				"Identifier": "Air7",
+				"ConfigString": "AIR-7"
+			},
+			"Argon": {
+				"Identifier": "Argon",
+				"ConfigString": "ARGON"
+			},
+			"ArgonSid": {
+				"Identifier": "ArgonSid",
+				"ConfigString": "ARGON-SID"
+			},
+			"N2": {
+				"Identifier": "N2",
+				"ConfigString": "N2"
+			},
+			"NoModel": {
+				"Identifier": "NoModel",
+				"ConfigString": "NONE"
+			},
+			"O2": {
+				"Identifier": "O2",
+				"ConfigString": "O2"
+			},
+			"Onespecies": {
+				"Identifier": "Onespecies",
+				"ConfigString": "ONESPECIES"
+			}
+		},
+		"Mapname": "GasmodelMap"
+	},
+	"GeoAnalytic": {
+		"Typename": "GeoAnalytic",
+		"Option": {
+			"Biparabolic": {
+				"Identifier": "Biparabolic",
+				"ConfigString": "BIPARABOLIC"
+			},
+			"Cylinder": {
+				"Identifier": "Cylinder",
+				"ConfigString": "CYLINDER"
+			},
+			"Naca0012Airfoil": {
+				"Identifier": "Naca0012Airfoil",
+				"ConfigString": "NACA0012_AIRFOIL"
+			},
+			"Naca4412Airfoil": {
+				"Identifier": "Naca4412Airfoil",
+				"ConfigString": "NACA4412_AIRFOIL"
+			},
+			"NoGeoAnalytic": {
+				"Identifier": "NoGeoAnalytic",
+				"ConfigString": "NONE"
+			}
+		},
+		"Mapname": "GeoAnalyticMap"
+	},
+	"GeoType": {
+		"Typename": "GeoType",
+		"Option": {
+			"Hexahedron": {
+				"Identifier": "Hexahedron",
+				"ConfigString": ""
+			},
+			"Line": {
+				"Identifier": "Line",
+				"ConfigString": ""
+			},
+			"Pyramid": {
+				"Identifier": "Pyramid",
+				"ConfigString": ""
+			},
+			"Rectangle": {
+				"Identifier": "Rectangle",
+				"ConfigString": ""
+			},
+			"Tetrahedron": {
+				"Identifier": "Tetrahedron",
+				"ConfigString": ""
+			},
+			"Triangle": {
+				"Identifier": "Triangle",
+				"ConfigString": ""
+			},
+			"Vertex": {
+				"Identifier": "Vertex",
+				"ConfigString": ""
+			},
+			"Wedge": {
+				"Identifier": "Wedge",
+				"ConfigString": ""
+			}
+		},
+		"Mapname": ""
+	},
+	"GeometryAction": {
+		"Typename": "GeometryAction",
+		"Option": {
+			"Allocate": {
+				"Identifier": "Allocate",
+				"ConfigString": ""
+			},
+			"Update": {
+				"Identifier": "Update",
+				"ConfigString": ""
+			}
+		},
+		"Mapname": ""
+	},
+	"GeometryMode": {
+		"Typename": "GeometryMode",
+		"Option": {
+			"Function": {
+				"Identifier": "Function",
+				"ConfigString": "FUNCTION"
+			},
+			"Gradient": {
+				"Identifier": "Gradient",
+				"ConfigString": "GRADIENT"
+			}
+		},
+		"Mapname": "GeometrymodeMap"
+	},
+	"Gridmovement": {
+		"Typename": "Gridmovement",
+		"Option": {
+			"Aeroelastic": {
+				"Identifier": "Aeroelastic",
+				"ConfigString": "AEROELASTIC"
+			},
+			"AeroelasticRigidMotion": {
+				"Identifier": "AeroelasticRigidMotion",
+				"ConfigString": "AEROELASTIC_RIGID_MOTION"
+			},
+			"Deforming": {
+				"Identifier": "Deforming",
+				"ConfigString": "DEFORMING"
+			},
+			"Elasticity": {
+				"Identifier": "Elasticity",
+				"ConfigString": "ELASTICITY"
+			},
+			"External": {
+				"Identifier": "External",
+				"ConfigString": "EXTERNAL"
+			},
+			"ExternalRotation": {
+				"Identifier": "ExternalRotation",
+				"ConfigString": "EXTERNAL_ROTATION"
+			},
+			"FluidStructure": {
+				"Identifier": "FluidStructure",
+				"ConfigString": "FLUID_STRUCTURE"
+			},
+			"MovingWall": {
+				"Identifier": "MovingWall",
+				"ConfigString": "MOVING_WALL"
+			},
+			"NoMovement": {
+				"Identifier": "NoMovement",
+				"ConfigString": "NONE"
+			},
+			"RigidMotion": {
+				"Identifier": "RigidMotion",
+				"ConfigString": "RIGID_MOTION"
+			},
+			"RotatingFrame": {
+				"Identifier": "RotatingFrame",
+				"ConfigString": "ROTATING_FRAME"
+			}
+		},
+		"Mapname": "GridmovementMap"
+	},
+	"GustDir": {
+		"Typename": "GustDir",
+		"Option": {
+			"XDir": {
+				"Identifier": "XDir",
+				"ConfigString": "X_DIR"
+			},
+			"YDir": {
+				"Identifier": "YDir",
+				"ConfigString": "Y_DIR"
+			}
+		},
+		"Mapname": "GustDirMap"
+	},
+	"GustType": {
+		"Typename": "GustType",
+		"Option": {
+			"NoGust": {
+				"Identifier": "NoGust",
+				"ConfigString": "NONE"
+			},
+			"OneMCosine": {
+				"Identifier": "OneMCosine",
+				"ConfigString": "ONE_M_COSINE"
+			},
+			"Sine": {
+				"Identifier": "Sine",
+				"ConfigString": "SINE"
+			},
+			"TopHat": {
+				"Identifier": "TopHat",
+				"ConfigString": "TOP_HAT"
+			},
+			"Vortex": {
+				"Identifier": "Vortex",
+				"ConfigString": "VORTEX"
+			}
+		},
+		"Mapname": "GustTypeMap"
+	},
+	"InletType": {
+		"Typename": "InletType",
+		"Option": {
+			"MassFlow": {
+				"Identifier": "MassFlow",
+				"ConfigString": "MASS_FLOW"
+			},
+			"TotalConditions": {
+				"Identifier": "TotalConditions",
+				"ConfigString": "TOTAL_CONDITIONS"
+			}
+		},
+		"Mapname": "InletMap"
+	},
+	"Input": {
+		"Typename": "Input",
+		"Option": {
+			"Cgns": {
+				"Identifier": "Cgns",
+				"ConfigString": "CGNS"
+			},
+			"NetcdfAscii": {
+				"Identifier": "NetcdfAscii",
+				"ConfigString": "NETCDF_ASCII"
+			},
+			"Su2": {
+				"Identifier": "Su2",
+				"ConfigString": "SU2"
+			}
+		},
+		"Mapname": "InputMap"
+	},
+	"Limiter": {
+		"Typename": "Limiter",
+		"Option": {
+			"Minmod": {
+				"Identifier": "Minmod",
+				"ConfigString": "MINMOD"
+			},
+			"SharpEdges": {
+				"Identifier": "SharpEdges",
+				"ConfigString": "SHARP_EDGES"
+			},
+			"Venkatakrishnan": {
+				"Identifier": "Venkatakrishnan",
+				"ConfigString": "VENKATAKRISHNAN"
+			}
+		},
+		"Mapname": "LimiterMap"
+	},
+	"LinearObj": {
+		"Typename": "LinearObj",
+		"Option": {
+			"DeltaDragCoefficient": {
+				"Identifier": "DeltaDragCoefficient",
+				"ConfigString": "DELTA_DRAG"
+			},
+			"DeltaLiftCoefficient": {
+				"Identifier": "DeltaLiftCoefficient",
+				"ConfigString": "DELTA_LIFT"
+			}
+		},
+		"Mapname": "LinearObjMap"
+	},
+	"LinearSolver": {
+		"Typename": "LinearSolver",
+		"Option": {
+			"Bcgstab": {
+				"Identifier": "Bcgstab",
+				"ConfigString": "BCGSTAB"
+			},
+			"ConjugateGradient": {
+				"Identifier": "ConjugateGradient",
+				"ConfigString": "CONJUGATE_GRADIENT"
+			},
+			"Fgmres": {
+				"Identifier": "Fgmres",
+				"ConfigString": "FGMRES"
+			},
+			"Newton": {
+				"Identifier": "Newton",
+				"ConfigString": "NEWTON"
+			},
+			"QuasiNewton": {
+				"Identifier": "QuasiNewton",
+				"ConfigString": "QUASI_NEWTON"
+			},
+			"SteepestDescent": {
+				"Identifier": "SteepestDescent",
+				"ConfigString": "STEEPEST_DESCENT"
+			}
+		},
+		"Mapname": "LinearSolverMap"
+	},
+	"LinearSolverPrec": {
+		"Typename": "LinearSolverPrec",
+		"Option": {
+			"Jacobi": {
+				"Identifier": "Jacobi",
+				"ConfigString": "JACOBI"
+			},
+			"Linelet": {
+				"Identifier": "Linelet",
+				"ConfigString": "LINELET"
+			},
+			"LuSgs": {
+				"Identifier": "LuSgs",
+				"ConfigString": "LU_SGS"
+			}
+		},
+		"Mapname": "LinearSolverPrecMap"
+	},
+	"MathProblem": {
+		"Typename": "MathProblem",
+		"Option": {
+			"AdjointProblem": {
+				"Identifier": "AdjointProblem",
+				"ConfigString": "ADJOINT"
+			},
+			"DirectProblem": {
+				"Identifier": "DirectProblem",
+				"ConfigString": "DIRECT"
+			},
+			"LinearizedProblem": {
+				"Identifier": "LinearizedProblem",
+				"ConfigString": "LINEARIZED"
+			}
+		},
+		"Mapname": "MathProblemMap"
+	},
+	"Objective": {
+		"Typename": "Objective",
+		"Option": {
+			"DragCoefficient": {
+				"Identifier": "DragCoefficient",
+				"ConfigString": "DRAG"
+			},
+			"Efficiency": {
+				"Identifier": "Efficiency",
+				"ConfigString": "EFFICIENCY"
+			},
+			"EquivalentArea": {
+				"Identifier": "EquivalentArea",
+				"ConfigString": "EQUIVALENT_AREA"
+			},
+			"FigureOfMerit": {
+				"Identifier": "FigureOfMerit",
+				"ConfigString": "FIGURE_OF_MERIT"
+			},
+			"ForceXCoefficient": {
+				"Identifier": "ForceXCoefficient",
+				"ConfigString": "FORCE_X"
+			},
+			"ForceYCoefficient": {
+				"Identifier": "ForceYCoefficient",
+				"ConfigString": "FORCE_Y"
+			},
+			"ForceZCoefficient": {
+				"Identifier": "ForceZCoefficient",
+				"ConfigString": "FORCE_Z"
+			},
+			"FreeSurface": {
+				"Identifier": "FreeSurface",
+				"ConfigString": "FREE_SURFACE"
+			},
+			"InverseDesignHeatflux": {
+				"Identifier": "InverseDesignHeatflux",
+				"ConfigString": "INVERSE_DESIGN_HEATFLUX"
+			},
+			"InverseDesignPressure": {
+				"Identifier": "InverseDesignPressure",
+				"ConfigString": "INVERSE_DESIGN_PRESSURE"
+			},
+			"LiftCoefficient": {
+				"Identifier": "LiftCoefficient",
+				"ConfigString": "LIFT"
+			},
+			"MaxThickSec1": {
+				"Identifier": "MaxThickSec1",
+				"ConfigString": "MAX_THICK_SEC1"
+			},
+			"MaxThickSec2": {
+				"Identifier": "MaxThickSec2",
+				"ConfigString": "MAX_THICK_SEC2"
+			},
+			"MaxThickSec3": {
+				"Identifier": "MaxThickSec3",
+				"ConfigString": "MAX_THICK_SEC3"
+			},
+			"MaxThickSec4": {
+				"Identifier": "MaxThickSec4",
+				"ConfigString": "MAX_THICK_SEC4"
+			},
+			"MaxThickSec5": {
+				"Identifier": "MaxThickSec5",
+				"ConfigString": "MAX_THICK_SEC5"
+			},
+			"MaxThickness": {
+				"Identifier": "MaxThickness",
+				"ConfigString": "MAX_THICKNESS"
+			},
+			"MaximumHeatflux": {
+				"Identifier": "MaximumHeatflux",
+				"ConfigString": "MAXIMUM_HEATFLUX"
+			},
+			"MinThickness": {
+				"Identifier": "MinThickness",
+				"ConfigString": "MIN_THICKNESS"
+			},
+			"MomentXCoefficient": {
+				"Identifier": "MomentXCoefficient",
+				"ConfigString": "MOMENT_X"
+			},
+			"MomentYCoefficient": {
+				"Identifier": "MomentYCoefficient",
+				"ConfigString": "MOMENT_Y"
+			},
+			"MomentZCoefficient": {
+				"Identifier": "MomentZCoefficient",
+				"ConfigString": "MOMENT_Z"
+			},
+			"NearfieldPressure": {
+				"Identifier": "NearfieldPressure",
+				"ConfigString": "NEARFIELD_PRESSURE"
+			},
+			"SideforceCoefficient": {
+				"Identifier": "SideforceCoefficient",
+				"ConfigString": "SIDEFORCE"
+			},
+			"ThrustCoefficient": {
+				"Identifier": "ThrustCoefficient",
+				"ConfigString": "THRUST"
+			},
+			"TorqueCoefficient": {
+				"Identifier": "TorqueCoefficient",
+				"ConfigString": "TORQUE"
+			},
+			"TotalHeatflux": {
+				"Identifier": "TotalHeatflux",
+				"ConfigString": "TOTAL_HEATFLUX"
+			}
+		},
+		"Mapname": "ObjectiveMap"
+	},
+	"Output": {
+		"Typename": "Output",
+		"Option": {
+			"CgnsSol": {
+				"Identifier": "CgnsSol",
+				"ConfigString": "CGNS"
+			},
+			"Csv": {
+				"Identifier": "Csv",
+				"ConfigString": "CSV"
+			},
+			"Excel": {
+				"Identifier": "Excel",
+				"ConfigString": "EXCEL"
+			},
+			"Paraview": {
+				"Identifier": "Paraview",
+				"ConfigString": "PARAVIEW"
+			},
+			"Tecplot": {
+				"Identifier": "Tecplot",
+				"ConfigString": "TECPLOT"
+			},
+			"TecplotBinary": {
+				"Identifier": "TecplotBinary",
+				"ConfigString": "TECPLOT_BINARY"
+			}
+		},
+		"Mapname": "OutputMap"
+	},
+	"OutputVars": {
+		"Typename": "OutputVars",
+		"Option": {
+			"Density": {
+				"Identifier": "Density",
+				"ConfigString": "DENSITY"
+			},
+			"EddyVisc": {
+				"Identifier": "EddyVisc",
+				"ConfigString": "EDDY_VISC"
+			},
+			"LamVisc": {
+				"Identifier": "LamVisc",
+				"ConfigString": "LAM_VISC"
+			},
+			"Mach": {
+				"Identifier": "Mach",
+				"ConfigString": "MACH"
+			},
+			"Pressure": {
+				"Identifier": "Pressure",
+				"ConfigString": "PRESSURE"
+			},
+			"Temperature": {
+				"Identifier": "Temperature",
+				"ConfigString": "TEMPERATURE"
+			},
+			"VelX": {
+				"Identifier": "VelX",
+				"ConfigString": "VEL_X"
+			},
+			"VelY": {
+				"Identifier": "VelY",
+				"ConfigString": "VEL_Y"
+			},
+			"VelZ": {
+				"Identifier": "VelZ",
+				"ConfigString": "VEL_Z"
+			}
+		},
+		"Mapname": "OutputVarsMap"
+	},
+	"Param": {
+		"Typename": "Param",
+		"Option": {
+			"Airfoil": {
+				"Identifier": "Airfoil",
+				"ConfigString": "AIRFOIL"
+			},
+			"CosineBump": {
+				"Identifier": "CosineBump",
+				"ConfigString": "COSINE_BUMP"
+			},
+			"Displacement": {
+				"Identifier": "Displacement",
+				"ConfigString": "DISPLACEMENT"
+			},
+			"FfdCamber": {
+				"Identifier": "FfdCamber",
+				"ConfigString": "FFD_CAMBER"
+			},
+			"FfdCamber2d": {
+				"Identifier": "FfdCamber2d",
+				"ConfigString": "FFD_CAMBER_2D"
+			},
+			"FfdControlPoint": {
+				"Identifier": "FfdControlPoint",
+				"ConfigString": "FFD_CONTROL_POINT"
+			},
+			"FfdControlPoint2d": {
+				"Identifier": "FfdControlPoint2d",
+				"ConfigString": "FFD_CONTROL_POINT_2D"
+			},
+			"FfdDihedralAngle": {
+				"Identifier": "FfdDihedralAngle",
+				"ConfigString": "FFD_DIHEDRAL_ANGLE"
+			},
+			"FfdRotation": {
+				"Identifier": "FfdRotation",
+				"ConfigString": "FFD_ROTATION"
+			},
+			"FfdSetting": {
+				"Identifier": "FfdSetting",
+				"ConfigString": "FFD_SETTING"
+			},
+			"FfdThickness": {
+				"Identifier": "FfdThickness",
+				"ConfigString": "FFD_THICKNESS"
+			},
+			"FfdThickness2d": {
+				"Identifier": "FfdThickness2d",
+				"ConfigString": "FFD_THICKNESS_2D"
+			},
+			"FfdTwistAngle": {
+				"Identifier": "FfdTwistAngle",
+				"ConfigString": "FFD_TWIST_ANGLE"
+			},
+			"Fourier": {
+				"Identifier": "Fourier",
+				"ConfigString": "FOURIER"
+			},
+			"HicksHenne": {
+				"Identifier": "HicksHenne",
+				"ConfigString": "HICKS_HENNE"
+			},
+			"Naca4digits": {
+				"Identifier": "Naca4digits",
+				"ConfigString": "NACA_4DIGITS"
+			},
+			"Obstacle": {
+				"Identifier": "Obstacle",
+				"ConfigString": "OBSTACLE"
+			},
+			"Parabolic": {
+				"Identifier": "Parabolic",
+				"ConfigString": "PARABOLIC"
+			},
+			"Rotation": {
+				"Identifier": "Rotation",
+				"ConfigString": "ROTATION"
+			},
+			"Spherical": {
+				"Identifier": "Spherical",
+				"ConfigString": "SPHERICAL"
+			},
+			"Stretch": {
+				"Identifier": "Stretch",
+				"ConfigString": "STRETCH"
+			},
+			"SurfaceFile": {
+				"Identifier": "SurfaceFile",
+				"ConfigString": "SURFACE_FILE"
+			}
+		},
+		"Mapname": "ParamMap"
+	},
+	"Regime": {
+		"Typename": "Regime",
+		"Option": {
+			"Compressible": {
+				"Identifier": "Compressible",
+				"ConfigString": "COMPRESSIBLE"
+			},
+			"Freesurface": {
+				"Identifier": "Freesurface",
+				"ConfigString": "FREESURFACE"
+			},
+			"Incompressible": {
+				"Identifier": "Incompressible",
+				"ConfigString": "INCOMPRESSIBLE"
+			}
+		},
+		"Mapname": "RegimeMap"
+	},
+	"RuntimeType": {
+		"Typename": "RuntimeType",
+		"Option": {
+			"RuntimeAdjflowSys": {
+				"Identifier": "RuntimeAdjflowSys",
+				"ConfigString": ""
+			},
+			"RuntimeAdjpotSys": {
+				"Identifier": "RuntimeAdjpotSys",
+				"ConfigString": ""
+			},
+			"RuntimeAdjtne2Sys": {
+				"Identifier": "RuntimeAdjtne2Sys",
+				"ConfigString": ""
+			},
+			"RuntimeAdjturbSys": {
+				"Identifier": "RuntimeAdjturbSys",
+				"ConfigString": ""
+			},
+			"RuntimeFeaSys": {
+				"Identifier": "RuntimeFeaSys",
+				"ConfigString": ""
+			},
+			"RuntimeFlowSys": {
+				"Identifier": "RuntimeFlowSys",
+				"ConfigString": ""
+			},
+			"RuntimeHeatSys": {
+				"Identifier": "RuntimeHeatSys",
+				"ConfigString": ""
+			},
+			"RuntimeLinflowSys": {
+				"Identifier": "RuntimeLinflowSys",
+				"ConfigString": ""
+			},
+			"RuntimeLinpotSys": {
+				"Identifier": "RuntimeLinpotSys",
+				"ConfigString": ""
+			},
+			"RuntimeMultigridSys": {
+				"Identifier": "RuntimeMultigridSys",
+				"ConfigString": ""
+			},
+			"RuntimePoissonSys": {
+				"Identifier": "RuntimePoissonSys",
+				"ConfigString": ""
+			},
+			"RuntimeTne2Sys": {
+				"Identifier": "RuntimeTne2Sys",
+				"ConfigString": ""
+			},
+			"RuntimeTransSys": {
+				"Identifier": "RuntimeTransSys",
+				"ConfigString": ""
+			},
+			"RuntimeTurbSys": {
+				"Identifier": "RuntimeTurbSys",
+				"ConfigString": ""
+			},
+			"RuntimeWaveSys": {
+				"Identifier": "RuntimeWaveSys",
+				"ConfigString": ""
+			}
+		},
+		"Mapname": ""
+	},
+	"Sens": {
+		"Typename": "Sens",
+		"Option": {
+			"SensAoa": {
+				"Identifier": "SensAoa",
+				"ConfigString": "SENS_AOA"
+			},
+			"SensAos": {
+				"Identifier": "SensAos",
+				"ConfigString": "SENS_AOS"
+			},
+			"SensGeometry": {
+				"Identifier": "SensGeometry",
+				"ConfigString": "SENS_GEOMETRY"
+			},
+			"SensMach": {
+				"Identifier": "SensMach",
+				"ConfigString": "SENS_MACH"
+			}
+		},
+		"Mapname": "SensMap"
+	},
+	"SensSmoothing": {
+		"Typename": "SensSmoothing",
+		"Option": {
+			"Bigrid": {
+				"Identifier": "Bigrid",
+				"ConfigString": "BIGRID"
+			},
+			"NoSmooth": {
+				"Identifier": "NoSmooth",
+				"ConfigString": "NONE"
+			},
+			"Sobolev": {
+				"Identifier": "Sobolev",
+				"ConfigString": "SOBOLEV"
+			}
+		},
+		"Mapname": "SensSmoothingMap"
+	},
+	"Solver": {
+		"Typename": "Solver",
+		"Option": {
+			"AdjEuler": {
+				"Identifier": "AdjEuler",
+				"ConfigString": "ADJ_EULER"
+			},
+			"AdjNavierStokes": {
+				"Identifier": "AdjNavierStokes",
+				"ConfigString": "ADJ_NAVIER_STOKES"
+			},
+			"AdjRans": {
+				"Identifier": "AdjRans",
+				"ConfigString": "ADJ_RANS"
+			},
+			"AdjTne2Euler": {
+				"Identifier": "AdjTne2Euler",
+				"ConfigString": "ADJ_TNE2_EULER"
+			},
+			"AdjTne2NavierStokes": {
+				"Identifier": "AdjTne2NavierStokes",
+				"ConfigString": "ADJ_TNE2_NAVIER_STOKES"
+			},
+			"Euler": {
+				"Identifier": "Euler",
+				"ConfigString": "EULER"
+			},
+			"FluidStructureEuler": {
+				"Identifier": "FluidStructureEuler",
+				"ConfigString": "FLUID_STRUCTURE_EULER"
+			},
+			"FluidStructureNavierStokes": {
+				"Identifier": "FluidStructureNavierStokes",
+				"ConfigString": "FLUID_STRUCTURE_NAVIER_STOKES"
+			},
+			"FluidStructureRans": {
+				"Identifier": "FluidStructureRans",
+				"ConfigString": "FLUID_STRUCTURE_RANS"
+			},
+			"HeatEquation": {
+				"Identifier": "HeatEquation",
+				"ConfigString": "HEAT_EQUATION"
+			},
+			"LinEuler": {
+				"Identifier": "LinEuler",
+				"ConfigString": "LIN_EULER"
+			},
+			"LinNavierStokes": {
+				"Identifier": "LinNavierStokes",
+				"ConfigString": "LIN_NAVIER_STOKES"
+			},
+			"LinearElasticity": {
+				"Identifier": "LinearElasticity",
+				"ConfigString": "LINEAR_ELASTICITY"
+			},
+			"NavierStokes": {
+				"Identifier": "NavierStokes",
+				"ConfigString": "NAVIER_STOKES"
+			},
+			"NoSolver": {
+				"Identifier": "NoSolver",
+				"ConfigString": "NONE"
+			},
+			"PoissonEquation": {
+				"Identifier": "PoissonEquation",
+				"ConfigString": "POISSON_EQUATION"
+			},
+			"Rans": {
+				"Identifier": "Rans",
+				"ConfigString": "RANS"
+			},
+			"TemplateSolver": {
+				"Identifier": "TemplateSolver",
+				"ConfigString": "TEMPLATE_SOLVER"
+			},
+			"Tne2Euler": {
+				"Identifier": "Tne2Euler",
+				"ConfigString": "TNE2_EULER"
+			},
+			"Tne2NavierStokes": {
+				"Identifier": "Tne2NavierStokes",
+				"ConfigString": "TNE2_NAVIER_STOKES"
+			},
+			"WaveEquation": {
+				"Identifier": "WaveEquation",
+				"ConfigString": "WAVE_EQUATION"
+			}
+		},
+		"Mapname": "SolverMap"
+	},
+	"Source": {
+		"Typename": "Source",
+		"Option": {
+			"ChargeDist": {
+				"Identifier": "ChargeDist",
+				"ConfigString": "CHARGE_DIST"
+			},
+			"NoSource": {
+				"Identifier": "NoSource",
+				"ConfigString": "NONE"
+			},
+			"PiecewiseConstant": {
+				"Identifier": "PiecewiseConstant",
+				"ConfigString": "PIECEWISE_CONSTANT"
+			},
+			"SourceTemplate": {
+				"Identifier": "SourceTemplate",
+				"ConfigString": "TEMPLATE_SOURCE_METHOD"
+			}
+		},
+		"Mapname": "SourceMap"
+	},
+	"Sourcejac": {
+		"Typename": "Sourcejac",
+		"Option": {
+			"AutoDiff": {
+				"Identifier": "AutoDiff",
+				"ConfigString": "AUTO_DIFF"
+			},
+			"FiniteDiff": {
+				"Identifier": "FiniteDiff",
+				"ConfigString": "FINITE_DIFF"
+			},
+			"NoJacobian": {
+				"Identifier": "NoJacobian",
+				"ConfigString": "NO_JACOBIAN"
+			}
+		},
+		"Mapname": "SourcejacMap"
+	},
+	"Space": {
+		"Typename": "Space",
+		"Option": {
+			"NoConvective": {
+				"Identifier": "NoConvective",
+				"ConfigString": "NONE"
+			},
+			"SpaceCentered": {
+				"Identifier": "SpaceCentered",
+				"ConfigString": "SPACE_CENTERED"
+			},
+			"SpaceUpwind": {
+				"Identifier": "SpaceUpwind",
+				"ConfigString": "SPACE_UPWIND"
+			}
+		},
+		"Mapname": "SpaceMap"
+	},
+	"SpatialOrder": {
+		"Typename": "SpatialOrder",
+		"Option": {
+			"FirstOrder": {
+				"Identifier": "FirstOrder",
+				"ConfigString": "1ST_ORDER"
+			},
+			"SecondOrder": {
+				"Identifier": "SecondOrder",
+				"ConfigString": "2ND_ORDER"
+			},
+			"SecondOrderLimiter": {
+				"Identifier": "SecondOrderLimiter",
+				"ConfigString": "2ND_ORDER_LIMITER"
+			}
+		},
+		"Mapname": "SpatialorderMap"
+	},
+	"Su2Component": {
+		"Typename": "Su2Component",
+		"Option": {
+			"Su2Cfd": {
+				"Identifier": "Su2Cfd",
+				"ConfigString": ""
+			},
+			"Su2Ddc": {
+				"Identifier": "Su2Ddc",
+				"ConfigString": ""
+			},
+			"Su2Gdc": {
+				"Identifier": "Su2Gdc",
+				"ConfigString": ""
+			},
+			"Su2Gpc": {
+				"Identifier": "Su2Gpc",
+				"ConfigString": ""
+			},
+			"Su2Mac": {
+				"Identifier": "Su2Mac",
+				"ConfigString": ""
+			},
+			"Su2Mdc": {
+				"Identifier": "Su2Mdc",
+				"ConfigString": ""
+			},
+			"Su2Pbc": {
+				"Identifier": "Su2Pbc",
+				"ConfigString": ""
+			},
+			"Su2Smc": {
+				"Identifier": "Su2Smc",
+				"ConfigString": ""
+			},
+			"Su2Sol": {
+				"Identifier": "Su2Sol",
+				"ConfigString": ""
+			}
+		},
+		"Mapname": ""
+	},
+	"TimeInt": {
+		"Typename": "TimeInt",
+		"Option": {
+			"EulerExplicit": {
+				"Identifier": "EulerExplicit",
+				"ConfigString": "EULER_EXPLICIT"
+			},
+			"EulerImplicit": {
+				"Identifier": "EulerImplicit",
+				"ConfigString": "EULER_IMPLICIT"
+			},
+			"RungeKuttaExplicit": {
+				"Identifier": "RungeKuttaExplicit",
+				"ConfigString": "RUNGE-KUTTA_EXPLICIT"
+			}
+		},
+		"Mapname": "TimeIntMap"
+	},
+	"TransModel": {
+		"Typename": "TransModel",
+		"Option": {
+			"Lm": {
+				"Identifier": "Lm",
+				"ConfigString": "LM"
+			},
+			"NoTransModel": {
+				"Identifier": "NoTransModel",
+				"ConfigString": "NONE"
+			}
+		},
+		"Mapname": "TransModelMap"
+	},
+	"TurbModel": {
+		"Typename": "TurbModel",
+		"Option": {
+			"Ml": {
+				"Identifier": "Ml",
+				"ConfigString": "ML"
+			},
+			"NoTurbModel": {
+				"Identifier": "NoTurbModel",
+				"ConfigString": "NONE"
+			},
+			"Sa": {
+				"Identifier": "Sa",
+				"ConfigString": "SA"
+			},
+			"Sst": {
+				"Identifier": "Sst",
+				"ConfigString": "SST"
+			}
+		},
+		"Mapname": "TurbModelMap"
+	},
+	"Unsteady": {
+		"Typename": "Unsteady",
+		"Option": {
+			"DtStepping1st": {
+				"Identifier": "DtStepping1st",
+				"ConfigString": "DUAL_TIME_STEPPING-1ST_ORDER"
+			},
+			"DtStepping2nd": {
+				"Identifier": "DtStepping2nd",
+				"ConfigString": "DUAL_TIME_STEPPING-2ND_ORDER"
+			},
+			"RotationalFrame": {
+				"Identifier": "RotationalFrame",
+				"ConfigString": "ROTATIONAL_FRAME"
+			},
+			"Steady": {
+				"Identifier": "Steady",
+				"ConfigString": "NO"
+			},
+			"TimeSpectral": {
+				"Identifier": "TimeSpectral",
+				"ConfigString": "TIME_SPECTRAL"
+			},
+			"TimeStepping": {
+				"Identifier": "TimeStepping",
+				"ConfigString": "TIME_STEPPING"
+			}
+		},
+		"Mapname": "UnsteadyMap"
+	},
+	"Upwind": {
+		"Typename": "Upwind",
+		"Option": {
+			"Ausm": {
+				"Identifier": "Ausm",
+				"ConfigString": "AUSM"
+			},
+			"Ausmpwplus": {
+				"Identifier": "Ausmpwplus",
+				"ConfigString": "AUSMPW+"
+			},
+			"ConvectiveTemplate": {
+				"Identifier": "ConvectiveTemplate",
+				"ConfigString": "CONVECTIVE_TEMPLATE"
+			},
+			"Cusp": {
+				"Identifier": "Cusp",
+				"ConfigString": "CUSP"
+			},
+			"Hllc": {
+				"Identifier": "Hllc",
+				"ConfigString": "HLLC"
+			},
+			"Msw": {
+				"Identifier": "Msw",
+				"ConfigString": "MSW"
+			},
+			"NoUpwind": {
+				"Identifier": "NoUpwind",
+				"ConfigString": "NONE"
+			},
+			"Roe": {
+				"Identifier": "Roe",
+				"ConfigString": "ROE"
+			},
+			"ScalarUpwind": {
+				"Identifier": "ScalarUpwind",
+				"ConfigString": "SCALAR_UPWIND"
+			},
+			"Sw": {
+				"Identifier": "Sw",
+				"ConfigString": "SW"
+			},
+			"Turkel": {
+				"Identifier": "Turkel",
+				"ConfigString": "TURKEL_PREC"
+			}
+		},
+		"Mapname": "UpwindMap"
+	},
+	"VerbLevel": {
+		"Typename": "VerbLevel",
+		"Option": {
+			"VerbHigh": {
+				"Identifier": "VerbHigh",
+				"ConfigString": ""
+			},
+			"VerbMedium": {
+				"Identifier": "VerbMedium",
+				"ConfigString": ""
+			},
+			"VerbNone": {
+				"Identifier": "VerbNone",
+				"ConfigString": ""
+			}
+		},
+		"Mapname": ""
+	},
+	"Viscous": {
+		"Typename": "Viscous",
+		"Option": {
+			"AvgGrad": {
+				"Identifier": "AvgGrad",
+				"ConfigString": "AVG_GRAD"
+			},
+			"AvgGradCorrected": {
+				"Identifier": "AvgGradCorrected",
+				"ConfigString": "AVG_GRAD_CORRECTED"
+			},
+			"Galerkin": {
+				"Identifier": "Galerkin",
+				"ConfigString": "GALERKIN"
+			},
+			"NoViscous": {
+				"Identifier": "NoViscous",
+				"ConfigString": "NONE"
+			}
+		},
+		"Mapname": "ViscousMap"
+	}
+}

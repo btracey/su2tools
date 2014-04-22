@@ -1,0 +1,2221 @@
+Problem Definition
+Boundary Markers
+Grid adaptation
+Time-marching
+Linear solver definition
+Dynamic mesh definition
+Wind Gust
+Convergence
+Multi-grid
+Spatial Discretization
+Convect Option:  CONV_NUM_METHOD_FLOW
+Convect Option:  CONV_NUM_METHOD_ADJ
+Convect Option:  CONV_NUM_METHOD_TURB
+Convect Option:  CONV_NUM_METHOD_ADJTURB
+Convect Option:  CONV_NUM_METHOD_LIN
+Convect Option:  CONV_NUM_METHOD_ADJLEVELSET
+Convect Option:  CONV_NUM_METHOD_TNE2
+Convect Option:  CONV_NUM_METHOD_ADJTNE2
+Adjoint and Gradient
+Input/output files and formats
+Equivalent Area
+Freestream Conditions
+Reference Conditions
+Reacting Flow
+Free surface simulation
+Grid deformation
+Rotorcraft problem
+FEA solver
+Wave solver
+Heat solver
+Option Name: REGIME_TYPE 
+Option Type: EnumOption 
+Option Category: Problem Definition 
+Option values:  ['COMPRESSIBLE', 'INCOMPRESSIBLE', 'FREESURFACE']
+Option default: COMPRESSIBLE
+Option description: Adjoint type 
+
+Option Name: EXTRA_OUTPUT 
+Option Type: SpecialOption 
+Option Category: Problem Definition 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Write extra output 
+
+Option Name: PHYSICAL_PROBLEM 
+Option Type: EnumOption 
+Option Category: Problem Definition 
+Option values:  ['NONE', 'EULER', 'NAVIER_STOKES', 'RANS', 'POISSON_EQUATION', 'ADJ_EULER', 'ADJ_NAVIER_STOKES', 'ADJ_RANS', 'LIN_EULER', 'LIN_NAVIER_STOKES', 'TNE2_EULER', 'TNE2_NAVIER_STOKES', 'ADJ_TNE2_EULER', 'ADJ_TNE2_NAVIER_STOKES', 'WAVE_EQUATION', 'HEAT_EQUATION', 'LINEAR_ELASTICITY', 'FLUID_STRUCTURE_EULER', 'FLUID_STRUCTURE_NAVIER_STOKES', 'FLUID_STRUCTURE_RANS', 'TEMPLATE_SOLVER']
+Option default: NONE
+Option description: Physical governing equations 
+
+Option Name: MATH_PROBLEM 
+Option Type: MathProblem 
+Option Category: Problem Definition 
+Option values:  ['DIRECT', 'ADJOINT', 'LINEARIZED']
+Option default: DIRECT
+Option description: Mathematical problem 
+
+Option Name: KIND_TURB_MODEL 
+Option Type: EnumOption 
+Option Category: Problem Definition 
+Option values:  ['NONE', 'SA', 'SST', 'ML']
+Option default: NONE
+Option description: Specify turbulence model 
+
+Option Name: ML_TURB_MODEL_FILE 
+Option Type: ScalarOption 
+Option Category: Problem Definition 
+Option values:  ['A scalar constant']
+Option default: model.json
+Option description: Location of the turb model itself 
+
+Option Name: ML_TURB_MODEL_CHECK_FILE 
+Option Type: ScalarOption 
+Option Category: Problem Definition 
+Option values:  ['A scalar constant']
+Option default: check_model.txt
+Option description: Location of the check for the proper loading of the turbulence model 
+
+Option Name: MOTION_FILENAME 
+Option Type: ScalarOption 
+Option Category: Problem Definition 
+Option values:  ['A scalar constant']
+Option default: mesh_motion.dat
+Option description:  
+
+Option Name: KIND_TRANS_MODEL 
+Option Type: EnumOption 
+Option Category: Problem Definition 
+Option values:  ['NONE', 'LM']
+Option default: NONE
+Option description: Specify transition model 
+
+Option Name: AXISYMMETRIC 
+Option Type: SpecialOption 
+Option Category: Problem Definition 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Axisymmetric simulation 
+
+Option Name: GRAVITY_FORCE 
+Option Type: SpecialOption 
+Option Category: Problem Definition 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Add the gravity force 
+
+Option Name: LOW_FIDELITY_SIMULATION 
+Option Type: SpecialOption 
+Option Category: Problem Definition 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Perform a low fidelity simulation 
+
+Option Name: RESTART_SOL 
+Option Type: SpecialOption 
+Option Category: Problem Definition 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Restart solution from native solution file 
+
+Option Name: VISUALIZE_PART 
+Option Type: SpecialOption 
+Option Category: Problem Definition 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Write a tecplot file for each partition 
+
+Option Name: MARKER_PLOTTING 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_Plotting
+Option description: Marker(s) of the surface in the surface flow solution file 
+
+Option Name: MARKER_MONITORING 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_Monitoring
+Option description: Marker(s) of the surface where evaluate the non-dimensional coefficients 
+
+Option Name: MARKER_DESIGNING 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_Designing
+Option description: Marker(s) of the surface where objective function (design problem) will be evaluated 
+
+Option Name: MARKER_EULER 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_Euler
+Option description: Euler wall boundary marker(s) 
+
+Option Name: MARKER_FAR 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_FarField
+Option description: Far-field boundary marker(s) 
+
+Option Name: MARKER_SYM 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_SymWall
+Option description: Symmetry boundary condition 
+
+Option Name: MARKER_PRESSURE 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_Pressure
+Option description: Symmetry boundary condition 
+
+Option Name: MARKER_NEARFIELD 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_NearFieldBound
+Option description: Near-Field boundary condition 
+
+Option Name: MARKER_INTERFACE 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_InterfaceBound
+Option description: Zone interface boundary marker(s) 
+
+Option Name: MARKER_DIRICHLET 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_Dirichlet
+Option description: Dirichlet boundary marker(s) 
+
+Option Name: MARKER_NEUMANN 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_Neumann
+Option description: Neumann boundary marker(s) 
+
+Option Name: ELEC_DIRICHLET 
+Option Type: MarkerDirichlet 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Dirichlet_Value
+Option description: poisson dirichlet boundary marker(s) 
+
+Option Name: ELEC_NEUMANN 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_Neumann_Elec
+Option description: poisson neumann boundary marker(s) 
+
+Option Name: MARKER_CUSTOM 
+Option Type: MarkerOption 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_Custom
+Option description: Custom boundary marker(s) 
+
+Option Name: MARKER_PERIODIC 
+Option Type: MarkerPeriodic 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Periodic_Translation
+Option description: No description 
+
+Option Name: INLET_TYPE 
+Option Type: EnumOption 
+Option Category: Boundary Markers 
+Option values:  ['TOTAL_CONDITIONS', 'MASS_FLOW']
+Option default: TOTAL_CONDITIONS
+Option description: Inlet boundary type 
+
+Option Name: MARKER_INLET 
+Option Type: MarkerInlet 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Inlet_FlowDir
+Option description: No description 
+
+Option Name: MARKER_SUPERSONIC_INLET 
+Option Type: MarkerInlet 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Inlet_Velocity
+Option description: No description 
+
+Option Name: MARKER_OUTLET 
+Option Type: MarkerOutlet 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Outlet_Pressure
+Option description: No description 
+
+Option Name: MARKER_ISOTHERMAL 
+Option Type: MarkerOutlet 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Isothermal_Temperature
+Option description: No description 
+
+Option Name: MARKER_HEATFLUX 
+Option Type: MarkerOutlet 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Heat_Flux
+Option description: No description 
+
+Option Name: MARKER_NACELLE_INFLOW 
+Option Type: MarkerOutlet 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: FanFace_Mach_Target
+Option description: No description 
+
+Option Name: SUBSONIC_NACELLE_INFLOW 
+Option Type: SpecialOption 
+Option Category: Boundary Markers 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Engine subsonic intake region 
+
+Option Name: MARKER_NACELLE_EXHAUST 
+Option Type: MarkerInlet 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Nozzle_Ptotal
+Option description: No description 
+
+Option Name: MARKER_NORMAL_DISPL 
+Option Type: MarkerDisplacement 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Displ_Value
+Option description: Displacement boundary marker(s) 
+
+Option Name: MARKER_NORMAL_LOAD 
+Option Type: MarkerLoad 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: Load_Value
+Option description: Load boundary marker(s) 
+
+Option Name: MARKER_FLOWLOAD 
+Option Type: MarkerFlowLoad 
+Option Category: Boundary Markers 
+Option values:  ['Valid marker name from grid file']
+Option default: FlowLoad_Value
+Option description: Flow load boundary marker(s) 
+
+Option Name: DAMP_NACELLE_INFLOW 
+Option Type: ScalarOption 
+Option Category: Boundary Markers 
+Option values:  ['A scalar constant']
+Option default: 0.1
+Option description: Damping factor for engine inlet condition 
+
+Option Name: KIND_ADAPT 
+Option Type: EnumOption 
+Option Category: Grid adaptation 
+Option values:  ['NONE', 'FULL', 'FULL_FLOW', 'FULL_ADJOINT', 'FULL_LINEAR', 'GRAD_FLOW', 'GRAD_ADJOINT', 'GRAD_FLOW_ADJ', 'ROBUST', 'COMPUTABLE', 'REMAINING', 'COMPUTABLE_ROBUST', 'WAKE', 'SMOOTHING', 'SUPERSONIC_SHOCK', 'TWOPHASE']
+Option default: NONE
+Option description: Kind of grid adaptation 
+
+Option Name: NEW_ELEMS 
+Option Type: ScalarOption 
+Option Category: Grid adaptation 
+Option values:  ['A scalar constant']
+Option default: -1.0
+Option description: Percentage of new elements (% of the original number of elements) 
+
+Option Name: DUALVOL_POWER 
+Option Type: ScalarOption 
+Option Category: Grid adaptation 
+Option values:  ['A scalar constant']
+Option default: 0.5
+Option description: Scale factor for the dual volume 
+
+Option Name: ANALYTICAL_SURFDEF 
+Option Type: EnumOption 
+Option Category: Grid adaptation 
+Option values:  ['NONE', 'NACA0012_AIRFOIL', 'NACA4412_AIRFOIL', 'CYLINDER', 'BIPARABOLIC']
+Option default: NONE
+Option description: Use analytical definition for surfaces 
+
+Option Name: SMOOTH_GEOMETRY 
+Option Type: SpecialOption 
+Option Category: Grid adaptation 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Before each computation, implicitly smooth the nodal coordinates 
+
+Option Name: ADAPT_BOUNDARY 
+Option Type: SpecialOption 
+Option Category: Grid adaptation 
+Option values:  ['YES', 'NO']
+Option default: YES
+Option description: Adapt the boundary elements 
+
+Option Name: DIVIDE_ELEMENTS 
+Option Type: SpecialOption 
+Option Category: Grid adaptation 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Divide rectangles into triangles 
+
+Option Name: UNSTEADY_SIMULATION 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['NO', 'TIME_STEPPING', 'DUAL_TIME_STEPPING-1ST_ORDER', 'DUAL_TIME_STEPPING-2ND_ORDER', 'TIME_SPECTRAL', 'ROTATIONAL_FRAME']
+Option default: NO
+Option description: Unsteady simulation 
+
+Option Name: UNSTEADY_FARFIELD 
+Option Type: SpecialOption 
+Option Category: Time-marching 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Unsteady farfield boundaries 
+
+Option Name: CFL_NUMBER 
+Option Type: ScalarOption 
+Option Category: Time-marching 
+Option values:  ['A scalar constant']
+Option default: 1.25
+Option description: Courant-Friedrichs-Lewy condition of the finest grid 
+
+Option Name: CFL_RAMP 
+Option Type: ArrayOption 
+Option Category: Time-marching 
+Option values:  ['Array']
+Option default: (1.0, 100.0, 1.0)
+Option description: No description 
+
+Option Name: ADJ_CFL_REDUCTION 
+Option Type: ScalarOption 
+Option Category: Time-marching 
+Option values:  ['A scalar constant']
+Option default: 0.8
+Option description: Reduction factor of the CFL coefficient in the adjoint problem 
+
+Option Name: TURB_CFL_REDUCTION 
+Option Type: ScalarOption 
+Option Category: Time-marching 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Reduction factor of the CFL coefficient in the level set problem 
+
+Option Name: ADJTURB_CFL_REDUCTION 
+Option Type: ScalarOption 
+Option Category: Time-marching 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Reduction factor of the CFL coefficient in the turbulent adjoint problem 
+
+Option Name: EXT_ITER 
+Option Type: ScalarOption 
+Option Category: Time-marching 
+Option values:  ['A scalar constant']
+Option default: 999999
+Option description: Number of total iterations 
+
+Option Name: RK_ALPHA_COEFF 
+Option Type: ListOption 
+Option Category: Time-marching 
+Option values:  ['List']
+Option default: ( 0.66667, 0.66667, 1.000000 )
+Option description: Runge-Kutta alpha coefficients 
+
+Option Name: UNST_TIMESTEP 
+Option Type: ScalarOption 
+Option Category: Time-marching 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Time Step for dual time stepping simulations (s) 
+
+Option Name: UNST_TIME 
+Option Type: ScalarOption 
+Option Category: Time-marching 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Total Physical Time for dual time stepping simulations (s) 
+
+Option Name: UNST_CFL_NUMBER 
+Option Type: ScalarOption 
+Option Category: Time-marching 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Unsteady Courant-Friedrichs-Lewy number of the finest grid 
+
+Option Name: UNST_INT_ITER 
+Option Type: ScalarOption 
+Option Category: Time-marching 
+Option values:  ['A scalar constant']
+Option default: 100
+Option description: Number of internal iterations (dual time method) 
+
+Option Name: TIME_INSTANCES 
+Option Type: ScalarOption 
+Option Category: Time-marching 
+Option values:  ['A scalar constant']
+Option default: 1
+Option description: Integer number of periodic time instances for Time Spectral 
+
+Option Name: UNST_RESTART_ITER 
+Option Type: ScalarOption 
+Option Category: Time-marching 
+Option values:  ['A scalar constant']
+Option default: 0
+Option description: Iteration number to begin unsteady restarts (dual time method) 
+
+Option Name: UNST_ADJOINT_ITER 
+Option Type: ScalarOption 
+Option Category: Time-marching 
+Option values:  ['A scalar constant']
+Option default: 0
+Option description: Starting direct solver iteration for the unsteady adjoint 
+
+Option Name: TIME_DISCRE_FLOW 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']
+Option default: EULER_IMPLICIT
+Option description: Time discretization 
+
+Option Name: TIME_DISCRE_TNE2 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']
+Option default: EULER_IMPLICIT
+Option description: Time discretization 
+
+Option Name: TIME_DISCRE_ADJTNE2 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']
+Option default: EULER_IMPLICIT
+Option description: Time discretization 
+
+Option Name: TIME_DISCRE_ADJLEVELSET 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']
+Option default: EULER_IMPLICIT
+Option description: Time discretization 
+
+Option Name: TIME_DISCRE_ADJ 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']
+Option default: EULER_IMPLICIT
+Option description: Time discretization 
+
+Option Name: TIME_DISCRE_LIN 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']
+Option default: EULER_IMPLICIT
+Option description: Time discretization 
+
+Option Name: TIME_DISCRE_TURB 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']
+Option default: EULER_IMPLICIT
+Option description: Time discretization 
+
+Option Name: TIME_DISCRE_ADJTURB 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']
+Option default: EULER_IMPLICIT
+Option description: Time discretization 
+
+Option Name: TIME_DISCRE_WAVE 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']
+Option default: EULER_IMPLICIT
+Option description: Time discretization 
+
+Option Name: TIME_DISCRE_FEA 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']
+Option default: EULER_IMPLICIT
+Option description: Time discretization 
+
+Option Name: TIME_DISCRE_HEAT 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']
+Option default: EULER_IMPLICIT
+Option description: Time discretization 
+
+Option Name: TIME_DISCRE_POISSON 
+Option Type: EnumOption 
+Option Category: Time-marching 
+Option values:  ['RUNGE-KUTTA_EXPLICIT', 'EULER_EXPLICIT', 'EULER_IMPLICIT']
+Option default: EULER_IMPLICIT
+Option description: Time discretization 
+
+Option Name: LINEAR_SOLVER 
+Option Type: EnumOption 
+Option Category: Linear solver definition 
+Option values:  ['STEEPEST_DESCENT', 'NEWTON', 'QUASI_NEWTON', 'CONJUGATE_GRADIENT', 'BCGSTAB', 'FGMRES']
+Option default: FGMRES
+Option description: Linear solver for the implicit, mesh deformation, or discrete adjoint systems 
+
+Option Name: LINEAR_SOLVER_PREC 
+Option Type: EnumOption 
+Option Category: Linear solver definition 
+Option values:  ['JACOBI', 'LU_SGS', 'LINELET']
+Option default: LU_SGS
+Option description: Preconditioner for the Krylov linear solvers 
+
+Option Name: LINEAR_SOLVER_ERROR 
+Option Type: ScalarOption 
+Option Category: Linear solver definition 
+Option values:  ['A scalar constant']
+Option default: 1E-5
+Option description: Minimum error threshold for the linear solver for the implicit formulation 
+
+Option Name: LINEAR_SOLVER_ITER 
+Option Type: ScalarOption 
+Option Category: Linear solver definition 
+Option values:  ['A scalar constant']
+Option default: 10
+Option description: Maximum number of iterations of the linear solver for the implicit formulation 
+
+Option Name: LINEAR_SOLVER_RELAX 
+Option Type: ScalarOption 
+Option Category: Linear solver definition 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Relaxation of the linear solver for the implicit formulation 
+
+Option Name: ROE_TURKEL_PREC 
+Option Type: SpecialOption 
+Option Category: Linear solver definition 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Roe-Turkel preconditioning for low Mach number flows 
+
+Option Name: MIN_ROE_TURKEL_PREC 
+Option Type: ScalarOption 
+Option Category: Linear solver definition 
+Option values:  ['A scalar constant']
+Option default: 0.01
+Option description: Time Step for dual time stepping simulations (s) 
+
+Option Name: MAX_ROE_TURKEL_PREC 
+Option Type: ScalarOption 
+Option Category: Linear solver definition 
+Option values:  ['A scalar constant']
+Option default: 0.2
+Option description: Time Step for dual time stepping simulations (s) 
+
+Option Name: ADJTURB_LIN_SOLVER 
+Option Type: EnumOption 
+Option Category: Linear solver definition 
+Option values:  ['STEEPEST_DESCENT', 'NEWTON', 'QUASI_NEWTON', 'CONJUGATE_GRADIENT', 'BCGSTAB', 'FGMRES']
+Option default: FGMRES
+Option description: Linear solver for the turbulent adjoint systems 
+
+Option Name: ADJTURB_LIN_PREC 
+Option Type: EnumOption 
+Option Category: Linear solver definition 
+Option values:  ['JACOBI', 'LU_SGS', 'LINELET']
+Option default: LU_SGS
+Option description: Preconditioner for the turbulent adjoint Krylov linear solvers 
+
+Option Name: ADJTURB_LIN_ERROR 
+Option Type: ScalarOption 
+Option Category: Linear solver definition 
+Option values:  ['A scalar constant']
+Option default: 1E-5
+Option description: Minimum error threshold for the turbulent adjoint linear solver for the implicit formulation 
+
+Option Name: ADJTURB_LIN_ITER 
+Option Type: ScalarOption 
+Option Category: Linear solver definition 
+Option values:  ['A scalar constant']
+Option default: 10
+Option description: Maximum number of iterations of the turbulent adjoint linear solver for the implicit formulation 
+
+Option Name: GRID_MOVEMENT 
+Option Type: SpecialOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Mesh motion for unsteady simulations 
+
+Option Name: GRID_MOVEMENT_KIND 
+Option Type: EnumListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['Enum list']
+Option default: GridMovement_Map
+Option description: Type of mesh motion 
+
+Option Name: MARKER_MOVING 
+Option Type: MarkerOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_Moving
+Option description: Marker(s) of moving surfaces (MOVING_WALL or DEFORMING grid motion). 
+
+Option Name: MACH_MOTION 
+Option Type: ScalarOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Mach number (non-dimensional, based on the mesh velocity and freestream vals.) 
+
+Option Name: MOTION_ORIGIN_X 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Motion_Origin_X
+Option description: Coordinates of the rigid motion origin 
+
+Option Name: MOTION_ORIGIN_Y 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Motion_Origin_Y
+Option description: Coordinates of the rigid motion origin 
+
+Option Name: MOTION_ORIGIN_Z 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Motion_Origin_Z
+Option description: Coordinates of the rigid motion origin 
+
+Option Name: TRANSLATION_RATE_X 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Translation_Rate_X
+Option description: Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only) 
+
+Option Name: TRANSLATION_RATE_Y 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Translation_Rate_Y
+Option description: Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only) 
+
+Option Name: TRANSLATION_RATE_Z 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Translation_Rate_Z
+Option description: Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only) 
+
+Option Name: ROTATION_RATE_X 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Rotation_Rate_X
+Option description: Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only) 
+
+Option Name: ROTATION_RATE_Y 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Rotation_Rate_Y
+Option description: Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only) 
+
+Option Name: ROTATION_RATE_Z 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Rotation_Rate_Z
+Option description: Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only) 
+
+Option Name: PITCHING_OMEGA_X 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Pitching_Omega_X
+Option description: Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only) 
+
+Option Name: PITCHING_OMEGA_Y 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Pitching_Omega_Y
+Option description: Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only) 
+
+Option Name: PITCHING_OMEGA_Z 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Pitching_Omega_Z
+Option description: Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only) 
+
+Option Name: PITCHING_AMPL_X 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Pitching_Ampl_X
+Option description: Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only) 
+
+Option Name: PITCHING_AMPL_Y 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Pitching_Ampl_Y
+Option description: Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only) 
+
+Option Name: PITCHING_AMPL_Z 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Pitching_Ampl_Z
+Option description: Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only) 
+
+Option Name: PITCHING_PHASE_X 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Pitching_Phase_X
+Option description: Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only) 
+
+Option Name: PITCHING_PHASE_Y 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Pitching_Phase_Y
+Option description: Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only) 
+
+Option Name: PITCHING_PHASE_Z 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Pitching_Phase_Z
+Option description: Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only) 
+
+Option Name: PLUNGING_OMEGA_X 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Plunging_Omega_X
+Option description: Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only) 
+
+Option Name: PLUNGING_OMEGA_Y 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Plunging_Omega_Y
+Option description: Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only) 
+
+Option Name: PLUNGING_OMEGA_Z 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Plunging_Omega_Z
+Option description: Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only) 
+
+Option Name: PLUNGING_AMPL_X 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Plunging_Ampl_X
+Option description: Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only) 
+
+Option Name: PLUNGING_AMPL_Y 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Plunging_Ampl_Y
+Option description: Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only) 
+
+Option Name: PLUNGING_AMPL_Z 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: Plunging_Ampl_Z
+Option description: Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only) 
+
+Option Name: MOVE_MOTION_ORIGIN 
+Option Type: ListOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['List']
+Option default: MoveMotion_Origin
+Option description: Value to move motion origins (1 or 0) 
+
+Option Name: MOTION_FILENAME 
+Option Type: ScalarOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['A scalar constant']
+Option default: mesh_motion.dat
+Option description:  
+
+Option Name: FREQ_PLUNGE_AEROELASTIC 
+Option Type: ScalarOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['A scalar constant']
+Option default: 100
+Option description: Uncoupled Aeroelastic Frequency Plunge. 
+
+Option Name: FREQ_PITCH_AEROELASTIC 
+Option Type: ScalarOption 
+Option Category: Dynamic mesh definition 
+Option values:  ['A scalar constant']
+Option default: 100
+Option description: Uncoupled Aeroelastic Frequency Pitch. 
+
+Option Name: WIND_GUST 
+Option Type: SpecialOption 
+Option Category: Wind Gust 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Apply a wind gust 
+
+Option Name: GUST_TYPE 
+Option Type: EnumOption 
+Option Category: Wind Gust 
+Option values:  ['NONE', 'TOP_HAT', 'SINE', 'ONE_M_COSINE']
+Option default: NONE
+Option description: Type of gust 
+
+Option Name: GUST_WAVELENGTH 
+Option Type: ScalarOption 
+Option Category: Wind Gust 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Gust wavelenght (meters) 
+
+Option Name: GUST_PERIODS 
+Option Type: ScalarOption 
+Option Category: Wind Gust 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Number of gust periods 
+
+Option Name: GUST_AMPL 
+Option Type: ScalarOption 
+Option Category: Wind Gust 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Gust amplitude (m/s) 
+
+Option Name: GUST_BEGIN_TIME 
+Option Type: ScalarOption 
+Option Category: Wind Gust 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Time at which to begin the gust (sec) 
+
+Option Name: GUST_BEGIN_LOC 
+Option Type: ScalarOption 
+Option Category: Wind Gust 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Location at which the gust begins (meters) 
+
+Option Name: GUST_DIR 
+Option Type: EnumOption 
+Option Category: Wind Gust 
+Option values:  ['X_DIR', 'Y_DIR']
+Option default: Y_DIR
+Option description: Direction of the gust X or Y dir 
+
+Option Name: CONV_CRITERIA 
+Option Type: EnumOption 
+Option Category: Convergence 
+Option values:  ['CAUCHY', 'RESIDUAL']
+Option default: RESIDUAL
+Option description: Convergence criteria 
+
+Option Name: RESIDUAL_REDUCTION 
+Option Type: ScalarOption 
+Option Category: Convergence 
+Option values:  ['A scalar constant']
+Option default: 3.0
+Option description: Residual reduction (order of magnitude with respect to the initial value) 
+
+Option Name: RESIDUAL_MINVAL 
+Option Type: ScalarOption 
+Option Category: Convergence 
+Option values:  ['A scalar constant']
+Option default: -8.0
+Option description: Min value of the residual (log10 of the residual) 
+
+Option Name: STARTCONV_ITER 
+Option Type: ScalarOption 
+Option Category: Convergence 
+Option values:  ['A scalar constant']
+Option default: 5
+Option description: Iteration number to begin convergence monitoring 
+
+Option Name: CAUCHY_ELEMS 
+Option Type: ScalarOption 
+Option Category: Convergence 
+Option values:  ['A scalar constant']
+Option default: 100
+Option description: Number of elements to apply the criteria 
+
+Option Name: CAUCHY_EPS 
+Option Type: ScalarOption 
+Option Category: Convergence 
+Option values:  ['A scalar constant']
+Option default: 1E-10
+Option description: Epsilon to control the series convergence 
+
+Option Name: CAUCHY_FUNC_FLOW 
+Option Type: EnumOption 
+Option Category: Convergence 
+Option values:  ['DRAG', 'LIFT', 'SIDEFORCE', 'EFFICIENCY', 'PRESSURE', 'MOMENT_X', 'MOMENT_Y', 'MOMENT_Z', 'EQUIVALENT_AREA', 'NEARFIELD_PRESSURE', 'FORCE_X', 'FORCE_Y', 'FORCE_Z', 'THRUST', 'TORQUE', 'HEAT_LOAD', 'FIGURE_OF_MERIT', 'FREE_SURFACE', 'TOTAL_VOLUME', 'MAX_THICKNESS', 'CLEARANCE', 'MIN_THICKNESS', 'MAX_THICK_SEC1', 'MAX_THICK_SEC2', 'MAX_THICK_SEC3', 'MAX_THICK_SEC4', 'MAX_THICK_SEC5']
+Option default: DRAG
+Option description: Flow functional for the Cauchy criteria 
+
+Option Name: CAUCHY_FUNC_ADJ 
+Option Type: EnumOption 
+Option Category: Convergence 
+Option values:  ['SENS_GEOMETRY', 'SENS_MACH', 'SENS_AOA', 'SENS_AOS']
+Option default: SENS_GEOMETRY
+Option description: Adjoint functional for the Cauchy criteria 
+
+Option Name: CAUCHY_FUNC_LIN 
+Option Type: EnumOption 
+Option Category: Convergence 
+Option values:  ['DELTA_DRAG', 'DELTA_LIFT']
+Option default: DELTA_DRAG
+Option description: Linearized functional for the Cauchy criteria 
+
+Option Name: FULLMG_CAUCHY_EPS 
+Option Type: ScalarOption 
+Option Category: Convergence 
+Option values:  ['A scalar constant']
+Option default: 1E-4
+Option description: Epsilon for a full multigrid method evaluation 
+
+Option Name: FULLMG 
+Option Type: SpecialOption 
+Option Category: Multi-grid 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Full multi-grid 
+
+Option Name: START_UP_ITER 
+Option Type: ScalarOption 
+Option Category: Multi-grid 
+Option values:  ['A scalar constant']
+Option default: 0
+Option description: Start up iterations using the fine grid only 
+
+Option Name: MGLEVEL 
+Option Type: ScalarOption 
+Option Category: Multi-grid 
+Option values:  ['A scalar constant']
+Option default: 3
+Option description: Multi-grid Levels 
+
+Option Name: MGCYCLE 
+Option Type: ScalarOption 
+Option Category: Multi-grid 
+Option values:  ['A scalar constant']
+Option default: 0
+Option description: Multi-grid Cycle (0 = V cycle, 1 = W Cycle) 
+
+Option Name: MG_PRE_SMOOTH 
+Option Type: ListOption 
+Option Category: Multi-grid 
+Option values:  ['List']
+Option default: MG_PreSmooth
+Option description: Multi-grid pre-smoothing level 
+
+Option Name: MG_POST_SMOOTH 
+Option Type: ListOption 
+Option Category: Multi-grid 
+Option values:  ['List']
+Option default: MG_PostSmooth
+Option description: Multi-grid post-smoothing level 
+
+Option Name: MG_CORRECTION_SMOOTH 
+Option Type: ListOption 
+Option Category: Multi-grid 
+Option values:  ['List']
+Option default: MG_CorrecSmooth
+Option description: Jacobi implicit smoothing of the correction 
+
+Option Name: MG_DAMP_RESTRICTION 
+Option Type: ScalarOption 
+Option Category: Multi-grid 
+Option values:  ['A scalar constant']
+Option default: 0.9
+Option description: Damping factor for the residual restriction 
+
+Option Name: MG_DAMP_PROLONGATION 
+Option Type: ScalarOption 
+Option Category: Multi-grid 
+Option values:  ['A scalar constant']
+Option default: 0.9
+Option description: Damping factor for the correction prolongation 
+
+Option Name: MG_CFL_REDUCTION 
+Option Type: ScalarOption 
+Option Category: Multi-grid 
+Option values:  ['A scalar constant']
+Option default: 0.9
+Option description: CFL reduction factor on the coarse levels 
+
+Option Name: MAX_CHILDREN 
+Option Type: ScalarOption 
+Option Category: Multi-grid 
+Option values:  ['A scalar constant']
+Option default: 500
+Option description: Maximum number of children in the agglomeration stage 
+
+Option Name: MAX_DIMENSION 
+Option Type: ScalarOption 
+Option Category: Multi-grid 
+Option values:  ['A scalar constant']
+Option default: 0.1
+Option description: Maximum length of an agglomerated element (relative to the domain) 
+
+Option Name: NUM_METHOD_GRAD 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['GREEN_GAUSS', 'WEIGHTED_LEAST_SQUARES']
+Option default: WEIGHTED_LEAST_SQUARES
+Option description: Numerical method for spatial gradients 
+
+Option Name: LIMITER_COEFF 
+Option Type: ScalarOption 
+Option Category: Spatial Discretization 
+Option values:  ['A scalar constant']
+Option default: 0.5
+Option description: Coefficient for the limiter 
+
+Option Name: SHARP_EDGES_COEFF 
+Option Type: ScalarOption 
+Option Category: Spatial Discretization 
+Option values:  ['A scalar constant']
+Option default: 3.0
+Option description: Coefficient for detecting the limit of the sharp edges 
+
+Option Name: CONV_NUM_METHOD_FLOW 
+Option Type: ConvectOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']
+Option default: ROE-1ST_ORDER
+Option description: No description 
+
+Option Name: VISC_NUM_METHOD_FLOW 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']
+Option default: AVG_GRAD_CORRECTED
+Option description: Viscous numerical method 
+
+Option Name: SOUR_NUM_METHOD_FLOW 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: NONE
+Option description: Source term numerical method 
+
+Option Name: SLOPE_LIMITER_FLOW 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']
+Option default: VENKATAKRISHNAN
+Option description: Slope limiter 
+
+Option Name: AD_COEFF_FLOW 
+Option Type: ArrayOption 
+Option Category: Spatial Discretization 
+Option values:  ['Array']
+Option default: (1.0, 100.0, 1.0)
+Option description: 1st, 2nd and 4th order artificial dissipation coefficients 
+
+Option Name: CONV_NUM_METHOD_ADJ 
+Option Type: ConvectOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']
+Option default: ROE-1ST_ORDER
+Option description: No description 
+
+Option Name: VISC_NUM_METHOD_ADJ 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']
+Option default: NONE
+Option description: Viscous numerical method 
+
+Option Name: SOUR_NUM_METHOD_ADJ 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: NONE
+Option description: Source term numerical method 
+
+Option Name: SLOPE_LIMITER_ADJFLOW 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']
+Option default: NONE
+Option description: Slope limiter 
+
+Option Name: AD_COEFF_ADJ 
+Option Type: ArrayOption 
+Option Category: Spatial Discretization 
+Option values:  ['Array']
+Option default: (1.0, 100.0, 1.0)
+Option description: 1st, 2nd and 4th order artificial dissipation coefficients 
+
+Option Name: SLOPE_LIMITER_TURB 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']
+Option default: VENKATAKRISHNAN
+Option description: Slope limiter 
+
+Option Name: CONV_NUM_METHOD_TURB 
+Option Type: ConvectOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']
+Option default: ROE-1ST_ORDER
+Option description: Convective numerical method 
+
+Option Name: VISC_NUM_METHOD_TURB 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']
+Option default: AVG_GRAD_CORRECTED
+Option description: Viscous numerical method 
+
+Option Name: SOUR_NUM_METHOD_TURB 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: PIECEWISE_CONSTANT
+Option description: Source term numerical method 
+
+Option Name: SLOPE_LIMITER_ADJTURB 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']
+Option default: NONE
+Option description: Slope limiter 
+
+Option Name: CONV_NUM_METHOD_ADJTURB 
+Option Type: ConvectOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']
+Option default: ROE-1ST_ORDER
+Option description: Convective numerical method 
+
+Option Name: VISC_NUM_METHOD_ADJTURB 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']
+Option default: NONE
+Option description: Viscous numerical method 
+
+Option Name: SOUR_NUM_METHOD_ADJTURB 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: NONE
+Option description: Source term numerical method 
+
+Option Name: CONV_NUM_METHOD_LIN 
+Option Type: ConvectOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']
+Option default: ROE-1ST_ORDER
+Option description: Convective numerical method 
+
+Option Name: VISC_NUM_METHOD_LIN 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']
+Option default: NONE
+Option description: Viscous numerical method 
+
+Option Name: SOUR_NUM_METHOD_LIN 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: NONE
+Option description: Source term numerical method 
+
+Option Name: AD_COEFF_LIN 
+Option Type: ArrayOption 
+Option Category: Spatial Discretization 
+Option values:  ['Array']
+Option default: (1.0, 100.0, 1.0)
+Option description: 1st, 2nd and 4th order artificial dissipation coefficients 
+
+Option Name: SLOPE_LIMITER_ADJLEVELSET 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']
+Option default: NONE
+Option description: Slope limiter 
+
+Option Name: CONV_NUM_METHOD_ADJLEVELSET 
+Option Type: ConvectOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']
+Option default: ROE-1ST_ORDER
+Option description: Convective numerical method 
+
+Option Name: VISC_NUM_METHOD_ADJLEVELSET 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']
+Option default: NONE
+Option description: Viscous numerical method 
+
+Option Name: SOUR_NUM_METHOD_ADJLEVELSET 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: NONE
+Option description: Source term numerical method 
+
+Option Name: CONV_NUM_METHOD_TNE2 
+Option Type: ConvectOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']
+Option default: ROE-1ST_ORDER
+Option description: Convective numerical method 
+
+Option Name: VISC_NUM_METHOD_TNE2 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']
+Option default: NONE
+Option description: Viscous numerical method 
+
+Option Name: SOUR_NUM_METHOD_TNE2 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: NONE
+Option description: Source term numerical method 
+
+Option Name: SLOPE_LIMITER_TNE2 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']
+Option default: NONE
+Option description: Slope limiter 
+
+Option Name: AD_COEFF_TNE2 
+Option Type: ArrayOption 
+Option Category: Spatial Discretization 
+Option values:  ['Array']
+Option default: (1.0, 100.0, 1.0)
+Option description: 1st, 2nd and 4th order artificial dissipation coefficients 
+
+Option Name: CONV_NUM_METHOD_ADJTNE2 
+Option Type: ConvectOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'ROE-1ST_ORDER', 'ROE-2ND_ORDER', 'ROE_TURKEL_1ST', 'ROE_TURKEL_2ND', 'AUSM-1ST_ORDER', 'AUSM-2ND_ORDER', 'AUSMPW+-1ST_ORDER', 'AUSMPW+-2ND_ORDER', 'HLLC-1ST_ORDER', 'HLLC-2ND_ORDER', 'SW-1ST_ORDER', 'SW-2ND_ORDER', 'MSW-1ST_ORDER', 'MSW-2ND_ORDER', 'SCALAR_UPWIND-1ST_ORDER', 'SCALAR_UPWIND-2ND_ORDER', 'CONVECTIVE_TEMPLATE', 'JST', 'LAX-FRIEDRICH']
+Option default: ROE-1ST_ORDER
+Option description: Convective numerical method 
+
+Option Name: VISC_NUM_METHOD_ADJTNE2 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']
+Option default: NONE
+Option description: Viscous numerical method 
+
+Option Name: SOUR_NUM_METHOD_ADJTNE2 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: NONE
+Option description: Source term numerical method 
+
+Option Name: SLOPE_LIMITER_ADJTNE2 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'VENKATAKRISHNAN', 'MINMOD', 'SHARP_EDGES']
+Option default: NONE
+Option description: Slope limiter 
+
+Option Name: AD_COEFF_ADJTNE2 
+Option Type: ArrayOption 
+Option Category: Spatial Discretization 
+Option values:  ['Array']
+Option default: (1.0, 100.0, 1.0)
+Option description: 1st, 2nd and 4th order artificial dissipation coefficients 
+
+Option Name: VISC_NUM_METHOD_WAVE 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']
+Option default: GALERKIN
+Option description: Viscous numerical method 
+
+Option Name: SOUR_NUM_METHOD_WAVE 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: NONE
+Option description: Source term numerical method 
+
+Option Name: VISC_NUM_METHOD_POISSON 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']
+Option default: NONE
+Option description: Viscous numerical method 
+
+Option Name: SOUR_NUM_METHOD_POISSON 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: NONE
+Option description: Source term numerical method 
+
+Option Name: VISC_NUM_METHOD_FEA 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']
+Option default: GALERKIN
+Option description: Viscous numerical method 
+
+Option Name: SOUR_NUM_METHOD_FEA 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: NONE
+Option description: Source term numerical method 
+
+Option Name: VISC_NUM_METHOD_HEAT 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'AVG_GRAD', 'AVG_GRAD_CORRECTED', 'GALERKIN']
+Option default: GALERKIN
+Option description: Viscous numerical method 
+
+Option Name: SOUR_NUM_METHOD_HEAT 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: NONE
+Option description: Source term numerical method 
+
+Option Name: SOUR_NUM_METHOD_TEMPLATE 
+Option Type: EnumOption 
+Option Category: Spatial Discretization 
+Option values:  ['NONE', 'PIECEWISE_CONSTANT', 'CHARGE_DIST', 'TEMPLATE_SOURCE_METHOD']
+Option default: NONE
+Option description: Source term numerical method 
+
+Option Name: ADJ_LIMIT 
+Option Type: ScalarOption 
+Option Category: Adjoint and Gradient 
+Option values:  ['A scalar constant']
+Option default: 1E6
+Option description: Limit value for the adjoint variable 
+
+Option Name: ADJ_OBJFUNC 
+Option Type: EnumOption 
+Option Category: Adjoint and Gradient 
+Option values:  ['DRAG', 'LIFT', 'SIDEFORCE', 'EFFICIENCY', 'PRESSURE', 'MOMENT_X', 'MOMENT_Y', 'MOMENT_Z', 'EQUIVALENT_AREA', 'NEARFIELD_PRESSURE', 'FORCE_X', 'FORCE_Y', 'FORCE_Z', 'THRUST', 'TORQUE', 'HEAT_LOAD', 'FIGURE_OF_MERIT', 'FREE_SURFACE', 'TOTAL_VOLUME', 'MAX_THICKNESS', 'CLEARANCE', 'MIN_THICKNESS', 'MAX_THICK_SEC1', 'MAX_THICK_SEC2', 'MAX_THICK_SEC3', 'MAX_THICK_SEC4', 'MAX_THICK_SEC5']
+Option default: DRAG
+Option description: Adjoint problem boundary condition 
+
+Option Name: GEO_SECTION_LIMIT 
+Option Type: ArrayOption 
+Option Category: Adjoint and Gradient 
+Option values:  ['Array']
+Option default: (1.0, 100.0, 1.0)
+Option description: No description 
+
+Option Name: GEO_MODE 
+Option Type: EnumOption 
+Option Category: Adjoint and Gradient 
+Option values:  ['FUNCTION', 'GRADIENT']
+Option default: FUNCTION
+Option description: Mode of the GDC code (analysis, or gradient) 
+
+Option Name: DRAG_IN_SONICBOOM 
+Option Type: ScalarOption 
+Option Category: Adjoint and Gradient 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Drag weight in sonic boom Objective Function (from 0.0 to 1.0) 
+
+Option Name: SENS_SMOOTHING 
+Option Type: EnumOption 
+Option Category: Adjoint and Gradient 
+Option values:  ['NONE', 'SOBOLEV', 'BIGRID']
+Option default: NONE
+Option description: Sensitivity smoothing 
+
+Option Name: CONTINUOUS_EQNS 
+Option Type: EnumOption 
+Option Category: Adjoint and Gradient 
+Option values:  ['EULER', 'NAVIER_STOKES']
+Option default: EULER
+Option description: Continuous governing equation set 
+
+Option Name: DISCRETE_EQNS 
+Option Type: EnumOption 
+Option Category: Adjoint and Gradient 
+Option values:  ['NONE', 'SA', 'SST']
+Option default: NONE
+Option description: Discrete governing equation set 
+
+Option Name: FROZEN_VISC 
+Option Type: SpecialOption 
+Option Category: Adjoint and Gradient 
+Option values:  ['YES', 'NO']
+Option default: YES
+Option description: Adjoint frozen viscosity 
+
+Option Name: CTE_VISCOUS_DRAG 
+Option Type: ScalarOption 
+Option Category: Adjoint and Gradient 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description:  
+
+Option Name: SENS_REMOVE_SHARP 
+Option Type: SpecialOption 
+Option Category: Adjoint and Gradient 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Remove sharp edges from the sensitivity evaluation 
+
+Option Name: OUTPUT_FORMAT 
+Option Type: EnumOption 
+Option Category: Input/output files and formats 
+Option values:  ['TECPLOT', 'EXCEL', 'CSV', 'STL', 'TECPLOT_BINARY', 'CGNS', 'PARAVIEW']
+Option default: TECPLOT
+Option description: I/O 
+
+Option Name: MESH_FORMAT 
+Option Type: EnumOption 
+Option Category: Input/output files and formats 
+Option values:  ['SU2', 'CGNS', 'NETCDF_ASCII']
+Option default: SU2
+Option description: Mesh input file format 
+
+Option Name: CGNS_TO_SU2 
+Option Type: SpecialOption 
+Option Category: Input/output files and formats 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Convert a CGNS mesh to SU2 format 
+
+Option Name: MESH_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: mesh.su2
+Option description: Mesh input file 
+
+Option Name: MESH_OUT_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: mesh_out.su2
+Option description: Mesh output file 
+
+Option Name: CONV_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: history
+Option description: Output file convergence history (w/o extension) 
+
+Option Name: SOLUTION_FLOW_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: solution_flow.dat
+Option description: Restart flow input file 
+
+Option Name: FARFIELD_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: farfield.dat
+Option description: Restart flow input file 
+
+Option Name: SOLUTION_LIN_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: solution_lin.dat
+Option description: Restart linear flow input file 
+
+Option Name: SOLUTION_ADJ_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: solution_adj.dat
+Option description: Restart adjoint input file 
+
+Option Name: RESTART_FLOW_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: restart_flow.dat
+Option description: Output file restart flow 
+
+Option Name: RESTART_LIN_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: restart_lin.dat
+Option description: Output file linear flow 
+
+Option Name: RESTART_ADJ_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: restart_adj.dat
+Option description: Output file restart adjoint 
+
+Option Name: RESTART_WAVE_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: restart_wave.dat
+Option description: Output file restart wave 
+
+Option Name: VOLUME_FLOW_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: flow
+Option description: Output file flow (w/o extension) variables 
+
+Option Name: VOLUME_STRUCTURE_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: structure
+Option description: Output file structure (w/o extension) variables 
+
+Option Name: SURFACE_STRUCTURE_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: surface_structure
+Option description: Output file structure (w/o extension) variables 
+
+Option Name: SURFACE_WAVE_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: surface_wave
+Option description: Output file structure (w/o extension) variables 
+
+Option Name: SURFACE_HEAT_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: surface_heat
+Option description: Output file structure (w/o extension) variables 
+
+Option Name: VOLUME_WAVE_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: wave
+Option description: Output file wave (w/o extension) variables 
+
+Option Name: VOLUME_HEAT_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: heat
+Option description: Output file wave (w/o extension) variables 
+
+Option Name: VOLUME_ADJWAVE_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: adjoint_wave
+Option description: Output file adj. wave (w/o extension) variables 
+
+Option Name: VOLUME_ADJ_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: adjoint
+Option description: Output file adjoint (w/o extension) variables 
+
+Option Name: VOLUME_LIN_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: linearized
+Option description: Output file linear (w/o extension) variables 
+
+Option Name: GRAD_OBJFUNC_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: of_grad.dat
+Option description: Output objective function gradient 
+
+Option Name: VALUE_OBJFUNC_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: of_func.dat
+Option description: Output objective function 
+
+Option Name: SURFACE_FLOW_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: surface_flow
+Option description: Output file surface flow coefficient (w/o extension) 
+
+Option Name: SURFACE_ADJ_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: surface_adjoint
+Option description: Output file surface adjoint coefficient (w/o extension) 
+
+Option Name: SURFACE_LIN_FILENAME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: surface_linear
+Option description: Output file surface linear coefficient (w/o extension) 
+
+Option Name: WRT_SOL_FREQ 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: 1000
+Option description: Writing solution file frequency 
+
+Option Name: WRT_SOL_FREQ_DUALTIME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: 1
+Option description: Writing solution file frequency 
+
+Option Name: WRT_CON_FREQ 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: 1
+Option description: Writing convergence history frequency 
+
+Option Name: WRT_CON_FREQ_DUALTIME 
+Option Type: ScalarOption 
+Option Category: Input/output files and formats 
+Option values:  ['A scalar constant']
+Option default: 10
+Option description: Writing convergence history frequency for the dual time 
+
+Option Name: WRT_VOL_SOL 
+Option Type: SpecialOption 
+Option Category: Input/output files and formats 
+Option values:  ['YES', 'NO']
+Option default: YES
+Option description: Write a volume solution file 
+
+Option Name: WRT_SRF_SOL 
+Option Type: SpecialOption 
+Option Category: Input/output files and formats 
+Option values:  ['YES', 'NO']
+Option default: YES
+Option description: Write a surface solution file 
+
+Option Name: WRT_CSV_SOL 
+Option Type: SpecialOption 
+Option Category: Input/output files and formats 
+Option values:  ['YES', 'NO']
+Option default: YES
+Option description: Write a surface CSV solution file 
+
+Option Name: WRT_RESTART 
+Option Type: SpecialOption 
+Option Category: Input/output files and formats 
+Option values:  ['YES', 'NO']
+Option default: YES
+Option description: Write a restart solution file 
+
+Option Name: WRT_RESIDUALS 
+Option Type: SpecialOption 
+Option Category: Input/output files and formats 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Output residual info to solution/restart file 
+
+Option Name: WRT_HALO 
+Option Type: SpecialOption 
+Option Category: Input/output files and formats 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Output the rind layers in the solution files 
+
+Option Name: WRT_SECTIONAL_FORCES 
+Option Type: SpecialOption 
+Option Category: Input/output files and formats 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Output sectional forces for specified markers. 
+
+Option Name: EQUIV_AREA 
+Option Type: SpecialOption 
+Option Category: Equivalent Area 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Evaluate equivalent area on the Near-Field 
+
+Option Name: EA_INT_LIMIT 
+Option Type: ArrayOption 
+Option Category: Equivalent Area 
+Option values:  ['Array']
+Option default: (1.0, 100.0, 1.0)
+Option description: Integration limits of the equivalent area ( xmin, xmax, Dist_NearField ) 
+
+Option Name: GAS_CONSTANT 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 287.87
+Option description: Specific gas constant (287.87 J/kg*K (air), only for compressible flows) 
+
+Option Name: GAMMA_VALUE 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 1.4
+Option description: Ratio of specific heats (1.4 (air), only for compressible flows) 
+
+Option Name: REYNOLDS_NUMBER 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Reynolds number (non-dimensional, based on the free-stream values) 
+
+Option Name: REYNOLDS_LENGTH 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Reynolds length (1 m by default) 
+
+Option Name: PRANDTL_LAM 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 0.72
+Option description: Laminar Prandtl number (0.72 (air), only for compressible flows) 
+
+Option Name: PRANDTL_TURB 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 0.90
+Option description: Turbulent Prandtl number (0.9 (air), only for compressible flows) 
+
+Option Name: BULK_MODULUS 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 2.15E9
+Option description: Value of the Bulk Modulus 
+
+Option Name: ARTCOMP_FACTOR 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Artifical compressibility factor 
+
+Option Name: MACH_NUMBER 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Mach number (non-dimensional, based on the free-stream values) 
+
+Option Name: MIXTURE_MOLAR_MASS 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 28.97
+Option description: No description 
+
+Option Name: FREESTREAM_PRESSURE 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 101325.0
+Option description: Free-stream pressure (101325.0 N/m^2 by default) 
+
+Option Name: FREESTREAM_DENSITY 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: -1.0
+Option description: Free-stream density (1.2886 Kg/m^3 (air), 998.2 Kg/m^3 (water)) 
+
+Option Name: FREESTREAM_TEMPERATURE 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 273.15
+Option description: Free-stream temperature (273.15 K by default) 
+
+Option Name: FREESTREAM_TEMPERATURE_VE 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 273.15
+Option description: Free-stream vibrational-electronic temperature (273.15 K by default) 
+
+Option Name: FREESTREAM_VELOCITY 
+Option Type: ArrayOption 
+Option Category: Freestream Conditions 
+Option values:  ['Array']
+Option default: (1.0, 100.0, 1.0)
+Option description: Free-stream velocity (m/s) 
+
+Option Name: FREESTREAM_VISCOSITY 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: -1.0
+Option description: Free-stream viscosity (1.853E-5 Ns/m^2 (air), 0.798E-3 Ns/m^2 (water)) 
+
+Option Name: FREESTREAM_INTERMITTENCY 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description:  
+
+Option Name: FREESTREAM_TURBULENCEINTENSITY 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 0.05
+Option description:  
+
+Option Name: FREESTREAM_NU_FACTOR 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 3.0
+Option description:  
+
+Option Name: FREESTREAM_TURB2LAMVISCRATIO 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 10.0
+Option description:  
+
+Option Name: SIDESLIP_ANGLE 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Side-slip angle (degrees, only for compressible flows) 
+
+Option Name: AOA 
+Option Type: ScalarOption 
+Option Category: Freestream Conditions 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Angle of attack (degrees, only for compressible flows) 
+
+Option Name: REF_ORIGIN_MOMENT_X 
+Option Type: ListOption 
+Option Category: Reference Conditions 
+Option values:  ['List']
+Option default: RefOriginMoment_X
+Option description: X Reference origin for moment computation 
+
+Option Name: REF_ORIGIN_MOMENT_Y 
+Option Type: ListOption 
+Option Category: Reference Conditions 
+Option values:  ['List']
+Option default: RefOriginMoment_Y
+Option description: Y Reference origin for moment computation 
+
+Option Name: REF_ORIGIN_MOMENT_Z 
+Option Type: ListOption 
+Option Category: Reference Conditions 
+Option values:  ['List']
+Option default: RefOriginMoment_Z
+Option description: Z Reference origin for moment computation 
+
+Option Name: REF_AREA 
+Option Type: ScalarOption 
+Option Category: Reference Conditions 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Reference area for force coefficients (0 implies automatic calculation) 
+
+Option Name: REF_LENGTH_MOMENT 
+Option Type: ScalarOption 
+Option Category: Reference Conditions 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Reference length for pitching, rolling, and yawing non-dimensional moment 
+
+Option Name: REF_ELEM_LENGTH 
+Option Type: ScalarOption 
+Option Category: Reference Conditions 
+Option values:  ['A scalar constant']
+Option default: 0.1
+Option description: Reference element length for computing the slope limiter epsilon 
+
+Option Name: REF_SHARP_EDGES 
+Option Type: ScalarOption 
+Option Category: Reference Conditions 
+Option values:  ['A scalar constant']
+Option default: 3.0
+Option description: Reference coefficient for detecting sharp edges 
+
+Option Name: REF_PRESSURE 
+Option Type: ScalarOption 
+Option Category: Reference Conditions 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Reference pressure (1.0 N/m^2 by default, only for compressible flows) 
+
+Option Name: REF_TEMPERATURE 
+Option Type: ScalarOption 
+Option Category: Reference Conditions 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Reference temperature (1.0 K by default, only for compressible flows) 
+
+Option Name: REF_DENSITY 
+Option Type: ScalarOption 
+Option Category: Reference Conditions 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Reference density (1.0 Kg/m^3 by default, only for compressible flows) 
+
+Option Name: REF_VELOCITY 
+Option Type: ScalarOption 
+Option Category: Reference Conditions 
+Option values:  ['A scalar constant']
+Option default: -1.0
+Option description: Reference velocity (incompressible only) 
+
+Option Name: REF_VISCOSITY 
+Option Type: ScalarOption 
+Option Category: Reference Conditions 
+Option values:  ['A scalar constant']
+Option default: -1.0
+Option description: Reference viscosity (incompressible only) 
+
+Option Name: CONVERT_TO_METER 
+Option Type: ScalarOption 
+Option Category: Reference Conditions 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Factor for converting the grid to meters 
+
+Option Name: WRITE_CONVERTED_MESH 
+Option Type: SpecialOption 
+Option Category: Reference Conditions 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Write a new mesh converted to meters 
+
+Option Name: GAS_MODEL 
+Option Type: EnumOption 
+Option Category: Reacting Flow 
+Option values:  ['NONE', 'ARGON', 'AIR-7', 'AIR-21', 'O2', 'N2', 'AIR-5', 'ARGON-SID', 'ONESPECIES']
+Option default: ARGON
+Option description: Specify chemical model for multi-species simulations 
+
+Option Name: GAS_COMPOSITION 
+Option Type: ListOption 
+Option Category: Reacting Flow 
+Option values:  ['List']
+Option default: Gas_Composition
+Option description:  
+
+Option Name: RATIO_DENSITY 
+Option Type: ScalarOption 
+Option Category: Free surface simulation 
+Option values:  ['A scalar constant']
+Option default: 0.1
+Option description: Ratio of density for two phase problems 
+
+Option Name: RATIO_VISCOSITY 
+Option Type: ScalarOption 
+Option Category: Free surface simulation 
+Option values:  ['A scalar constant']
+Option default: 0.1
+Option description: Ratio of viscosity for two phase problems 
+
+Option Name: FREESURFACE_ZERO 
+Option Type: ScalarOption 
+Option Category: Free surface simulation 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Location of the freesurface (y or z coordinate) 
+
+Option Name: FREESURFACE_DEPTH 
+Option Type: ScalarOption 
+Option Category: Free surface simulation 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Free surface depth surface (x or y coordinate) 
+
+Option Name: FREESURFACE_THICKNESS 
+Option Type: ScalarOption 
+Option Category: Free surface simulation 
+Option values:  ['A scalar constant']
+Option default: 0.1
+Option description: Thickness of the interface in a free surface problem 
+
+Option Name: FREESURFACE_DAMPING_COEFF 
+Option Type: ScalarOption 
+Option Category: Free surface simulation 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Free surface damping coefficient 
+
+Option Name: FREESURFACE_DAMPING_LENGTH 
+Option Type: ScalarOption 
+Option Category: Free surface simulation 
+Option values:  ['A scalar constant']
+Option default: 1.0
+Option description: Free surface damping length (times the baseline wave) 
+
+Option Name: FREESURFACE_OUTLET 
+Option Type: ScalarOption 
+Option Category: Free surface simulation 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: Location of the free surface outlet surface (x or y coordinate) 
+
+Option Name: DV_KIND 
+Option Type: EnumListOption 
+Option Category: Grid deformation 
+Option values:  ['Enum list']
+Option default: Param_Map
+Option description: Kind of deformation 
+
+Option Name: DV_MARKER 
+Option Type: MarkerOption 
+Option Category: Grid deformation 
+Option values:  ['Valid marker name from grid file']
+Option default: Marker_DV
+Option description: Marker of the surface to which we are going apply the shape deformation 
+
+Option Name: DV_VALUE 
+Option Type: ListOption 
+Option Category: Grid deformation 
+Option values:  ['List']
+Option default: DV_Value
+Option description: New value of the shape deformation 
+
+Option Name: DV_PARAM 
+Option Type: DVParamOption 
+Option Category: Grid deformation 
+Option values:  ['DV Param']
+Option default: Design_Variable
+Option description: No description 
+
+Option Name: HOLD_GRID_FIXED 
+Option Type: SpecialOption 
+Option Category: Grid deformation 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Hold the grid fixed in a region 
+
+Option Name: HOLD_GRID_FIXED_COORD 
+Option Type: ArrayOption 
+Option Category: Grid deformation 
+Option values:  ['Array']
+Option default: ( -1E15, -1E15, -1E15, 1E15, 1E15, 1E15 )
+Option description: Coordinates of the box where the grid will be deformed (Xmin, Ymin, Zmin, Xmax, Ymax, Zmax) 
+
+Option Name: VISUALIZE_DEFORMATION 
+Option Type: SpecialOption 
+Option Category: Grid deformation 
+Option values:  ['YES', 'NO']
+Option default: NO
+Option description: Visualize the deformation 
+
+Option Name: GRID_DEFORM_ITER 
+Option Type: ScalarOption 
+Option Category: Grid deformation 
+Option values:  ['A scalar constant']
+Option default: 1
+Option description: Number of iterations for FEA mesh deformation (surface deformation increments) 
+
+Option Name: CYCLIC_PITCH 
+Option Type: ScalarOption 
+Option Category: Rotorcraft problem 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: No description 
+
+Option Name: COLLECTIVE_PITCH 
+Option Type: ScalarOption 
+Option Category: Rotorcraft problem 
+Option values:  ['A scalar constant']
+Option default: 0.0
+Option description: No description 
+
+Option Name: ELASTICITY_MODULUS 
+Option Type: ScalarOption 
+Option Category: FEA solver 
+Option values:  ['A scalar constant']
+Option default: 2E11
+Option description: Modulus of elasticity 
+
+Option Name: POISSON_RATIO 
+Option Type: ScalarOption 
+Option Category: FEA solver 
+Option values:  ['A scalar constant']
+Option default: 0.30
+Option description: Poisson ratio 
+
+Option Name: MATERIAL_DENSITY 
+Option Type: ScalarOption 
+Option Category: FEA solver 
+Option values:  ['A scalar constant']
+Option default: 7854
+Option description: Material density 
+
+Option Name: WAVE_SPEED 
+Option Type: ScalarOption 
+Option Category: Wave solver 
+Option values:  ['A scalar constant']
+Option default: 331.79
+Option description: Constant wave speed 
+
+Option Name: THERMAL_DIFFUSIVITY 
+Option Type: ScalarOption 
+Option Category: Heat solver 
+Option values:  ['A scalar constant']
+Option default: 1.172E-5
+Option description: Thermal diffusivity constant 
+
