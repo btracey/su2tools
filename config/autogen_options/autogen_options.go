@@ -348,7 +348,7 @@ func defaultValueFromArgs(args []string, optionType string, lines []string, prev
 		if err != nil {
 			return "", "", err
 		}
-		return "NONE", typename, nil
+		return "[]enum." + typename + "{}", typename, nil
 	case "DoubleArray":
 		arraySizeStr := args[1]
 

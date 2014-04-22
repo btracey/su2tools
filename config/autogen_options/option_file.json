@@ -975,7 +975,7 @@
 			"Description": "Type of mesh motion",
 			"Type": "EnumList",
 			"ExtraType": "Gridmovement",
-			"Default": "NONE"
+			"Default": "[]enum.Gridmovement{}"
 		},
 		{
 			"Value": "MarkerMoving",
@@ -2937,7 +2937,7 @@
 			"Description": "Kind of deformation",
 			"Type": "EnumList",
 			"ExtraType": "Param",
-			"Default": "NONE"
+			"Default": "[]enum.Param{}"
 		},
 		{
 			"Value": "DvMarker",
