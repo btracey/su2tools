@@ -25,7 +25,7 @@ func TestDefaultWriteTo(t *testing.T) {
 	if err != nil {
 		t.Errorf(err.Error())
 	}
-	defaultOptions.WriteConfigTo(f, nil)
+	defaultOptions.WriteTo(f, nil)
 }
 
 func TestReadAndWrite(t *testing.T) {
@@ -50,7 +50,7 @@ func TestReadAndWrite(t *testing.T) {
 
 	b := make([]byte, 0)
 	buf := bytes.NewBuffer(b)
-	_, err := o.WriteConfigTo(buf, nil)
+	_, err := o.WriteTo(buf, nil)
 	if err != nil {
 		t.Errorf("Error writing: %v", err)
 	}

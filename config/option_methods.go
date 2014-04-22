@@ -2,6 +2,7 @@ package config
 
 import (
 	"bufio"
+	"bytes"
 	"errors"
 	"fmt"
 	"io"
@@ -37,7 +38,7 @@ var configHeader = []byte(`
 // writer. WriteConfigTo will print all fields that are either different from
 // the default vaule or are in the second argument. As a special case, if
 // forcePrint contains All, all options will be printed.
-func (o *Options) WriteConfigTo(writer io.Writer, forcePrint map[Option]bool) (int, error) {
+func (o *Options) WriteTo(writer io.Writer, forcePrint map[Option]bool) (int, error) {
 	// Loop over the config options
 
 	var printAll bool
@@ -109,6 +110,19 @@ func (o *Options) WriteConfigTo(writer io.Writer, forcePrint map[Option]bool) (i
 		}
 	}
 	return nWritten, nil
+}
+
+func (o *Options) Copy() *Options {
+	// Write to a buffer
+	b := &bytes.Buffer{}
+	o.WriteTo(b, ForceAll)
+
+	// now read
+	options, _, err := Read(b)
+	if err != nil {
+		panic("Error in copy")
+	}
+	return options
 }
 
 /*
