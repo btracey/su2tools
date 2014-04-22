@@ -160,7 +160,7 @@ func goTypeFromConfigType(typename, extra string) (string, error) {
 	case "Enum":
 		return "enum." + extra, nil
 	case "Convect":
-		return "enum.Space", nil
+		return "string", nil // This has to be a string because convect is really two different enum types
 	case "EnumList":
 		return "[]enum." + extra, nil
 	case "DVParam":

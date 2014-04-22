@@ -1551,7 +1551,7 @@
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
-			"Default": "enum.NoConvective"
+			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
 			"Value": "ViscNumMethodFlow",
@@ -1605,7 +1605,7 @@
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
-			"Default": "enum.NoConvective"
+			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
 			"Value": "ViscNumMethodAdjflow",
@@ -1677,7 +1677,7 @@
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
-			"Default": "enum.NoConvective"
+			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
 			"Value": "ViscNumMethodTurb",
@@ -1722,7 +1722,7 @@
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
-			"Default": "enum.NoConvective"
+			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
 			"Value": "ViscNumMethodAdjturb",
@@ -1749,7 +1749,7 @@
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
-			"Default": "enum.NoConvective"
+			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
 			"Value": "ViscNumMethodLin",
@@ -1803,7 +1803,7 @@
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
-			"Default": "enum.NoConvective"
+			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
 			"Value": "ViscNumMethodAdjlevelset",
@@ -1830,7 +1830,7 @@
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
-			"Default": "enum.NoConvective"
+			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
 			"Value": "ViscNumMethodTne2",
@@ -1884,7 +1884,7 @@
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
-			"Default": "enum.NoConvective"
+			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
 			"Value": "ViscNumMethodAdjtne2",

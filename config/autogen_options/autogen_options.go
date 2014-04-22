@@ -340,7 +340,7 @@ func defaultValueFromArgs(args []string, optionType string, lines []string, prev
 	//case "Inlet", "InletFixed","DoubleList", "UShortList", "DVParam":
 	//	return "NONE", "", nil
 	case "Convect":
-		return "enum.NoConvective", "", nil
+		return "enum.NoConvective.ConfigString()", "", nil
 	//case "DVParam":
 	//	return "&su2types.DVParam{}", "", nil
 	case "EnumList":

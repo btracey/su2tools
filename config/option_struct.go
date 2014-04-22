@@ -325,7 +325,7 @@ type Options struct {
 	// Coefficient for detecting the limit of the sharp edges
 	SharpEdgesCoeff float64
 	// Convective numerical method
-	ConvNumMethodFlow enum.Space
+	ConvNumMethodFlow string
 	// Viscous numerical method
 	ViscNumMethodFlow enum.Viscous
 	// Source term numerical method
@@ -337,7 +337,7 @@ type Options struct {
 	// 1st, 2nd and 4th order artificial dissipation coefficients
 	AdCoeffFlow [3]float64
 	// Convective numerical method
-	ConvNumMethodAdjflow enum.Space
+	ConvNumMethodAdjflow string
 	// Viscous numerical method
 	ViscNumMethodAdjflow enum.Viscous
 	// Source term numerical method
@@ -353,7 +353,7 @@ type Options struct {
 	// Slope limiter
 	SlopeLimiterTurb enum.Limiter
 	// Convective numerical method
-	ConvNumMethodTurb enum.Space
+	ConvNumMethodTurb string
 	// Viscous numerical method
 	ViscNumMethodTurb enum.Viscous
 	// Source term numerical method
@@ -363,13 +363,13 @@ type Options struct {
 	// Slope limiter
 	SlopeLimiterAdjturb enum.Limiter
 	// Convective numerical method
-	ConvNumMethodAdjturb enum.Space
+	ConvNumMethodAdjturb string
 	// Viscous numerical method
 	ViscNumMethodAdjturb enum.Viscous
 	// Source term numerical method
 	SourNumMethodAdjturb enum.Source
 	// Convective numerical method
-	ConvNumMethodLin enum.Space
+	ConvNumMethodLin string
 	// Viscous numerical method
 	ViscNumMethodLin enum.Viscous
 	// Source term numerical method
@@ -381,13 +381,13 @@ type Options struct {
 	// Slope limiter
 	SlopeLimiterAdjlevelset enum.Limiter
 	// Convective numerical method
-	ConvNumMethodAdjlevelset enum.Space
+	ConvNumMethodAdjlevelset string
 	// Viscous numerical method
 	ViscNumMethodAdjlevelset enum.Viscous
 	// Source term numerical method
 	SourNumMethodAdjlevelset enum.Source
 	// Convective numerical method
-	ConvNumMethodTne2 enum.Space
+	ConvNumMethodTne2 string
 	// Viscous numerical method
 	ViscNumMethodTne2 enum.Viscous
 	// Source term numerical method
@@ -399,7 +399,7 @@ type Options struct {
 	// 1st, 2nd and 4th order artificial dissipation coefficients
 	AdCoeffTne2 [3]float64
 	// Convective numerical method
-	ConvNumMethodAdjtne2 enum.Space
+	ConvNumMethodAdjtne2 string
 	// Viscous numerical method
 	ViscNumMethodAdjtne2 enum.Viscous
 	// Source term numerical method
