@@ -407,6 +407,10 @@ func (c *Convect) ConfigString() string {
 }
 
 func (c *Convect) FromConfigString(values []string) error {
+	if len(values) == 1 && values[0] == "NONE" {
+		c.String = ""
+		return nil
+	}
 	for i, s := range values {
 		c.String += s
 		if i != len(values)-1 {
@@ -428,6 +432,10 @@ func (c *DVParam) ConfigString() string {
 }
 
 func (c *DVParam) FromConfigString(values []string) error {
+	if len(values) == 1 && values[0] == "NONE" {
+		c.String = ""
+		return nil
+	}
 	for i, s := range values {
 		c.String += s
 		if i != len(values)-1 {
@@ -462,9 +470,9 @@ func (c *StringDoubleList) ConfigString() string {
 
 func (c *StringDoubleList) FromConfigString(values []string) error {
 	if len(values) == 1 && values[0] == "NONE" {
-		c.Strings = make([]string, 0)
-		c.Doubles = make([]float64, 0)
-		return
+		c.Strings = nil
+		c.Doubles = nil
+		return nil
 	}
 	if (len(values) % 2) != 0 {
 		return errors.New("must have even number of values")
@@ -494,6 +502,10 @@ func (c *Inlet) ConfigString() string {
 }
 
 func (c *Inlet) FromConfigString(values []string) error {
+	if len(values) == 1 && values[0] == "NONE" {
+		c.String = ""
+		return nil
+	}
 	for i, s := range values {
 		c.String += s
 		if i != len(values)-1 {
@@ -515,6 +527,10 @@ func (c *InletFixed) ConfigString() string {
 }
 
 func (c *InletFixed) FromConfigString(values []string) error {
+	if len(values) == 1 && values[0] == "NONE" {
+		c.String = ""
+		return nil
+	}
 	for i, s := range values {
 		c.String += s
 		if i != len(values)-1 {
@@ -536,6 +552,10 @@ func (c *Periodic) ConfigString() string {
 }
 
 func (c *Periodic) FromConfigString(values []string) error {
+	if len(values) == 1 && values[0] == "NONE" {
+		c.String = ""
+		return nil
+	}
 	for i, s := range values {
 		c.String += s
 		if i != len(values)-1 {
@@ -557,6 +577,10 @@ func (c *MathProblem) ConfigString() string {
 }
 
 func (c *MathProblem) FromConfigString(values []string) error {
+	if len(values) == 1 && values[0] == "NONE" {
+		c.String = ""
+		return nil
+	}
 	for i, s := range values {
 		c.String += s
 		if i != len(values)-1 {
