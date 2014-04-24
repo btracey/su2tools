@@ -43,6 +43,7 @@ func TestReadAndWrite(t *testing.T) {
 	o.DvParam = &su2types.DVParam{"waka"} // Custom
 	o.RegimeType = enum.Incompressible
 
+	//o.MarkerInlet = &su2types.Inlet{String: }
 	o.MarkerOut1d = []string{"paul", "y", "esther"}                                         // slice
 	o.GridMovementKind = []enum.Gridmovement{enum.Aeroelastic, enum.AeroelasticRigidMotion} // Enum list
 

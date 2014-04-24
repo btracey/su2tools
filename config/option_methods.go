@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"os"
 	"reflect"
 	"strings"
 	//"github.com/btracey/su2tools/config copy/common"
@@ -186,6 +187,14 @@ func Read(reader io.Reader) (*Options, map[Option]bool, error) {
 		return nil, nil, errors.New("readconfig: " + err.Error())
 	}
 	return o, optionList, nil
+}
+
+func ReadFromFile(filename string) (*Options, map[Option]bool, error) {
+	f, err := os.Open(filename)
+	if err != nil {
+		return nil, nil, err
+	}
+	return Read(f)
 }
 
 func shouldcontinue(scanner *bufio.Scanner) bool {

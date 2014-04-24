@@ -129,6 +129,11 @@ var categoryList = []category{
 		Name:        "Inverse design problem",
 		Description: "--- options related to inverse design problem ---",
 	},
+	{
+		Id:          24,
+		Name:        "Unsupported options",
+		Description: "--- Options that are experimental and not intended for general use ---",
+	},
 }
 
 // optionList contains a list of the options to be printed. Outer slice is
@@ -140,8 +145,6 @@ var optionList = [][]Option{
 		PhysicalProblem,
 		MathProblem,
 		KindTurbModel,
-		MlTurbModelFile,
-		MlTurbModelFeatureset,
 		KindTransModel,
 		Axisymmetric,
 		GravityForce,
@@ -515,5 +518,10 @@ var optionList = [][]Option{
 	{
 		InvDesignCp,
 		InvDesignHeatflux,
+	},
+	{
+		MlTurbModelFile,
+		MlTurbModelFeatureset,
+		MlTurbModelExtra,
 	},
 }

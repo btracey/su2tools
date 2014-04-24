@@ -460,7 +460,7 @@ func (c *StringDoubleList) ConfigString() string {
 	var str string
 	for i, s := range c.Strings {
 		str += s + ", "
-		str += strconv.FormatFloat(c.Doubles[i], 'g', 16, 64)
+		str += strconv.FormatFloat(c.Doubles[i], 'g', 20, 64)
 		if i != len(c.Strings)-1 {
 			str += ", "
 		}
@@ -491,26 +491,31 @@ func (c *StringDoubleList) FromConfigString(values []string) error {
 }
 
 type Inlet struct {
-	String string
+	Strings []string
 }
 
 func (c *Inlet) ConfigString() string {
-	if c == nil || c.String == "" {
+	if c == nil || len(c.Strings) == 0 {
 		return "NONE"
 	}
-	return c.String
+	printstring := []byte("(")
+	for i, str := range c.Strings {
+		printstring = append(printstring, []byte(str)...)
+		if i != len(c.Strings)-1 {
+			printstring = append(printstring, []byte(", ")...)
+		}
+	}
+	return string(printstring)
 }
 
 func (c *Inlet) FromConfigString(values []string) error {
 	if len(values) == 1 && values[0] == "NONE" {
-		c.String = ""
+		c.Strings = []string{}
 		return nil
 	}
+	c.Strings = make([]string, len(values))
 	for i, s := range values {
-		c.String += s
-		if i != len(values)-1 {
-			c.String += " "
-		}
+		c.Strings[i] = s
 	}
 	return nil
 }
@@ -527,6 +532,7 @@ func (c *InletFixed) ConfigString() string {
 }
 
 func (c *InletFixed) FromConfigString(values []string) error {
+
 	if len(values) == 1 && values[0] == "NONE" {
 		c.String = ""
 		return nil

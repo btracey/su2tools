@@ -119,6 +119,11 @@
 			"Id": 23,
 			"Name": "Inverse design problem",
 			"Description": "--- options related to inverse design problem ---"
+		},
+		{
+			"Id": 24,
+			"Name": "Unsupported options",
+			"Description": "--- Options that are experimental and not intended for general use ---"
 		}
 	],
 	"Options": [
@@ -166,24 +171,6 @@
 			"Type": "Enum",
 			"ExtraType": "TurbModel",
 			"Default": "NoTurbModel"
-		},
-		{
-			"Value": "MlTurbModelFile",
-			"ConfigString": "ML_TURB_MODEL_FILE",
-			"Category": 0,
-			"Description": "Location of the turb model itself",
-			"Type": "String",
-			"ExtraType": "",
-			"Default": "\"model.json\""
-		},
-		{
-			"Value": "MlTurbModelFeatureset",
-			"ConfigString": "ML_TURB_MODEL_FEATURESET",
-			"Category": 0,
-			"Description": "what kind of input/output feature map is there",
-			"Type": "String",
-			"ExtraType": "",
-			"Default": "\"none\""
 		},
 		{
 			"Value": "KindTransModel",
@@ -3127,6 +3114,33 @@
 			"Type": "Bool",
 			"ExtraType": "",
 			"Default": "false"
+		},
+		{
+			"Value": "MlTurbModelFile",
+			"ConfigString": "ML_TURB_MODEL_FILE",
+			"Category": 24,
+			"Description": "Location of the turb model itself",
+			"Type": "String",
+			"ExtraType": "",
+			"Default": "\"model.json\""
+		},
+		{
+			"Value": "MlTurbModelFeatureset",
+			"ConfigString": "ML_TURB_MODEL_FEATURESET",
+			"Category": 24,
+			"Description": "what kind of input/output feature map is there",
+			"Type": "String",
+			"ExtraType": "",
+			"Default": "\"none\""
+		},
+		{
+			"Value": "MlTurbModelExtra",
+			"ConfigString": "ML_TURB_MODEL_EXTRA",
+			"Category": 24,
+			"Description": "Extra values for ML Turb model",
+			"Type": "StringList",
+			"ExtraType": "",
+			"Default": "[]string{}"
 		}
 	]
 }

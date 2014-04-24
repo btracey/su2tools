@@ -18,10 +18,6 @@ type Options struct {
 	MathProblem enum.MathProblem
 	// Specify turbulence model
 	KindTurbModel enum.TurbModel
-	// Location of the turb model itself
-	MlTurbModelFile string
-	// what kind of input/output feature map is there
-	MlTurbModelFeatureset string
 	// Specify transition model
 	KindTransModel enum.TransModel
 	// Axisymmetric simulation
@@ -676,4 +672,10 @@ type Options struct {
 	InvDesignCp bool
 	// Evaluate inverse design on the surface
 	InvDesignHeatflux bool
+	// Location of the turb model itself
+	MlTurbModelFile string
+	// what kind of input/output feature map is there
+	MlTurbModelFeatureset string
+	// Extra values for ML Turb model
+	MlTurbModelExtra []string
 }

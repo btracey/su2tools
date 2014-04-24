@@ -14,8 +14,6 @@ func NewOptions() *Options {
 		PhysicalProblem:               enum.NoSolver,
 		MathProblem:                   enum.DirectProblem,
 		KindTurbModel:                 enum.NoTurbModel,
-		MlTurbModelFile:               "model.json",
-		MlTurbModelFeatureset:         "none",
 		KindTransModel:                enum.NoTransModel,
 		Axisymmetric:                  false,
 		GravityForce:                  false,
@@ -343,5 +341,8 @@ func NewOptions() *Options {
 		VisualizeCv:                   -1,
 		InvDesignCp:                   false,
 		InvDesignHeatflux:             false,
+		MlTurbModelFile:               "model.json",
+		MlTurbModelFeatureset:         "none",
+		MlTurbModelExtra:              []string{},
 	}
 }

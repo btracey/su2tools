@@ -13,8 +13,6 @@ var defaultOptions = &Options{
 	PhysicalProblem:               enum.NoSolver,
 	MathProblem:                   enum.DirectProblem,
 	KindTurbModel:                 enum.NoTurbModel,
-	MlTurbModelFile:               "model.json",
-	MlTurbModelFeatureset:         "none",
 	KindTransModel:                enum.NoTransModel,
 	Axisymmetric:                  false,
 	GravityForce:                  false,
@@ -342,4 +340,7 @@ var defaultOptions = &Options{
 	VisualizeCv:                   -1,
 	InvDesignCp:                   false,
 	InvDesignHeatflux:             false,
+	MlTurbModelFile:               "model.json",
+	MlTurbModelFeatureset:         "none",
+	MlTurbModelExtra:              []string{},
 }

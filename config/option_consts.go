@@ -28,8 +28,6 @@ const (
 	PhysicalProblem                      = "PhysicalProblem"
 	MathProblem                          = "MathProblem"
 	KindTurbModel                        = "KindTurbModel"
-	MlTurbModelFile                      = "MlTurbModelFile"
-	MlTurbModelFeatureset                = "MlTurbModelFeatureset"
 	KindTransModel                       = "KindTransModel"
 	Axisymmetric                         = "Axisymmetric"
 	GravityForce                         = "GravityForce"
@@ -357,6 +355,9 @@ const (
 	VisualizeCv                          = "VisualizeCv"
 	InvDesignCp                          = "InvDesignCp"
 	InvDesignHeatflux                    = "InvDesignHeatflux"
+	MlTurbModelFile                      = "MlTurbModelFile"
+	MlTurbModelFeatureset                = "MlTurbModelFeatureset"
+	MlTurbModelExtra                     = "MlTurbModelExtra"
 )
 
 var optionMap = map[Option]option{
@@ -404,24 +405,6 @@ var optionMap = map[Option]option{
 		Type:        "Enum",
 		ExtraType:   "TurbModel",
 		OptionConst: KindTurbModel,
-	},
-	MlTurbModelFile: {
-		Name:        "MlTurbModelFile",
-		Config:      "ML_TURB_MODEL_FILE",
-		Category:    0,
-		Description: "Location of the turb model itself",
-		Type:        "String",
-		ExtraType:   "",
-		OptionConst: MlTurbModelFile,
-	},
-	MlTurbModelFeatureset: {
-		Name:        "MlTurbModelFeatureset",
-		Config:      "ML_TURB_MODEL_FEATURESET",
-		Category:    0,
-		Description: "what kind of input/output feature map is there",
-		Type:        "String",
-		ExtraType:   "",
-		OptionConst: MlTurbModelFeatureset,
 	},
 	KindTransModel: {
 		Name:        "KindTransModel",
@@ -3366,6 +3349,33 @@ var optionMap = map[Option]option{
 		ExtraType:   "",
 		OptionConst: InvDesignHeatflux,
 	},
+	MlTurbModelFile: {
+		Name:        "MlTurbModelFile",
+		Config:      "ML_TURB_MODEL_FILE",
+		Category:    24,
+		Description: "Location of the turb model itself",
+		Type:        "String",
+		ExtraType:   "",
+		OptionConst: MlTurbModelFile,
+	},
+	MlTurbModelFeatureset: {
+		Name:        "MlTurbModelFeatureset",
+		Config:      "ML_TURB_MODEL_FEATURESET",
+		Category:    24,
+		Description: "what kind of input/output feature map is there",
+		Type:        "String",
+		ExtraType:   "",
+		OptionConst: MlTurbModelFeatureset,
+	},
+	MlTurbModelExtra: {
+		Name:        "MlTurbModelExtra",
+		Config:      "ML_TURB_MODEL_EXTRA",
+		Category:    24,
+		Description: "Extra values for ML Turb model",
+		Type:        "StringList",
+		ExtraType:   "",
+		OptionConst: MlTurbModelExtra,
+	},
 }
 
 var stringToOption = map[string]Option{
@@ -3374,8 +3384,6 @@ var stringToOption = map[string]Option{
 	"PhysicalProblem":               PhysicalProblem,
 	"MathProblem":                   MathProblem,
 	"KindTurbModel":                 KindTurbModel,
-	"MlTurbModelFile":               MlTurbModelFile,
-	"MlTurbModelFeatureset":         MlTurbModelFeatureset,
 	"KindTransModel":                KindTransModel,
 	"Axisymmetric":                  Axisymmetric,
 	"GravityForce":                  GravityForce,
@@ -3703,4 +3711,7 @@ var stringToOption = map[string]Option{
 	"VisualizeCv":                   VisualizeCv,
 	"InvDesignCp":                   InvDesignCp,
 	"InvDesignHeatflux":             InvDesignHeatflux,
+	"MlTurbModelFile":               MlTurbModelFile,
+	"MlTurbModelFeatureset":         MlTurbModelFeatureset,
+	"MlTurbModelExtra":              MlTurbModelExtra,
 }
