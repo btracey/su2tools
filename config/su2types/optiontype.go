@@ -510,7 +510,7 @@ func (c *Inlet) ConfigString() string {
 
 func (c *Inlet) FromConfigString(values []string) error {
 	if len(values) == 1 && values[0] == "NONE" {
-		c.Strings = []string{}
+		c.Strings = nil
 		return nil
 	}
 	c.Strings = make([]string, len(values))
