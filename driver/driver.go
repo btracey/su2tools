@@ -218,7 +218,7 @@ func (d *Driver) Run(su2call Syscaller) error {
 	cmd.Dir = d.Wd
 	cmd.Stderr = stderr
 
-	fmt.Println("executing execname", "name = ", name, " args = ", args)
+	fmt.Println("executing execname", "name = ", name, " args = ", args, "wd = ", cmd.Dir)
 	return cmd.Run()
 }
 
