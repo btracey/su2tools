@@ -505,6 +505,7 @@ func (c *Inlet) ConfigString() string {
 			printstring = append(printstring, []byte(", ")...)
 		}
 	}
+	printstring = append(printstring, []byte(")")...)
 	return string(printstring)
 }
 
