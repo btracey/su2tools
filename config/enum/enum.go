@@ -730,7 +730,8 @@ func (e *GustType) FromConfigString(str []string) error {
 }
 
 const (
-	NoGust GustType = iota
+	Eog GustType = iota
+	NoGust
 	OneMCosine
 	Sine
 	TopHat
@@ -738,6 +739,7 @@ const (
 )
 
 var mapGustType = map[GustType]string{
+	Eog:        "Eog",
 	NoGust:     "NoGust",
 	OneMCosine: "OneMCosine",
 	Sine:       "Sine",
@@ -746,6 +748,7 @@ var mapGustType = map[GustType]string{
 }
 
 var mapGustTypeToConfig = map[GustType]string{
+	Eog:        "EOG",
 	NoGust:     "NONE",
 	OneMCosine: "ONE_M_COSINE",
 	Sine:       "SINE",
@@ -754,6 +757,7 @@ var mapGustTypeToConfig = map[GustType]string{
 }
 
 var mapGustTypeFromConfig = map[string]GustType{
+	"EOG":          Eog,
 	"NONE":         NoGust,
 	"ONE_M_COSINE": OneMCosine,
 	"SINE":         Sine,
@@ -965,6 +969,7 @@ const (
 	Fgmres
 	Newton
 	QuasiNewton
+	Rfgmres
 	SteepestDescent
 )
 
@@ -974,6 +979,7 @@ var mapLinearSolver = map[LinearSolver]string{
 	Fgmres:            "Fgmres",
 	Newton:            "Newton",
 	QuasiNewton:       "QuasiNewton",
+	Rfgmres:           "Rfgmres",
 	SteepestDescent:   "SteepestDescent",
 }
 
@@ -983,6 +989,7 @@ var mapLinearSolverToConfig = map[LinearSolver]string{
 	Fgmres:            "FGMRES",
 	Newton:            "NEWTON",
 	QuasiNewton:       "QUASI_NEWTON",
+	Rfgmres:           "RFGMRES",
 	SteepestDescent:   "STEEPEST_DESCENT",
 }
 
@@ -992,6 +999,7 @@ var mapLinearSolverFromConfig = map[string]LinearSolver{
 	"FGMRES":             Fgmres,
 	"NEWTON":             Newton,
 	"QUASI_NEWTON":       QuasiNewton,
+	"RFGMRES":            Rfgmres,
 	"STEEPEST_DESCENT":   SteepestDescent,
 }
 

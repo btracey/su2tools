@@ -108,6 +108,14 @@
 	"BcType": {
 		"Typename": "BcType",
 		"Option": {
+			"ActdiskInlet": {
+				"Identifier": "ActdiskInlet",
+				"ConfigString": ""
+			},
+			"ActdiskOutlet": {
+				"Identifier": "ActdiskOutlet",
+				"ConfigString": ""
+			},
 			"CustomBoundary": {
 				"Identifier": "CustomBoundary",
 				"ConfigString": ""
@@ -542,6 +550,10 @@
 	"GustType": {
 		"Typename": "GustType",
 		"Option": {
+			"Eog": {
+				"Identifier": "Eog",
+				"ConfigString": "EOG"
+			},
 			"NoGust": {
 				"Identifier": "NoGust",
 				"ConfigString": "NONE"
@@ -651,6 +663,10 @@
 			"QuasiNewton": {
 				"Identifier": "QuasiNewton",
 				"ConfigString": "QUASI_NEWTON"
+			},
+			"Rfgmres": {
+				"Identifier": "Rfgmres",
+				"ConfigString": "RFGMRES"
 			},
 			"SteepestDescent": {
 				"Identifier": "SteepestDescent",

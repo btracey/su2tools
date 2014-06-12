@@ -175,6 +175,8 @@ func goTypeFromConfigType(typename, extra string) (string, error) {
 		return "*su2types.Inlet", nil
 	case "InletFixed":
 		return "*su2types.InletFixed", nil
+	case "ActuatorDisk":
+		return "*su2types.ActuatorDisk", nil
 	case "Periodic":
 		return "*su2types.Periodic", nil
 	case "MathProblem":

@@ -50,6 +50,7 @@ const (
 	ElecNeumann                          = "ElecNeumann"
 	MarkerCustom                         = "MarkerCustom"
 	MarkerPeriodic                       = "MarkerPeriodic"
+	MarkerActdisk                        = "MarkerActdisk"
 	InletType                            = "InletType"
 	MarkerInlet                          = "MarkerInlet"
 	MarkerSupersonicInlet                = "MarkerSupersonicInlet"
@@ -106,6 +107,7 @@ const (
 	LinearSolverPrec                     = "LinearSolverPrec"
 	LinearSolverError                    = "LinearSolverError"
 	LinearSolverIter                     = "LinearSolverIter"
+	LinearSolverRestartFrequency         = "LinearSolverRestartFrequency"
 	LinearSolverRelax                    = "LinearSolverRelax"
 	RoeTurkelPrec                        = "RoeTurkelPrec"
 	MinRoeTurkelPrec                     = "MinRoeTurkelPrec"
@@ -236,6 +238,7 @@ const (
 	GeoLocationSections                  = "GeoLocationSections"
 	GeoOrientationSections               = "GeoOrientationSections"
 	GeoNumberSections                    = "GeoNumberSections"
+	GeoVolumeSections                    = "GeoVolumeSections"
 	GeoPlotSections                      = "GeoPlotSections"
 	GeoMode                              = "GeoMode"
 	DragInSonicboom                      = "DragInSonicboom"
@@ -311,6 +314,9 @@ const (
 	FreestreamTurb2lamviscratio          = "FreestreamTurb2lamviscratio"
 	SideslipAngle                        = "SideslipAngle"
 	Aoa                                  = "Aoa"
+	FixedClMode                          = "FixedClMode"
+	TargetCl                             = "TargetCl"
+	DampFixedCl                          = "DampFixedCl"
 	RefOriginMomentX                     = "RefOriginMomentX"
 	RefOriginMomentY                     = "RefOriginMomentY"
 	RefOriginMomentZ                     = "RefOriginMomentZ"
@@ -345,6 +351,8 @@ const (
 	DeformLinearIter                     = "DeformLinearIter"
 	DeformTolFactor                      = "DeformTolFactor"
 	DeformStiffnessType                  = "DeformStiffnessType"
+	YoungsModulus                        = "YoungsModulus"
+	PoissonsRatio                        = "PoissonsRatio"
 	CyclicPitch                          = "CyclicPitch"
 	CollectivePitch                      = "CollectivePitch"
 	ElasticityModulus                    = "ElasticityModulus"
@@ -358,6 +366,8 @@ const (
 	MlTurbModelFile                      = "MlTurbModelFile"
 	MlTurbModelFeatureset                = "MlTurbModelFeatureset"
 	MlTurbModelExtra                     = "MlTurbModelExtra"
+	FfdIterations                        = "FfdIterations"
+	FfdTolerance                         = "FfdTolerance"
 )
 
 var optionMap = map[Option]option{
@@ -603,6 +613,15 @@ var optionMap = map[Option]option{
 		Type:        "Periodic",
 		ExtraType:   "",
 		OptionConst: MarkerPeriodic,
+	},
+	MarkerActdisk: {
+		Name:        "MarkerActdisk",
+		Config:      "MARKER_ACTDISK",
+		Category:    1,
+		Description: "Periodic boundary marker(s) for use with SU2_PBCFormat: ( periodic marker, donor marker, rotation_center_x, rotation_center_y,rotation_center_z, rotation_angle_x-axis, rotation_angle_y-axis,rotation_angle_z-axis, translation_x, translation_y, translation_z, ... )",
+		Type:        "ActuatorDisk",
+		ExtraType:   "",
+		OptionConst: MarkerActdisk,
 	},
 	InletType: {
 		Name:        "InletType",
@@ -1107,6 +1126,15 @@ var optionMap = map[Option]option{
 		Type:        "UnsignedLong",
 		ExtraType:   "",
 		OptionConst: LinearSolverIter,
+	},
+	LinearSolverRestartFrequency: {
+		Name:        "LinearSolverRestartFrequency",
+		Config:      "LINEAR_SOLVER_RESTART_FREQUENCY",
+		Category:    4,
+		Description: "Maximum number of iterations of the linear solver for the implicit formulation",
+		Type:        "UnsignedLong",
+		ExtraType:   "",
+		OptionConst: LinearSolverRestartFrequency,
 	},
 	LinearSolverRelax: {
 		Name:        "LinearSolverRelax",
@@ -2278,6 +2306,15 @@ var optionMap = map[Option]option{
 		ExtraType:   "",
 		OptionConst: GeoNumberSections,
 	},
+	GeoVolumeSections: {
+		Name:        "GeoVolumeSections",
+		Config:      "GEO_VOLUME_SECTIONS",
+		Category:    10,
+		Description: "Number of section cuts to make when calculating internal volume",
+		Type:        "UnsignedShort",
+		ExtraType:   "",
+		OptionConst: GeoVolumeSections,
+	},
 	GeoPlotSections: {
 		Name:        "GeoPlotSections",
 		Config:      "GEO_PLOT_SECTIONS",
@@ -2953,6 +2990,33 @@ var optionMap = map[Option]option{
 		ExtraType:   "",
 		OptionConst: Aoa,
 	},
+	FixedClMode: {
+		Name:        "FixedClMode",
+		Config:      "FIXED_CL_MODE",
+		Category:    13,
+		Description: "Activate fixed CL mode (specify a CL instead of AoA).",
+		Type:        "Bool",
+		ExtraType:   "",
+		OptionConst: FixedClMode,
+	},
+	TargetCl: {
+		Name:        "TargetCl",
+		Config:      "TARGET_CL",
+		Category:    13,
+		Description: "Specify a fixed coefficient of lift instead of AoA (only for compressible flows)",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: TargetCl,
+	},
+	DampFixedCl: {
+		Name:        "DampFixedCl",
+		Config:      "DAMP_FIXED_CL",
+		Category:    13,
+		Description: "Damping factor for fixed CL mode.",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: DampFixedCl,
+	},
 	RefOriginMomentX: {
 		Name:        "RefOriginMomentX",
 		Config:      "REF_ORIGIN_MOMENT_X",
@@ -3259,6 +3323,24 @@ var optionMap = map[Option]option{
 		ExtraType:   "DeformStiffness",
 		OptionConst: DeformStiffnessType,
 	},
+	YoungsModulus: {
+		Name:        "YoungsModulus",
+		Config:      "YOUNGS_MODULUS",
+		Category:    17,
+		Description: "Poisson's ratio for constant stiffness FEA method of grid deformation",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: YoungsModulus,
+	},
+	PoissonsRatio: {
+		Name:        "PoissonsRatio",
+		Config:      "POISSONS_RATIO",
+		Category:    17,
+		Description: "Young's modulus and Poisson's ratio for constant stiffness FEA method of grid deformation",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: PoissonsRatio,
+	},
 	CyclicPitch: {
 		Name:        "CyclicPitch",
 		Config:      "CYCLIC_PITCH",
@@ -3376,6 +3458,24 @@ var optionMap = map[Option]option{
 		ExtraType:   "",
 		OptionConst: MlTurbModelExtra,
 	},
+	FfdIterations: {
+		Name:        "FfdIterations",
+		Config:      "FFD_ITERATIONS",
+		Category:    25,
+		Description: "Number of total iterations in the FFD point inversion",
+		Type:        "UnsignedShort",
+		ExtraType:   "",
+		OptionConst: FfdIterations,
+	},
+	FfdTolerance: {
+		Name:        "FfdTolerance",
+		Config:      "FFD_TOLERANCE",
+		Category:    25,
+		Description: "Free surface damping coefficient",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: FfdTolerance,
+	},
 }
 
 var stringToOption = map[string]Option{
@@ -3406,6 +3506,7 @@ var stringToOption = map[string]Option{
 	"ElecNeumann":                   ElecNeumann,
 	"MarkerCustom":                  MarkerCustom,
 	"MarkerPeriodic":                MarkerPeriodic,
+	"MarkerActdisk":                 MarkerActdisk,
 	"InletType":                     InletType,
 	"MarkerInlet":                   MarkerInlet,
 	"MarkerSupersonicInlet":         MarkerSupersonicInlet,
@@ -3462,6 +3563,7 @@ var stringToOption = map[string]Option{
 	"LinearSolverPrec":              LinearSolverPrec,
 	"LinearSolverError":             LinearSolverError,
 	"LinearSolverIter":              LinearSolverIter,
+	"LinearSolverRestartFrequency":  LinearSolverRestartFrequency,
 	"LinearSolverRelax":             LinearSolverRelax,
 	"RoeTurkelPrec":                 RoeTurkelPrec,
 	"MinRoeTurkelPrec":              MinRoeTurkelPrec,
@@ -3592,6 +3694,7 @@ var stringToOption = map[string]Option{
 	"GeoLocationSections":           GeoLocationSections,
 	"GeoOrientationSections":        GeoOrientationSections,
 	"GeoNumberSections":             GeoNumberSections,
+	"GeoVolumeSections":             GeoVolumeSections,
 	"GeoPlotSections":               GeoPlotSections,
 	"GeoMode":                       GeoMode,
 	"DragInSonicboom":               DragInSonicboom,
@@ -3667,6 +3770,9 @@ var stringToOption = map[string]Option{
 	"FreestreamTurb2lamviscratio":   FreestreamTurb2lamviscratio,
 	"SideslipAngle":                 SideslipAngle,
 	"Aoa":                           Aoa,
+	"FixedClMode":                   FixedClMode,
+	"TargetCl":                      TargetCl,
+	"DampFixedCl":                   DampFixedCl,
 	"RefOriginMomentX":              RefOriginMomentX,
 	"RefOriginMomentY":              RefOriginMomentY,
 	"RefOriginMomentZ":              RefOriginMomentZ,
@@ -3701,6 +3807,8 @@ var stringToOption = map[string]Option{
 	"DeformLinearIter":              DeformLinearIter,
 	"DeformTolFactor":               DeformTolFactor,
 	"DeformStiffnessType":           DeformStiffnessType,
+	"YoungsModulus":                 YoungsModulus,
+	"PoissonsRatio":                 PoissonsRatio,
 	"CyclicPitch":                   CyclicPitch,
 	"CollectivePitch":               CollectivePitch,
 	"ElasticityModulus":             ElasticityModulus,
@@ -3714,4 +3822,6 @@ var stringToOption = map[string]Option{
 	"MlTurbModelFile":               MlTurbModelFile,
 	"MlTurbModelFeatureset":         MlTurbModelFeatureset,
 	"MlTurbModelExtra":              MlTurbModelExtra,
+	"FfdIterations":                 FfdIterations,
+	"FfdTolerance":                  FfdTolerance,
 }

@@ -62,6 +62,8 @@ type Options struct {
 	MarkerCustom []string
 	// Periodic boundary marker(s) for use with SU2_PBCFormat: ( periodic marker, donor marker, rotation_center_x, rotation_center_y,rotation_center_z, rotation_angle_x-axis, rotation_angle_y-axis,rotation_angle_z-axis, translation_x, translation_y, translation_z, ... )
 	MarkerPeriodic *su2types.Periodic
+	// Periodic boundary marker(s) for use with SU2_PBCFormat: ( periodic marker, donor marker, rotation_center_x, rotation_center_y,rotation_center_z, rotation_angle_x-axis, rotation_angle_y-axis,rotation_angle_z-axis, translation_x, translation_y, translation_z, ... )
+	MarkerActdisk *su2types.ActuatorDisk
 	// Inlet boundary type
 	InletType enum.InletType
 	// Inlet boundary marker(s) with the following formats,Total Conditions: (inlet marker, total temp, total pressure, flow_direction_x,flow_direction_y, flow_direction_z, ... ) where flow_direction isa unit vector.Mass Flow: (inlet marker, density, velocity magnitude, flow_direction_x,flow_direction_y, flow_direction_z, ... ) where flow_direction isa unit vector.
@@ -174,6 +176,8 @@ type Options struct {
 	LinearSolverError float64
 	// Maximum number of iterations of the linear solver for the implicit formulation
 	LinearSolverIter uint64
+	// Maximum number of iterations of the linear solver for the implicit formulation
+	LinearSolverRestartFrequency uint64
 	// Relaxation of the linear solver for the implicit formulation
 	LinearSolverRelax float64
 	// Roe-Turkel preconditioning for low Mach number flows
@@ -434,6 +438,8 @@ type Options struct {
 	GeoOrientationSections enum.AxisOrientation
 	// Percentage of new elements (% of the original number of elements)
 	GeoNumberSections uint16
+	// Number of section cuts to make when calculating internal volume
+	GeoVolumeSections uint16
 	// Output sectional forces for specified markers.
 	GeoPlotSections bool
 	// Mode of the GDC code (analysis, or gradient)
@@ -584,6 +590,12 @@ type Options struct {
 	SideslipAngle float64
 	// Angle of attack (degrees, only for compressible flows)
 	Aoa float64
+	// Activate fixed CL mode (specify a CL instead of AoA).
+	FixedClMode bool
+	// Specify a fixed coefficient of lift instead of AoA (only for compressible flows)
+	TargetCl float64
+	// Damping factor for fixed CL mode.
+	DampFixedCl float64
 	// X Reference origin for moment computation
 	RefOriginMomentX []float64
 	// Y Reference origin for moment computation
@@ -652,6 +664,10 @@ type Options struct {
 	DeformTolFactor float64
 	// Type of element stiffness imposed for FEA mesh deformation (INVERSE_VOLUME, WALL_DISTANCE, CONSTANT_STIFFNESS)
 	DeformStiffnessType enum.DeformStiffness
+	// Poisson's ratio for constant stiffness FEA method of grid deformation
+	YoungsModulus float64
+	// Young's modulus and Poisson's ratio for constant stiffness FEA method of grid deformation
+	PoissonsRatio float64
 	// MISSING ---
 	CyclicPitch float64
 	// MISSING ---
@@ -678,4 +694,8 @@ type Options struct {
 	MlTurbModelFeatureset string
 	// Extra values for ML Turb model
 	MlTurbModelExtra []string
+	// Number of total iterations in the FFD point inversion
+	FfdIterations uint16
+	// Free surface damping coefficient
+	FfdTolerance float64
 }

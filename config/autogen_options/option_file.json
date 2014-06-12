@@ -124,6 +124,11 @@
 			"Id": 24,
 			"Name": "Unsupported options",
 			"Description": "--- Options that are experimental and not intended for general use ---"
+		},
+		{
+			"Id": 25,
+			"Name": "FFD point inversion",
+			"Description": " DESCRIPTION: Number of total iterations in the FFD point inversion "
 		}
 	],
 	"Options": [
@@ -369,6 +374,15 @@
 			"Type": "Periodic",
 			"ExtraType": "",
 			"Default": "\u0026su2types.Periodic{}"
+		},
+		{
+			"Value": "MarkerActdisk",
+			"ConfigString": "MARKER_ACTDISK",
+			"Category": 1,
+			"Description": "Periodic boundary marker(s) for use with SU2_PBCFormat: ( periodic marker, donor marker, rotation_center_x, rotation_center_y,rotation_center_z, rotation_angle_x-axis, rotation_angle_y-axis,rotation_angle_z-axis, translation_x, translation_y, translation_z, ... )",
+			"Type": "ActuatorDisk",
+			"ExtraType": "",
+			"Default": "\u0026su2types.ActuatorDisk{}"
 		},
 		{
 			"Value": "InletType",
@@ -868,6 +882,15 @@
 		{
 			"Value": "LinearSolverIter",
 			"ConfigString": "LINEAR_SOLVER_ITER",
+			"Category": 4,
+			"Description": "Maximum number of iterations of the linear solver for the implicit formulation",
+			"Type": "UnsignedLong",
+			"ExtraType": "",
+			"Default": "10"
+		},
+		{
+			"Value": "LinearSolverRestartFrequency",
+			"ConfigString": "LINEAR_SOLVER_RESTART_FREQUENCY",
 			"Category": 4,
 			"Description": "Maximum number of iterations of the linear solver for the implicit formulation",
 			"Type": "UnsignedLong",
@@ -2045,6 +2068,15 @@
 			"Default": "5"
 		},
 		{
+			"Value": "GeoVolumeSections",
+			"ConfigString": "GEO_VOLUME_SECTIONS",
+			"Category": 10,
+			"Description": "Number of section cuts to make when calculating internal volume",
+			"Type": "UnsignedShort",
+			"ExtraType": "",
+			"Default": "101"
+		},
+		{
 			"Value": "GeoPlotSections",
 			"ConfigString": "GEO_PLOT_SECTIONS",
 			"Category": 10,
@@ -2720,6 +2752,33 @@
 			"Default": "0.0"
 		},
 		{
+			"Value": "FixedClMode",
+			"ConfigString": "FIXED_CL_MODE",
+			"Category": 13,
+			"Description": "Activate fixed CL mode (specify a CL instead of AoA).",
+			"Type": "Bool",
+			"ExtraType": "",
+			"Default": "false"
+		},
+		{
+			"Value": "TargetCl",
+			"ConfigString": "TARGET_CL",
+			"Category": 13,
+			"Description": "Specify a fixed coefficient of lift instead of AoA (only for compressible flows)",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "0.0"
+		},
+		{
+			"Value": "DampFixedCl",
+			"ConfigString": "DAMP_FIXED_CL",
+			"Category": 13,
+			"Description": "Damping factor for fixed CL mode.",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "0.1"
+		},
+		{
 			"Value": "RefOriginMomentX",
 			"ConfigString": "REF_ORIGIN_MOMENT_X",
 			"Category": 14,
@@ -3026,6 +3085,24 @@
 			"Default": "InverseVolume"
 		},
 		{
+			"Value": "YoungsModulus",
+			"ConfigString": "YOUNGS_MODULUS",
+			"Category": 17,
+			"Description": "Poisson's ratio for constant stiffness FEA method of grid deformation",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "2E11"
+		},
+		{
+			"Value": "PoissonsRatio",
+			"ConfigString": "POISSONS_RATIO",
+			"Category": 17,
+			"Description": "Young's modulus and Poisson's ratio for constant stiffness FEA method of grid deformation",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "0.3"
+		},
+		{
 			"Value": "CyclicPitch",
 			"ConfigString": "CYCLIC_PITCH",
 			"Category": 18,
@@ -3141,6 +3218,24 @@
 			"Type": "StringList",
 			"ExtraType": "",
 			"Default": "[]string{}"
+		},
+		{
+			"Value": "FfdIterations",
+			"ConfigString": "FFD_ITERATIONS",
+			"Category": 25,
+			"Description": "Number of total iterations in the FFD point inversion",
+			"Type": "UnsignedShort",
+			"ExtraType": "",
+			"Default": "1000"
+		},
+		{
+			"Value": "FfdTolerance",
+			"ConfigString": "FFD_TOLERANCE",
+			"Category": 25,
+			"Description": "Free surface damping coefficient",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "1E-8"
 		}
 	]
 }

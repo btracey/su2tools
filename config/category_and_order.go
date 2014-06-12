@@ -134,6 +134,11 @@ var categoryList = []category{
 		Name:        "Unsupported options",
 		Description: "--- Options that are experimental and not intended for general use ---",
 	},
+	{
+		Id:          25,
+		Name:        "FFD point inversion",
+		Description: " DESCRIPTION: Number of total iterations in the FFD point inversion ",
+	},
 }
 
 // optionList contains a list of the options to be printed. Outer slice is
@@ -169,6 +174,7 @@ var optionList = [][]Option{
 		ElecNeumann,
 		MarkerCustom,
 		MarkerPeriodic,
+		MarkerActdisk,
 		InletType,
 		MarkerInlet,
 		MarkerSupersonicInlet,
@@ -231,6 +237,7 @@ var optionList = [][]Option{
 		LinearSolverPrec,
 		LinearSolverError,
 		LinearSolverIter,
+		LinearSolverRestartFrequency,
 		LinearSolverRelax,
 		RoeTurkelPrec,
 		MinRoeTurkelPrec,
@@ -373,6 +380,7 @@ var optionList = [][]Option{
 		GeoLocationSections,
 		GeoOrientationSections,
 		GeoNumberSections,
+		GeoVolumeSections,
 		GeoPlotSections,
 		GeoMode,
 		DragInSonicboom,
@@ -454,6 +462,9 @@ var optionList = [][]Option{
 		FreestreamTurb2lamviscratio,
 		SideslipAngle,
 		Aoa,
+		FixedClMode,
+		TargetCl,
+		DampFixedCl,
 	},
 	{
 		RefOriginMomentX,
@@ -496,6 +507,8 @@ var optionList = [][]Option{
 		DeformLinearIter,
 		DeformTolFactor,
 		DeformStiffnessType,
+		YoungsModulus,
+		PoissonsRatio,
 	},
 	{
 		CyclicPitch,
@@ -523,5 +536,9 @@ var optionList = [][]Option{
 		MlTurbModelFile,
 		MlTurbModelFeatureset,
 		MlTurbModelExtra,
+	},
+	{
+		FfdIterations,
+		FfdTolerance,
 	},
 }
