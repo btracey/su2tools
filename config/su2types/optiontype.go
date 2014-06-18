@@ -621,3 +621,28 @@ func (c *MathProblem) FromConfigString(values []string) error {
 	}
 	return nil
 }
+
+type Python struct {
+	String string
+}
+
+func (c *Python) ConfigString() string {
+	if c == nil || c.String == "" {
+		return "NONE"
+	}
+	return c.String
+}
+
+func (c *Python) FromConfigString(values []string) error {
+	if len(values) == 1 && values[0] == "NONE" {
+		c.String = ""
+		return nil
+	}
+	for i, s := range values {
+		c.String += s
+		if i != len(values)-1 {
+			c.String += " "
+		}
+	}
+	return nil
+}

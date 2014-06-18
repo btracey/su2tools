@@ -150,6 +150,7 @@ func Read(reader io.Reader) (*Options, map[Option]bool, error) {
 	scanner := bufio.NewScanner(reader)
 
 	for scanner.Scan() {
+
 		if shouldcontinue(scanner) {
 			continue
 		}
@@ -201,7 +202,7 @@ func shouldcontinue(scanner *bufio.Scanner) bool {
 	if len(scanner.Bytes()) == 0 {
 		return true
 	}
-	if scanner.Bytes()[0] == '%' {
+	if strings.TrimSpace(scanner.Text())[0] == '%' {
 		return true
 	}
 	return false
@@ -213,6 +214,9 @@ func getoption(scanner *bufio.Scanner) (fieldString string, optionValues []strin
 	parts := strings.Split(line, "=")
 	if len(parts) > 2 {
 		return "", nil, errors.New("readconfig: option line has two equals signs")
+	}
+	if len(parts) == 1 {
+		return "", nil, errors.New("readconfig: line \"" + parts[0] + "\" is not commented and has no equals sign")
 	}
 
 	//fmt.Println(line)

@@ -334,7 +334,7 @@ func defaultValueFromArgs(args []string, optionType string, lines []string, prev
 		return "[]float64{}", "", nil
 	case "UShortList":
 		return "[]uint16{}", "", nil
-	case "StringDoubleList", "Periodic", "Inlet", "InletFixed", "DVParam", "ActuatorDisk":
+	case "StringDoubleList", "Periodic", "Inlet", "InletFixed", "DVParam", "ActuatorDisk", "Python":
 		return "&su2types." + optionType + "{}", "", nil
 	//	return "&su2types.Periodic{}", "", nil
 	//case "Inlet", "InletFixed","DoubleList", "UShortList", "DVParam":

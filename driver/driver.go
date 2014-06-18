@@ -172,10 +172,11 @@ func (d *Driver) Status() Status {
 // the arguments to exec.Command, and calls exec.Cmd.Run with the provided
 // working directory, stdout, and stderr
 func (d *Driver) Run(su2call Syscaller) error {
-
-	err := os.MkdirAll(d.Wd, 0700)
-	if err != nil {
-		return errors.New("driver: error creating working directory: " + err.Error())
+	if d.Wd != "" {
+		err := os.MkdirAll(d.Wd, 0700)
+		if err != nil {
+			return errors.New("driver: error creating working directory: " + err.Error())
+		}
 	}
 	// Write the config file
 	f, err := os.Create(d.fullpath(d.Config))

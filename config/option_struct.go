@@ -10,8 +10,6 @@ import (
 type Options struct {
 	// Adjoint type
 	RegimeType enum.Regime
-	// Write extra output
-	ExtraOutput bool
 	// Physical governing equations
 	PhysicalProblem enum.Solver
 	// Mathematical problem
@@ -30,6 +28,78 @@ type Options struct {
 	RestartSol bool
 	// Write a tecplot file for each partition
 	VisualizePart bool
+	// Specific gas constant (287.87 J/kg*K (air), only for compressible flows)
+	GasConstant float64
+	// Ratio of specific heats (1.4 (air), only for compressible flows)
+	GammaValue float64
+	// Reynolds number (non-dimensional, based on the free-stream values)
+	ReynoldsNumber float64
+	// Reynolds length (1 m by default)
+	ReynoldsLength float64
+	// Laminar Prandtl number (0.72 (air), only for compressible flows)
+	PrandtlLam float64
+	// Turbulent Prandtl number (0.9 (air), only for compressible flows)
+	PrandtlTurb float64
+	// Value of the Bulk Modulus
+	BulkModulus float64
+	// Artifical compressibility factor
+	ArtcompFactor float64
+	// Mach number (non-dimensional, based on the free-stream values)
+	MachNumber float64
+	// Free-stream pressure (101325.0 N/m^2 by default)
+	FreestreamPressure float64
+	// Free-stream density (1.2886 Kg/m^3 (air), 998.2 Kg/m^3 (water))
+	FreestreamDensity float64
+	// Free-stream temperature (273.15 K by default)
+	FreestreamTemperature float64
+	// Free-stream vibrational-electronic temperature (273.15 K by default)
+	FreestreamTemperatureVe float64
+	// Free-stream velocity (m/s)
+	FreestreamVelocity [3]float64
+	// Free-stream viscosity (1.853E-5 Ns/m^2 (air), 0.798E-3 Ns/m^2 (water))
+	FreestreamViscosity float64
+	//
+	FreestreamIntermittency float64
+	//
+	FreestreamTurbulenceintensity float64
+	//
+	FreestreamNuFactor float64
+	//
+	FreestreamTurb2lamviscratio float64
+	// Side-slip angle (degrees, only for compressible flows)
+	SideslipAngle float64
+	// Angle of attack (degrees, only for compressible flows)
+	Aoa float64
+	// Activate fixed CL mode (specify a CL instead of AoA).
+	FixedClMode bool
+	// Specify a fixed coefficient of lift instead of AoA (only for compressible flows)
+	TargetCl float64
+	// Damping factor for fixed CL mode.
+	DampFixedCl float64
+	// X Reference origin for moment computation
+	RefOriginMomentX []float64
+	// Y Reference origin for moment computation
+	RefOriginMomentY []float64
+	// Z Reference origin for moment computation
+	RefOriginMomentZ []float64
+	// Reference area for force coefficients (0 implies automatic calculation)
+	RefArea float64
+	// Reference length for pitching, rolling, and yawing non-dimensional moment
+	RefLengthMoment float64
+	// Reference element length for computing the slope limiter epsilon
+	RefElemLength float64
+	// Reference coefficient for detecting sharp edges
+	RefSharpEdges float64
+	// Reference pressure (1.0 N/m^2 by default, only for compressible flows)
+	RefPressure float64
+	// Reference temperature (1.0 K by default, only for compressible flows)
+	RefTemperature float64
+	// Reference density (1.0 Kg/m^3 by default, only for compressible flows)
+	RefDensity float64
+	// Reference velocity (incompressible only)
+	RefVelocity float64
+	// Reference viscosity (incompressible only)
+	RefViscosity float64
 	// Marker(s) of the surface in the surface flow solution file
 	MarkerPlotting []string
 	// Marker(s) of the surface where evaluate the non-dimensional coefficients
@@ -60,9 +130,9 @@ type Options struct {
 	ElecNeumann []string
 	// Custom boundary marker(s)
 	MarkerCustom []string
-	// Periodic boundary marker(s) for use with SU2_PBCFormat: ( periodic marker, donor marker, rotation_center_x, rotation_center_y,rotation_center_z, rotation_angle_x-axis, rotation_angle_y-axis,rotation_angle_z-axis, translation_x, translation_y, translation_z, ... )
+	// Periodic boundary marker(s) for use with SU2_MSHFormat: ( periodic marker, donor marker, rotation_center_x, rotation_center_y,rotation_center_z, rotation_angle_x-axis, rotation_angle_y-axis,rotation_angle_z-axis, translation_x, translation_y, translation_z, ... )
 	MarkerPeriodic *su2types.Periodic
-	// Periodic boundary marker(s) for use with SU2_PBCFormat: ( periodic marker, donor marker, rotation_center_x, rotation_center_y,rotation_center_z, rotation_angle_x-axis, rotation_angle_y-axis,rotation_angle_z-axis, translation_x, translation_y, translation_z, ... )
+	// Periodic boundary marker(s) for use with SU2_MSHFormat: ( periodic marker, donor marker, rotation_center_x, rotation_center_y,rotation_center_z, rotation_angle_x-axis, rotation_angle_y-axis,rotation_angle_z-axis, translation_x, translation_y, translation_z, ... )
 	MarkerActdisk *su2types.ActuatorDisk
 	// Inlet boundary type
 	InletType enum.InletType
@@ -100,20 +170,6 @@ type Options struct {
 	DampNacelleInflow float64
 	// Outlet boundary marker(s) over which to calculate 1-D flow propertiesFormat: ( outlet marker)
 	MarkerOut1d []string
-	// Kind of grid adaptation
-	KindAdapt enum.Adapt
-	// Percentage of new elements (% of the original number of elements)
-	NewElems float64
-	// Scale factor for the dual volume
-	DualvolPower float64
-	// Use analytical definition for surfaces
-	AnalyticalSurfdef enum.GeoAnalytic
-	// Before each computation, implicitly smooth the nodal coordinates
-	SmoothGeometry bool
-	// Adapt the boundary elements
-	AdaptBoundary bool
-	// Divide rectangles into triangles
-	DivideElements bool
 	// Unsteady simulation
 	UnsteadySimulation enum.Unsteady
 	// Courant-Friedrichs-Lewy condition of the finest grid
@@ -194,86 +250,6 @@ type Options struct {
 	AdjturbLinError float64
 	// Maximum number of iterations of the turbulent adjoint linear solver for the implicit formulation
 	AdjturbLinIter uint16
-	// Mesh motion for unsteady simulations
-	GridMovement bool
-	// Type of mesh motion
-	GridMovementKind []enum.Gridmovement
-	// Marker(s) of moving surfaces (MOVING_WALL or DEFORMING grid motion).
-	MarkerMoving []string
-	// Mach number (non-dimensional, based on the mesh velocity and freestream vals.)
-	MachMotion float64
-	// Coordinates of the rigid motion origin
-	MotionOriginX []float64
-	// Coordinates of the rigid motion origin
-	MotionOriginY []float64
-	// Coordinates of the rigid motion origin
-	MotionOriginZ []float64
-	// Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
-	TranslationRateX []float64
-	// Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
-	TranslationRateY []float64
-	// Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
-	TranslationRateZ []float64
-	// Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
-	RotationRateX []float64
-	// Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
-	RotationRateY []float64
-	// Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
-	RotationRateZ []float64
-	// Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
-	PitchingOmegaX []float64
-	// Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
-	PitchingOmegaY []float64
-	// Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
-	PitchingOmegaZ []float64
-	// Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
-	PitchingAmplX []float64
-	// Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
-	PitchingAmplY []float64
-	// Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
-	PitchingAmplZ []float64
-	// Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
-	PitchingPhaseX []float64
-	// Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
-	PitchingPhaseY []float64
-	// Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
-	PitchingPhaseZ []float64
-	// Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
-	PlungingOmegaX []float64
-	// Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
-	PlungingOmegaY []float64
-	// Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
-	PlungingOmegaZ []float64
-	// Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
-	PlungingAmplX []float64
-	// Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
-	PlungingAmplY []float64
-	// Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
-	PlungingAmplZ []float64
-	// Value to move motion origins (1 or 0)
-	MoveMotionOrigin []uint16
-	//
-	MotionFilename string
-	// Uncoupled Aeroelastic Frequency Plunge.
-	FreqPlungeAeroelastic float64
-	// Uncoupled Aeroelastic Frequency Pitch.
-	FreqPitchAeroelastic float64
-	// Apply a wind gust
-	WindGust bool
-	// Type of gust
-	GustType enum.GustType
-	// Gust wavelenght (meters)
-	GustWavelength float64
-	// Number of gust periods
-	GustPeriods float64
-	// Gust amplitude (m/s)
-	GustAmpl float64
-	// Time at which to begin the gust (sec)
-	GustBeginTime float64
-	// Location at which the gust begins (meters)
-	GustBeginLoc float64
-	// Direction of the gust X or Y dir
-	GustDir enum.GustDir
 	// Convergence criteria
 	ConvCriteria enum.ConvergeCrit
 	// Residual reduction (order of magnitude with respect to the initial value)
@@ -544,82 +520,104 @@ type Options struct {
 	WrtHalo bool
 	// Output averaged stagnation pressure on specified exit marker.
 	Wrt1dOutput bool
+	// Mesh motion for unsteady simulations
+	GridMovement bool
+	// Type of mesh motion
+	GridMovementKind []enum.Gridmovement
+	// Marker(s) of moving surfaces (MOVING_WALL or DEFORMING grid motion).
+	MarkerMoving []string
+	// Mach number (non-dimensional, based on the mesh velocity and freestream vals.)
+	MachMotion float64
+	// Coordinates of the rigid motion origin
+	MotionOriginX []float64
+	// Coordinates of the rigid motion origin
+	MotionOriginY []float64
+	// Coordinates of the rigid motion origin
+	MotionOriginZ []float64
+	// Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
+	TranslationRateX []float64
+	// Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
+	TranslationRateY []float64
+	// Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)
+	TranslationRateZ []float64
+	// Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
+	RotationRateX []float64
+	// Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
+	RotationRateY []float64
+	// Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)
+	RotationRateZ []float64
+	// Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
+	PitchingOmegaX []float64
+	// Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
+	PitchingOmegaY []float64
+	// Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)
+	PitchingOmegaZ []float64
+	// Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
+	PitchingAmplX []float64
+	// Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
+	PitchingAmplY []float64
+	// Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)
+	PitchingAmplZ []float64
+	// Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
+	PitchingPhaseX []float64
+	// Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
+	PitchingPhaseY []float64
+	// Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)
+	PitchingPhaseZ []float64
+	// Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
+	PlungingOmegaX []float64
+	// Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
+	PlungingOmegaY []float64
+	// Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)
+	PlungingOmegaZ []float64
+	// Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
+	PlungingAmplX []float64
+	// Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
+	PlungingAmplY []float64
+	// Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)
+	PlungingAmplZ []float64
+	// Value to move motion origins (1 or 0)
+	MoveMotionOrigin []uint16
+	//
+	MotionFilename string
+	// Uncoupled Aeroelastic Frequency Plunge.
+	FreqPlungeAeroelastic float64
+	// Uncoupled Aeroelastic Frequency Pitch.
+	FreqPitchAeroelastic float64
+	// Kind of grid adaptation
+	KindAdapt enum.Adapt
+	// Percentage of new elements (% of the original number of elements)
+	NewElems float64
+	// Scale factor for the dual volume
+	DualvolPower float64
+	// Use analytical definition for surfaces
+	AnalyticalSurfdef enum.GeoAnalytic
+	// Before each computation, implicitly smooth the nodal coordinates
+	SmoothGeometry bool
+	// Adapt the boundary elements
+	AdaptBoundary bool
+	// Divide rectangles into triangles
+	DivideElements bool
+	// Apply a wind gust
+	WindGust bool
+	// Type of gust
+	GustType enum.GustType
+	// Gust wavelenght (meters)
+	GustWavelength float64
+	// Number of gust periods
+	GustPeriods float64
+	// Gust amplitude (m/s)
+	GustAmpl float64
+	// Time at which to begin the gust (sec)
+	GustBeginTime float64
+	// Location at which the gust begins (meters)
+	GustBeginLoc float64
+	// Direction of the gust X or Y dir
+	GustDir enum.GustDir
 	// Evaluate equivalent area on the Near-Field
 	EquivArea bool
 	// Integration limits of the equivalent area ( xmin, xmax, Dist_NearField )
 	EaIntLimit [3]float64
-	// Specific gas constant (287.87 J/kg*K (air), only for compressible flows)
-	GasConstant float64
-	// Ratio of specific heats (1.4 (air), only for compressible flows)
-	GammaValue float64
-	// Reynolds number (non-dimensional, based on the free-stream values)
-	ReynoldsNumber float64
-	// Reynolds length (1 m by default)
-	ReynoldsLength float64
-	// Laminar Prandtl number (0.72 (air), only for compressible flows)
-	PrandtlLam float64
-	// Turbulent Prandtl number (0.9 (air), only for compressible flows)
-	PrandtlTurb float64
-	// Value of the Bulk Modulus
-	BulkModulus float64
-	// Artifical compressibility factor
-	ArtcompFactor float64
-	// Mach number (non-dimensional, based on the free-stream values)
-	MachNumber float64
-	// Free-stream pressure (101325.0 N/m^2 by default)
-	FreestreamPressure float64
-	// Free-stream density (1.2886 Kg/m^3 (air), 998.2 Kg/m^3 (water))
-	FreestreamDensity float64
-	// Free-stream temperature (273.15 K by default)
-	FreestreamTemperature float64
-	// Free-stream vibrational-electronic temperature (273.15 K by default)
-	FreestreamTemperatureVe float64
-	// Free-stream velocity (m/s)
-	FreestreamVelocity [3]float64
-	// Free-stream viscosity (1.853E-5 Ns/m^2 (air), 0.798E-3 Ns/m^2 (water))
-	FreestreamViscosity float64
-	//
-	FreestreamIntermittency float64
-	//
-	FreestreamTurbulenceintensity float64
-	//
-	FreestreamNuFactor float64
-	//
-	FreestreamTurb2lamviscratio float64
-	// Side-slip angle (degrees, only for compressible flows)
-	SideslipAngle float64
-	// Angle of attack (degrees, only for compressible flows)
-	Aoa float64
-	// Activate fixed CL mode (specify a CL instead of AoA).
-	FixedClMode bool
-	// Specify a fixed coefficient of lift instead of AoA (only for compressible flows)
-	TargetCl float64
-	// Damping factor for fixed CL mode.
-	DampFixedCl float64
-	// X Reference origin for moment computation
-	RefOriginMomentX []float64
-	// Y Reference origin for moment computation
-	RefOriginMomentY []float64
-	// Z Reference origin for moment computation
-	RefOriginMomentZ []float64
-	// Reference area for force coefficients (0 implies automatic calculation)
-	RefArea float64
-	// Reference length for pitching, rolling, and yawing non-dimensional moment
-	RefLengthMoment float64
-	// Reference element length for computing the slope limiter epsilon
-	RefElemLength float64
-	// Reference coefficient for detecting sharp edges
-	RefSharpEdges float64
-	// Reference pressure (1.0 N/m^2 by default, only for compressible flows)
-	RefPressure float64
-	// Reference temperature (1.0 K by default, only for compressible flows)
-	RefTemperature float64
-	// Reference density (1.0 Kg/m^3 by default, only for compressible flows)
-	RefDensity float64
-	// Reference velocity (incompressible only)
-	RefVelocity float64
-	// Reference viscosity (incompressible only)
-	RefViscosity float64
 	// Specify chemical model for multi-species simulations
 	GasModel enum.Gasmodel
 	//
@@ -688,6 +686,8 @@ type Options struct {
 	InvDesignCp bool
 	// Evaluate inverse design on the surface
 	InvDesignHeatflux bool
+	// Write extra output
+	ExtraOutput bool
 	// Location of the turb model itself
 	MlTurbModelFile string
 	// what kind of input/output feature map is there
@@ -698,4 +698,22 @@ type Options struct {
 	FfdIterations uint16
 	// Free surface damping coefficient
 	FfdTolerance float64
+	// Setup for design variables
+	DefinitionDv *su2types.Python
+	// Current value of the design variables
+	DvValueNew *su2types.Python
+	// Previous value of the design variables
+	DvValueOld *su2types.Python
+	// Number of partitions of the mesh
+	NumberPart *su2types.Python
+	// Optimization objective function with optional scaling factor
+	OptObjective *su2types.Python
+	// Optimization constraint functions with optional scaling factor
+	OptConstraint *su2types.Python
+	// Finite different step for gradient estimation
+	FinDiffStep *su2types.Python
+	// Verbosity of the python scripts to Stdout
+	Console *su2types.Python
+	// Flag specifying if the mesh was decomposed
+	Decomposed *su2types.Python
 }

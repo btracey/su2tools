@@ -181,6 +181,8 @@ func goTypeFromConfigType(typename, extra string) (string, error) {
 		return "*su2types.Periodic", nil
 	case "MathProblem":
 		return "enum.MathProblem", nil
+	case "Python":
+		return "*su2types.Python", nil
 	}
 }
 
