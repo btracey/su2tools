@@ -26,19 +26,24 @@ func (s Status) String() string {
 }
 
 const (
-	Computed Status = iota + 1
+	Error Status = iota
+	ComputedSuccessfully
+	ComputedWithError
 	NoConfigFile
 	ErrorParsingConfig
 	UnequalOptions
 	NoSolutionFile
+	HasErrorFile
 )
 
 var statusMap = map[Status]string{
-	Computed:           "computed",
-	NoConfigFile:       "no existing config file",
-	ErrorParsingConfig: "error parsing the existing config file in the working directory",
-	UnequalOptions:     "options in the config file are not the same",
-	NoSolutionFile:     "no solution file found",
+	ComputedSuccessfully: "computed",
+	NoConfigFile:         "no existing config file",
+	ErrorParsingConfig:   "error parsing the existing config file in the working directory",
+	UnequalOptions:       "options in the config file are not the same",
+	NoSolutionFile:       "no solution file found",
+	HasErrorFile:         "computed with error",
+	Error:                "has both solution and error file",
 }
 
 // Syscaller is a provides the system call to execute a Driver. The returned
@@ -103,26 +108,6 @@ func (c Slurm) NumCores() int {
 	return c.Cores
 }
 
-/*
-func (c Cluster) WriteFile(d *Driver) error {
-	fmt.Println("In write string")
-	name := filepath.Join(d.Wd, "slurm_script.run")
-	f, err := os.Create(name)
-	if err != nil {
-		return err
-	}
-	f.WriteString("#!/bin/bash\n")
-	f.WriteString("#SBATCH --job-name=" + d.Name + "\n")
-	f.WriteString("#SBATCH -n" + strconv.Itoa(c.Cores) + "\n")
-	f.WriteString("#SBATCH --output=slurm.out\n")
-	f.WriteString("#SBATCH --error=slurm.err\n")
-	f.WriteString("parallel_computation.py -f " + d.Config + " -p " + strconv.Itoa(c.Cores))
-	f.Close()
-	return nil
-	//panic("check bash script")
-}
-*/
-
 // Driver specifies a case for running SU2.
 type Driver struct {
 	Name       string                 // Identifier for the case
@@ -135,9 +120,11 @@ type Driver struct {
 	FancyName  string                 // Longer name (can be used for plot legends or something)
 }
 
+// Get rid of IsComputed. Need to check for Computed and
 // IsComputed returns true if driver.Status() == Computed
 func (d *Driver) IsComputed() bool {
-	return d.Status() == Computed
+	stat := d.Status()
+	return stat == ComputedSuccessfully || stat == ComputedWithError
 }
 
 // Status returns the status of the computation. If this particular set of options
@@ -158,19 +145,40 @@ func (d *Driver) Status() Status {
 	if !reflect.DeepEqual(d.Options, oldOptions) {
 		return UnequalOptions
 	}
-	// Same config file already exists and is the same, see if the solution file exists
-	_, err = os.Open(d.fullpath(d.Options.SolutionFlowFilename))
-	if err != nil {
+
+	var hasErrorFile bool
+	var hasSolutionFile bool
+
+	// The config file may have been run, but SU^2 errored. See if the error file
+	// exists
+	if _, err = os.Stat(d.fullpath(d.errorFilename())); err == nil {
+		hasErrorFile = true
+		//return ComputedWithError
+	}
+
+	if _, err = os.Stat(d.fullpath(d.Options.SolutionFlowFilename)); err == nil {
+		hasSolutionFile = true
+	}
+
+	if hasSolutionFile && hasErrorFile {
+		return Error
+	}
+
+	if hasErrorFile {
+		return ComputedWithError
+	}
+	if !hasSolutionFile {
 		return NoSolutionFile
 	}
 	// The cases are the same
-	return Computed
+	return ComputedSuccessfully
 }
 
 // Run executes SU2 with the given Syscaller. Run writes the config file (as
 // specified by driver.Config and driver.Wd), uses the Syscaller to get
 // the arguments to exec.Command, and calls exec.Cmd.Run with the provided
-// working directory, stdout, and stderr
+// working directory, stdout, and stderr. If run has an error, an error file
+// will be written.
 func (d *Driver) Run(su2call Syscaller) error {
 	if d.Wd != "" {
 		err := os.MkdirAll(d.Wd, 0700)
@@ -178,6 +186,15 @@ func (d *Driver) Run(su2call Syscaller) error {
 			return errors.New("driver: error creating working directory: " + err.Error())
 		}
 	}
+	// Erase the error file if is exists (we are going to re-run SU^2 so the
+	// old error file is not relevant)
+	errFilename := d.fullpath(d.errorFilename())
+	if _, err := os.Stat(errFilename); err == nil {
+		if err := os.Remove(errFilename); err != nil {
+			return err
+		}
+	}
+
 	// Write the config file
 	f, err := os.Create(d.fullpath(d.Config))
 	if err != nil {
@@ -220,7 +237,56 @@ func (d *Driver) Run(su2call Syscaller) error {
 	cmd.Stderr = stderr
 
 	fmt.Println("executing execname", "name = ", name, " args = ", args, "wd = ", cmd.Dir)
-	return cmd.Run()
+	runerr := cmd.Run()
+	if runerr == nil {
+		return err
+	}
+	// There was an error running SU^2. Create it with the error.
+	errFile, err := os.Create(d.fullpath(d.errorFilename()))
+	if err != nil {
+		return err
+	}
+	defer errFile.Close()
+	errFile.WriteString(runerr.Error())
+	return runerr
+}
+
+// MoveSolutionToOld moves the solution file to d.Options.SolutionFlowFilename +
+// This can be useful for automated tools. (In case of error, the old solution file)
+// is not lost
+func (d *Driver) MoveSolutionToOld() error {
+	// Get the solution flow filename and split it up into a beginning and an end
+	// Append _old to it.
+	// Copy the old file to the new file
+
+	currFullPath := d.fullpath(d.Options.SolutionFlowFilename)
+	oldFullPath := d.fullpath(oldSolutionFilename(d.Options.SolutionFlowFilename))
+
+	return os.Rename(currFullPath, oldFullPath)
+}
+
+// oldSolutionFilename translaties the current solutionFlowFilename into the old
+// solution flow filename
+func oldSolutionFilename(sol string) string {
+	ext := filepath.Ext(sol)
+	prefix := sol[:len(sol)-len(ext)]
+	return prefix + "_old" + ext
+}
+
+// EraseDoneFiles deletes the solution file and crash file
+func (d *Driver) EraseDoneFiles() error {
+	solFullPath := d.fullpath(d.Options.SolutionFlowFilename)
+	if err := os.Remove(solFullPath); err != nil {
+		return err
+	}
+	errorFullPath := d.fullpath(d.errorFilename())
+	return os.Remove(errorFullPath)
+}
+
+// crashFilename is the name of the file that is written if SU^2 exited with error
+func (d *Driver) errorFilename() string {
+	// Error filename should live in the pwd and should have name su2_error.txt
+	return "su2_err.txt"
 }
 
 // CopyRestartToSolution copies the restart file to the solution file

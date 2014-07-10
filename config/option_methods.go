@@ -202,7 +202,11 @@ func shouldcontinue(scanner *bufio.Scanner) bool {
 	if len(scanner.Bytes()) == 0 {
 		return true
 	}
-	if strings.TrimSpace(scanner.Text())[0] == '%' {
+	str := strings.TrimSpace(scanner.Text())
+	if len(str) == 0 {
+		return true
+	}
+	if str[0] == '%' {
 		return true
 	}
 	return false
