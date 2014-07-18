@@ -120,10 +120,8 @@ type Driver struct {
 	FancyName  string                 // Longer name (can be used for plot legends or something)
 }
 
-// Get rid of IsComputed. Need to check for Computed and
-// IsComputed returns true if driver.Status() == Computed
-func (d *Driver) IsComputed() bool {
-	stat := d.Status()
+// IsComputed returns true if the status indicates that the solution has been computed
+func (d *Driver) IsComputed(stat Status) bool {
 	return stat == ComputedSuccessfully || stat == ComputedWithError
 }
 
