@@ -13,6 +13,14 @@ import (
 	"strings"
 )
 
+type PointID int
+type ElementID int
+type VTKType int
+
+const (
+	Quadrilateral VTKType = 9
+)
+
 type SU2 struct {
 	Elements []*Element
 	Points   []*Point
@@ -21,20 +29,21 @@ type SU2 struct {
 }
 
 type Marker struct {
-	Tag      string
-	TypeID   int
+	Tag string
+	//TypeID   VTKType
 	Elements []Element
 }
 
 type Element struct {
-	Id        int
-	TypeID    int
-	VertexIds []int
+	Id        ElementID
+	Type      VTKType
+	VertexIds []PointID
 }
 
 type Point struct {
-	Id       int
-	Location []float64
+	Id          PointID
+	Location    []float64
+	NeighborIDs map[PointID]struct{}
 }
 
 // ReadFrom reads the SU2 mesh from an io.Reader creating the mesh
@@ -80,6 +89,10 @@ func (s *SU2) ReadFrom(r io.Reader) (n int64, err error) {
 			}
 		}
 	}
+	err = s.initialize()
+	if err != nil {
+		return n, err
+	}
 	return n, nil
 }
 
@@ -110,21 +123,24 @@ func (s *SU2) parseElements(scanner *bufio.Scanner, str string) (n int64, err er
 		if len(strs) < 2 {
 			return n, fmt.Errorf("error scanning element %d: should be at least two numbers (typeID elemID)", i)
 		}
-		elem.TypeID, err = strconv.Atoi(strs[0])
+		t, err := strconv.Atoi(strs[0])
+		elem.Type = VTKType(t)
 		if err != nil {
 			return n, fmt.Errorf("error scanning element %d: cannot parse typeID: %v", i, err)
 		}
-		elem.Id, err = strconv.Atoi(strs[len(strs)-1])
+		t, err = strconv.Atoi(strs[len(strs)-1])
+		elem.Id = ElementID(t)
 		if err != nil {
 			return n, fmt.Errorf("error scanning element %d: cannot parse nodeID: %v", i, err)
 		}
-		if elem.Id != i {
+		if elem.Id != ElementID(i) {
 			return n, fmt.Errorf("error scanning element %d: bad nodeID: %v", i, err)
 		}
 		strs = strs[1 : len(strs)-1]
-		elem.VertexIds = make([]int, len(strs))
+		elem.VertexIds = make([]PointID, len(strs))
 		for j, str := range strs {
-			elem.VertexIds[j], err = strconv.Atoi(str)
+			t, err := strconv.Atoi(str)
+			elem.VertexIds[j] = PointID(t)
 			if err != nil {
 				return n, fmt.Errorf("error scanning element %d: cannot parse node number: %v", i, err)
 			}
@@ -165,11 +181,12 @@ func (s *SU2) parsePoints(scanner *bufio.Scanner, str string) (n int64, err erro
 				return n, fmt.Errorf("error parsing location of point %d: %v", i, err)
 			}
 		}
-		point.Id, err = strconv.Atoi(strs[len(strs)-1])
+		t, err := strconv.Atoi(strs[len(strs)-1])
+		point.Id = PointID(t)
 		if err != nil {
 			return n, fmt.Errorf("error parsing index of point %d: %v", i, err)
 		}
-		if point.Id != i {
+		if point.Id != PointID(i) {
 			return n, fmt.Errorf("bad point id %d: %v", i, err)
 		}
 		points[i] = point
@@ -228,15 +245,17 @@ func (s *SU2) parseMarkers(scanner *bufio.Scanner, str string) (n int64, err err
 			str := scanner.Text()
 			strs := strings.Fields(str)
 			// Parse the type ID
-			marker.Elements[j].TypeID, err = strconv.Atoi(strs[0])
+			t, err := strconv.Atoi(strs[0])
+			marker.Elements[j].Type = VTKType(t)
 			if err != nil {
 				return n, fmt.Errorf("marker %d, element %d: bad type id: %v", i, j, err)
 			}
-			marker.Elements[j].VertexIds = make([]int, len(strs)-1)
+			marker.Elements[j].VertexIds = make([]PointID, len(strs)-1)
 			for k := 0; k < len(strs)-1; k++ {
 				str = strs[k+1]
 				str = strings.TrimSpace(str)
-				marker.Elements[j].VertexIds[k], err = strconv.Atoi(str)
+				t, err := strconv.Atoi(str)
+				marker.Elements[j].VertexIds[k] = PointID(t)
 				if err != nil {
 					return n, fmt.Errorf("marked %d, element %d, point %d: bad point %v", i, j, k, err)
 				}
@@ -247,4 +266,28 @@ func (s *SU2) parseMarkers(scanner *bufio.Scanner, str string) (n int64, err err
 	}
 	s.Markers = markers
 	return n, nil
+}
+
+func (s *SU2) initialize() error {
+	// Create all of the neighbor maps
+	for _, point := range s.Points {
+		point.NeighborIDs = make(map[PointID]struct{})
+	}
+	// Add all of the neighboring points
+	for _, elem := range s.Elements {
+		switch elem.Type {
+		case Quadrilateral:
+			l := len(elem.VertexIds)
+			// The neighbors are the adjacent nodes in the list
+			for j, id := range elem.VertexIds {
+				neighbor := elem.VertexIds[(j+1)%l]
+				s.Points[id].NeighborIDs[neighbor] = struct{}{}
+				neighbor = elem.VertexIds[(j+l-1)%l]
+				s.Points[id].NeighborIDs[neighbor] = struct{}{}
+			}
+		default:
+			return fmt.Errorf("element type %d not implemented", elem.Type)
+		}
+	}
+	return nil
 }
