@@ -41,9 +41,9 @@ type Element struct {
 }
 
 type Point struct {
-	Id          PointID
-	Location    []float64
-	NeighborIDs map[PointID]struct{}
+	Id        PointID
+	Location  []float64
+	Neighbors map[PointID]*Point
 }
 
 // ReadFrom reads the SU2 mesh from an io.Reader creating the mesh
@@ -271,7 +271,7 @@ func (s *SU2) parseMarkers(scanner *bufio.Scanner, str string) (n int64, err err
 func (s *SU2) initialize() error {
 	// Create all of the neighbor maps
 	for _, point := range s.Points {
-		point.NeighborIDs = make(map[PointID]struct{})
+		point.Neighbors = make(map[PointID]*Point)
 	}
 	// Add all of the neighboring points
 	for _, elem := range s.Elements {
@@ -281,9 +281,9 @@ func (s *SU2) initialize() error {
 			// The neighbors are the adjacent nodes in the list
 			for j, id := range elem.VertexIds {
 				neighbor := elem.VertexIds[(j+1)%l]
-				s.Points[id].NeighborIDs[neighbor] = struct{}{}
+				s.Points[id].Neighbors[neighbor] = s.Points[neighbor]
 				neighbor = elem.VertexIds[(j+l-1)%l]
-				s.Points[id].NeighborIDs[neighbor] = struct{}{}
+				s.Points[id].Neighbors[neighbor] = s.Points[neighbor]
 			}
 		default:
 			return fmt.Errorf("element type %d not implemented", elem.Type)
