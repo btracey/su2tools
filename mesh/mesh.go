@@ -128,8 +128,10 @@ func (s *SU2) parseElements(scanner *bufio.Scanner, str string) (n int64, err er
 		if err != nil {
 			return n, fmt.Errorf("error scanning element %d: cannot parse typeID: %v", i, err)
 		}
+		elem.Id = ElementID(i)
+
+		// BUG: SU2 accepts meshes that don't follow the format. See issue #52.
 		t, err = strconv.Atoi(strs[len(strs)-1])
-		elem.Id = ElementID(t)
 		if err != nil {
 			return n, fmt.Errorf("error scanning element %d: cannot parse nodeID: %v", i, err)
 		}
