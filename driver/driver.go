@@ -309,8 +309,8 @@ func (d *Driver) fullpath(relpath string) string {
 	return filepath.Join(d.Wd, relpath)
 }
 
-// Load reads in from the input and sets the Options and OptionList fields.
-func (d *Driver) Load(reader io.Reader) error {
+// LoadFrom reads a config file from the reader and sets the Options and OptionList fields.
+func (d *Driver) LoadFrom(reader io.Reader) error {
 	// TODO: Add example
 	options, optionList, err := config.Read(reader)
 	if err != nil {
@@ -319,6 +319,19 @@ func (d *Driver) Load(reader io.Reader) error {
 	d.Options = options
 	d.OptionList = optionList
 	return nil
+}
+
+// Load reads in the config file from the config file listed in the driver structure.
+// Sets the Options and the OptionList.
+func (d *Driver) Load() error {
+	configFile := d.fullpath(d.Config)
+	f, err := os.Open(configFile)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	return d.LoadFrom(f)
 }
 
 /*
