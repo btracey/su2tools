@@ -9,6 +9,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -41,9 +42,10 @@ type Element struct {
 }
 
 type Point struct {
-	Id        PointID
-	Location  []float64
-	Neighbors map[PointID]*Point
+	Id               PointID
+	Location         []float64
+	Neighbors        map[PointID]*Point
+	OrderedNeighbors []*Point // The neighbors stored in order of PointID
 }
 
 // ReadFrom reads the SU2 mesh from an io.Reader creating the mesh
@@ -280,6 +282,9 @@ func (s *SU2) initialize() error {
 		switch elem.Type {
 		case Quadrilateral:
 			l := len(elem.VertexIds)
+			if l != 4 {
+				return fmt.Errorf("Incorrect number of nodes in element %v", elem.Id)
+			}
 			// The neighbors are the adjacent nodes in the list
 			for j, id := range elem.VertexIds {
 				neighbor := elem.VertexIds[(j+1)%l]
@@ -289,6 +294,24 @@ func (s *SU2) initialize() error {
 			}
 		default:
 			return fmt.Errorf("element type %d not implemented", elem.Type)
+		}
+	}
+	for _, point := range s.Points {
+		nNeighbors := len(point.Neighbors)
+		neighborIds := make([]int, nNeighbors)
+		var count int
+		for id := range point.Neighbors {
+			neighborIds[count] = int(id)
+			count++
+		}
+		sort.Ints(neighborIds)
+		point.OrderedNeighbors = make([]*Point, nNeighbors)
+		for i, id := range neighborIds {
+			var ok bool
+			point.OrderedNeighbors[i], ok = point.Neighbors[PointID(id)]
+			if !ok {
+				panic("bad neighbor")
+			}
 		}
 	}
 	return nil
