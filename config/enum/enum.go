@@ -42,6 +42,7 @@ const (
 	GradFlow
 	GradFlowAdj
 	NoAdapt
+	Periodic
 	Remaining
 	Robust
 	Smoothing
@@ -61,6 +62,7 @@ var mapAdapt = map[Adapt]string{
 	GradFlow:         "GradFlow",
 	GradFlowAdj:      "GradFlowAdj",
 	NoAdapt:          "NoAdapt",
+	Periodic:         "Periodic",
 	Remaining:        "Remaining",
 	Robust:           "Robust",
 	Smoothing:        "Smoothing",
@@ -80,6 +82,7 @@ var mapAdaptToConfig = map[Adapt]string{
 	GradFlow:         "GRAD_FLOW",
 	GradFlowAdj:      "GRAD_FLOW_ADJ",
 	NoAdapt:          "NONE",
+	Periodic:         "PERIODIC",
 	Remaining:        "REMAINING",
 	Robust:           "ROBUST",
 	Smoothing:        "SMOOTHING",
@@ -99,6 +102,7 @@ var mapAdaptFromConfig = map[string]Adapt{
 	"GRAD_FLOW":         GradFlow,
 	"GRAD_FLOW_ADJ":     GradFlowAdj,
 	"NONE":              NoAdapt,
+	"PERIODIC":          Periodic,
 	"REMAINING":         Remaining,
 	"ROBUST":            Robust,
 	"SMOOTHING":         Smoothing,
@@ -419,6 +423,98 @@ var mapFlowGradientToConfig = map[FlowGradient]string{
 var mapFlowGradientFromConfig = map[string]FlowGradient{
 	"GREEN_GAUSS":            GreenGauss,
 	"WEIGHTED_LEAST_SQUARES": WeightedLeastSquares,
+}
+
+type Fluidmodel uint16
+
+func (e Fluidmodel) String() string {
+	return mapFluidmodel[e]
+}
+
+func (e Fluidmodel) ConfigString() string {
+	return mapFluidmodelToConfig[e]
+}
+
+func (e *Fluidmodel) FromConfigString(str []string) error {
+	if len(str) != 1 {
+		return errors.New("multiple values for field Fluidmodel")
+	}
+	enum, ok := mapFluidmodelFromConfig[str[0]]
+	if !ok {
+		return Unknown
+	}
+	*e = enum
+	return nil
+}
+
+const (
+	IdealGas Fluidmodel = iota
+	PrGas
+	StandardAir
+	VwGas
+)
+
+var mapFluidmodel = map[Fluidmodel]string{
+	IdealGas:    "IdealGas",
+	PrGas:       "PrGas",
+	StandardAir: "StandardAir",
+	VwGas:       "VwGas",
+}
+
+var mapFluidmodelToConfig = map[Fluidmodel]string{
+	IdealGas:    "IDEAL_GAS",
+	PrGas:       "PR_GAS",
+	StandardAir: "STANDARD_AIR",
+	VwGas:       "VW_GAS",
+}
+
+var mapFluidmodelFromConfig = map[string]Fluidmodel{
+	"IDEAL_GAS":    IdealGas,
+	"PR_GAS":       PrGas,
+	"STANDARD_AIR": StandardAir,
+	"VW_GAS":       VwGas,
+}
+
+type FreestreamOption uint16
+
+func (e FreestreamOption) String() string {
+	return mapFreestreamOption[e]
+}
+
+func (e FreestreamOption) ConfigString() string {
+	return mapFreestreamOptionToConfig[e]
+}
+
+func (e *FreestreamOption) FromConfigString(str []string) error {
+	if len(str) != 1 {
+		return errors.New("multiple values for field FreestreamOption")
+	}
+	enum, ok := mapFreestreamOptionFromConfig[str[0]]
+	if !ok {
+		return Unknown
+	}
+	*e = enum
+	return nil
+}
+
+const (
+	DensityFs FreestreamOption = iota
+	TemperatureFs
+)
+
+var mapFreestreamOption = map[FreestreamOption]string{
+	DensityFs:     "DensityFs",
+	TemperatureFs: "TemperatureFs",
+}
+
+var mapFreestreamOptionToConfig = map[FreestreamOption]string{
+	DensityFs:     "DENSITY_FS",
+	TemperatureFs: "TEMPERATURE_FS",
+}
+
+var mapFreestreamOptionFromConfig = map[string]FreestreamOption{
+	"DENSITY_FS":     DensityFs,
+	"TEMPERATURE_FS": TemperatureFs,
 }
 
 type Gasmodel uint16
@@ -876,25 +972,25 @@ func (e *Limiter) FromConfigString(str []string) error {
 }
 
 const (
-	Minmod Limiter = iota
+	BarthJespersen Limiter = iota
 	SharpEdges
 	Venkatakrishnan
 )
 
 var mapLimiter = map[Limiter]string{
-	Minmod:          "Minmod",
+	BarthJespersen:  "BarthJespersen",
 	SharpEdges:      "SharpEdges",
 	Venkatakrishnan: "Venkatakrishnan",
 }
 
 var mapLimiterToConfig = map[Limiter]string{
-	Minmod:          "MINMOD",
+	BarthJespersen:  "BARTH_JESPERSEN",
 	SharpEdges:      "SHARP_EDGES",
 	Venkatakrishnan: "VENKATAKRISHNAN",
 }
 
 var mapLimiterFromConfig = map[string]Limiter{
-	"MINMOD":          Minmod,
+	"BARTH_JESPERSEN": BarthJespersen,
 	"SHARP_EDGES":     SharpEdges,
 	"VENKATAKRISHNAN": Venkatakrishnan,
 }
@@ -970,6 +1066,10 @@ const (
 	Newton
 	QuasiNewton
 	Rfgmres
+	SmootherIlu
+	SmootherJacobi
+	SmootherLinelet
+	SmootherLusgs
 	SteepestDescent
 )
 
@@ -980,6 +1080,10 @@ var mapLinearSolver = map[LinearSolver]string{
 	Newton:            "Newton",
 	QuasiNewton:       "QuasiNewton",
 	Rfgmres:           "Rfgmres",
+	SmootherIlu:       "SmootherIlu",
+	SmootherJacobi:    "SmootherJacobi",
+	SmootherLinelet:   "SmootherLinelet",
+	SmootherLusgs:     "SmootherLusgs",
 	SteepestDescent:   "SteepestDescent",
 }
 
@@ -990,6 +1094,10 @@ var mapLinearSolverToConfig = map[LinearSolver]string{
 	Newton:            "NEWTON",
 	QuasiNewton:       "QUASI_NEWTON",
 	Rfgmres:           "RFGMRES",
+	SmootherIlu:       "SMOOTHER_ILU0",
+	SmootherJacobi:    "SMOOTHER_JACOBI",
+	SmootherLinelet:   "SMOOTHER_LINELET",
+	SmootherLusgs:     "SMOOTHER_LUSGS",
 	SteepestDescent:   "STEEPEST_DESCENT",
 }
 
@@ -1000,6 +1108,10 @@ var mapLinearSolverFromConfig = map[string]LinearSolver{
 	"NEWTON":             Newton,
 	"QUASI_NEWTON":       QuasiNewton,
 	"RFGMRES":            Rfgmres,
+	"SMOOTHER_ILU0":      SmootherIlu,
+	"SMOOTHER_JACOBI":    SmootherJacobi,
+	"SMOOTHER_LINELET":   SmootherLinelet,
+	"SMOOTHER_LUSGS":     SmootherLusgs,
 	"STEEPEST_DESCENT":   SteepestDescent,
 }
 
@@ -1026,24 +1138,28 @@ func (e *LinearSolverPrec) FromConfigString(str []string) error {
 }
 
 const (
-	Jacobi LinearSolverPrec = iota
+	Ilu LinearSolverPrec = iota
+	Jacobi
 	Linelet
 	LuSgs
 )
 
 var mapLinearSolverPrec = map[LinearSolverPrec]string{
+	Ilu:     "Ilu",
 	Jacobi:  "Jacobi",
 	Linelet: "Linelet",
 	LuSgs:   "LuSgs",
 }
 
 var mapLinearSolverPrecToConfig = map[LinearSolverPrec]string{
+	Ilu:     "ILU0",
 	Jacobi:  "JACOBI",
 	Linelet: "LINELET",
 	LuSgs:   "LU_SGS",
 }
 
 var mapLinearSolverPrecFromConfig = map[string]LinearSolverPrec{
+	"ILU0":    Ilu,
 	"JACOBI":  Jacobi,
 	"LINELET": Linelet,
 	"LU_SGS":  LuSgs,
@@ -1095,6 +1211,48 @@ var mapMathProblemFromConfig = map[string]MathProblem{
 	"LINEARIZED": LinearizedProblem,
 }
 
+type Measurements uint16
+
+func (e Measurements) String() string {
+	return mapMeasurements[e]
+}
+
+func (e Measurements) ConfigString() string {
+	return mapMeasurementsToConfig[e]
+}
+
+func (e *Measurements) FromConfigString(str []string) error {
+	if len(str) != 1 {
+		return errors.New("multiple values for field Measurements")
+	}
+	enum, ok := mapMeasurementsFromConfig[str[0]]
+	if !ok {
+		return Unknown
+	}
+	*e = enum
+	return nil
+}
+
+const (
+	Si Measurements = iota
+	Us
+)
+
+var mapMeasurements = map[Measurements]string{
+	Si: "Si",
+	Us: "Us",
+}
+
+var mapMeasurementsToConfig = map[Measurements]string{
+	Si: "SI",
+	Us: "US",
+}
+
+var mapMeasurementsFromConfig = map[string]Measurements{
+	"SI": Si,
+	"US": Us,
+}
+
 type Objective uint16
 
 func (e Objective) String() string {
@@ -1118,7 +1276,8 @@ func (e *Objective) FromConfigString(str []string) error {
 }
 
 const (
-	DragCoefficient Objective = iota
+	AvgTotalPressure Objective = iota
+	DragCoefficient
 	Efficiency
 	EquivalentArea
 	FigureOfMerit
@@ -1129,6 +1288,7 @@ const (
 	InverseDesignHeatflux
 	InverseDesignPressure
 	LiftCoefficient
+	MassFlowRate
 	MaxThickSec1
 	MaxThickSec2
 	MaxThickSec3
@@ -1148,6 +1308,7 @@ const (
 )
 
 var mapObjective = map[Objective]string{
+	AvgTotalPressure:      "AvgTotalPressure",
 	DragCoefficient:       "DragCoefficient",
 	Efficiency:            "Efficiency",
 	EquivalentArea:        "EquivalentArea",
@@ -1159,6 +1320,7 @@ var mapObjective = map[Objective]string{
 	InverseDesignHeatflux: "InverseDesignHeatflux",
 	InverseDesignPressure: "InverseDesignPressure",
 	LiftCoefficient:       "LiftCoefficient",
+	MassFlowRate:          "MassFlowRate",
 	MaxThickSec1:          "MaxThickSec1",
 	MaxThickSec2:          "MaxThickSec2",
 	MaxThickSec3:          "MaxThickSec3",
@@ -1178,6 +1340,7 @@ var mapObjective = map[Objective]string{
 }
 
 var mapObjectiveToConfig = map[Objective]string{
+	AvgTotalPressure:      "AVG_TOTAL_PRESSURE",
 	DragCoefficient:       "DRAG",
 	Efficiency:            "EFFICIENCY",
 	EquivalentArea:        "EQUIVALENT_AREA",
@@ -1189,6 +1352,7 @@ var mapObjectiveToConfig = map[Objective]string{
 	InverseDesignHeatflux: "INVERSE_DESIGN_HEATFLUX",
 	InverseDesignPressure: "INVERSE_DESIGN_PRESSURE",
 	LiftCoefficient:       "LIFT",
+	MassFlowRate:          "MASS_FLOW_RATE",
 	MaxThickSec1:          "MAX_THICK_SEC1",
 	MaxThickSec2:          "MAX_THICK_SEC2",
 	MaxThickSec3:          "MAX_THICK_SEC3",
@@ -1208,6 +1372,7 @@ var mapObjectiveToConfig = map[Objective]string{
 }
 
 var mapObjectiveFromConfig = map[string]Objective{
+	"AVG_TOTAL_PRESSURE":      AvgTotalPressure,
 	"DRAG":                    DragCoefficient,
 	"EFFICIENCY":              Efficiency,
 	"EQUIVALENT_AREA":         EquivalentArea,
@@ -1219,6 +1384,7 @@ var mapObjectiveFromConfig = map[string]Objective{
 	"INVERSE_DESIGN_HEATFLUX": InverseDesignHeatflux,
 	"INVERSE_DESIGN_PRESSURE": InverseDesignPressure,
 	"LIFT":               LiftCoefficient,
+	"MASS_FLOW_RATE":     MassFlowRate,
 	"MAX_THICK_SEC1":     MaxThickSec1,
 	"MAX_THICK_SEC2":     MaxThickSec2,
 	"MAX_THICK_SEC3":     MaxThickSec3,
@@ -1395,6 +1561,7 @@ const (
 	FfdCamber2d
 	FfdControlPoint
 	FfdControlPoint2d
+	FfdControlSurface
 	FfdDihedralAngle
 	FfdRotation
 	FfdSetting
@@ -1420,6 +1587,7 @@ var mapParam = map[Param]string{
 	FfdCamber2d:       "FfdCamber2d",
 	FfdControlPoint:   "FfdControlPoint",
 	FfdControlPoint2d: "FfdControlPoint2d",
+	FfdControlSurface: "FfdControlSurface",
 	FfdDihedralAngle:  "FfdDihedralAngle",
 	FfdRotation:       "FfdRotation",
 	FfdSetting:        "FfdSetting",
@@ -1445,6 +1613,7 @@ var mapParamToConfig = map[Param]string{
 	FfdCamber2d:       "FFD_CAMBER_2D",
 	FfdControlPoint:   "FFD_CONTROL_POINT",
 	FfdControlPoint2d: "FFD_CONTROL_POINT_2D",
+	FfdControlSurface: "FFD_CONTROL_SURFACE",
 	FfdDihedralAngle:  "FFD_DIHEDRAL_ANGLE",
 	FfdRotation:       "FFD_ROTATION",
 	FfdSetting:        "FFD_SETTING",
@@ -1470,6 +1639,7 @@ var mapParamFromConfig = map[string]Param{
 	"FFD_CAMBER_2D":        FfdCamber2d,
 	"FFD_CONTROL_POINT":    FfdControlPoint,
 	"FFD_CONTROL_POINT_2D": FfdControlPoint2d,
+	"FFD_CONTROL_SURFACE":  FfdControlSurface,
 	"FFD_DIHEDRAL_ANGLE":   FfdDihedralAngle,
 	"FFD_ROTATION":         FfdRotation,
 	"FFD_SETTING":          FfdSetting,
@@ -1531,6 +1701,60 @@ var mapRegimeFromConfig = map[string]Regime{
 	"COMPRESSIBLE":   Compressible,
 	"FREESURFACE":    Freesurface,
 	"INCOMPRESSIBLE": Incompressible,
+}
+
+type RiemannType uint16
+
+func (e RiemannType) String() string {
+	return mapRiemannType[e]
+}
+
+func (e RiemannType) ConfigString() string {
+	return mapRiemannTypeToConfig[e]
+}
+
+func (e *RiemannType) FromConfigString(str []string) error {
+	if len(str) != 1 {
+		return errors.New("multiple values for field RiemannType")
+	}
+	enum, ok := mapRiemannTypeFromConfig[str[0]]
+	if !ok {
+		return Unknown
+	}
+	*e = enum
+	return nil
+}
+
+const (
+	DensityVelocity RiemannType = iota
+	StaticPressure
+	StaticSupersonicInflow
+	TotalConditionsPt
+	TotalSupersonicInflow
+)
+
+var mapRiemannType = map[RiemannType]string{
+	DensityVelocity:        "DensityVelocity",
+	StaticPressure:         "StaticPressure",
+	StaticSupersonicInflow: "StaticSupersonicInflow",
+	TotalConditionsPt:      "TotalConditionsPt",
+	TotalSupersonicInflow:  "TotalSupersonicInflow",
+}
+
+var mapRiemannTypeToConfig = map[RiemannType]string{
+	DensityVelocity:        "DENSITY_VELOCITY",
+	StaticPressure:         "STATIC_PRESSURE",
+	StaticSupersonicInflow: "STATIC_SUPERSONIC_INFLOW",
+	TotalConditionsPt:      "TOTAL_CONDITIONS_PT",
+	TotalSupersonicInflow:  "TOTAL_SUPERSONIC_INFLOW",
+}
+
+var mapRiemannTypeFromConfig = map[string]RiemannType{
+	"DENSITY_VELOCITY":         DensityVelocity,
+	"STATIC_PRESSURE":          StaticPressure,
+	"STATIC_SUPERSONIC_INFLOW": StaticSupersonicInflow,
+	"TOTAL_CONDITIONS_PT":      TotalConditionsPt,
+	"TOTAL_SUPERSONIC_INFLOW":  TotalSupersonicInflow,
 }
 
 type Sens uint16
@@ -1745,56 +1969,6 @@ var mapSolverFromConfig = map[string]Solver{
 	"TNE2_EULER":                    Tne2Euler,
 	"TNE2_NAVIER_STOKES":            Tne2NavierStokes,
 	"WAVE_EQUATION":                 WaveEquation,
-}
-
-type Source uint16
-
-func (e Source) String() string {
-	return mapSource[e]
-}
-
-func (e Source) ConfigString() string {
-	return mapSourceToConfig[e]
-}
-
-func (e *Source) FromConfigString(str []string) error {
-	if len(str) != 1 {
-		return errors.New("multiple values for field Source")
-	}
-	enum, ok := mapSourceFromConfig[str[0]]
-	if !ok {
-		return Unknown
-	}
-	*e = enum
-	return nil
-}
-
-const (
-	ChargeDist Source = iota
-	NoSource
-	PiecewiseConstant
-	SourceTemplate
-)
-
-var mapSource = map[Source]string{
-	ChargeDist:        "ChargeDist",
-	NoSource:          "NoSource",
-	PiecewiseConstant: "PiecewiseConstant",
-	SourceTemplate:    "SourceTemplate",
-}
-
-var mapSourceToConfig = map[Source]string{
-	ChargeDist:        "CHARGE_DIST",
-	NoSource:          "NONE",
-	PiecewiseConstant: "PIECEWISE_CONSTANT",
-	SourceTemplate:    "TEMPLATE_SOURCE_METHOD",
-}
-
-var mapSourceFromConfig = map[string]Source{
-	"CHARGE_DIST":            ChargeDist,
-	"NONE":                   NoSource,
-	"PIECEWISE_CONSTANT":     PiecewiseConstant,
-	"TEMPLATE_SOURCE_METHOD": SourceTemplate,
 }
 
 type Sourcejac uint16
@@ -2209,21 +2383,21 @@ var mapUpwindFromConfig = map[string]Upwind{
 	"TURKEL_PREC":         Turkel,
 }
 
-type Viscous uint16
+type Viscositymodel uint16
 
-func (e Viscous) String() string {
-	return mapViscous[e]
+func (e Viscositymodel) String() string {
+	return mapViscositymodel[e]
 }
 
-func (e Viscous) ConfigString() string {
-	return mapViscousToConfig[e]
+func (e Viscositymodel) ConfigString() string {
+	return mapViscositymodelToConfig[e]
 }
 
-func (e *Viscous) FromConfigString(str []string) error {
+func (e *Viscositymodel) FromConfigString(str []string) error {
 	if len(str) != 1 {
-		return errors.New("multiple values for field Viscous")
+		return errors.New("multiple values for field Viscositymodel")
 	}
-	enum, ok := mapViscousFromConfig[str[0]]
+	enum, ok := mapViscositymodelFromConfig[str[0]]
 	if !ok {
 		return Unknown
 	}
@@ -2232,29 +2406,21 @@ func (e *Viscous) FromConfigString(str []string) error {
 }
 
 const (
-	AvgGrad Viscous = iota
-	AvgGradCorrected
-	Galerkin
-	NoViscous
+	ConstantViscosity Viscositymodel = iota
+	Sutherland
 )
 
-var mapViscous = map[Viscous]string{
-	AvgGrad:          "AvgGrad",
-	AvgGradCorrected: "AvgGradCorrected",
-	Galerkin:         "Galerkin",
-	NoViscous:        "NoViscous",
+var mapViscositymodel = map[Viscositymodel]string{
+	ConstantViscosity: "ConstantViscosity",
+	Sutherland:        "Sutherland",
 }
 
-var mapViscousToConfig = map[Viscous]string{
-	AvgGrad:          "AVG_GRAD",
-	AvgGradCorrected: "AVG_GRAD_CORRECTED",
-	Galerkin:         "GALERKIN",
-	NoViscous:        "NONE",
+var mapViscositymodelToConfig = map[Viscositymodel]string{
+	ConstantViscosity: "COSTANT_VISCOSITY",
+	Sutherland:        "SUTHERLAND",
 }
 
-var mapViscousFromConfig = map[string]Viscous{
-	"AVG_GRAD":           AvgGrad,
-	"AVG_GRAD_CORRECTED": AvgGradCorrected,
-	"GALERKIN":           Galerkin,
-	"NONE":               NoViscous,
+var mapViscositymodelFromConfig = map[string]Viscositymodel{
+	"COSTANT_VISCOSITY": ConstantViscosity,
+	"SUTHERLAND":        Sutherland,
 }

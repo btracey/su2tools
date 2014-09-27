@@ -33,8 +33,19 @@ const (
 	LowFidelitySimulation                = "LowFidelitySimulation"
 	RestartSol                           = "RestartSol"
 	VisualizePart                        = "VisualizePart"
+	SystemMeasurements                   = "SystemMeasurements"
+	FluidModel                           = "FluidModel"
 	GasConstant                          = "GasConstant"
 	GammaValue                           = "GammaValue"
+	CriticalTemperature                  = "CriticalTemperature"
+	CriticalPressure                     = "CriticalPressure"
+	CriticalDensity                      = "CriticalDensity"
+	AcentricFactor                       = "AcentricFactor"
+	ViscosityModel                       = "ViscosityModel"
+	MuConstant                           = "MuConstant"
+	MuRef                                = "MuRef"
+	MuTRef                               = "MuTRef"
+	SutherlandConstant                   = "SutherlandConstant"
 	ReynoldsNumber                       = "ReynoldsNumber"
 	ReynoldsLength                       = "ReynoldsLength"
 	PrandtlLam                           = "PrandtlLam"
@@ -42,6 +53,7 @@ const (
 	BulkModulus                          = "BulkModulus"
 	ArtcompFactor                        = "ArtcompFactor"
 	MachNumber                           = "MachNumber"
+	FreestreamOption                     = "FreestreamOption"
 	FreestreamPressure                   = "FreestreamPressure"
 	FreestreamDensity                    = "FreestreamDensity"
 	FreestreamTemperature                = "FreestreamTemperature"
@@ -88,6 +100,7 @@ const (
 	MarkerActdisk                        = "MarkerActdisk"
 	InletType                            = "InletType"
 	MarkerInlet                          = "MarkerInlet"
+	MarkerRiemann                        = "MarkerRiemann"
 	MarkerSupersonicInlet                = "MarkerSupersonicInlet"
 	MarkerOutlet                         = "MarkerOutlet"
 	MarkerIsothermal                     = "MarkerIsothermal"
@@ -144,6 +157,7 @@ const (
 	AdjturbLinPrec                       = "AdjturbLinPrec"
 	AdjturbLinError                      = "AdjturbLinError"
 	AdjturbLinIter                       = "AdjturbLinIter"
+	EntropyFixCoeff                      = "EntropyFixCoeff"
 	ConvCriteria                         = "ConvCriteria"
 	ResidualReduction                    = "ResidualReduction"
 	ResidualMinval                       = "ResidualMinval"
@@ -163,64 +177,39 @@ const (
 	MgCorrectionSmooth                   = "MgCorrectionSmooth"
 	MgDampRestriction                    = "MgDampRestriction"
 	MgDampProlongation                   = "MgDampProlongation"
-	MgCflReduction                       = "MgCflReduction"
 	MaxChildren                          = "MaxChildren"
 	MaxDimension                         = "MaxDimension"
 	NumMethodGrad                        = "NumMethodGrad"
 	LimiterCoeff                         = "LimiterCoeff"
+	LimiterIter                          = "LimiterIter"
 	SharpEdgesCoeff                      = "SharpEdgesCoeff"
 	ConvNumMethodFlow                    = "ConvNumMethodFlow"
-	ViscNumMethodFlow                    = "ViscNumMethodFlow"
-	SourNumMethodFlow                    = "SourNumMethodFlow"
 	SpatialOrderFlow                     = "SpatialOrderFlow"
 	SlopeLimiterFlow                     = "SlopeLimiterFlow"
 	AdCoeffFlow                          = "AdCoeffFlow"
 	ConvNumMethodAdjflow                 = "ConvNumMethodAdjflow"
-	ViscNumMethodAdjflow                 = "ViscNumMethodAdjflow"
-	SourNumMethodAdjflow                 = "SourNumMethodAdjflow"
 	SpatialOrderAdjflow                  = "SpatialOrderAdjflow"
 	SlopeLimiterAdjflow                  = "SlopeLimiterAdjflow"
 	AdCoeffAdjflow                       = "AdCoeffAdjflow"
 	SpatialOrderTurb                     = "SpatialOrderTurb"
 	SlopeLimiterTurb                     = "SlopeLimiterTurb"
 	ConvNumMethodTurb                    = "ConvNumMethodTurb"
-	ViscNumMethodTurb                    = "ViscNumMethodTurb"
-	SourNumMethodTurb                    = "SourNumMethodTurb"
 	SpatialOrderAdjturb                  = "SpatialOrderAdjturb"
 	SlopeLimiterAdjturb                  = "SlopeLimiterAdjturb"
 	ConvNumMethodAdjturb                 = "ConvNumMethodAdjturb"
-	ViscNumMethodAdjturb                 = "ViscNumMethodAdjturb"
-	SourNumMethodAdjturb                 = "SourNumMethodAdjturb"
 	ConvNumMethodLin                     = "ConvNumMethodLin"
-	ViscNumMethodLin                     = "ViscNumMethodLin"
-	SourNumMethodLin                     = "SourNumMethodLin"
 	AdCoeffLin                           = "AdCoeffLin"
 	SpatialOrderAdjlevelset              = "SpatialOrderAdjlevelset"
 	SlopeLimiterAdjlevelset              = "SlopeLimiterAdjlevelset"
 	ConvNumMethodAdjlevelset             = "ConvNumMethodAdjlevelset"
-	ViscNumMethodAdjlevelset             = "ViscNumMethodAdjlevelset"
-	SourNumMethodAdjlevelset             = "SourNumMethodAdjlevelset"
 	ConvNumMethodTne2                    = "ConvNumMethodTne2"
-	ViscNumMethodTne2                    = "ViscNumMethodTne2"
-	SourNumMethodTne2                    = "SourNumMethodTne2"
 	SpatialOrderTne2                     = "SpatialOrderTne2"
 	SlopeLimiterTne2                     = "SlopeLimiterTne2"
 	AdCoeffTne2                          = "AdCoeffTne2"
 	ConvNumMethodAdjtne2                 = "ConvNumMethodAdjtne2"
-	ViscNumMethodAdjtne2                 = "ViscNumMethodAdjtne2"
-	SourNumMethodAdjtne2                 = "SourNumMethodAdjtne2"
 	SpatialOrderAdjtne2                  = "SpatialOrderAdjtne2"
 	SlopeLimiterAdjtne2                  = "SlopeLimiterAdjtne2"
 	AdCoeffAdjtne2                       = "AdCoeffAdjtne2"
-	ViscNumMethodWave                    = "ViscNumMethodWave"
-	SourNumMethodWave                    = "SourNumMethodWave"
-	ViscNumMethodPoisson                 = "ViscNumMethodPoisson"
-	SourNumMethodPoisson                 = "SourNumMethodPoisson"
-	ViscNumMethodFea                     = "ViscNumMethodFea"
-	SourNumMethodFea                     = "SourNumMethodFea"
-	ViscNumMethodHeat                    = "ViscNumMethodHeat"
-	SourNumMethodHeat                    = "SourNumMethodHeat"
-	SourNumMethodTemplate                = "SourNumMethodTemplate"
 	LimitAdjflow                         = "LimitAdjflow"
 	ObjectiveFunction                    = "ObjectiveFunction"
 	GeoLocationSections                  = "GeoLocationSections"
@@ -244,6 +233,7 @@ const (
 	MeshFilename                         = "MeshFilename"
 	MeshScaleChange                      = "MeshScaleChange"
 	MeshOutput                           = "MeshOutput"
+	CuthillMckeeOrdering                 = "CuthillMckeeOrdering"
 	MeshOutFilename                      = "MeshOutFilename"
 	ConvFilename                         = "ConvFilename"
 	SolutionFlowFilename                 = "SolutionFlowFilename"
@@ -277,8 +267,10 @@ const (
 	WrtCsvSol                            = "WrtCsvSol"
 	WrtRestart                           = "WrtRestart"
 	WrtResiduals                         = "WrtResiduals"
+	WrtLimiters                          = "WrtLimiters"
+	WrtSharpedges                        = "WrtSharpedges"
 	WrtHalo                              = "WrtHalo"
-	Wrt1dOutput                          = "Wrt1dOutput"
+	OneDOutput                           = "OneDOutput"
 	GridMovement                         = "GridMovement"
 	GridMovementKind                     = "GridMovementKind"
 	MarkerMoving                         = "MarkerMoving"
@@ -350,8 +342,8 @@ const (
 	DeformLinearIter                     = "DeformLinearIter"
 	DeformTolFactor                      = "DeformTolFactor"
 	DeformStiffnessType                  = "DeformStiffnessType"
-	YoungsModulus                        = "YoungsModulus"
-	PoissonsRatio                        = "PoissonsRatio"
+	DeformElasticityModulus              = "DeformElasticityModulus"
+	DeformPoissonsRatio                  = "DeformPoissonsRatio"
 	CyclicPitch                          = "CyclicPitch"
 	CollectivePitch                      = "CollectivePitch"
 	ElasticityModulus                    = "ElasticityModulus"
@@ -368,6 +360,8 @@ const (
 	MlTurbModelExtra                     = "MlTurbModelExtra"
 	FfdIterations                        = "FfdIterations"
 	FfdTolerance                         = "FfdTolerance"
+	GradientMethod                       = "GradientMethod"
+	GeoParam                             = "GeoParam"
 	DefinitionDv                         = "DefinitionDv"
 	DvValueNew                           = "DvValueNew"
 	DvValueOld                           = "DvValueOld"
@@ -470,11 +464,29 @@ var optionMap = map[Option]option{
 		ExtraType:   "",
 		OptionConst: VisualizePart,
 	},
+	SystemMeasurements: {
+		Name:        "SystemMeasurements",
+		Config:      "SYSTEM_MEASUREMENTS",
+		Category:    0,
+		Description: "System of measurements",
+		Type:        "Enum",
+		ExtraType:   "Measurements",
+		OptionConst: SystemMeasurements,
+	},
+	FluidModel: {
+		Name:        "FluidModel",
+		Config:      "FLUID_MODEL",
+		Category:    1,
+		Description: "Fluid model",
+		Type:        "Enum",
+		ExtraType:   "Fluidmodel",
+		OptionConst: FluidModel,
+	},
 	GasConstant: {
 		Name:        "GasConstant",
 		Config:      "GAS_CONSTANT",
-		Category:    1,
-		Description: "Specific gas constant (287.87 J/kg*K (air), only for compressible flows)",
+		Category:    2,
+		Description: "Specific gas constant (287.058 J/kg*K (air), only for compressible flows)",
 		Type:        "Double",
 		ExtraType:   "",
 		OptionConst: GasConstant,
@@ -482,16 +494,97 @@ var optionMap = map[Option]option{
 	GammaValue: {
 		Name:        "GammaValue",
 		Config:      "GAMMA_VALUE",
-		Category:    1,
+		Category:    2,
 		Description: "Ratio of specific heats (1.4 (air), only for compressible flows)",
 		Type:        "Double",
 		ExtraType:   "",
 		OptionConst: GammaValue,
 	},
+	CriticalTemperature: {
+		Name:        "CriticalTemperature",
+		Config:      "CRITICAL_TEMPERATURE",
+		Category:    2,
+		Description: "Critical Temperature, default value for AIR",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: CriticalTemperature,
+	},
+	CriticalPressure: {
+		Name:        "CriticalPressure",
+		Config:      "CRITICAL_PRESSURE",
+		Category:    2,
+		Description: "Critical Pressure, default value for MDM",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: CriticalPressure,
+	},
+	CriticalDensity: {
+		Name:        "CriticalDensity",
+		Config:      "CRITICAL_DENSITY",
+		Category:    2,
+		Description: "Critical Density, default value for MDM",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: CriticalDensity,
+	},
+	AcentricFactor: {
+		Name:        "AcentricFactor",
+		Config:      "ACENTRIC_FACTOR",
+		Category:    2,
+		Description: "Critical Density, default value for MDM",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: AcentricFactor,
+	},
+	ViscosityModel: {
+		Name:        "ViscosityModel",
+		Config:      "VISCOSITY_MODEL",
+		Category:    2,
+		Description: "model of the viscosity",
+		Type:        "Enum",
+		ExtraType:   "Viscositymodel",
+		OptionConst: ViscosityModel,
+	},
+	MuConstant: {
+		Name:        "MuConstant",
+		Config:      "MU_CONSTANT",
+		Category:    2,
+		Description: "Critical Temperature, default value for AIR",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: MuConstant,
+	},
+	MuRef: {
+		Name:        "MuRef",
+		Config:      "MU_REF",
+		Category:    2,
+		Description: "Sutherland Viscosity Ref default value for AIR SI",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: MuRef,
+	},
+	MuTRef: {
+		Name:        "MuTRef",
+		Config:      "MU_T_REF",
+		Category:    2,
+		Description: "Sutherland Temperature Ref, default value for AIR SI",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: MuTRef,
+	},
+	SutherlandConstant: {
+		Name:        "SutherlandConstant",
+		Config:      "SUTHERLAND_CONSTANT",
+		Category:    2,
+		Description: "Sutherland constant, default value for AIR SI",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: SutherlandConstant,
+	},
 	ReynoldsNumber: {
 		Name:        "ReynoldsNumber",
 		Config:      "REYNOLDS_NUMBER",
-		Category:    1,
+		Category:    2,
 		Description: "Reynolds number (non-dimensional, based on the free-stream values)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -500,7 +593,7 @@ var optionMap = map[Option]option{
 	ReynoldsLength: {
 		Name:        "ReynoldsLength",
 		Config:      "REYNOLDS_LENGTH",
-		Category:    1,
+		Category:    2,
 		Description: "Reynolds length (1 m by default)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -509,7 +602,7 @@ var optionMap = map[Option]option{
 	PrandtlLam: {
 		Name:        "PrandtlLam",
 		Config:      "PRANDTL_LAM",
-		Category:    1,
+		Category:    2,
 		Description: "Laminar Prandtl number (0.72 (air), only for compressible flows)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -518,7 +611,7 @@ var optionMap = map[Option]option{
 	PrandtlTurb: {
 		Name:        "PrandtlTurb",
 		Config:      "PRANDTL_TURB",
-		Category:    1,
+		Category:    2,
 		Description: "Turbulent Prandtl number (0.9 (air), only for compressible flows)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -527,7 +620,7 @@ var optionMap = map[Option]option{
 	BulkModulus: {
 		Name:        "BulkModulus",
 		Config:      "BULK_MODULUS",
-		Category:    1,
+		Category:    2,
 		Description: "Value of the Bulk Modulus",
 		Type:        "Double",
 		ExtraType:   "",
@@ -536,7 +629,7 @@ var optionMap = map[Option]option{
 	ArtcompFactor: {
 		Name:        "ArtcompFactor",
 		Config:      "ARTCOMP_FACTOR",
-		Category:    1,
+		Category:    2,
 		Description: "Artifical compressibility factor",
 		Type:        "Double",
 		ExtraType:   "",
@@ -545,16 +638,25 @@ var optionMap = map[Option]option{
 	MachNumber: {
 		Name:        "MachNumber",
 		Config:      "MACH_NUMBER",
-		Category:    1,
+		Category:    2,
 		Description: "Mach number (non-dimensional, based on the free-stream values)",
 		Type:        "Double",
 		ExtraType:   "",
 		OptionConst: MachNumber,
 	},
+	FreestreamOption: {
+		Name:        "FreestreamOption",
+		Config:      "FREESTREAM_OPTION",
+		Category:    2,
+		Description: "Free-stream option to choose between density and temperature for initializing the solution",
+		Type:        "Enum",
+		ExtraType:   "FreestreamOption",
+		OptionConst: FreestreamOption,
+	},
 	FreestreamPressure: {
 		Name:        "FreestreamPressure",
 		Config:      "FREESTREAM_PRESSURE",
-		Category:    1,
+		Category:    2,
 		Description: "Free-stream pressure (101325.0 N/m^2 by default)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -563,7 +665,7 @@ var optionMap = map[Option]option{
 	FreestreamDensity: {
 		Name:        "FreestreamDensity",
 		Config:      "FREESTREAM_DENSITY",
-		Category:    1,
+		Category:    2,
 		Description: "Free-stream density (1.2886 Kg/m^3 (air), 998.2 Kg/m^3 (water))",
 		Type:        "Double",
 		ExtraType:   "",
@@ -572,8 +674,8 @@ var optionMap = map[Option]option{
 	FreestreamTemperature: {
 		Name:        "FreestreamTemperature",
 		Config:      "FREESTREAM_TEMPERATURE",
-		Category:    1,
-		Description: "Free-stream temperature (273.15 K by default)",
+		Category:    2,
+		Description: "Free-stream temperature (288.15 K by default)",
 		Type:        "Double",
 		ExtraType:   "",
 		OptionConst: FreestreamTemperature,
@@ -581,8 +683,8 @@ var optionMap = map[Option]option{
 	FreestreamTemperatureVe: {
 		Name:        "FreestreamTemperatureVe",
 		Config:      "FREESTREAM_TEMPERATURE_VE",
-		Category:    1,
-		Description: "Free-stream vibrational-electronic temperature (273.15 K by default)",
+		Category:    2,
+		Description: "Free-stream vibrational-electronic temperature (288.15 K by default)",
 		Type:        "Double",
 		ExtraType:   "",
 		OptionConst: FreestreamTemperatureVe,
@@ -590,7 +692,7 @@ var optionMap = map[Option]option{
 	FreestreamVelocity: {
 		Name:        "FreestreamVelocity",
 		Config:      "FREESTREAM_VELOCITY",
-		Category:    1,
+		Category:    2,
 		Description: "Free-stream velocity (m/s)",
 		Type:        "DoubleArray",
 		ExtraType:   "3",
@@ -599,7 +701,7 @@ var optionMap = map[Option]option{
 	FreestreamViscosity: {
 		Name:        "FreestreamViscosity",
 		Config:      "FREESTREAM_VISCOSITY",
-		Category:    1,
+		Category:    2,
 		Description: "Free-stream viscosity (1.853E-5 Ns/m^2 (air), 0.798E-3 Ns/m^2 (water))",
 		Type:        "Double",
 		ExtraType:   "",
@@ -608,7 +710,7 @@ var optionMap = map[Option]option{
 	FreestreamIntermittency: {
 		Name:        "FreestreamIntermittency",
 		Config:      "FREESTREAM_INTERMITTENCY",
-		Category:    1,
+		Category:    2,
 		Description: "",
 		Type:        "Double",
 		ExtraType:   "",
@@ -617,7 +719,7 @@ var optionMap = map[Option]option{
 	FreestreamTurbulenceintensity: {
 		Name:        "FreestreamTurbulenceintensity",
 		Config:      "FREESTREAM_TURBULENCEINTENSITY",
-		Category:    1,
+		Category:    2,
 		Description: "",
 		Type:        "Double",
 		ExtraType:   "",
@@ -626,7 +728,7 @@ var optionMap = map[Option]option{
 	FreestreamNuFactor: {
 		Name:        "FreestreamNuFactor",
 		Config:      "FREESTREAM_NU_FACTOR",
-		Category:    1,
+		Category:    2,
 		Description: "",
 		Type:        "Double",
 		ExtraType:   "",
@@ -635,7 +737,7 @@ var optionMap = map[Option]option{
 	FreestreamTurb2lamviscratio: {
 		Name:        "FreestreamTurb2lamviscratio",
 		Config:      "FREESTREAM_TURB2LAMVISCRATIO",
-		Category:    1,
+		Category:    2,
 		Description: "",
 		Type:        "Double",
 		ExtraType:   "",
@@ -644,7 +746,7 @@ var optionMap = map[Option]option{
 	SideslipAngle: {
 		Name:        "SideslipAngle",
 		Config:      "SIDESLIP_ANGLE",
-		Category:    1,
+		Category:    2,
 		Description: "Side-slip angle (degrees, only for compressible flows)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -653,7 +755,7 @@ var optionMap = map[Option]option{
 	Aoa: {
 		Name:        "Aoa",
 		Config:      "AOA",
-		Category:    1,
+		Category:    2,
 		Description: "Angle of attack (degrees, only for compressible flows)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -662,7 +764,7 @@ var optionMap = map[Option]option{
 	FixedClMode: {
 		Name:        "FixedClMode",
 		Config:      "FIXED_CL_MODE",
-		Category:    1,
+		Category:    2,
 		Description: "Activate fixed CL mode (specify a CL instead of AoA).",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -671,7 +773,7 @@ var optionMap = map[Option]option{
 	TargetCl: {
 		Name:        "TargetCl",
 		Config:      "TARGET_CL",
-		Category:    1,
+		Category:    2,
 		Description: "Specify a fixed coefficient of lift instead of AoA (only for compressible flows)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -680,7 +782,7 @@ var optionMap = map[Option]option{
 	DampFixedCl: {
 		Name:        "DampFixedCl",
 		Config:      "DAMP_FIXED_CL",
-		Category:    1,
+		Category:    2,
 		Description: "Damping factor for fixed CL mode.",
 		Type:        "Double",
 		ExtraType:   "",
@@ -689,7 +791,7 @@ var optionMap = map[Option]option{
 	RefOriginMomentX: {
 		Name:        "RefOriginMomentX",
 		Config:      "REF_ORIGIN_MOMENT_X",
-		Category:    2,
+		Category:    3,
 		Description: "X Reference origin for moment computation",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -698,7 +800,7 @@ var optionMap = map[Option]option{
 	RefOriginMomentY: {
 		Name:        "RefOriginMomentY",
 		Config:      "REF_ORIGIN_MOMENT_Y",
-		Category:    2,
+		Category:    3,
 		Description: "Y Reference origin for moment computation",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -707,7 +809,7 @@ var optionMap = map[Option]option{
 	RefOriginMomentZ: {
 		Name:        "RefOriginMomentZ",
 		Config:      "REF_ORIGIN_MOMENT_Z",
-		Category:    2,
+		Category:    3,
 		Description: "Z Reference origin for moment computation",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -716,7 +818,7 @@ var optionMap = map[Option]option{
 	RefArea: {
 		Name:        "RefArea",
 		Config:      "REF_AREA",
-		Category:    2,
+		Category:    3,
 		Description: "Reference area for force coefficients (0 implies automatic calculation)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -725,7 +827,7 @@ var optionMap = map[Option]option{
 	RefLengthMoment: {
 		Name:        "RefLengthMoment",
 		Config:      "REF_LENGTH_MOMENT",
-		Category:    2,
+		Category:    3,
 		Description: "Reference length for pitching, rolling, and yawing non-dimensional moment",
 		Type:        "Double",
 		ExtraType:   "",
@@ -734,7 +836,7 @@ var optionMap = map[Option]option{
 	RefElemLength: {
 		Name:        "RefElemLength",
 		Config:      "REF_ELEM_LENGTH",
-		Category:    2,
+		Category:    3,
 		Description: "Reference element length for computing the slope limiter epsilon",
 		Type:        "Double",
 		ExtraType:   "",
@@ -743,7 +845,7 @@ var optionMap = map[Option]option{
 	RefSharpEdges: {
 		Name:        "RefSharpEdges",
 		Config:      "REF_SHARP_EDGES",
-		Category:    2,
+		Category:    3,
 		Description: "Reference coefficient for detecting sharp edges",
 		Type:        "Double",
 		ExtraType:   "",
@@ -752,7 +854,7 @@ var optionMap = map[Option]option{
 	RefPressure: {
 		Name:        "RefPressure",
 		Config:      "REF_PRESSURE",
-		Category:    2,
+		Category:    3,
 		Description: "Reference pressure (1.0 N/m^2 by default, only for compressible flows)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -761,7 +863,7 @@ var optionMap = map[Option]option{
 	RefTemperature: {
 		Name:        "RefTemperature",
 		Config:      "REF_TEMPERATURE",
-		Category:    2,
+		Category:    3,
 		Description: "Reference temperature (1.0 K by default, only for compressible flows)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -770,7 +872,7 @@ var optionMap = map[Option]option{
 	RefDensity: {
 		Name:        "RefDensity",
 		Config:      "REF_DENSITY",
-		Category:    2,
+		Category:    3,
 		Description: "Reference density (1.0 Kg/m^3 by default, only for compressible flows)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -779,7 +881,7 @@ var optionMap = map[Option]option{
 	RefVelocity: {
 		Name:        "RefVelocity",
 		Config:      "REF_VELOCITY",
-		Category:    2,
+		Category:    3,
 		Description: "Reference velocity (incompressible only)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -788,7 +890,7 @@ var optionMap = map[Option]option{
 	RefViscosity: {
 		Name:        "RefViscosity",
 		Config:      "REF_VISCOSITY",
-		Category:    2,
+		Category:    3,
 		Description: "Reference viscosity (incompressible only)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -797,7 +899,7 @@ var optionMap = map[Option]option{
 	MarkerPlotting: {
 		Name:        "MarkerPlotting",
 		Config:      "MARKER_PLOTTING",
-		Category:    3,
+		Category:    4,
 		Description: "Marker(s) of the surface in the surface flow solution file",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -806,7 +908,7 @@ var optionMap = map[Option]option{
 	MarkerMonitoring: {
 		Name:        "MarkerMonitoring",
 		Config:      "MARKER_MONITORING",
-		Category:    3,
+		Category:    4,
 		Description: "Marker(s) of the surface where evaluate the non-dimensional coefficients",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -815,7 +917,7 @@ var optionMap = map[Option]option{
 	MarkerDesigning: {
 		Name:        "MarkerDesigning",
 		Config:      "MARKER_DESIGNING",
-		Category:    3,
+		Category:    4,
 		Description: "Marker(s) of the surface where objective function (design problem) will be evaluated",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -824,7 +926,7 @@ var optionMap = map[Option]option{
 	GeoMarker: {
 		Name:        "GeoMarker",
 		Config:      "GEO_MARKER",
-		Category:    3,
+		Category:    4,
 		Description: "Marker(s) of the surface where evaluate the geometrical functions",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -833,7 +935,7 @@ var optionMap = map[Option]option{
 	MarkerEuler: {
 		Name:        "MarkerEuler",
 		Config:      "MARKER_EULER",
-		Category:    3,
+		Category:    4,
 		Description: "Euler wall boundary marker(s)",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -842,7 +944,7 @@ var optionMap = map[Option]option{
 	MarkerFar: {
 		Name:        "MarkerFar",
 		Config:      "MARKER_FAR",
-		Category:    3,
+		Category:    4,
 		Description: "Far-field boundary marker(s)",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -851,7 +953,7 @@ var optionMap = map[Option]option{
 	MarkerSym: {
 		Name:        "MarkerSym",
 		Config:      "MARKER_SYM",
-		Category:    3,
+		Category:    4,
 		Description: "Symmetry boundary condition",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -860,7 +962,7 @@ var optionMap = map[Option]option{
 	MarkerPressure: {
 		Name:        "MarkerPressure",
 		Config:      "MARKER_PRESSURE",
-		Category:    3,
+		Category:    4,
 		Description: "Symmetry boundary condition",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -869,7 +971,7 @@ var optionMap = map[Option]option{
 	MarkerNearfield: {
 		Name:        "MarkerNearfield",
 		Config:      "MARKER_NEARFIELD",
-		Category:    3,
+		Category:    4,
 		Description: "Near-Field boundary condition",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -878,7 +980,7 @@ var optionMap = map[Option]option{
 	MarkerInterface: {
 		Name:        "MarkerInterface",
 		Config:      "MARKER_INTERFACE",
-		Category:    3,
+		Category:    4,
 		Description: "Zone interface boundary marker(s)",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -887,7 +989,7 @@ var optionMap = map[Option]option{
 	MarkerDirichlet: {
 		Name:        "MarkerDirichlet",
 		Config:      "MARKER_DIRICHLET",
-		Category:    3,
+		Category:    4,
 		Description: "Dirichlet boundary marker(s)",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -896,7 +998,7 @@ var optionMap = map[Option]option{
 	MarkerNeumann: {
 		Name:        "MarkerNeumann",
 		Config:      "MARKER_NEUMANN",
-		Category:    3,
+		Category:    4,
 		Description: "Neumann boundary marker(s)",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -905,7 +1007,7 @@ var optionMap = map[Option]option{
 	ElecDirichlet: {
 		Name:        "ElecDirichlet",
 		Config:      "ELEC_DIRICHLET",
-		Category:    3,
+		Category:    4,
 		Description: "poisson dirichlet boundary marker(s)",
 		Type:        "StringDoubleList",
 		ExtraType:   "",
@@ -914,7 +1016,7 @@ var optionMap = map[Option]option{
 	ElecNeumann: {
 		Name:        "ElecNeumann",
 		Config:      "ELEC_NEUMANN",
-		Category:    3,
+		Category:    4,
 		Description: "poisson neumann boundary marker(s)",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -923,7 +1025,7 @@ var optionMap = map[Option]option{
 	MarkerCustom: {
 		Name:        "MarkerCustom",
 		Config:      "MARKER_CUSTOM",
-		Category:    3,
+		Category:    4,
 		Description: "Custom boundary marker(s)",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -932,7 +1034,7 @@ var optionMap = map[Option]option{
 	MarkerPeriodic: {
 		Name:        "MarkerPeriodic",
 		Config:      "MARKER_PERIODIC",
-		Category:    3,
+		Category:    4,
 		Description: "Periodic boundary marker(s) for use with SU2_MSHFormat: ( periodic marker, donor marker, rotation_center_x, rotation_center_y,rotation_center_z, rotation_angle_x-axis, rotation_angle_y-axis,rotation_angle_z-axis, translation_x, translation_y, translation_z, ... )",
 		Type:        "Periodic",
 		ExtraType:   "",
@@ -941,7 +1043,7 @@ var optionMap = map[Option]option{
 	MarkerActdisk: {
 		Name:        "MarkerActdisk",
 		Config:      "MARKER_ACTDISK",
-		Category:    3,
+		Category:    4,
 		Description: "Periodic boundary marker(s) for use with SU2_MSHFormat: ( periodic marker, donor marker, rotation_center_x, rotation_center_y,rotation_center_z, rotation_angle_x-axis, rotation_angle_y-axis,rotation_angle_z-axis, translation_x, translation_y, translation_z, ... )",
 		Type:        "ActuatorDisk",
 		ExtraType:   "",
@@ -950,7 +1052,7 @@ var optionMap = map[Option]option{
 	InletType: {
 		Name:        "InletType",
 		Config:      "INLET_TYPE",
-		Category:    3,
+		Category:    4,
 		Description: "Inlet boundary type",
 		Type:        "Enum",
 		ExtraType:   "InletType",
@@ -959,16 +1061,25 @@ var optionMap = map[Option]option{
 	MarkerInlet: {
 		Name:        "MarkerInlet",
 		Config:      "MARKER_INLET",
-		Category:    3,
+		Category:    4,
 		Description: "Inlet boundary marker(s) with the following formats,Total Conditions: (inlet marker, total temp, total pressure, flow_direction_x,flow_direction_y, flow_direction_z, ... ) where flow_direction isa unit vector.Mass Flow: (inlet marker, density, velocity magnitude, flow_direction_x,flow_direction_y, flow_direction_z, ... ) where flow_direction isa unit vector.",
 		Type:        "Inlet",
 		ExtraType:   "",
 		OptionConst: MarkerInlet,
 	},
+	MarkerRiemann: {
+		Name:        "MarkerRiemann",
+		Config:      "MARKER_RIEMANN",
+		Category:    4,
+		Description: "Riemann boundary marker(s) with the following formats, a unit vector.",
+		Type:        "Riemann",
+		ExtraType:   "",
+		OptionConst: MarkerRiemann,
+	},
 	MarkerSupersonicInlet: {
 		Name:        "MarkerSupersonicInlet",
 		Config:      "MARKER_SUPERSONIC_INLET",
-		Category:    3,
+		Category:    4,
 		Description: "% Supersonic inlet boundary marker(s)Format: (inlet marker, temperature, static pressure, velocity_x,velocity_y, velocity_z, ... ), i.e. primitive variables specified.",
 		Type:        "Inlet",
 		ExtraType:   "",
@@ -977,7 +1088,7 @@ var optionMap = map[Option]option{
 	MarkerOutlet: {
 		Name:        "MarkerOutlet",
 		Config:      "MARKER_OUTLET",
-		Category:    3,
+		Category:    4,
 		Description: "Outlet boundary marker(s)Format: ( outlet marker, back pressure (static), ... )",
 		Type:        "StringDoubleList",
 		ExtraType:   "",
@@ -986,7 +1097,7 @@ var optionMap = map[Option]option{
 	MarkerIsothermal: {
 		Name:        "MarkerIsothermal",
 		Config:      "MARKER_ISOTHERMAL",
-		Category:    3,
+		Category:    4,
 		Description: "Isothermal wall boundary marker(s)Format: ( isothermal marker, wall temperature (static), ... )",
 		Type:        "StringDoubleList",
 		ExtraType:   "",
@@ -995,7 +1106,7 @@ var optionMap = map[Option]option{
 	MarkerIsothermalNoncatalytic: {
 		Name:        "MarkerIsothermalNoncatalytic",
 		Config:      "MARKER_ISOTHERMAL_NONCATALYTIC",
-		Category:    3,
+		Category:    4,
 		Description: "Isothermal wall boundary marker(s)Format: ( isothermal marker, wall temperature (static), ... )",
 		Type:        "StringDoubleList",
 		ExtraType:   "",
@@ -1004,7 +1115,7 @@ var optionMap = map[Option]option{
 	MarkerIsothermalCatalytic: {
 		Name:        "MarkerIsothermalCatalytic",
 		Config:      "MARKER_ISOTHERMAL_CATALYTIC",
-		Category:    3,
+		Category:    4,
 		Description: "Isothermal wall boundary marker(s)Format: ( isothermal marker, wall temperature (static), ... )",
 		Type:        "StringDoubleList",
 		ExtraType:   "",
@@ -1013,7 +1124,7 @@ var optionMap = map[Option]option{
 	MarkerHeatflux: {
 		Name:        "MarkerHeatflux",
 		Config:      "MARKER_HEATFLUX",
-		Category:    3,
+		Category:    4,
 		Description: "Specified heat flux wall boundary marker(s)Format: ( Heat flux marker, wall heat flux (static), ... )",
 		Type:        "StringDoubleList",
 		ExtraType:   "",
@@ -1022,7 +1133,7 @@ var optionMap = map[Option]option{
 	MarkerHeatfluxNoncatalytic: {
 		Name:        "MarkerHeatfluxNoncatalytic",
 		Config:      "MARKER_HEATFLUX_NONCATALYTIC",
-		Category:    3,
+		Category:    4,
 		Description: "Specified heat flux wall boundary marker(s)Format: ( Heat flux marker, wall heat flux (static), ... )",
 		Type:        "StringDoubleList",
 		ExtraType:   "",
@@ -1031,7 +1142,7 @@ var optionMap = map[Option]option{
 	MarkerHeatfluxCatalytic: {
 		Name:        "MarkerHeatfluxCatalytic",
 		Config:      "MARKER_HEATFLUX_CATALYTIC",
-		Category:    3,
+		Category:    4,
 		Description: "Specified heat flux wall boundary marker(s)Format: ( Heat flux marker, wall heat flux (static), ... )",
 		Type:        "StringDoubleList",
 		ExtraType:   "",
@@ -1040,7 +1151,7 @@ var optionMap = map[Option]option{
 	MarkerNacelleInflow: {
 		Name:        "MarkerNacelleInflow",
 		Config:      "MARKER_NACELLE_INFLOW",
-		Category:    3,
+		Category:    4,
 		Description: "Nacelle inflow boundary marker(s)Format: ( nacelle inflow marker, fan face Mach, ... )",
 		Type:        "StringDoubleList",
 		ExtraType:   "",
@@ -1049,7 +1160,7 @@ var optionMap = map[Option]option{
 	SubsonicNacelleInflow: {
 		Name:        "SubsonicNacelleInflow",
 		Config:      "SUBSONIC_NACELLE_INFLOW",
-		Category:    3,
+		Category:    4,
 		Description: "Engine subsonic intake region",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -1058,7 +1169,7 @@ var optionMap = map[Option]option{
 	MarkerNacelleExhaust: {
 		Name:        "MarkerNacelleExhaust",
 		Config:      "MARKER_NACELLE_EXHAUST",
-		Category:    3,
+		Category:    4,
 		Description: "Nacelle exhaust boundary marker(s)Format: (nacelle exhaust marker, total nozzle temp, total nozzle pressure, ... )",
 		Type:        "InletFixed",
 		ExtraType:   "",
@@ -1067,7 +1178,7 @@ var optionMap = map[Option]option{
 	MarkerNormalDispl: {
 		Name:        "MarkerNormalDispl",
 		Config:      "MARKER_NORMAL_DISPL",
-		Category:    3,
+		Category:    4,
 		Description: "Displacement boundary marker(s)",
 		Type:        "StringDoubleList",
 		ExtraType:   "",
@@ -1076,7 +1187,7 @@ var optionMap = map[Option]option{
 	MarkerNormalLoad: {
 		Name:        "MarkerNormalLoad",
 		Config:      "MARKER_NORMAL_LOAD",
-		Category:    3,
+		Category:    4,
 		Description: "Load boundary marker(s)",
 		Type:        "StringDoubleList",
 		ExtraType:   "",
@@ -1085,7 +1196,7 @@ var optionMap = map[Option]option{
 	MarkerFlowload: {
 		Name:        "MarkerFlowload",
 		Config:      "MARKER_FLOWLOAD",
-		Category:    3,
+		Category:    4,
 		Description: "Flow load boundary marker(s)",
 		Type:        "StringDoubleList",
 		ExtraType:   "",
@@ -1094,7 +1205,7 @@ var optionMap = map[Option]option{
 	DampNacelleInflow: {
 		Name:        "DampNacelleInflow",
 		Config:      "DAMP_NACELLE_INFLOW",
-		Category:    3,
+		Category:    4,
 		Description: "Damping factor for engine inlet condition",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1103,7 +1214,7 @@ var optionMap = map[Option]option{
 	MarkerOut1d: {
 		Name:        "MarkerOut1d",
 		Config:      "MARKER_OUT_1D",
-		Category:    3,
+		Category:    4,
 		Description: "Outlet boundary marker(s) over which to calculate 1-D flow propertiesFormat: ( outlet marker)",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -1112,7 +1223,7 @@ var optionMap = map[Option]option{
 	UnsteadySimulation: {
 		Name:        "UnsteadySimulation",
 		Config:      "UNSTEADY_SIMULATION",
-		Category:    4,
+		Category:    5,
 		Description: "Unsteady simulation",
 		Type:        "Enum",
 		ExtraType:   "Unsteady",
@@ -1121,7 +1232,7 @@ var optionMap = map[Option]option{
 	CflNumber: {
 		Name:        "CflNumber",
 		Config:      "CFL_NUMBER",
-		Category:    4,
+		Category:    5,
 		Description: "Courant-Friedrichs-Lewy condition of the finest grid",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1130,7 +1241,7 @@ var optionMap = map[Option]option{
 	CflRamp: {
 		Name:        "CflRamp",
 		Config:      "CFL_RAMP",
-		Category:    4,
+		Category:    5,
 		Description: "CFL ramp (factor, number of iterations, CFL limit)",
 		Type:        "DoubleArray",
 		ExtraType:   "3",
@@ -1139,7 +1250,7 @@ var optionMap = map[Option]option{
 	CflReductionAdjflow: {
 		Name:        "CflReductionAdjflow",
 		Config:      "CFL_REDUCTION_ADJFLOW",
-		Category:    4,
+		Category:    5,
 		Description: "Reduction factor of the CFL coefficient in the adjoint problem",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1148,7 +1259,7 @@ var optionMap = map[Option]option{
 	CflReductionTurb: {
 		Name:        "CflReductionTurb",
 		Config:      "CFL_REDUCTION_TURB",
-		Category:    4,
+		Category:    5,
 		Description: "Reduction factor of the CFL coefficient in the level set problem",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1157,7 +1268,7 @@ var optionMap = map[Option]option{
 	CflReductionAdjturb: {
 		Name:        "CflReductionAdjturb",
 		Config:      "CFL_REDUCTION_ADJTURB",
-		Category:    4,
+		Category:    5,
 		Description: "Reduction factor of the CFL coefficient in the turbulent adjoint problem",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1166,7 +1277,7 @@ var optionMap = map[Option]option{
 	ExtIter: {
 		Name:        "ExtIter",
 		Config:      "EXT_ITER",
-		Category:    4,
+		Category:    5,
 		Description: "Number of total iterations",
 		Type:        "UnsignedLong",
 		ExtraType:   "",
@@ -1175,7 +1286,7 @@ var optionMap = map[Option]option{
 	RkAlphaCoeff: {
 		Name:        "RkAlphaCoeff",
 		Config:      "RK_ALPHA_COEFF",
-		Category:    4,
+		Category:    5,
 		Description: "Runge-Kutta alpha coefficients",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -1184,7 +1295,7 @@ var optionMap = map[Option]option{
 	UnstTimestep: {
 		Name:        "UnstTimestep",
 		Config:      "UNST_TIMESTEP",
-		Category:    4,
+		Category:    5,
 		Description: "Time Step for dual time stepping simulations (s)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1193,7 +1304,7 @@ var optionMap = map[Option]option{
 	UnstTime: {
 		Name:        "UnstTime",
 		Config:      "UNST_TIME",
-		Category:    4,
+		Category:    5,
 		Description: "Total Physical Time for dual time stepping simulations (s)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1202,7 +1313,7 @@ var optionMap = map[Option]option{
 	UnstCflNumber: {
 		Name:        "UnstCflNumber",
 		Config:      "UNST_CFL_NUMBER",
-		Category:    4,
+		Category:    5,
 		Description: "Unsteady Courant-Friedrichs-Lewy number of the finest grid",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1211,7 +1322,7 @@ var optionMap = map[Option]option{
 	UnstIntIter: {
 		Name:        "UnstIntIter",
 		Config:      "UNST_INT_ITER",
-		Category:    4,
+		Category:    5,
 		Description: "Number of internal iterations (dual time method)",
 		Type:        "UnsignedLong",
 		ExtraType:   "",
@@ -1220,7 +1331,7 @@ var optionMap = map[Option]option{
 	TimeInstances: {
 		Name:        "TimeInstances",
 		Config:      "TIME_INSTANCES",
-		Category:    4,
+		Category:    5,
 		Description: "Integer number of periodic time instances for Time Spectral",
 		Type:        "UnsignedShort",
 		ExtraType:   "",
@@ -1229,7 +1340,7 @@ var optionMap = map[Option]option{
 	UnstRestartIter: {
 		Name:        "UnstRestartIter",
 		Config:      "UNST_RESTART_ITER",
-		Category:    4,
+		Category:    5,
 		Description: "Iteration number to begin unsteady restarts (dual time method)",
 		Type:        "Long",
 		ExtraType:   "",
@@ -1238,7 +1349,7 @@ var optionMap = map[Option]option{
 	UnstAdjointIter: {
 		Name:        "UnstAdjointIter",
 		Config:      "UNST_ADJOINT_ITER",
-		Category:    4,
+		Category:    5,
 		Description: "Starting direct solver iteration for the unsteady adjoint",
 		Type:        "Long",
 		ExtraType:   "",
@@ -1247,7 +1358,7 @@ var optionMap = map[Option]option{
 	TimeDiscreFlow: {
 		Name:        "TimeDiscreFlow",
 		Config:      "TIME_DISCRE_FLOW",
-		Category:    4,
+		Category:    5,
 		Description: "Time discretization",
 		Type:        "Enum",
 		ExtraType:   "TimeInt",
@@ -1256,7 +1367,7 @@ var optionMap = map[Option]option{
 	TimeDiscreTne2: {
 		Name:        "TimeDiscreTne2",
 		Config:      "TIME_DISCRE_TNE2",
-		Category:    4,
+		Category:    5,
 		Description: "Time discretization",
 		Type:        "Enum",
 		ExtraType:   "TimeInt",
@@ -1265,7 +1376,7 @@ var optionMap = map[Option]option{
 	TimeDiscreAdjtne2: {
 		Name:        "TimeDiscreAdjtne2",
 		Config:      "TIME_DISCRE_ADJTNE2",
-		Category:    4,
+		Category:    5,
 		Description: "Time discretization",
 		Type:        "Enum",
 		ExtraType:   "TimeInt",
@@ -1274,7 +1385,7 @@ var optionMap = map[Option]option{
 	TimeDiscreAdjlevelset: {
 		Name:        "TimeDiscreAdjlevelset",
 		Config:      "TIME_DISCRE_ADJLEVELSET",
-		Category:    4,
+		Category:    5,
 		Description: "Time discretization",
 		Type:        "Enum",
 		ExtraType:   "TimeInt",
@@ -1283,7 +1394,7 @@ var optionMap = map[Option]option{
 	TimeDiscreAdjflow: {
 		Name:        "TimeDiscreAdjflow",
 		Config:      "TIME_DISCRE_ADJFLOW",
-		Category:    4,
+		Category:    5,
 		Description: "Time discretization",
 		Type:        "Enum",
 		ExtraType:   "TimeInt",
@@ -1292,7 +1403,7 @@ var optionMap = map[Option]option{
 	TimeDiscreLin: {
 		Name:        "TimeDiscreLin",
 		Config:      "TIME_DISCRE_LIN",
-		Category:    4,
+		Category:    5,
 		Description: "Time discretization",
 		Type:        "Enum",
 		ExtraType:   "TimeInt",
@@ -1301,7 +1412,7 @@ var optionMap = map[Option]option{
 	TimeDiscreTurb: {
 		Name:        "TimeDiscreTurb",
 		Config:      "TIME_DISCRE_TURB",
-		Category:    4,
+		Category:    5,
 		Description: "Time discretization",
 		Type:        "Enum",
 		ExtraType:   "TimeInt",
@@ -1310,7 +1421,7 @@ var optionMap = map[Option]option{
 	TimeDiscreAdjturb: {
 		Name:        "TimeDiscreAdjturb",
 		Config:      "TIME_DISCRE_ADJTURB",
-		Category:    4,
+		Category:    5,
 		Description: "Time discretization",
 		Type:        "Enum",
 		ExtraType:   "TimeInt",
@@ -1319,7 +1430,7 @@ var optionMap = map[Option]option{
 	TimeDiscreWave: {
 		Name:        "TimeDiscreWave",
 		Config:      "TIME_DISCRE_WAVE",
-		Category:    4,
+		Category:    5,
 		Description: "Time discretization",
 		Type:        "Enum",
 		ExtraType:   "TimeInt",
@@ -1328,7 +1439,7 @@ var optionMap = map[Option]option{
 	TimeDiscreFea: {
 		Name:        "TimeDiscreFea",
 		Config:      "TIME_DISCRE_FEA",
-		Category:    4,
+		Category:    5,
 		Description: "Time discretization",
 		Type:        "Enum",
 		ExtraType:   "TimeInt",
@@ -1337,7 +1448,7 @@ var optionMap = map[Option]option{
 	TimeDiscreHeat: {
 		Name:        "TimeDiscreHeat",
 		Config:      "TIME_DISCRE_HEAT",
-		Category:    4,
+		Category:    5,
 		Description: "Time discretization",
 		Type:        "Enum",
 		ExtraType:   "TimeInt",
@@ -1346,7 +1457,7 @@ var optionMap = map[Option]option{
 	TimeDiscrePoisson: {
 		Name:        "TimeDiscrePoisson",
 		Config:      "TIME_DISCRE_POISSON",
-		Category:    4,
+		Category:    5,
 		Description: "Time discretization",
 		Type:        "Enum",
 		ExtraType:   "TimeInt",
@@ -1355,7 +1466,7 @@ var optionMap = map[Option]option{
 	LinearSolver: {
 		Name:        "LinearSolver",
 		Config:      "LINEAR_SOLVER",
-		Category:    5,
+		Category:    6,
 		Description: "Linear solver for the implicit, mesh deformation, or discrete adjoint systems",
 		Type:        "Enum",
 		ExtraType:   "LinearSolver",
@@ -1364,7 +1475,7 @@ var optionMap = map[Option]option{
 	LinearSolverPrec: {
 		Name:        "LinearSolverPrec",
 		Config:      "LINEAR_SOLVER_PREC",
-		Category:    5,
+		Category:    6,
 		Description: "Preconditioner for the Krylov linear solvers",
 		Type:        "Enum",
 		ExtraType:   "LinearSolverPrec",
@@ -1373,7 +1484,7 @@ var optionMap = map[Option]option{
 	LinearSolverError: {
 		Name:        "LinearSolverError",
 		Config:      "LINEAR_SOLVER_ERROR",
-		Category:    5,
+		Category:    6,
 		Description: "Minimum error threshold for the linear solver for the implicit formulation",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1382,7 +1493,7 @@ var optionMap = map[Option]option{
 	LinearSolverIter: {
 		Name:        "LinearSolverIter",
 		Config:      "LINEAR_SOLVER_ITER",
-		Category:    5,
+		Category:    6,
 		Description: "Maximum number of iterations of the linear solver for the implicit formulation",
 		Type:        "UnsignedLong",
 		ExtraType:   "",
@@ -1391,7 +1502,7 @@ var optionMap = map[Option]option{
 	LinearSolverRestartFrequency: {
 		Name:        "LinearSolverRestartFrequency",
 		Config:      "LINEAR_SOLVER_RESTART_FREQUENCY",
-		Category:    5,
+		Category:    6,
 		Description: "Maximum number of iterations of the linear solver for the implicit formulation",
 		Type:        "UnsignedLong",
 		ExtraType:   "",
@@ -1400,7 +1511,7 @@ var optionMap = map[Option]option{
 	LinearSolverRelax: {
 		Name:        "LinearSolverRelax",
 		Config:      "LINEAR_SOLVER_RELAX",
-		Category:    5,
+		Category:    6,
 		Description: "Relaxation of the linear solver for the implicit formulation",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1409,7 +1520,7 @@ var optionMap = map[Option]option{
 	RoeTurkelPrec: {
 		Name:        "RoeTurkelPrec",
 		Config:      "ROE_TURKEL_PREC",
-		Category:    5,
+		Category:    6,
 		Description: "Roe-Turkel preconditioning for low Mach number flows",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -1418,7 +1529,7 @@ var optionMap = map[Option]option{
 	MinRoeTurkelPrec: {
 		Name:        "MinRoeTurkelPrec",
 		Config:      "MIN_ROE_TURKEL_PREC",
-		Category:    5,
+		Category:    6,
 		Description: "Time Step for dual time stepping simulations (s)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1427,7 +1538,7 @@ var optionMap = map[Option]option{
 	MaxRoeTurkelPrec: {
 		Name:        "MaxRoeTurkelPrec",
 		Config:      "MAX_ROE_TURKEL_PREC",
-		Category:    5,
+		Category:    6,
 		Description: "Time Step for dual time stepping simulations (s)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1436,7 +1547,7 @@ var optionMap = map[Option]option{
 	AdjturbLinSolver: {
 		Name:        "AdjturbLinSolver",
 		Config:      "ADJTURB_LIN_SOLVER",
-		Category:    5,
+		Category:    6,
 		Description: "Linear solver for the turbulent adjoint systems",
 		Type:        "Enum",
 		ExtraType:   "LinearSolver",
@@ -1445,7 +1556,7 @@ var optionMap = map[Option]option{
 	AdjturbLinPrec: {
 		Name:        "AdjturbLinPrec",
 		Config:      "ADJTURB_LIN_PREC",
-		Category:    5,
+		Category:    6,
 		Description: "Preconditioner for the turbulent adjoint Krylov linear solvers",
 		Type:        "Enum",
 		ExtraType:   "LinearSolverPrec",
@@ -1454,7 +1565,7 @@ var optionMap = map[Option]option{
 	AdjturbLinError: {
 		Name:        "AdjturbLinError",
 		Config:      "ADJTURB_LIN_ERROR",
-		Category:    5,
+		Category:    6,
 		Description: "Minimum error threshold for the turbulent adjoint linear solver for the implicit formulation",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1463,16 +1574,25 @@ var optionMap = map[Option]option{
 	AdjturbLinIter: {
 		Name:        "AdjturbLinIter",
 		Config:      "ADJTURB_LIN_ITER",
-		Category:    5,
+		Category:    6,
 		Description: "Maximum number of iterations of the turbulent adjoint linear solver for the implicit formulation",
 		Type:        "UnsignedShort",
 		ExtraType:   "",
 		OptionConst: AdjturbLinIter,
 	},
+	EntropyFixCoeff: {
+		Name:        "EntropyFixCoeff",
+		Config:      "ENTROPY_FIX_COEFF",
+		Category:    6,
+		Description: "Entropy fix factor",
+		Type:        "Double",
+		ExtraType:   "",
+		OptionConst: EntropyFixCoeff,
+	},
 	ConvCriteria: {
 		Name:        "ConvCriteria",
 		Config:      "CONV_CRITERIA",
-		Category:    6,
+		Category:    7,
 		Description: "Convergence criteria",
 		Type:        "Enum",
 		ExtraType:   "ConvergeCrit",
@@ -1481,7 +1601,7 @@ var optionMap = map[Option]option{
 	ResidualReduction: {
 		Name:        "ResidualReduction",
 		Config:      "RESIDUAL_REDUCTION",
-		Category:    6,
+		Category:    7,
 		Description: "Residual reduction (order of magnitude with respect to the initial value)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1490,7 +1610,7 @@ var optionMap = map[Option]option{
 	ResidualMinval: {
 		Name:        "ResidualMinval",
 		Config:      "RESIDUAL_MINVAL",
-		Category:    6,
+		Category:    7,
 		Description: "Min value of the residual (log10 of the residual)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1499,7 +1619,7 @@ var optionMap = map[Option]option{
 	StartconvIter: {
 		Name:        "StartconvIter",
 		Config:      "STARTCONV_ITER",
-		Category:    6,
+		Category:    7,
 		Description: "Iteration number to begin convergence monitoring",
 		Type:        "UnsignedLong",
 		ExtraType:   "",
@@ -1508,7 +1628,7 @@ var optionMap = map[Option]option{
 	CauchyElems: {
 		Name:        "CauchyElems",
 		Config:      "CAUCHY_ELEMS",
-		Category:    6,
+		Category:    7,
 		Description: "Number of elements to apply the criteria",
 		Type:        "UnsignedShort",
 		ExtraType:   "",
@@ -1517,7 +1637,7 @@ var optionMap = map[Option]option{
 	CauchyEps: {
 		Name:        "CauchyEps",
 		Config:      "CAUCHY_EPS",
-		Category:    6,
+		Category:    7,
 		Description: "Epsilon to control the series convergence",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1526,7 +1646,7 @@ var optionMap = map[Option]option{
 	CauchyFuncFlow: {
 		Name:        "CauchyFuncFlow",
 		Config:      "CAUCHY_FUNC_FLOW",
-		Category:    6,
+		Category:    7,
 		Description: "Flow functional for the Cauchy criteria",
 		Type:        "Enum",
 		ExtraType:   "Objective",
@@ -1535,7 +1655,7 @@ var optionMap = map[Option]option{
 	CauchyFuncAdjflow: {
 		Name:        "CauchyFuncAdjflow",
 		Config:      "CAUCHY_FUNC_ADJFLOW",
-		Category:    6,
+		Category:    7,
 		Description: "Adjoint functional for the Cauchy criteria",
 		Type:        "Enum",
 		ExtraType:   "Sens",
@@ -1544,7 +1664,7 @@ var optionMap = map[Option]option{
 	CauchyFuncLin: {
 		Name:        "CauchyFuncLin",
 		Config:      "CAUCHY_FUNC_LIN",
-		Category:    6,
+		Category:    7,
 		Description: "Linearized functional for the Cauchy criteria",
 		Type:        "Enum",
 		ExtraType:   "LinearObj",
@@ -1553,7 +1673,7 @@ var optionMap = map[Option]option{
 	FullmgCauchyEps: {
 		Name:        "FullmgCauchyEps",
 		Config:      "FULLMG_CAUCHY_EPS",
-		Category:    6,
+		Category:    7,
 		Description: "Epsilon for a full multigrid method evaluation",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1562,7 +1682,7 @@ var optionMap = map[Option]option{
 	Fullmg: {
 		Name:        "Fullmg",
 		Config:      "FULLMG",
-		Category:    7,
+		Category:    8,
 		Description: "Full multi-grid",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -1571,7 +1691,7 @@ var optionMap = map[Option]option{
 	StartUpIter: {
 		Name:        "StartUpIter",
 		Config:      "START_UP_ITER",
-		Category:    7,
+		Category:    8,
 		Description: "Start up iterations using the fine grid only",
 		Type:        "UnsignedShort",
 		ExtraType:   "",
@@ -1580,7 +1700,7 @@ var optionMap = map[Option]option{
 	Mglevel: {
 		Name:        "Mglevel",
 		Config:      "MGLEVEL",
-		Category:    7,
+		Category:    8,
 		Description: "Multi-grid Levels",
 		Type:        "UnsignedShort",
 		ExtraType:   "",
@@ -1589,7 +1709,7 @@ var optionMap = map[Option]option{
 	Mgcycle: {
 		Name:        "Mgcycle",
 		Config:      "MGCYCLE",
-		Category:    7,
+		Category:    8,
 		Description: "Multi-grid Cycle (0 = V cycle, 1 = W Cycle)",
 		Type:        "UnsignedShort",
 		ExtraType:   "",
@@ -1598,7 +1718,7 @@ var optionMap = map[Option]option{
 	MgPreSmooth: {
 		Name:        "MgPreSmooth",
 		Config:      "MG_PRE_SMOOTH",
-		Category:    7,
+		Category:    8,
 		Description: "Multi-grid pre-smoothing level",
 		Type:        "UShortList",
 		ExtraType:   "",
@@ -1607,7 +1727,7 @@ var optionMap = map[Option]option{
 	MgPostSmooth: {
 		Name:        "MgPostSmooth",
 		Config:      "MG_POST_SMOOTH",
-		Category:    7,
+		Category:    8,
 		Description: "Multi-grid post-smoothing level",
 		Type:        "UShortList",
 		ExtraType:   "",
@@ -1616,7 +1736,7 @@ var optionMap = map[Option]option{
 	MgCorrectionSmooth: {
 		Name:        "MgCorrectionSmooth",
 		Config:      "MG_CORRECTION_SMOOTH",
-		Category:    7,
+		Category:    8,
 		Description: "Jacobi implicit smoothing of the correction",
 		Type:        "UShortList",
 		ExtraType:   "",
@@ -1625,7 +1745,7 @@ var optionMap = map[Option]option{
 	MgDampRestriction: {
 		Name:        "MgDampRestriction",
 		Config:      "MG_DAMP_RESTRICTION",
-		Category:    7,
+		Category:    8,
 		Description: "Damping factor for the residual restriction",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1634,25 +1754,16 @@ var optionMap = map[Option]option{
 	MgDampProlongation: {
 		Name:        "MgDampProlongation",
 		Config:      "MG_DAMP_PROLONGATION",
-		Category:    7,
+		Category:    8,
 		Description: "Damping factor for the correction prolongation",
 		Type:        "Double",
 		ExtraType:   "",
 		OptionConst: MgDampProlongation,
 	},
-	MgCflReduction: {
-		Name:        "MgCflReduction",
-		Config:      "MG_CFL_REDUCTION",
-		Category:    7,
-		Description: "CFL reduction factor on the coarse levels",
-		Type:        "Double",
-		ExtraType:   "",
-		OptionConst: MgCflReduction,
-	},
 	MaxChildren: {
 		Name:        "MaxChildren",
 		Config:      "MAX_CHILDREN",
-		Category:    7,
+		Category:    8,
 		Description: "Maximum number of children in the agglomeration stage",
 		Type:        "UnsignedShort",
 		ExtraType:   "",
@@ -1661,7 +1772,7 @@ var optionMap = map[Option]option{
 	MaxDimension: {
 		Name:        "MaxDimension",
 		Config:      "MAX_DIMENSION",
-		Category:    7,
+		Category:    8,
 		Description: "Maximum length of an agglomerated element (relative to the domain)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1670,7 +1781,7 @@ var optionMap = map[Option]option{
 	NumMethodGrad: {
 		Name:        "NumMethodGrad",
 		Config:      "NUM_METHOD_GRAD",
-		Category:    8,
+		Category:    9,
 		Description: "Numerical method for spatial gradients",
 		Type:        "Enum",
 		ExtraType:   "FlowGradient",
@@ -1679,16 +1790,25 @@ var optionMap = map[Option]option{
 	LimiterCoeff: {
 		Name:        "LimiterCoeff",
 		Config:      "LIMITER_COEFF",
-		Category:    8,
+		Category:    9,
 		Description: "Coefficient for the limiter",
 		Type:        "Double",
 		ExtraType:   "",
 		OptionConst: LimiterCoeff,
 	},
+	LimiterIter: {
+		Name:        "LimiterIter",
+		Config:      "LIMITER_ITER",
+		Category:    9,
+		Description: "Freeze the value of the limiter after a number of iterations",
+		Type:        "UnsignedLong",
+		ExtraType:   "",
+		OptionConst: LimiterIter,
+	},
 	SharpEdgesCoeff: {
 		Name:        "SharpEdgesCoeff",
 		Config:      "SHARP_EDGES_COEFF",
-		Category:    8,
+		Category:    9,
 		Description: "Coefficient for detecting the limit of the sharp edges",
 		Type:        "Double",
 		ExtraType:   "",
@@ -1697,34 +1817,16 @@ var optionMap = map[Option]option{
 	ConvNumMethodFlow: {
 		Name:        "ConvNumMethodFlow",
 		Config:      "CONV_NUM_METHOD_FLOW",
-		Category:    8,
+		Category:    9,
 		Description: "Convective numerical method",
 		Type:        "Convect",
 		ExtraType:   "",
 		OptionConst: ConvNumMethodFlow,
 	},
-	ViscNumMethodFlow: {
-		Name:        "ViscNumMethodFlow",
-		Config:      "VISC_NUM_METHOD_FLOW",
-		Category:    8,
-		Description: "Viscous numerical method",
-		Type:        "Enum",
-		ExtraType:   "Viscous",
-		OptionConst: ViscNumMethodFlow,
-	},
-	SourNumMethodFlow: {
-		Name:        "SourNumMethodFlow",
-		Config:      "SOUR_NUM_METHOD_FLOW",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodFlow,
-	},
 	SpatialOrderFlow: {
 		Name:        "SpatialOrderFlow",
 		Config:      "SPATIAL_ORDER_FLOW",
-		Category:    8,
+		Category:    9,
 		Description: "Spatial numerical order integration",
 		Type:        "Enum",
 		ExtraType:   "SpatialOrder",
@@ -1733,7 +1835,7 @@ var optionMap = map[Option]option{
 	SlopeLimiterFlow: {
 		Name:        "SlopeLimiterFlow",
 		Config:      "SLOPE_LIMITER_FLOW",
-		Category:    8,
+		Category:    9,
 		Description: "Slope limiter",
 		Type:        "Enum",
 		ExtraType:   "Limiter",
@@ -1742,7 +1844,7 @@ var optionMap = map[Option]option{
 	AdCoeffFlow: {
 		Name:        "AdCoeffFlow",
 		Config:      "AD_COEFF_FLOW",
-		Category:    8,
+		Category:    9,
 		Description: "1st, 2nd and 4th order artificial dissipation coefficients",
 		Type:        "DoubleArray",
 		ExtraType:   "3",
@@ -1751,34 +1853,16 @@ var optionMap = map[Option]option{
 	ConvNumMethodAdjflow: {
 		Name:        "ConvNumMethodAdjflow",
 		Config:      "CONV_NUM_METHOD_ADJFLOW",
-		Category:    8,
+		Category:    9,
 		Description: "Convective numerical method",
 		Type:        "Convect",
 		ExtraType:   "",
 		OptionConst: ConvNumMethodAdjflow,
 	},
-	ViscNumMethodAdjflow: {
-		Name:        "ViscNumMethodAdjflow",
-		Config:      "VISC_NUM_METHOD_ADJFLOW",
-		Category:    8,
-		Description: "Viscous numerical method",
-		Type:        "Enum",
-		ExtraType:   "Viscous",
-		OptionConst: ViscNumMethodAdjflow,
-	},
-	SourNumMethodAdjflow: {
-		Name:        "SourNumMethodAdjflow",
-		Config:      "SOUR_NUM_METHOD_ADJFLOW",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodAdjflow,
-	},
 	SpatialOrderAdjflow: {
 		Name:        "SpatialOrderAdjflow",
 		Config:      "SPATIAL_ORDER_ADJFLOW",
-		Category:    8,
+		Category:    9,
 		Description: "Spatial numerical order integration",
 		Type:        "Enum",
 		ExtraType:   "SpatialOrder",
@@ -1787,7 +1871,7 @@ var optionMap = map[Option]option{
 	SlopeLimiterAdjflow: {
 		Name:        "SlopeLimiterAdjflow",
 		Config:      "SLOPE_LIMITER_ADJFLOW",
-		Category:    8,
+		Category:    9,
 		Description: "Slope limiter",
 		Type:        "Enum",
 		ExtraType:   "Limiter",
@@ -1796,7 +1880,7 @@ var optionMap = map[Option]option{
 	AdCoeffAdjflow: {
 		Name:        "AdCoeffAdjflow",
 		Config:      "AD_COEFF_ADJFLOW",
-		Category:    8,
+		Category:    9,
 		Description: "1st, 2nd and 4th order artificial dissipation coefficients",
 		Type:        "DoubleArray",
 		ExtraType:   "3",
@@ -1805,7 +1889,7 @@ var optionMap = map[Option]option{
 	SpatialOrderTurb: {
 		Name:        "SpatialOrderTurb",
 		Config:      "SPATIAL_ORDER_TURB",
-		Category:    8,
+		Category:    9,
 		Description: "Spatial numerical order integration",
 		Type:        "Enum",
 		ExtraType:   "SpatialOrder",
@@ -1814,7 +1898,7 @@ var optionMap = map[Option]option{
 	SlopeLimiterTurb: {
 		Name:        "SlopeLimiterTurb",
 		Config:      "SLOPE_LIMITER_TURB",
-		Category:    8,
+		Category:    9,
 		Description: "Slope limiter",
 		Type:        "Enum",
 		ExtraType:   "Limiter",
@@ -1823,34 +1907,16 @@ var optionMap = map[Option]option{
 	ConvNumMethodTurb: {
 		Name:        "ConvNumMethodTurb",
 		Config:      "CONV_NUM_METHOD_TURB",
-		Category:    8,
+		Category:    9,
 		Description: "Convective numerical method",
 		Type:        "Convect",
 		ExtraType:   "",
 		OptionConst: ConvNumMethodTurb,
 	},
-	ViscNumMethodTurb: {
-		Name:        "ViscNumMethodTurb",
-		Config:      "VISC_NUM_METHOD_TURB",
-		Category:    8,
-		Description: "Viscous numerical method",
-		Type:        "Enum",
-		ExtraType:   "Viscous",
-		OptionConst: ViscNumMethodTurb,
-	},
-	SourNumMethodTurb: {
-		Name:        "SourNumMethodTurb",
-		Config:      "SOUR_NUM_METHOD_TURB",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodTurb,
-	},
 	SpatialOrderAdjturb: {
 		Name:        "SpatialOrderAdjturb",
 		Config:      "SPATIAL_ORDER_ADJTURB",
-		Category:    8,
+		Category:    9,
 		Description: "Spatial numerical order integration",
 		Type:        "Enum",
 		ExtraType:   "SpatialOrder",
@@ -1859,7 +1925,7 @@ var optionMap = map[Option]option{
 	SlopeLimiterAdjturb: {
 		Name:        "SlopeLimiterAdjturb",
 		Config:      "SLOPE_LIMITER_ADJTURB",
-		Category:    8,
+		Category:    9,
 		Description: "Slope limiter",
 		Type:        "Enum",
 		ExtraType:   "Limiter",
@@ -1868,61 +1934,25 @@ var optionMap = map[Option]option{
 	ConvNumMethodAdjturb: {
 		Name:        "ConvNumMethodAdjturb",
 		Config:      "CONV_NUM_METHOD_ADJTURB",
-		Category:    8,
+		Category:    9,
 		Description: "Convective numerical method",
 		Type:        "Convect",
 		ExtraType:   "",
 		OptionConst: ConvNumMethodAdjturb,
 	},
-	ViscNumMethodAdjturb: {
-		Name:        "ViscNumMethodAdjturb",
-		Config:      "VISC_NUM_METHOD_ADJTURB",
-		Category:    8,
-		Description: "Viscous numerical method",
-		Type:        "Enum",
-		ExtraType:   "Viscous",
-		OptionConst: ViscNumMethodAdjturb,
-	},
-	SourNumMethodAdjturb: {
-		Name:        "SourNumMethodAdjturb",
-		Config:      "SOUR_NUM_METHOD_ADJTURB",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodAdjturb,
-	},
 	ConvNumMethodLin: {
 		Name:        "ConvNumMethodLin",
 		Config:      "CONV_NUM_METHOD_LIN",
-		Category:    8,
+		Category:    9,
 		Description: "Convective numerical method",
 		Type:        "Convect",
 		ExtraType:   "",
 		OptionConst: ConvNumMethodLin,
 	},
-	ViscNumMethodLin: {
-		Name:        "ViscNumMethodLin",
-		Config:      "VISC_NUM_METHOD_LIN",
-		Category:    8,
-		Description: "Viscous numerical method",
-		Type:        "Enum",
-		ExtraType:   "Viscous",
-		OptionConst: ViscNumMethodLin,
-	},
-	SourNumMethodLin: {
-		Name:        "SourNumMethodLin",
-		Config:      "SOUR_NUM_METHOD_LIN",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodLin,
-	},
 	AdCoeffLin: {
 		Name:        "AdCoeffLin",
 		Config:      "AD_COEFF_LIN",
-		Category:    8,
+		Category:    9,
 		Description: "1st, 2nd and 4th order artificial dissipation coefficients",
 		Type:        "DoubleArray",
 		ExtraType:   "2",
@@ -1931,7 +1961,7 @@ var optionMap = map[Option]option{
 	SpatialOrderAdjlevelset: {
 		Name:        "SpatialOrderAdjlevelset",
 		Config:      "SPATIAL_ORDER_ADJLEVELSET",
-		Category:    8,
+		Category:    9,
 		Description: "Spatial numerical order integration",
 		Type:        "Enum",
 		ExtraType:   "SpatialOrder",
@@ -1940,7 +1970,7 @@ var optionMap = map[Option]option{
 	SlopeLimiterAdjlevelset: {
 		Name:        "SlopeLimiterAdjlevelset",
 		Config:      "SLOPE_LIMITER_ADJLEVELSET",
-		Category:    8,
+		Category:    9,
 		Description: "Slope limiter",
 		Type:        "Enum",
 		ExtraType:   "Limiter",
@@ -1949,61 +1979,25 @@ var optionMap = map[Option]option{
 	ConvNumMethodAdjlevelset: {
 		Name:        "ConvNumMethodAdjlevelset",
 		Config:      "CONV_NUM_METHOD_ADJLEVELSET",
-		Category:    8,
+		Category:    9,
 		Description: "Convective numerical method",
 		Type:        "Convect",
 		ExtraType:   "",
 		OptionConst: ConvNumMethodAdjlevelset,
 	},
-	ViscNumMethodAdjlevelset: {
-		Name:        "ViscNumMethodAdjlevelset",
-		Config:      "VISC_NUM_METHOD_ADJLEVELSET",
-		Category:    8,
-		Description: "Viscous numerical method",
-		Type:        "Enum",
-		ExtraType:   "Viscous",
-		OptionConst: ViscNumMethodAdjlevelset,
-	},
-	SourNumMethodAdjlevelset: {
-		Name:        "SourNumMethodAdjlevelset",
-		Config:      "SOUR_NUM_METHOD_ADJLEVELSET",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodAdjlevelset,
-	},
 	ConvNumMethodTne2: {
 		Name:        "ConvNumMethodTne2",
 		Config:      "CONV_NUM_METHOD_TNE2",
-		Category:    8,
+		Category:    9,
 		Description: "Convective numerical method",
 		Type:        "Convect",
 		ExtraType:   "",
 		OptionConst: ConvNumMethodTne2,
 	},
-	ViscNumMethodTne2: {
-		Name:        "ViscNumMethodTne2",
-		Config:      "VISC_NUM_METHOD_TNE2",
-		Category:    8,
-		Description: "Viscous numerical method",
-		Type:        "Enum",
-		ExtraType:   "Viscous",
-		OptionConst: ViscNumMethodTne2,
-	},
-	SourNumMethodTne2: {
-		Name:        "SourNumMethodTne2",
-		Config:      "SOUR_NUM_METHOD_TNE2",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodTne2,
-	},
 	SpatialOrderTne2: {
 		Name:        "SpatialOrderTne2",
 		Config:      "SPATIAL_ORDER_TNE2",
-		Category:    8,
+		Category:    9,
 		Description: "Spatial numerical order integration",
 		Type:        "Enum",
 		ExtraType:   "SpatialOrder",
@@ -2012,7 +2006,7 @@ var optionMap = map[Option]option{
 	SlopeLimiterTne2: {
 		Name:        "SlopeLimiterTne2",
 		Config:      "SLOPE_LIMITER_TNE2",
-		Category:    8,
+		Category:    9,
 		Description: "Slope limiter",
 		Type:        "Enum",
 		ExtraType:   "Limiter",
@@ -2021,7 +2015,7 @@ var optionMap = map[Option]option{
 	AdCoeffTne2: {
 		Name:        "AdCoeffTne2",
 		Config:      "AD_COEFF_TNE2",
-		Category:    8,
+		Category:    9,
 		Description: "1st, 2nd and 4th order artificial dissipation coefficients",
 		Type:        "DoubleArray",
 		ExtraType:   "3",
@@ -2030,34 +2024,16 @@ var optionMap = map[Option]option{
 	ConvNumMethodAdjtne2: {
 		Name:        "ConvNumMethodAdjtne2",
 		Config:      "CONV_NUM_METHOD_ADJTNE2",
-		Category:    8,
+		Category:    9,
 		Description: "Convective numerical method",
 		Type:        "Convect",
 		ExtraType:   "",
 		OptionConst: ConvNumMethodAdjtne2,
 	},
-	ViscNumMethodAdjtne2: {
-		Name:        "ViscNumMethodAdjtne2",
-		Config:      "VISC_NUM_METHOD_ADJTNE2",
-		Category:    8,
-		Description: "Viscous numerical method",
-		Type:        "Enum",
-		ExtraType:   "Viscous",
-		OptionConst: ViscNumMethodAdjtne2,
-	},
-	SourNumMethodAdjtne2: {
-		Name:        "SourNumMethodAdjtne2",
-		Config:      "SOUR_NUM_METHOD_ADJTNE2",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodAdjtne2,
-	},
 	SpatialOrderAdjtne2: {
 		Name:        "SpatialOrderAdjtne2",
 		Config:      "SPATIAL_ORDER_ADJTNE2",
-		Category:    8,
+		Category:    9,
 		Description: "Spatial numerical order integration",
 		Type:        "Enum",
 		ExtraType:   "SpatialOrder",
@@ -2066,7 +2042,7 @@ var optionMap = map[Option]option{
 	SlopeLimiterAdjtne2: {
 		Name:        "SlopeLimiterAdjtne2",
 		Config:      "SLOPE_LIMITER_ADJTNE2",
-		Category:    8,
+		Category:    9,
 		Description: "Slope limiter",
 		Type:        "Enum",
 		ExtraType:   "Limiter",
@@ -2075,97 +2051,16 @@ var optionMap = map[Option]option{
 	AdCoeffAdjtne2: {
 		Name:        "AdCoeffAdjtne2",
 		Config:      "AD_COEFF_ADJTNE2",
-		Category:    8,
+		Category:    9,
 		Description: "1st, 2nd and 4th order artificial dissipation coefficients",
 		Type:        "DoubleArray",
 		ExtraType:   "3",
 		OptionConst: AdCoeffAdjtne2,
 	},
-	ViscNumMethodWave: {
-		Name:        "ViscNumMethodWave",
-		Config:      "VISC_NUM_METHOD_WAVE",
-		Category:    8,
-		Description: "Viscous numerical method",
-		Type:        "Enum",
-		ExtraType:   "Viscous",
-		OptionConst: ViscNumMethodWave,
-	},
-	SourNumMethodWave: {
-		Name:        "SourNumMethodWave",
-		Config:      "SOUR_NUM_METHOD_WAVE",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodWave,
-	},
-	ViscNumMethodPoisson: {
-		Name:        "ViscNumMethodPoisson",
-		Config:      "VISC_NUM_METHOD_POISSON",
-		Category:    8,
-		Description: "Viscous numerical method",
-		Type:        "Enum",
-		ExtraType:   "Viscous",
-		OptionConst: ViscNumMethodPoisson,
-	},
-	SourNumMethodPoisson: {
-		Name:        "SourNumMethodPoisson",
-		Config:      "SOUR_NUM_METHOD_POISSON",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodPoisson,
-	},
-	ViscNumMethodFea: {
-		Name:        "ViscNumMethodFea",
-		Config:      "VISC_NUM_METHOD_FEA",
-		Category:    8,
-		Description: "Viscous numerical method",
-		Type:        "Enum",
-		ExtraType:   "Viscous",
-		OptionConst: ViscNumMethodFea,
-	},
-	SourNumMethodFea: {
-		Name:        "SourNumMethodFea",
-		Config:      "SOUR_NUM_METHOD_FEA",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodFea,
-	},
-	ViscNumMethodHeat: {
-		Name:        "ViscNumMethodHeat",
-		Config:      "VISC_NUM_METHOD_HEAT",
-		Category:    8,
-		Description: "Viscous numerical method",
-		Type:        "Enum",
-		ExtraType:   "Viscous",
-		OptionConst: ViscNumMethodHeat,
-	},
-	SourNumMethodHeat: {
-		Name:        "SourNumMethodHeat",
-		Config:      "SOUR_NUM_METHOD_HEAT",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodHeat,
-	},
-	SourNumMethodTemplate: {
-		Name:        "SourNumMethodTemplate",
-		Config:      "SOUR_NUM_METHOD_TEMPLATE",
-		Category:    8,
-		Description: "Source term numerical method",
-		Type:        "Enum",
-		ExtraType:   "Source",
-		OptionConst: SourNumMethodTemplate,
-	},
 	LimitAdjflow: {
 		Name:        "LimitAdjflow",
 		Config:      "LIMIT_ADJFLOW",
-		Category:    9,
+		Category:    10,
 		Description: "Limit value for the adjoint variable",
 		Type:        "Double",
 		ExtraType:   "",
@@ -2174,7 +2069,7 @@ var optionMap = map[Option]option{
 	ObjectiveFunction: {
 		Name:        "ObjectiveFunction",
 		Config:      "OBJECTIVE_FUNCTION",
-		Category:    9,
+		Category:    10,
 		Description: "Adjoint problem boundary condition",
 		Type:        "Enum",
 		ExtraType:   "Objective",
@@ -2183,7 +2078,7 @@ var optionMap = map[Option]option{
 	GeoLocationSections: {
 		Name:        "GeoLocationSections",
 		Config:      "GEO_LOCATION_SECTIONS",
-		Category:    9,
+		Category:    10,
 		Description: "Definition of the airfoil section",
 		Type:        "DoubleArray",
 		ExtraType:   "2",
@@ -2192,7 +2087,7 @@ var optionMap = map[Option]option{
 	GeoOrientationSections: {
 		Name:        "GeoOrientationSections",
 		Config:      "GEO_ORIENTATION_SECTIONS",
-		Category:    9,
+		Category:    10,
 		Description: "Identify the axis of the section",
 		Type:        "Enum",
 		ExtraType:   "AxisOrientation",
@@ -2201,7 +2096,7 @@ var optionMap = map[Option]option{
 	GeoNumberSections: {
 		Name:        "GeoNumberSections",
 		Config:      "GEO_NUMBER_SECTIONS",
-		Category:    9,
+		Category:    10,
 		Description: "Percentage of new elements (% of the original number of elements)",
 		Type:        "UnsignedShort",
 		ExtraType:   "",
@@ -2210,7 +2105,7 @@ var optionMap = map[Option]option{
 	GeoVolumeSections: {
 		Name:        "GeoVolumeSections",
 		Config:      "GEO_VOLUME_SECTIONS",
-		Category:    9,
+		Category:    10,
 		Description: "Number of section cuts to make when calculating internal volume",
 		Type:        "UnsignedShort",
 		ExtraType:   "",
@@ -2219,7 +2114,7 @@ var optionMap = map[Option]option{
 	GeoPlotSections: {
 		Name:        "GeoPlotSections",
 		Config:      "GEO_PLOT_SECTIONS",
-		Category:    9,
+		Category:    10,
 		Description: "Output sectional forces for specified markers.",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -2228,7 +2123,7 @@ var optionMap = map[Option]option{
 	GeoMode: {
 		Name:        "GeoMode",
 		Config:      "GEO_MODE",
-		Category:    9,
+		Category:    10,
 		Description: "Mode of the GDC code (analysis, or gradient)",
 		Type:        "Enum",
 		ExtraType:   "GeometryMode",
@@ -2237,7 +2132,7 @@ var optionMap = map[Option]option{
 	DragInSonicboom: {
 		Name:        "DragInSonicboom",
 		Config:      "DRAG_IN_SONICBOOM",
-		Category:    9,
+		Category:    10,
 		Description: "Drag weight in sonic boom Objective Function (from 0.0 to 1.0)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -2246,7 +2141,7 @@ var optionMap = map[Option]option{
 	SensSmoothing: {
 		Name:        "SensSmoothing",
 		Config:      "SENS_SMOOTHING",
-		Category:    9,
+		Category:    10,
 		Description: "Sensitivity smoothing",
 		Type:        "Enum",
 		ExtraType:   "SensSmoothing",
@@ -2255,7 +2150,7 @@ var optionMap = map[Option]option{
 	ContinuousEqns: {
 		Name:        "ContinuousEqns",
 		Config:      "CONTINUOUS_EQNS",
-		Category:    9,
+		Category:    10,
 		Description: "Continuous governing equation set",
 		Type:        "Enum",
 		ExtraType:   "ContinuousEqns",
@@ -2264,7 +2159,7 @@ var optionMap = map[Option]option{
 	DiscreteEqns: {
 		Name:        "DiscreteEqns",
 		Config:      "DISCRETE_EQNS",
-		Category:    9,
+		Category:    10,
 		Description: "Discrete governing equation set",
 		Type:        "Enum",
 		ExtraType:   "DiscreteEqns",
@@ -2273,7 +2168,7 @@ var optionMap = map[Option]option{
 	FrozenVisc: {
 		Name:        "FrozenVisc",
 		Config:      "FROZEN_VISC",
-		Category:    9,
+		Category:    10,
 		Description: "Adjoint frozen viscosity",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -2282,7 +2177,7 @@ var optionMap = map[Option]option{
 	CteViscousDrag: {
 		Name:        "CteViscousDrag",
 		Config:      "CTE_VISCOUS_DRAG",
-		Category:    9,
+		Category:    10,
 		Description: "",
 		Type:        "Double",
 		ExtraType:   "",
@@ -2291,7 +2186,7 @@ var optionMap = map[Option]option{
 	FixAzimuthalLine: {
 		Name:        "FixAzimuthalLine",
 		Config:      "FIX_AZIMUTHAL_LINE",
-		Category:    9,
+		Category:    10,
 		Description: "",
 		Type:        "Double",
 		ExtraType:   "",
@@ -2300,7 +2195,7 @@ var optionMap = map[Option]option{
 	SensRemoveSharp: {
 		Name:        "SensRemoveSharp",
 		Config:      "SENS_REMOVE_SHARP",
-		Category:    9,
+		Category:    10,
 		Description: "Remove sharp edges from the sensitivity evaluation",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -2309,7 +2204,7 @@ var optionMap = map[Option]option{
 	PnormHeatflux: {
 		Name:        "PnormHeatflux",
 		Config:      "PNORM_HEATFLUX",
-		Category:    9,
+		Category:    10,
 		Description: "P-norm for heat-flux based objective functions.",
 		Type:        "Double",
 		ExtraType:   "",
@@ -2318,7 +2213,7 @@ var optionMap = map[Option]option{
 	OutputFormat: {
 		Name:        "OutputFormat",
 		Config:      "OUTPUT_FORMAT",
-		Category:    10,
+		Category:    11,
 		Description: "I/O",
 		Type:        "Enum",
 		ExtraType:   "Output",
@@ -2327,7 +2222,7 @@ var optionMap = map[Option]option{
 	MeshFormat: {
 		Name:        "MeshFormat",
 		Config:      "MESH_FORMAT",
-		Category:    10,
+		Category:    11,
 		Description: "Mesh input file format",
 		Type:        "Enum",
 		ExtraType:   "Input",
@@ -2336,7 +2231,7 @@ var optionMap = map[Option]option{
 	CgnsToSu2: {
 		Name:        "CgnsToSu2",
 		Config:      "CGNS_TO_SU2",
-		Category:    10,
+		Category:    11,
 		Description: "Convert a CGNS mesh to SU2 format",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -2345,7 +2240,7 @@ var optionMap = map[Option]option{
 	MeshFilename: {
 		Name:        "MeshFilename",
 		Config:      "MESH_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Mesh input file",
 		Type:        "String",
 		ExtraType:   "",
@@ -2354,7 +2249,7 @@ var optionMap = map[Option]option{
 	MeshScaleChange: {
 		Name:        "MeshScaleChange",
 		Config:      "MESH_SCALE_CHANGE",
-		Category:    10,
+		Category:    11,
 		Description: "Factor for scaling the mesh",
 		Type:        "Double",
 		ExtraType:   "",
@@ -2363,16 +2258,25 @@ var optionMap = map[Option]option{
 	MeshOutput: {
 		Name:        "MeshOutput",
 		Config:      "MESH_OUTPUT",
-		Category:    10,
+		Category:    11,
 		Description: "Write a new mesh converted to meters",
 		Type:        "Bool",
 		ExtraType:   "",
 		OptionConst: MeshOutput,
 	},
+	CuthillMckeeOrdering: {
+		Name:        "CuthillMckeeOrdering",
+		Config:      "CUTHILL_MCKEE_ORDERING",
+		Category:    11,
+		Description: "Cuthill–McKee ordering algorithm",
+		Type:        "Bool",
+		ExtraType:   "",
+		OptionConst: CuthillMckeeOrdering,
+	},
 	MeshOutFilename: {
 		Name:        "MeshOutFilename",
 		Config:      "MESH_OUT_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Mesh output file",
 		Type:        "String",
 		ExtraType:   "",
@@ -2381,7 +2285,7 @@ var optionMap = map[Option]option{
 	ConvFilename: {
 		Name:        "ConvFilename",
 		Config:      "CONV_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file convergence history (w/o extension)",
 		Type:        "String",
 		ExtraType:   "",
@@ -2390,7 +2294,7 @@ var optionMap = map[Option]option{
 	SolutionFlowFilename: {
 		Name:        "SolutionFlowFilename",
 		Config:      "SOLUTION_FLOW_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Restart flow input file",
 		Type:        "String",
 		ExtraType:   "",
@@ -2399,7 +2303,7 @@ var optionMap = map[Option]option{
 	SolutionLinFilename: {
 		Name:        "SolutionLinFilename",
 		Config:      "SOLUTION_LIN_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Restart linear flow input file",
 		Type:        "String",
 		ExtraType:   "",
@@ -2408,7 +2312,7 @@ var optionMap = map[Option]option{
 	SolutionAdjFilename: {
 		Name:        "SolutionAdjFilename",
 		Config:      "SOLUTION_ADJ_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Restart adjoint input file",
 		Type:        "String",
 		ExtraType:   "",
@@ -2417,7 +2321,7 @@ var optionMap = map[Option]option{
 	RestartFlowFilename: {
 		Name:        "RestartFlowFilename",
 		Config:      "RESTART_FLOW_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file restart flow",
 		Type:        "String",
 		ExtraType:   "",
@@ -2426,7 +2330,7 @@ var optionMap = map[Option]option{
 	RestartLinFilename: {
 		Name:        "RestartLinFilename",
 		Config:      "RESTART_LIN_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file linear flow",
 		Type:        "String",
 		ExtraType:   "",
@@ -2435,7 +2339,7 @@ var optionMap = map[Option]option{
 	RestartAdjFilename: {
 		Name:        "RestartAdjFilename",
 		Config:      "RESTART_ADJ_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file restart adjoint",
 		Type:        "String",
 		ExtraType:   "",
@@ -2444,7 +2348,7 @@ var optionMap = map[Option]option{
 	RestartWaveFilename: {
 		Name:        "RestartWaveFilename",
 		Config:      "RESTART_WAVE_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file restart wave",
 		Type:        "String",
 		ExtraType:   "",
@@ -2453,7 +2357,7 @@ var optionMap = map[Option]option{
 	VolumeFlowFilename: {
 		Name:        "VolumeFlowFilename",
 		Config:      "VOLUME_FLOW_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file flow (w/o extension) variables",
 		Type:        "String",
 		ExtraType:   "",
@@ -2462,7 +2366,7 @@ var optionMap = map[Option]option{
 	VolumeStructureFilename: {
 		Name:        "VolumeStructureFilename",
 		Config:      "VOLUME_STRUCTURE_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file structure (w/o extension) variables",
 		Type:        "String",
 		ExtraType:   "",
@@ -2471,7 +2375,7 @@ var optionMap = map[Option]option{
 	SurfaceStructureFilename: {
 		Name:        "SurfaceStructureFilename",
 		Config:      "SURFACE_STRUCTURE_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file structure (w/o extension) variables",
 		Type:        "String",
 		ExtraType:   "",
@@ -2480,7 +2384,7 @@ var optionMap = map[Option]option{
 	SurfaceWaveFilename: {
 		Name:        "SurfaceWaveFilename",
 		Config:      "SURFACE_WAVE_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file structure (w/o extension) variables",
 		Type:        "String",
 		ExtraType:   "",
@@ -2489,7 +2393,7 @@ var optionMap = map[Option]option{
 	SurfaceHeatFilename: {
 		Name:        "SurfaceHeatFilename",
 		Config:      "SURFACE_HEAT_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file structure (w/o extension) variables",
 		Type:        "String",
 		ExtraType:   "",
@@ -2498,7 +2402,7 @@ var optionMap = map[Option]option{
 	VolumeWaveFilename: {
 		Name:        "VolumeWaveFilename",
 		Config:      "VOLUME_WAVE_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file wave (w/o extension) variables",
 		Type:        "String",
 		ExtraType:   "",
@@ -2507,7 +2411,7 @@ var optionMap = map[Option]option{
 	VolumeHeatFilename: {
 		Name:        "VolumeHeatFilename",
 		Config:      "VOLUME_HEAT_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file wave (w/o extension) variables",
 		Type:        "String",
 		ExtraType:   "",
@@ -2516,7 +2420,7 @@ var optionMap = map[Option]option{
 	VolumeAdjwaveFilename: {
 		Name:        "VolumeAdjwaveFilename",
 		Config:      "VOLUME_ADJWAVE_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file adj. wave (w/o extension) variables",
 		Type:        "String",
 		ExtraType:   "",
@@ -2525,7 +2429,7 @@ var optionMap = map[Option]option{
 	VolumeAdjFilename: {
 		Name:        "VolumeAdjFilename",
 		Config:      "VOLUME_ADJ_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file adjoint (w/o extension) variables",
 		Type:        "String",
 		ExtraType:   "",
@@ -2534,7 +2438,7 @@ var optionMap = map[Option]option{
 	VolumeLinFilename: {
 		Name:        "VolumeLinFilename",
 		Config:      "VOLUME_LIN_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file linear (w/o extension) variables",
 		Type:        "String",
 		ExtraType:   "",
@@ -2543,7 +2447,7 @@ var optionMap = map[Option]option{
 	GradObjfuncFilename: {
 		Name:        "GradObjfuncFilename",
 		Config:      "GRAD_OBJFUNC_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output objective function gradient",
 		Type:        "String",
 		ExtraType:   "",
@@ -2552,7 +2456,7 @@ var optionMap = map[Option]option{
 	ValueObjfuncFilename: {
 		Name:        "ValueObjfuncFilename",
 		Config:      "VALUE_OBJFUNC_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output objective function",
 		Type:        "String",
 		ExtraType:   "",
@@ -2561,7 +2465,7 @@ var optionMap = map[Option]option{
 	SurfaceFlowFilename: {
 		Name:        "SurfaceFlowFilename",
 		Config:      "SURFACE_FLOW_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file surface flow coefficient (w/o extension)",
 		Type:        "String",
 		ExtraType:   "",
@@ -2570,7 +2474,7 @@ var optionMap = map[Option]option{
 	SurfaceAdjFilename: {
 		Name:        "SurfaceAdjFilename",
 		Config:      "SURFACE_ADJ_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file surface adjoint coefficient (w/o extension)",
 		Type:        "String",
 		ExtraType:   "",
@@ -2579,7 +2483,7 @@ var optionMap = map[Option]option{
 	SurfaceLinFilename: {
 		Name:        "SurfaceLinFilename",
 		Config:      "SURFACE_LIN_FILENAME",
-		Category:    10,
+		Category:    11,
 		Description: "Output file surface linear coefficient (w/o extension)",
 		Type:        "String",
 		ExtraType:   "",
@@ -2588,7 +2492,7 @@ var optionMap = map[Option]option{
 	WrtSolFreq: {
 		Name:        "WrtSolFreq",
 		Config:      "WRT_SOL_FREQ",
-		Category:    10,
+		Category:    11,
 		Description: "Writing solution file frequency",
 		Type:        "UnsignedLong",
 		ExtraType:   "",
@@ -2597,7 +2501,7 @@ var optionMap = map[Option]option{
 	WrtSolFreqDualtime: {
 		Name:        "WrtSolFreqDualtime",
 		Config:      "WRT_SOL_FREQ_DUALTIME",
-		Category:    10,
+		Category:    11,
 		Description: "Writing solution file frequency",
 		Type:        "UnsignedLong",
 		ExtraType:   "",
@@ -2606,7 +2510,7 @@ var optionMap = map[Option]option{
 	WrtConFreq: {
 		Name:        "WrtConFreq",
 		Config:      "WRT_CON_FREQ",
-		Category:    10,
+		Category:    11,
 		Description: "Writing convergence history frequency",
 		Type:        "UnsignedLong",
 		ExtraType:   "",
@@ -2615,7 +2519,7 @@ var optionMap = map[Option]option{
 	WrtConFreqDualtime: {
 		Name:        "WrtConFreqDualtime",
 		Config:      "WRT_CON_FREQ_DUALTIME",
-		Category:    10,
+		Category:    11,
 		Description: "Writing convergence history frequency for the dual time",
 		Type:        "UnsignedLong",
 		ExtraType:   "",
@@ -2624,7 +2528,7 @@ var optionMap = map[Option]option{
 	WrtVolSol: {
 		Name:        "WrtVolSol",
 		Config:      "WRT_VOL_SOL",
-		Category:    10,
+		Category:    11,
 		Description: "Write a volume solution file",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -2633,7 +2537,7 @@ var optionMap = map[Option]option{
 	WrtSrfSol: {
 		Name:        "WrtSrfSol",
 		Config:      "WRT_SRF_SOL",
-		Category:    10,
+		Category:    11,
 		Description: "Write a surface solution file",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -2642,7 +2546,7 @@ var optionMap = map[Option]option{
 	WrtCsvSol: {
 		Name:        "WrtCsvSol",
 		Config:      "WRT_CSV_SOL",
-		Category:    10,
+		Category:    11,
 		Description: "Write a surface CSV solution file",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -2651,7 +2555,7 @@ var optionMap = map[Option]option{
 	WrtRestart: {
 		Name:        "WrtRestart",
 		Config:      "WRT_RESTART",
-		Category:    10,
+		Category:    11,
 		Description: "Write a restart solution file",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -2660,34 +2564,52 @@ var optionMap = map[Option]option{
 	WrtResiduals: {
 		Name:        "WrtResiduals",
 		Config:      "WRT_RESIDUALS",
-		Category:    10,
+		Category:    11,
 		Description: "Output residual info to solution/restart file",
 		Type:        "Bool",
 		ExtraType:   "",
 		OptionConst: WrtResiduals,
 	},
+	WrtLimiters: {
+		Name:        "WrtLimiters",
+		Config:      "WRT_LIMITERS",
+		Category:    11,
+		Description: "Output residual info to solution/restart file",
+		Type:        "Bool",
+		ExtraType:   "",
+		OptionConst: WrtLimiters,
+	},
+	WrtSharpedges: {
+		Name:        "WrtSharpedges",
+		Config:      "WRT_SHARPEDGES",
+		Category:    11,
+		Description: "Output residual info to solution/restart file",
+		Type:        "Bool",
+		ExtraType:   "",
+		OptionConst: WrtSharpedges,
+	},
 	WrtHalo: {
 		Name:        "WrtHalo",
 		Config:      "WRT_HALO",
-		Category:    10,
+		Category:    11,
 		Description: "Output the rind layers in the solution files",
 		Type:        "Bool",
 		ExtraType:   "",
 		OptionConst: WrtHalo,
 	},
-	Wrt1dOutput: {
-		Name:        "Wrt1dOutput",
-		Config:      "WRT_1D_OUTPUT",
-		Category:    10,
+	OneDOutput: {
+		Name:        "OneDOutput",
+		Config:      "ONE_D_OUTPUT",
+		Category:    11,
 		Description: "Output averaged stagnation pressure on specified exit marker.",
 		Type:        "Bool",
 		ExtraType:   "",
-		OptionConst: Wrt1dOutput,
+		OptionConst: OneDOutput,
 	},
 	GridMovement: {
 		Name:        "GridMovement",
 		Config:      "GRID_MOVEMENT",
-		Category:    11,
+		Category:    12,
 		Description: "Mesh motion for unsteady simulations",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -2696,7 +2618,7 @@ var optionMap = map[Option]option{
 	GridMovementKind: {
 		Name:        "GridMovementKind",
 		Config:      "GRID_MOVEMENT_KIND",
-		Category:    11,
+		Category:    12,
 		Description: "Type of mesh motion",
 		Type:        "EnumList",
 		ExtraType:   "Gridmovement",
@@ -2705,7 +2627,7 @@ var optionMap = map[Option]option{
 	MarkerMoving: {
 		Name:        "MarkerMoving",
 		Config:      "MARKER_MOVING",
-		Category:    11,
+		Category:    12,
 		Description: "Marker(s) of moving surfaces (MOVING_WALL or DEFORMING grid motion).",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -2714,7 +2636,7 @@ var optionMap = map[Option]option{
 	MachMotion: {
 		Name:        "MachMotion",
 		Config:      "MACH_MOTION",
-		Category:    11,
+		Category:    12,
 		Description: "Mach number (non-dimensional, based on the mesh velocity and freestream vals.)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -2723,7 +2645,7 @@ var optionMap = map[Option]option{
 	MotionOriginX: {
 		Name:        "MotionOriginX",
 		Config:      "MOTION_ORIGIN_X",
-		Category:    11,
+		Category:    12,
 		Description: "Coordinates of the rigid motion origin",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2732,7 +2654,7 @@ var optionMap = map[Option]option{
 	MotionOriginY: {
 		Name:        "MotionOriginY",
 		Config:      "MOTION_ORIGIN_Y",
-		Category:    11,
+		Category:    12,
 		Description: "Coordinates of the rigid motion origin",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2741,7 +2663,7 @@ var optionMap = map[Option]option{
 	MotionOriginZ: {
 		Name:        "MotionOriginZ",
 		Config:      "MOTION_ORIGIN_Z",
-		Category:    11,
+		Category:    12,
 		Description: "Coordinates of the rigid motion origin",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2750,7 +2672,7 @@ var optionMap = map[Option]option{
 	TranslationRateX: {
 		Name:        "TranslationRateX",
 		Config:      "TRANSLATION_RATE_X",
-		Category:    11,
+		Category:    12,
 		Description: "Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2759,7 +2681,7 @@ var optionMap = map[Option]option{
 	TranslationRateY: {
 		Name:        "TranslationRateY",
 		Config:      "TRANSLATION_RATE_Y",
-		Category:    11,
+		Category:    12,
 		Description: "Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2768,7 +2690,7 @@ var optionMap = map[Option]option{
 	TranslationRateZ: {
 		Name:        "TranslationRateZ",
 		Config:      "TRANSLATION_RATE_Z",
-		Category:    11,
+		Category:    12,
 		Description: "Translational velocity vector (m/s) in the x, y, & z directions (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2777,7 +2699,7 @@ var optionMap = map[Option]option{
 	RotationRateX: {
 		Name:        "RotationRateX",
 		Config:      "ROTATION_RATE_X",
-		Category:    11,
+		Category:    12,
 		Description: "Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2786,7 +2708,7 @@ var optionMap = map[Option]option{
 	RotationRateY: {
 		Name:        "RotationRateY",
 		Config:      "ROTATION_RATE_Y",
-		Category:    11,
+		Category:    12,
 		Description: "Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2795,7 +2717,7 @@ var optionMap = map[Option]option{
 	RotationRateZ: {
 		Name:        "RotationRateZ",
 		Config:      "ROTATION_RATE_Z",
-		Category:    11,
+		Category:    12,
 		Description: "Angular velocity vector (rad/s) about x, y, & z axes (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2804,7 +2726,7 @@ var optionMap = map[Option]option{
 	PitchingOmegaX: {
 		Name:        "PitchingOmegaX",
 		Config:      "PITCHING_OMEGA_X",
-		Category:    11,
+		Category:    12,
 		Description: "Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2813,7 +2735,7 @@ var optionMap = map[Option]option{
 	PitchingOmegaY: {
 		Name:        "PitchingOmegaY",
 		Config:      "PITCHING_OMEGA_Y",
-		Category:    11,
+		Category:    12,
 		Description: "Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2822,7 +2744,7 @@ var optionMap = map[Option]option{
 	PitchingOmegaZ: {
 		Name:        "PitchingOmegaZ",
 		Config:      "PITCHING_OMEGA_Z",
-		Category:    11,
+		Category:    12,
 		Description: "Pitching angular freq. (rad/s) about x, y, & z axes (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2831,7 +2753,7 @@ var optionMap = map[Option]option{
 	PitchingAmplX: {
 		Name:        "PitchingAmplX",
 		Config:      "PITCHING_AMPL_X",
-		Category:    11,
+		Category:    12,
 		Description: "Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2840,7 +2762,7 @@ var optionMap = map[Option]option{
 	PitchingAmplY: {
 		Name:        "PitchingAmplY",
 		Config:      "PITCHING_AMPL_Y",
-		Category:    11,
+		Category:    12,
 		Description: "Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2849,7 +2771,7 @@ var optionMap = map[Option]option{
 	PitchingAmplZ: {
 		Name:        "PitchingAmplZ",
 		Config:      "PITCHING_AMPL_Z",
-		Category:    11,
+		Category:    12,
 		Description: "Pitching amplitude (degrees) about x, y, & z axes (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2858,7 +2780,7 @@ var optionMap = map[Option]option{
 	PitchingPhaseX: {
 		Name:        "PitchingPhaseX",
 		Config:      "PITCHING_PHASE_X",
-		Category:    11,
+		Category:    12,
 		Description: "Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2867,7 +2789,7 @@ var optionMap = map[Option]option{
 	PitchingPhaseY: {
 		Name:        "PitchingPhaseY",
 		Config:      "PITCHING_PHASE_Y",
-		Category:    11,
+		Category:    12,
 		Description: "Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2876,7 +2798,7 @@ var optionMap = map[Option]option{
 	PitchingPhaseZ: {
 		Name:        "PitchingPhaseZ",
 		Config:      "PITCHING_PHASE_Z",
-		Category:    11,
+		Category:    12,
 		Description: "Pitching phase offset (degrees) about x, y, & z axes (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2885,7 +2807,7 @@ var optionMap = map[Option]option{
 	PlungingOmegaX: {
 		Name:        "PlungingOmegaX",
 		Config:      "PLUNGING_OMEGA_X",
-		Category:    11,
+		Category:    12,
 		Description: "Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2894,7 +2816,7 @@ var optionMap = map[Option]option{
 	PlungingOmegaY: {
 		Name:        "PlungingOmegaY",
 		Config:      "PLUNGING_OMEGA_Y",
-		Category:    11,
+		Category:    12,
 		Description: "Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2903,7 +2825,7 @@ var optionMap = map[Option]option{
 	PlungingOmegaZ: {
 		Name:        "PlungingOmegaZ",
 		Config:      "PLUNGING_OMEGA_Z",
-		Category:    11,
+		Category:    12,
 		Description: "Plunging angular freq. (rad/s) in x, y, & z directions (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2912,7 +2834,7 @@ var optionMap = map[Option]option{
 	PlungingAmplX: {
 		Name:        "PlungingAmplX",
 		Config:      "PLUNGING_AMPL_X",
-		Category:    11,
+		Category:    12,
 		Description: "Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2921,7 +2843,7 @@ var optionMap = map[Option]option{
 	PlungingAmplY: {
 		Name:        "PlungingAmplY",
 		Config:      "PLUNGING_AMPL_Y",
-		Category:    11,
+		Category:    12,
 		Description: "Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2930,7 +2852,7 @@ var optionMap = map[Option]option{
 	PlungingAmplZ: {
 		Name:        "PlungingAmplZ",
 		Config:      "PLUNGING_AMPL_Z",
-		Category:    11,
+		Category:    12,
 		Description: "Plunging amplitude (m) in x, y, & z directions (RIGID_MOTION only)",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -2939,7 +2861,7 @@ var optionMap = map[Option]option{
 	MoveMotionOrigin: {
 		Name:        "MoveMotionOrigin",
 		Config:      "MOVE_MOTION_ORIGIN",
-		Category:    11,
+		Category:    12,
 		Description: "Value to move motion origins (1 or 0)",
 		Type:        "UShortList",
 		ExtraType:   "",
@@ -2948,7 +2870,7 @@ var optionMap = map[Option]option{
 	MotionFilename: {
 		Name:        "MotionFilename",
 		Config:      "MOTION_FILENAME",
-		Category:    11,
+		Category:    12,
 		Description: "",
 		Type:        "String",
 		ExtraType:   "",
@@ -2957,7 +2879,7 @@ var optionMap = map[Option]option{
 	FreqPlungeAeroelastic: {
 		Name:        "FreqPlungeAeroelastic",
 		Config:      "FREQ_PLUNGE_AEROELASTIC",
-		Category:    11,
+		Category:    12,
 		Description: "Uncoupled Aeroelastic Frequency Plunge.",
 		Type:        "Double",
 		ExtraType:   "",
@@ -2966,7 +2888,7 @@ var optionMap = map[Option]option{
 	FreqPitchAeroelastic: {
 		Name:        "FreqPitchAeroelastic",
 		Config:      "FREQ_PITCH_AEROELASTIC",
-		Category:    11,
+		Category:    12,
 		Description: "Uncoupled Aeroelastic Frequency Pitch.",
 		Type:        "Double",
 		ExtraType:   "",
@@ -2975,7 +2897,7 @@ var optionMap = map[Option]option{
 	KindAdapt: {
 		Name:        "KindAdapt",
 		Config:      "KIND_ADAPT",
-		Category:    12,
+		Category:    13,
 		Description: "Kind of grid adaptation",
 		Type:        "Enum",
 		ExtraType:   "Adapt",
@@ -2984,7 +2906,7 @@ var optionMap = map[Option]option{
 	NewElems: {
 		Name:        "NewElems",
 		Config:      "NEW_ELEMS",
-		Category:    12,
+		Category:    13,
 		Description: "Percentage of new elements (% of the original number of elements)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -2993,7 +2915,7 @@ var optionMap = map[Option]option{
 	DualvolPower: {
 		Name:        "DualvolPower",
 		Config:      "DUALVOL_POWER",
-		Category:    12,
+		Category:    13,
 		Description: "Scale factor for the dual volume",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3002,7 +2924,7 @@ var optionMap = map[Option]option{
 	AnalyticalSurfdef: {
 		Name:        "AnalyticalSurfdef",
 		Config:      "ANALYTICAL_SURFDEF",
-		Category:    12,
+		Category:    13,
 		Description: "Use analytical definition for surfaces",
 		Type:        "Enum",
 		ExtraType:   "GeoAnalytic",
@@ -3011,7 +2933,7 @@ var optionMap = map[Option]option{
 	SmoothGeometry: {
 		Name:        "SmoothGeometry",
 		Config:      "SMOOTH_GEOMETRY",
-		Category:    12,
+		Category:    13,
 		Description: "Before each computation, implicitly smooth the nodal coordinates",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -3020,7 +2942,7 @@ var optionMap = map[Option]option{
 	AdaptBoundary: {
 		Name:        "AdaptBoundary",
 		Config:      "ADAPT_BOUNDARY",
-		Category:    12,
+		Category:    13,
 		Description: "Adapt the boundary elements",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -3029,7 +2951,7 @@ var optionMap = map[Option]option{
 	DivideElements: {
 		Name:        "DivideElements",
 		Config:      "DIVIDE_ELEMENTS",
-		Category:    12,
+		Category:    13,
 		Description: "Divide rectangles into triangles",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -3038,7 +2960,7 @@ var optionMap = map[Option]option{
 	WindGust: {
 		Name:        "WindGust",
 		Config:      "WIND_GUST",
-		Category:    13,
+		Category:    14,
 		Description: "Apply a wind gust",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -3047,7 +2969,7 @@ var optionMap = map[Option]option{
 	GustType: {
 		Name:        "GustType",
 		Config:      "GUST_TYPE",
-		Category:    13,
+		Category:    14,
 		Description: "Type of gust",
 		Type:        "Enum",
 		ExtraType:   "GustType",
@@ -3056,7 +2978,7 @@ var optionMap = map[Option]option{
 	GustWavelength: {
 		Name:        "GustWavelength",
 		Config:      "GUST_WAVELENGTH",
-		Category:    13,
+		Category:    14,
 		Description: "Gust wavelenght (meters)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3065,7 +2987,7 @@ var optionMap = map[Option]option{
 	GustPeriods: {
 		Name:        "GustPeriods",
 		Config:      "GUST_PERIODS",
-		Category:    13,
+		Category:    14,
 		Description: "Number of gust periods",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3074,7 +2996,7 @@ var optionMap = map[Option]option{
 	GustAmpl: {
 		Name:        "GustAmpl",
 		Config:      "GUST_AMPL",
-		Category:    13,
+		Category:    14,
 		Description: "Gust amplitude (m/s)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3083,7 +3005,7 @@ var optionMap = map[Option]option{
 	GustBeginTime: {
 		Name:        "GustBeginTime",
 		Config:      "GUST_BEGIN_TIME",
-		Category:    13,
+		Category:    14,
 		Description: "Time at which to begin the gust (sec)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3092,7 +3014,7 @@ var optionMap = map[Option]option{
 	GustBeginLoc: {
 		Name:        "GustBeginLoc",
 		Config:      "GUST_BEGIN_LOC",
-		Category:    13,
+		Category:    14,
 		Description: "Location at which the gust begins (meters)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3101,7 +3023,7 @@ var optionMap = map[Option]option{
 	GustDir: {
 		Name:        "GustDir",
 		Config:      "GUST_DIR",
-		Category:    13,
+		Category:    14,
 		Description: "Direction of the gust X or Y dir",
 		Type:        "Enum",
 		ExtraType:   "GustDir",
@@ -3110,7 +3032,7 @@ var optionMap = map[Option]option{
 	EquivArea: {
 		Name:        "EquivArea",
 		Config:      "EQUIV_AREA",
-		Category:    14,
+		Category:    15,
 		Description: "Evaluate equivalent area on the Near-Field",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -3119,7 +3041,7 @@ var optionMap = map[Option]option{
 	EaIntLimit: {
 		Name:        "EaIntLimit",
 		Config:      "EA_INT_LIMIT",
-		Category:    14,
+		Category:    15,
 		Description: "Integration limits of the equivalent area ( xmin, xmax, Dist_NearField )",
 		Type:        "DoubleArray",
 		ExtraType:   "3",
@@ -3128,7 +3050,7 @@ var optionMap = map[Option]option{
 	GasModel: {
 		Name:        "GasModel",
 		Config:      "GAS_MODEL",
-		Category:    15,
+		Category:    16,
 		Description: "Specify chemical model for multi-species simulations",
 		Type:        "Enum",
 		ExtraType:   "Gasmodel",
@@ -3137,7 +3059,7 @@ var optionMap = map[Option]option{
 	GasComposition: {
 		Name:        "GasComposition",
 		Config:      "GAS_COMPOSITION",
-		Category:    15,
+		Category:    16,
 		Description: "",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -3146,7 +3068,7 @@ var optionMap = map[Option]option{
 	RatioDensity: {
 		Name:        "RatioDensity",
 		Config:      "RATIO_DENSITY",
-		Category:    16,
+		Category:    17,
 		Description: "Ratio of density for two phase problems",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3155,7 +3077,7 @@ var optionMap = map[Option]option{
 	RatioViscosity: {
 		Name:        "RatioViscosity",
 		Config:      "RATIO_VISCOSITY",
-		Category:    16,
+		Category:    17,
 		Description: "Ratio of viscosity for two phase problems",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3164,7 +3086,7 @@ var optionMap = map[Option]option{
 	FreesurfaceZero: {
 		Name:        "FreesurfaceZero",
 		Config:      "FREESURFACE_ZERO",
-		Category:    16,
+		Category:    17,
 		Description: "Location of the freesurface (y or z coordinate)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3173,7 +3095,7 @@ var optionMap = map[Option]option{
 	FreesurfaceDepth: {
 		Name:        "FreesurfaceDepth",
 		Config:      "FREESURFACE_DEPTH",
-		Category:    16,
+		Category:    17,
 		Description: "Free surface depth surface (x or y coordinate)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3182,7 +3104,7 @@ var optionMap = map[Option]option{
 	FreesurfaceThickness: {
 		Name:        "FreesurfaceThickness",
 		Config:      "FREESURFACE_THICKNESS",
-		Category:    16,
+		Category:    17,
 		Description: "Thickness of the interface in a free surface problem",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3191,7 +3113,7 @@ var optionMap = map[Option]option{
 	FreesurfaceDampingCoeff: {
 		Name:        "FreesurfaceDampingCoeff",
 		Config:      "FREESURFACE_DAMPING_COEFF",
-		Category:    16,
+		Category:    17,
 		Description: "Free surface damping coefficient",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3200,7 +3122,7 @@ var optionMap = map[Option]option{
 	FreesurfaceDampingLength: {
 		Name:        "FreesurfaceDampingLength",
 		Config:      "FREESURFACE_DAMPING_LENGTH",
-		Category:    16,
+		Category:    17,
 		Description: "Free surface damping length (times the baseline wave)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3209,7 +3131,7 @@ var optionMap = map[Option]option{
 	FreesurfaceOutlet: {
 		Name:        "FreesurfaceOutlet",
 		Config:      "FREESURFACE_OUTLET",
-		Category:    16,
+		Category:    17,
 		Description: "Location of the free surface outlet surface (x or y coordinate)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3218,7 +3140,7 @@ var optionMap = map[Option]option{
 	DvKind: {
 		Name:        "DvKind",
 		Config:      "DV_KIND",
-		Category:    17,
+		Category:    18,
 		Description: "Kind of deformation",
 		Type:        "EnumList",
 		ExtraType:   "Param",
@@ -3227,7 +3149,7 @@ var optionMap = map[Option]option{
 	DvMarker: {
 		Name:        "DvMarker",
 		Config:      "DV_MARKER",
-		Category:    17,
+		Category:    18,
 		Description: "Marker of the surface to which we are going apply the shape deformation",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -3236,7 +3158,7 @@ var optionMap = map[Option]option{
 	DvValue: {
 		Name:        "DvValue",
 		Config:      "DV_VALUE",
-		Category:    17,
+		Category:    18,
 		Description: "New value of the shape deformation",
 		Type:        "DoubleList",
 		ExtraType:   "",
@@ -3245,8 +3167,8 @@ var optionMap = map[Option]option{
 	DvParam: {
 		Name:        "DvParam",
 		Config:      "DV_PARAM",
-		Category:    17,
-		Description: "Parameters of the shape deformation- FFD_CONTROL_POINT_2D ( FFDBox ID, i_Ind, j_Ind, x_Disp, y_Disp )- FFD_CAMBER_2D ( FFDBox ID, i_Ind )- FFD_THICKNESS_2D ( FFDBox ID, i_Ind )- HICKS_HENNE ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), x_Loc )- COSINE_BUMP ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), x_Loc, Thickness )- FOURIER ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), index, cos(0)/sin(1) )- NACA_4DIGITS ( 1st digit, 2nd digit, 3rd and 4th digit )- PARABOLIC ( Center, Thickness )- DISPLACEMENT ( x_Disp, y_Disp, z_Disp )- ROTATION ( x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- OBSTACLE ( Center, Bump size )- SPHERICAL ( ControlPoint_Index, Theta_Disp, R_Disp )- FFD_CONTROL_POINT ( FFDBox ID, i_Ind, j_Ind, k_Ind, x_Disp, y_Disp, z_Disp )- FFD_DIHEDRAL_ANGLE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_TWIST_ANGLE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_ROTATION ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_CAMBER ( FFDBox ID, i_Ind, j_Ind )- FFD_THICKNESS ( FFDBox ID, i_Ind, j_Ind )",
+		Category:    18,
+		Description: "Parameters of the shape deformation- FFD_CONTROL_POINT_2D ( FFDBox ID, i_Ind, j_Ind, x_Disp, y_Disp )- FFD_CAMBER_2D ( FFDBox ID, i_Ind )- FFD_THICKNESS_2D ( FFDBox ID, i_Ind )- HICKS_HENNE ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), x_Loc )- COSINE_BUMP ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), x_Loc, Thickness )- FOURIER ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), index, cos(0)/sin(1) )- NACA_4DIGITS ( 1st digit, 2nd digit, 3rd and 4th digit )- PARABOLIC ( Center, Thickness )- DISPLACEMENT ( x_Disp, y_Disp, z_Disp )- ROTATION ( x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- OBSTACLE ( Center, Bump size )- SPHERICAL ( ControlPoint_Index, Theta_Disp, R_Disp )- FFD_CONTROL_POINT ( FFDBox ID, i_Ind, j_Ind, k_Ind, x_Disp, y_Disp, z_Disp )- FFD_DIHEDRAL_ANGLE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_TWIST_ANGLE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_ROTATION ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_CONTROL_SURFACE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_CAMBER ( FFDBox ID, i_Ind, j_Ind )- FFD_THICKNESS ( FFDBox ID, i_Ind, j_Ind )",
 		Type:        "DVParam",
 		ExtraType:   "",
 		OptionConst: DvParam,
@@ -3254,7 +3176,7 @@ var optionMap = map[Option]option{
 	HoldGridFixed: {
 		Name:        "HoldGridFixed",
 		Config:      "HOLD_GRID_FIXED",
-		Category:    17,
+		Category:    18,
 		Description: "Hold the grid fixed in a region",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -3263,7 +3185,7 @@ var optionMap = map[Option]option{
 	HoldGridFixedCoord: {
 		Name:        "HoldGridFixedCoord",
 		Config:      "HOLD_GRID_FIXED_COORD",
-		Category:    17,
+		Category:    18,
 		Description: "Coordinates of the box where the grid will be deformed (Xmin, Ymin, Zmin, Xmax, Ymax, Zmax)",
 		Type:        "DoubleArray",
 		ExtraType:   "6",
@@ -3272,7 +3194,7 @@ var optionMap = map[Option]option{
 	VisualizeDeformation: {
 		Name:        "VisualizeDeformation",
 		Config:      "VISUALIZE_DEFORMATION",
-		Category:    17,
+		Category:    18,
 		Description: "Visualize the deformation",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -3281,7 +3203,7 @@ var optionMap = map[Option]option{
 	DeformConsoleOutput: {
 		Name:        "DeformConsoleOutput",
 		Config:      "DEFORM_CONSOLE_OUTPUT",
-		Category:    17,
+		Category:    18,
 		Description: "Print the residuals during mesh deformation to the console",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -3290,7 +3212,7 @@ var optionMap = map[Option]option{
 	DeformNonlinearIter: {
 		Name:        "DeformNonlinearIter",
 		Config:      "DEFORM_NONLINEAR_ITER",
-		Category:    17,
+		Category:    18,
 		Description: "Number of nonlinear deformation iterations (surface deformation increments)",
 		Type:        "UnsignedLong",
 		ExtraType:   "",
@@ -3299,7 +3221,7 @@ var optionMap = map[Option]option{
 	DeformLinearIter: {
 		Name:        "DeformLinearIter",
 		Config:      "DEFORM_LINEAR_ITER",
-		Category:    17,
+		Category:    18,
 		Description: "Number of smoothing iterations for FEA mesh deformation",
 		Type:        "UnsignedLong",
 		ExtraType:   "",
@@ -3308,7 +3230,7 @@ var optionMap = map[Option]option{
 	DeformTolFactor: {
 		Name:        "DeformTolFactor",
 		Config:      "DEFORM_TOL_FACTOR",
-		Category:    17,
+		Category:    18,
 		Description: "Factor to multiply smallest volume for deform tolerance (0.001 default)",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3317,34 +3239,34 @@ var optionMap = map[Option]option{
 	DeformStiffnessType: {
 		Name:        "DeformStiffnessType",
 		Config:      "DEFORM_STIFFNESS_TYPE",
-		Category:    17,
+		Category:    18,
 		Description: "Type of element stiffness imposed for FEA mesh deformation (INVERSE_VOLUME, WALL_DISTANCE, CONSTANT_STIFFNESS)",
 		Type:        "Enum",
 		ExtraType:   "DeformStiffness",
 		OptionConst: DeformStiffnessType,
 	},
-	YoungsModulus: {
-		Name:        "YoungsModulus",
-		Config:      "YOUNGS_MODULUS",
-		Category:    17,
+	DeformElasticityModulus: {
+		Name:        "DeformElasticityModulus",
+		Config:      "DEFORM_ELASTICITY_MODULUS",
+		Category:    18,
 		Description: "Poisson's ratio for constant stiffness FEA method of grid deformation",
 		Type:        "Double",
 		ExtraType:   "",
-		OptionConst: YoungsModulus,
+		OptionConst: DeformElasticityModulus,
 	},
-	PoissonsRatio: {
-		Name:        "PoissonsRatio",
-		Config:      "POISSONS_RATIO",
-		Category:    17,
+	DeformPoissonsRatio: {
+		Name:        "DeformPoissonsRatio",
+		Config:      "DEFORM_POISSONS_RATIO",
+		Category:    18,
 		Description: "Young's modulus and Poisson's ratio for constant stiffness FEA method of grid deformation",
 		Type:        "Double",
 		ExtraType:   "",
-		OptionConst: PoissonsRatio,
+		OptionConst: DeformPoissonsRatio,
 	},
 	CyclicPitch: {
 		Name:        "CyclicPitch",
 		Config:      "CYCLIC_PITCH",
-		Category:    18,
+		Category:    19,
 		Description: "MISSING ---",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3353,7 +3275,7 @@ var optionMap = map[Option]option{
 	CollectivePitch: {
 		Name:        "CollectivePitch",
 		Config:      "COLLECTIVE_PITCH",
-		Category:    18,
+		Category:    19,
 		Description: "MISSING ---",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3362,7 +3284,7 @@ var optionMap = map[Option]option{
 	ElasticityModulus: {
 		Name:        "ElasticityModulus",
 		Config:      "ELASTICITY_MODULUS",
-		Category:    19,
+		Category:    20,
 		Description: "Modulus of elasticity",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3371,7 +3293,7 @@ var optionMap = map[Option]option{
 	PoissonRatio: {
 		Name:        "PoissonRatio",
 		Config:      "POISSON_RATIO",
-		Category:    19,
+		Category:    20,
 		Description: "Poisson ratio",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3380,7 +3302,7 @@ var optionMap = map[Option]option{
 	MaterialDensity: {
 		Name:        "MaterialDensity",
 		Config:      "MATERIAL_DENSITY",
-		Category:    19,
+		Category:    20,
 		Description: "Material density",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3389,7 +3311,7 @@ var optionMap = map[Option]option{
 	WaveSpeed: {
 		Name:        "WaveSpeed",
 		Config:      "WAVE_SPEED",
-		Category:    20,
+		Category:    21,
 		Description: "Constant wave speed",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3398,7 +3320,7 @@ var optionMap = map[Option]option{
 	ThermalDiffusivity: {
 		Name:        "ThermalDiffusivity",
 		Config:      "THERMAL_DIFFUSIVITY",
-		Category:    21,
+		Category:    22,
 		Description: "Thermal diffusivity constant",
 		Type:        "Double",
 		ExtraType:   "",
@@ -3407,7 +3329,7 @@ var optionMap = map[Option]option{
 	VisualizeCv: {
 		Name:        "VisualizeCv",
 		Config:      "VISUALIZE_CV",
-		Category:    22,
+		Category:    23,
 		Description: "Node number for the CV to be visualized",
 		Type:        "Long",
 		ExtraType:   "",
@@ -3416,7 +3338,7 @@ var optionMap = map[Option]option{
 	InvDesignCp: {
 		Name:        "InvDesignCp",
 		Config:      "INV_DESIGN_CP",
-		Category:    23,
+		Category:    24,
 		Description: "Evaluate inverse design on the surface",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -3425,7 +3347,7 @@ var optionMap = map[Option]option{
 	InvDesignHeatflux: {
 		Name:        "InvDesignHeatflux",
 		Config:      "INV_DESIGN_HEATFLUX",
-		Category:    23,
+		Category:    24,
 		Description: "Evaluate inverse design on the surface",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -3434,7 +3356,7 @@ var optionMap = map[Option]option{
 	ExtraOutput: {
 		Name:        "ExtraOutput",
 		Config:      "EXTRA_OUTPUT",
-		Category:    24,
+		Category:    25,
 		Description: "Write extra output",
 		Type:        "Bool",
 		ExtraType:   "",
@@ -3443,7 +3365,7 @@ var optionMap = map[Option]option{
 	MlTurbModelFile: {
 		Name:        "MlTurbModelFile",
 		Config:      "ML_TURB_MODEL_FILE",
-		Category:    24,
+		Category:    25,
 		Description: "Location of the turb model itself",
 		Type:        "String",
 		ExtraType:   "",
@@ -3452,7 +3374,7 @@ var optionMap = map[Option]option{
 	MlTurbModelFeatureset: {
 		Name:        "MlTurbModelFeatureset",
 		Config:      "ML_TURB_MODEL_FEATURESET",
-		Category:    24,
+		Category:    25,
 		Description: "what kind of input/output feature map is there",
 		Type:        "String",
 		ExtraType:   "",
@@ -3461,7 +3383,7 @@ var optionMap = map[Option]option{
 	MlTurbModelExtra: {
 		Name:        "MlTurbModelExtra",
 		Config:      "ML_TURB_MODEL_EXTRA",
-		Category:    24,
+		Category:    25,
 		Description: "Extra values for ML Turb model",
 		Type:        "StringList",
 		ExtraType:   "",
@@ -3470,7 +3392,7 @@ var optionMap = map[Option]option{
 	FfdIterations: {
 		Name:        "FfdIterations",
 		Config:      "FFD_ITERATIONS",
-		Category:    25,
+		Category:    26,
 		Description: "Number of total iterations in the FFD point inversion",
 		Type:        "UnsignedShort",
 		ExtraType:   "",
@@ -3479,16 +3401,34 @@ var optionMap = map[Option]option{
 	FfdTolerance: {
 		Name:        "FfdTolerance",
 		Config:      "FFD_TOLERANCE",
-		Category:    25,
+		Category:    26,
 		Description: "Free surface damping coefficient",
 		Type:        "Double",
 		ExtraType:   "",
 		OptionConst: FfdTolerance,
 	},
+	GradientMethod: {
+		Name:        "GradientMethod",
+		Config:      "GRADIENT_METHOD",
+		Category:    27,
+		Description: "Gradient method",
+		Type:        "Python",
+		ExtraType:   "",
+		OptionConst: GradientMethod,
+	},
+	GeoParam: {
+		Name:        "GeoParam",
+		Config:      "GEO_PARAM",
+		Category:    27,
+		Description: "Geometrical Parameter",
+		Type:        "Python",
+		ExtraType:   "",
+		OptionConst: GeoParam,
+	},
 	DefinitionDv: {
 		Name:        "DefinitionDv",
 		Config:      "DEFINITION_DV",
-		Category:    26,
+		Category:    27,
 		Description: "Setup for design variables",
 		Type:        "Python",
 		ExtraType:   "",
@@ -3497,7 +3437,7 @@ var optionMap = map[Option]option{
 	DvValueNew: {
 		Name:        "DvValueNew",
 		Config:      "DV_VALUE_NEW",
-		Category:    26,
+		Category:    27,
 		Description: "Current value of the design variables",
 		Type:        "Python",
 		ExtraType:   "",
@@ -3506,7 +3446,7 @@ var optionMap = map[Option]option{
 	DvValueOld: {
 		Name:        "DvValueOld",
 		Config:      "DV_VALUE_OLD",
-		Category:    26,
+		Category:    27,
 		Description: "Previous value of the design variables",
 		Type:        "Python",
 		ExtraType:   "",
@@ -3515,7 +3455,7 @@ var optionMap = map[Option]option{
 	NumberPart: {
 		Name:        "NumberPart",
 		Config:      "NUMBER_PART",
-		Category:    26,
+		Category:    27,
 		Description: "Number of partitions of the mesh",
 		Type:        "Python",
 		ExtraType:   "",
@@ -3524,7 +3464,7 @@ var optionMap = map[Option]option{
 	OptObjective: {
 		Name:        "OptObjective",
 		Config:      "OPT_OBJECTIVE",
-		Category:    26,
+		Category:    27,
 		Description: "Optimization objective function with optional scaling factor",
 		Type:        "Python",
 		ExtraType:   "",
@@ -3533,7 +3473,7 @@ var optionMap = map[Option]option{
 	OptConstraint: {
 		Name:        "OptConstraint",
 		Config:      "OPT_CONSTRAINT",
-		Category:    26,
+		Category:    27,
 		Description: "Optimization constraint functions with optional scaling factor",
 		Type:        "Python",
 		ExtraType:   "",
@@ -3542,7 +3482,7 @@ var optionMap = map[Option]option{
 	FinDiffStep: {
 		Name:        "FinDiffStep",
 		Config:      "FIN_DIFF_STEP",
-		Category:    26,
+		Category:    27,
 		Description: "Finite different step for gradient estimation",
 		Type:        "Python",
 		ExtraType:   "",
@@ -3551,7 +3491,7 @@ var optionMap = map[Option]option{
 	Console: {
 		Name:        "Console",
 		Config:      "CONSOLE",
-		Category:    26,
+		Category:    27,
 		Description: "Verbosity of the python scripts to Stdout",
 		Type:        "Python",
 		ExtraType:   "",
@@ -3560,7 +3500,7 @@ var optionMap = map[Option]option{
 	Decomposed: {
 		Name:        "Decomposed",
 		Config:      "DECOMPOSED",
-		Category:    26,
+		Category:    27,
 		Description: "Flag specifying if the mesh was decomposed",
 		Type:        "Python",
 		ExtraType:   "",
@@ -3579,8 +3519,19 @@ var stringToOption = map[string]Option{
 	"LowFidelitySimulation":         LowFidelitySimulation,
 	"RestartSol":                    RestartSol,
 	"VisualizePart":                 VisualizePart,
+	"SystemMeasurements":            SystemMeasurements,
+	"FluidModel":                    FluidModel,
 	"GasConstant":                   GasConstant,
 	"GammaValue":                    GammaValue,
+	"CriticalTemperature":           CriticalTemperature,
+	"CriticalPressure":              CriticalPressure,
+	"CriticalDensity":               CriticalDensity,
+	"AcentricFactor":                AcentricFactor,
+	"ViscosityModel":                ViscosityModel,
+	"MuConstant":                    MuConstant,
+	"MuRef":                         MuRef,
+	"MuTRef":                        MuTRef,
+	"SutherlandConstant":            SutherlandConstant,
 	"ReynoldsNumber":                ReynoldsNumber,
 	"ReynoldsLength":                ReynoldsLength,
 	"PrandtlLam":                    PrandtlLam,
@@ -3588,6 +3539,7 @@ var stringToOption = map[string]Option{
 	"BulkModulus":                   BulkModulus,
 	"ArtcompFactor":                 ArtcompFactor,
 	"MachNumber":                    MachNumber,
+	"FreestreamOption":              FreestreamOption,
 	"FreestreamPressure":            FreestreamPressure,
 	"FreestreamDensity":             FreestreamDensity,
 	"FreestreamTemperature":         FreestreamTemperature,
@@ -3634,6 +3586,7 @@ var stringToOption = map[string]Option{
 	"MarkerActdisk":                 MarkerActdisk,
 	"InletType":                     InletType,
 	"MarkerInlet":                   MarkerInlet,
+	"MarkerRiemann":                 MarkerRiemann,
 	"MarkerSupersonicInlet":         MarkerSupersonicInlet,
 	"MarkerOutlet":                  MarkerOutlet,
 	"MarkerIsothermal":              MarkerIsothermal,
@@ -3690,6 +3643,7 @@ var stringToOption = map[string]Option{
 	"AdjturbLinPrec":                AdjturbLinPrec,
 	"AdjturbLinError":               AdjturbLinError,
 	"AdjturbLinIter":                AdjturbLinIter,
+	"EntropyFixCoeff":               EntropyFixCoeff,
 	"ConvCriteria":                  ConvCriteria,
 	"ResidualReduction":             ResidualReduction,
 	"ResidualMinval":                ResidualMinval,
@@ -3709,64 +3663,39 @@ var stringToOption = map[string]Option{
 	"MgCorrectionSmooth":            MgCorrectionSmooth,
 	"MgDampRestriction":             MgDampRestriction,
 	"MgDampProlongation":            MgDampProlongation,
-	"MgCflReduction":                MgCflReduction,
 	"MaxChildren":                   MaxChildren,
 	"MaxDimension":                  MaxDimension,
 	"NumMethodGrad":                 NumMethodGrad,
 	"LimiterCoeff":                  LimiterCoeff,
+	"LimiterIter":                   LimiterIter,
 	"SharpEdgesCoeff":               SharpEdgesCoeff,
 	"ConvNumMethodFlow":             ConvNumMethodFlow,
-	"ViscNumMethodFlow":             ViscNumMethodFlow,
-	"SourNumMethodFlow":             SourNumMethodFlow,
 	"SpatialOrderFlow":              SpatialOrderFlow,
 	"SlopeLimiterFlow":              SlopeLimiterFlow,
 	"AdCoeffFlow":                   AdCoeffFlow,
 	"ConvNumMethodAdjflow":          ConvNumMethodAdjflow,
-	"ViscNumMethodAdjflow":          ViscNumMethodAdjflow,
-	"SourNumMethodAdjflow":          SourNumMethodAdjflow,
 	"SpatialOrderAdjflow":           SpatialOrderAdjflow,
 	"SlopeLimiterAdjflow":           SlopeLimiterAdjflow,
 	"AdCoeffAdjflow":                AdCoeffAdjflow,
 	"SpatialOrderTurb":              SpatialOrderTurb,
 	"SlopeLimiterTurb":              SlopeLimiterTurb,
 	"ConvNumMethodTurb":             ConvNumMethodTurb,
-	"ViscNumMethodTurb":             ViscNumMethodTurb,
-	"SourNumMethodTurb":             SourNumMethodTurb,
 	"SpatialOrderAdjturb":           SpatialOrderAdjturb,
 	"SlopeLimiterAdjturb":           SlopeLimiterAdjturb,
 	"ConvNumMethodAdjturb":          ConvNumMethodAdjturb,
-	"ViscNumMethodAdjturb":          ViscNumMethodAdjturb,
-	"SourNumMethodAdjturb":          SourNumMethodAdjturb,
 	"ConvNumMethodLin":              ConvNumMethodLin,
-	"ViscNumMethodLin":              ViscNumMethodLin,
-	"SourNumMethodLin":              SourNumMethodLin,
 	"AdCoeffLin":                    AdCoeffLin,
 	"SpatialOrderAdjlevelset":       SpatialOrderAdjlevelset,
 	"SlopeLimiterAdjlevelset":       SlopeLimiterAdjlevelset,
 	"ConvNumMethodAdjlevelset":      ConvNumMethodAdjlevelset,
-	"ViscNumMethodAdjlevelset":      ViscNumMethodAdjlevelset,
-	"SourNumMethodAdjlevelset":      SourNumMethodAdjlevelset,
 	"ConvNumMethodTne2":             ConvNumMethodTne2,
-	"ViscNumMethodTne2":             ViscNumMethodTne2,
-	"SourNumMethodTne2":             SourNumMethodTne2,
 	"SpatialOrderTne2":              SpatialOrderTne2,
 	"SlopeLimiterTne2":              SlopeLimiterTne2,
 	"AdCoeffTne2":                   AdCoeffTne2,
 	"ConvNumMethodAdjtne2":          ConvNumMethodAdjtne2,
-	"ViscNumMethodAdjtne2":          ViscNumMethodAdjtne2,
-	"SourNumMethodAdjtne2":          SourNumMethodAdjtne2,
 	"SpatialOrderAdjtne2":           SpatialOrderAdjtne2,
 	"SlopeLimiterAdjtne2":           SlopeLimiterAdjtne2,
 	"AdCoeffAdjtne2":                AdCoeffAdjtne2,
-	"ViscNumMethodWave":             ViscNumMethodWave,
-	"SourNumMethodWave":             SourNumMethodWave,
-	"ViscNumMethodPoisson":          ViscNumMethodPoisson,
-	"SourNumMethodPoisson":          SourNumMethodPoisson,
-	"ViscNumMethodFea":              ViscNumMethodFea,
-	"SourNumMethodFea":              SourNumMethodFea,
-	"ViscNumMethodHeat":             ViscNumMethodHeat,
-	"SourNumMethodHeat":             SourNumMethodHeat,
-	"SourNumMethodTemplate":         SourNumMethodTemplate,
 	"LimitAdjflow":                  LimitAdjflow,
 	"ObjectiveFunction":             ObjectiveFunction,
 	"GeoLocationSections":           GeoLocationSections,
@@ -3790,6 +3719,7 @@ var stringToOption = map[string]Option{
 	"MeshFilename":                  MeshFilename,
 	"MeshScaleChange":               MeshScaleChange,
 	"MeshOutput":                    MeshOutput,
+	"CuthillMckeeOrdering":          CuthillMckeeOrdering,
 	"MeshOutFilename":               MeshOutFilename,
 	"ConvFilename":                  ConvFilename,
 	"SolutionFlowFilename":          SolutionFlowFilename,
@@ -3823,8 +3753,10 @@ var stringToOption = map[string]Option{
 	"WrtCsvSol":                     WrtCsvSol,
 	"WrtRestart":                    WrtRestart,
 	"WrtResiduals":                  WrtResiduals,
+	"WrtLimiters":                   WrtLimiters,
+	"WrtSharpedges":                 WrtSharpedges,
 	"WrtHalo":                       WrtHalo,
-	"Wrt1dOutput":                   Wrt1dOutput,
+	"OneDOutput":                    OneDOutput,
 	"GridMovement":                  GridMovement,
 	"GridMovementKind":              GridMovementKind,
 	"MarkerMoving":                  MarkerMoving,
@@ -3896,8 +3828,8 @@ var stringToOption = map[string]Option{
 	"DeformLinearIter":              DeformLinearIter,
 	"DeformTolFactor":               DeformTolFactor,
 	"DeformStiffnessType":           DeformStiffnessType,
-	"YoungsModulus":                 YoungsModulus,
-	"PoissonsRatio":                 PoissonsRatio,
+	"DeformElasticityModulus":       DeformElasticityModulus,
+	"DeformPoissonsRatio":           DeformPoissonsRatio,
 	"CyclicPitch":                   CyclicPitch,
 	"CollectivePitch":               CollectivePitch,
 	"ElasticityModulus":             ElasticityModulus,
@@ -3914,6 +3846,8 @@ var stringToOption = map[string]Option{
 	"MlTurbModelExtra":              MlTurbModelExtra,
 	"FfdIterations":                 FfdIterations,
 	"FfdTolerance":                  FfdTolerance,
+	"GradientMethod":                GradientMethod,
+	"GeoParam":                      GeoParam,
 	"DefinitionDv":                  DefinitionDv,
 	"DvValueNew":                    DvValueNew,
 	"DvValueOld":                    DvValueOld,

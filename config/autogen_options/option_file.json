@@ -7,133 +7,138 @@
 		},
 		{
 			"Id": 1,
+			"Name": "FluidModel",
+			"Description": " DESCRIPTION: Fluid model "
+		},
+		{
+			"Id": 2,
 			"Name": "Freestream Conditions",
 			"Description": "--- Options related to freestream specification ---"
 		},
 		{
-			"Id": 2,
+			"Id": 3,
 			"Name": "Reference Conditions",
 			"Description": "--- Options related to reference values for nondimensionalization ---"
 		},
 		{
-			"Id": 3,
+			"Id": 4,
 			"Name": "Boundary Markers",
 			"Description": "--- Options related to various boundary markers ---"
 		},
 		{
-			"Id": 4,
+			"Id": 5,
 			"Name": "Time-marching",
 			"Description": "--- Options related to time-marching ---"
 		},
 		{
-			"Id": 5,
+			"Id": 6,
 			"Name": "Linear solver definition",
 			"Description": "--- Options related to the linear solvers ---"
 		},
 		{
-			"Id": 6,
+			"Id": 7,
 			"Name": "Convergence",
 			"Description": "--- Options related to convergence ---"
 		},
 		{
-			"Id": 7,
+			"Id": 8,
 			"Name": "Multi-grid",
 			"Description": "--- Options related to Multi-grid ---"
 		},
 		{
-			"Id": 8,
+			"Id": 9,
 			"Name": "Spatial Discretization",
 			"Description": "--- Options related to the spatial discretization ---"
 		},
 		{
-			"Id": 9,
+			"Id": 10,
 			"Name": "Adjoint and Gradient",
 			"Description": "--- Options related to the adjoint and gradient ---"
 		},
 		{
-			"Id": 10,
+			"Id": 11,
 			"Name": "Input/output files and formats",
 			"Description": "--- Options related to input/output files and formats ---"
 		},
 		{
-			"Id": 11,
+			"Id": 12,
 			"Name": "Dynamic mesh definition",
 			"Description": "--- Options related to dynamic meshes ---"
 		},
 		{
-			"Id": 12,
+			"Id": 13,
 			"Name": "Grid adaptation",
 			"Description": "--- Options related to grid adaptation ---"
 		},
 		{
-			"Id": 13,
+			"Id": 14,
 			"Name": "Wind Gust",
 			"Description": "--- Options related to wind gust simulations ---"
 		},
 		{
-			"Id": 14,
+			"Id": 15,
 			"Name": "Equivalent Area",
 			"Description": "--- Options related to the equivalent area ---"
 		},
 		{
-			"Id": 15,
+			"Id": 16,
 			"Name": "Reacting Flow",
 			"Description": "--- Options related to the reacting gas mixtures ---"
 		},
 		{
-			"Id": 16,
+			"Id": 17,
 			"Name": "Free surface simulation",
 			"Description": "--- Options related to free surface simulation ---"
 		},
 		{
-			"Id": 17,
+			"Id": 18,
 			"Name": "Grid deformation",
 			"Description": "--- Options related to the grid deformation ---"
 		},
 		{
-			"Id": 18,
+			"Id": 19,
 			"Name": "Rotorcraft problem",
 			"Description": "--- option related to rotorcraft problems ---"
 		},
 		{
-			"Id": 19,
+			"Id": 20,
 			"Name": "FEA solver",
 			"Description": "--- Options related to the FEA solver ---"
 		},
 		{
-			"Id": 20,
+			"Id": 21,
 			"Name": "Wave solver",
 			"Description": "--- options related to the wave solver ---"
 		},
 		{
-			"Id": 21,
+			"Id": 22,
 			"Name": "Heat solver",
 			"Description": "--- options related to the heat solver ---"
 		},
 		{
-			"Id": 22,
+			"Id": 23,
 			"Name": "Visualize Control Volumes",
 			"Description": "--- options related to visualizing control volumes ---"
 		},
 		{
-			"Id": 23,
+			"Id": 24,
 			"Name": "Inverse design problem",
 			"Description": "--- options related to inverse design problem ---"
 		},
 		{
-			"Id": 24,
+			"Id": 25,
 			"Name": "Unsupported options",
 			"Description": "--- Options that are experimental and not intended for general use ---"
 		},
 		{
-			"Id": 25,
+			"Id": 26,
 			"Name": "FFD point inversion",
 			"Description": " DESCRIPTION: Number of total iterations in the FFD point inversion "
 		},
 		{
-			"Id": 26,
+			"Id": 27,
 			"Name": "Python Options",
-			"Description": " DESCRIPTION: Setup for design variables "
+			"Description": " DESCRIPTION: Gradient method "
 		}
 	],
 	"Options": [
@@ -228,27 +233,126 @@
 			"Default": "false"
 		},
 		{
+			"Value": "SystemMeasurements",
+			"ConfigString": "SYSTEM_MEASUREMENTS",
+			"Category": 0,
+			"Description": "System of measurements",
+			"Type": "Enum",
+			"ExtraType": "Measurements",
+			"Default": "Si"
+		},
+		{
+			"Value": "FluidModel",
+			"ConfigString": "FLUID_MODEL",
+			"Category": 1,
+			"Description": "Fluid model",
+			"Type": "Enum",
+			"ExtraType": "Fluidmodel",
+			"Default": "StandardAir"
+		},
+		{
 			"Value": "GasConstant",
 			"ConfigString": "GAS_CONSTANT",
-			"Category": 1,
-			"Description": "Specific gas constant (287.87 J/kg*K (air), only for compressible flows)",
+			"Category": 2,
+			"Description": "Specific gas constant (287.058 J/kg*K (air), only for compressible flows)",
 			"Type": "Double",
 			"ExtraType": "",
-			"Default": "287.87"
+			"Default": "287.058"
 		},
 		{
 			"Value": "GammaValue",
 			"ConfigString": "GAMMA_VALUE",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Ratio of specific heats (1.4 (air), only for compressible flows)",
 			"Type": "Double",
 			"ExtraType": "",
 			"Default": "1.4"
 		},
 		{
+			"Value": "CriticalTemperature",
+			"ConfigString": "CRITICAL_TEMPERATURE",
+			"Category": 2,
+			"Description": "Critical Temperature, default value for AIR",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "131.00"
+		},
+		{
+			"Value": "CriticalPressure",
+			"ConfigString": "CRITICAL_PRESSURE",
+			"Category": 2,
+			"Description": "Critical Pressure, default value for MDM",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "3588550.0"
+		},
+		{
+			"Value": "CriticalDensity",
+			"ConfigString": "CRITICAL_DENSITY",
+			"Category": 2,
+			"Description": "Critical Density, default value for MDM",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "263.0"
+		},
+		{
+			"Value": "AcentricFactor",
+			"ConfigString": "ACENTRIC_FACTOR",
+			"Category": 2,
+			"Description": "Critical Density, default value for MDM",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "0.035"
+		},
+		{
+			"Value": "ViscosityModel",
+			"ConfigString": "VISCOSITY_MODEL",
+			"Category": 2,
+			"Description": "model of the viscosity",
+			"Type": "Enum",
+			"ExtraType": "Viscositymodel",
+			"Default": "Sutherland"
+		},
+		{
+			"Value": "MuConstant",
+			"ConfigString": "MU_CONSTANT",
+			"Category": 2,
+			"Description": "Critical Temperature, default value for AIR",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "1.716E-5"
+		},
+		{
+			"Value": "MuRef",
+			"ConfigString": "MU_REF",
+			"Category": 2,
+			"Description": "Sutherland Viscosity Ref default value for AIR SI",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "1.716E-5"
+		},
+		{
+			"Value": "MuTRef",
+			"ConfigString": "MU_T_REF",
+			"Category": 2,
+			"Description": "Sutherland Temperature Ref, default value for AIR SI",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "273.15"
+		},
+		{
+			"Value": "SutherlandConstant",
+			"ConfigString": "SUTHERLAND_CONSTANT",
+			"Category": 2,
+			"Description": "Sutherland constant, default value for AIR SI",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "110.4"
+		},
+		{
 			"Value": "ReynoldsNumber",
 			"ConfigString": "REYNOLDS_NUMBER",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Reynolds number (non-dimensional, based on the free-stream values)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -257,7 +361,7 @@
 		{
 			"Value": "ReynoldsLength",
 			"ConfigString": "REYNOLDS_LENGTH",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Reynolds length (1 m by default)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -266,7 +370,7 @@
 		{
 			"Value": "PrandtlLam",
 			"ConfigString": "PRANDTL_LAM",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Laminar Prandtl number (0.72 (air), only for compressible flows)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -275,7 +379,7 @@
 		{
 			"Value": "PrandtlTurb",
 			"ConfigString": "PRANDTL_TURB",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Turbulent Prandtl number (0.9 (air), only for compressible flows)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -284,16 +388,16 @@
 		{
 			"Value": "BulkModulus",
 			"ConfigString": "BULK_MODULUS",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Value of the Bulk Modulus",
 			"Type": "Double",
 			"ExtraType": "",
-			"Default": "2.15E9"
+			"Default": "1.42E5"
 		},
 		{
 			"Value": "ArtcompFactor",
 			"ConfigString": "ARTCOMP_FACTOR",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Artifical compressibility factor",
 			"Type": "Double",
 			"ExtraType": "",
@@ -302,16 +406,25 @@
 		{
 			"Value": "MachNumber",
 			"ConfigString": "MACH_NUMBER",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Mach number (non-dimensional, based on the free-stream values)",
 			"Type": "Double",
 			"ExtraType": "",
 			"Default": "0.0"
 		},
 		{
+			"Value": "FreestreamOption",
+			"ConfigString": "FREESTREAM_OPTION",
+			"Category": 2,
+			"Description": "Free-stream option to choose between density and temperature for initializing the solution",
+			"Type": "Enum",
+			"ExtraType": "FreestreamOption",
+			"Default": "TemperatureFs"
+		},
+		{
 			"Value": "FreestreamPressure",
 			"ConfigString": "FREESTREAM_PRESSURE",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Free-stream pressure (101325.0 N/m^2 by default)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -320,7 +433,7 @@
 		{
 			"Value": "FreestreamDensity",
 			"ConfigString": "FREESTREAM_DENSITY",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Free-stream density (1.2886 Kg/m^3 (air), 998.2 Kg/m^3 (water))",
 			"Type": "Double",
 			"ExtraType": "",
@@ -329,25 +442,25 @@
 		{
 			"Value": "FreestreamTemperature",
 			"ConfigString": "FREESTREAM_TEMPERATURE",
-			"Category": 1,
-			"Description": "Free-stream temperature (273.15 K by default)",
+			"Category": 2,
+			"Description": "Free-stream temperature (288.15 K by default)",
 			"Type": "Double",
 			"ExtraType": "",
-			"Default": "273.15"
+			"Default": "288.15"
 		},
 		{
 			"Value": "FreestreamTemperatureVe",
 			"ConfigString": "FREESTREAM_TEMPERATURE_VE",
-			"Category": 1,
-			"Description": "Free-stream vibrational-electronic temperature (273.15 K by default)",
+			"Category": 2,
+			"Description": "Free-stream vibrational-electronic temperature (288.15 K by default)",
 			"Type": "Double",
 			"ExtraType": "",
-			"Default": "273.15"
+			"Default": "288.15"
 		},
 		{
 			"Value": "FreestreamVelocity",
 			"ConfigString": "FREESTREAM_VELOCITY",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Free-stream velocity (m/s)",
 			"Type": "DoubleArray",
 			"ExtraType": "3",
@@ -356,7 +469,7 @@
 		{
 			"Value": "FreestreamViscosity",
 			"ConfigString": "FREESTREAM_VISCOSITY",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Free-stream viscosity (1.853E-5 Ns/m^2 (air), 0.798E-3 Ns/m^2 (water))",
 			"Type": "Double",
 			"ExtraType": "",
@@ -365,7 +478,7 @@
 		{
 			"Value": "FreestreamIntermittency",
 			"ConfigString": "FREESTREAM_INTERMITTENCY",
-			"Category": 1,
+			"Category": 2,
 			"Description": "",
 			"Type": "Double",
 			"ExtraType": "",
@@ -374,7 +487,7 @@
 		{
 			"Value": "FreestreamTurbulenceintensity",
 			"ConfigString": "FREESTREAM_TURBULENCEINTENSITY",
-			"Category": 1,
+			"Category": 2,
 			"Description": "",
 			"Type": "Double",
 			"ExtraType": "",
@@ -383,7 +496,7 @@
 		{
 			"Value": "FreestreamNuFactor",
 			"ConfigString": "FREESTREAM_NU_FACTOR",
-			"Category": 1,
+			"Category": 2,
 			"Description": "",
 			"Type": "Double",
 			"ExtraType": "",
@@ -392,7 +505,7 @@
 		{
 			"Value": "FreestreamTurb2lamviscratio",
 			"ConfigString": "FREESTREAM_TURB2LAMVISCRATIO",
-			"Category": 1,
+			"Category": 2,
 			"Description": "",
 			"Type": "Double",
 			"ExtraType": "",
@@ -401,7 +514,7 @@
 		{
 			"Value": "SideslipAngle",
 			"ConfigString": "SIDESLIP_ANGLE",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Side-slip angle (degrees, only for compressible flows)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -410,7 +523,7 @@
 		{
 			"Value": "Aoa",
 			"ConfigString": "AOA",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Angle of attack (degrees, only for compressible flows)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -419,7 +532,7 @@
 		{
 			"Value": "FixedClMode",
 			"ConfigString": "FIXED_CL_MODE",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Activate fixed CL mode (specify a CL instead of AoA).",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -428,7 +541,7 @@
 		{
 			"Value": "TargetCl",
 			"ConfigString": "TARGET_CL",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Specify a fixed coefficient of lift instead of AoA (only for compressible flows)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -437,7 +550,7 @@
 		{
 			"Value": "DampFixedCl",
 			"ConfigString": "DAMP_FIXED_CL",
-			"Category": 1,
+			"Category": 2,
 			"Description": "Damping factor for fixed CL mode.",
 			"Type": "Double",
 			"ExtraType": "",
@@ -446,7 +559,7 @@
 		{
 			"Value": "RefOriginMomentX",
 			"ConfigString": "REF_ORIGIN_MOMENT_X",
-			"Category": 2,
+			"Category": 3,
 			"Description": "X Reference origin for moment computation",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -455,7 +568,7 @@
 		{
 			"Value": "RefOriginMomentY",
 			"ConfigString": "REF_ORIGIN_MOMENT_Y",
-			"Category": 2,
+			"Category": 3,
 			"Description": "Y Reference origin for moment computation",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -464,7 +577,7 @@
 		{
 			"Value": "RefOriginMomentZ",
 			"ConfigString": "REF_ORIGIN_MOMENT_Z",
-			"Category": 2,
+			"Category": 3,
 			"Description": "Z Reference origin for moment computation",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -473,7 +586,7 @@
 		{
 			"Value": "RefArea",
 			"ConfigString": "REF_AREA",
-			"Category": 2,
+			"Category": 3,
 			"Description": "Reference area for force coefficients (0 implies automatic calculation)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -482,7 +595,7 @@
 		{
 			"Value": "RefLengthMoment",
 			"ConfigString": "REF_LENGTH_MOMENT",
-			"Category": 2,
+			"Category": 3,
 			"Description": "Reference length for pitching, rolling, and yawing non-dimensional moment",
 			"Type": "Double",
 			"ExtraType": "",
@@ -491,7 +604,7 @@
 		{
 			"Value": "RefElemLength",
 			"ConfigString": "REF_ELEM_LENGTH",
-			"Category": 2,
+			"Category": 3,
 			"Description": "Reference element length for computing the slope limiter epsilon",
 			"Type": "Double",
 			"ExtraType": "",
@@ -500,7 +613,7 @@
 		{
 			"Value": "RefSharpEdges",
 			"ConfigString": "REF_SHARP_EDGES",
-			"Category": 2,
+			"Category": 3,
 			"Description": "Reference coefficient for detecting sharp edges",
 			"Type": "Double",
 			"ExtraType": "",
@@ -509,7 +622,7 @@
 		{
 			"Value": "RefPressure",
 			"ConfigString": "REF_PRESSURE",
-			"Category": 2,
+			"Category": 3,
 			"Description": "Reference pressure (1.0 N/m^2 by default, only for compressible flows)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -518,7 +631,7 @@
 		{
 			"Value": "RefTemperature",
 			"ConfigString": "REF_TEMPERATURE",
-			"Category": 2,
+			"Category": 3,
 			"Description": "Reference temperature (1.0 K by default, only for compressible flows)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -527,7 +640,7 @@
 		{
 			"Value": "RefDensity",
 			"ConfigString": "REF_DENSITY",
-			"Category": 2,
+			"Category": 3,
 			"Description": "Reference density (1.0 Kg/m^3 by default, only for compressible flows)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -536,7 +649,7 @@
 		{
 			"Value": "RefVelocity",
 			"ConfigString": "REF_VELOCITY",
-			"Category": 2,
+			"Category": 3,
 			"Description": "Reference velocity (incompressible only)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -545,7 +658,7 @@
 		{
 			"Value": "RefViscosity",
 			"ConfigString": "REF_VISCOSITY",
-			"Category": 2,
+			"Category": 3,
 			"Description": "Reference viscosity (incompressible only)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -554,7 +667,7 @@
 		{
 			"Value": "MarkerPlotting",
 			"ConfigString": "MARKER_PLOTTING",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Marker(s) of the surface in the surface flow solution file",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -563,7 +676,7 @@
 		{
 			"Value": "MarkerMonitoring",
 			"ConfigString": "MARKER_MONITORING",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Marker(s) of the surface where evaluate the non-dimensional coefficients",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -572,7 +685,7 @@
 		{
 			"Value": "MarkerDesigning",
 			"ConfigString": "MARKER_DESIGNING",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Marker(s) of the surface where objective function (design problem) will be evaluated",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -581,7 +694,7 @@
 		{
 			"Value": "GeoMarker",
 			"ConfigString": "GEO_MARKER",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Marker(s) of the surface where evaluate the geometrical functions",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -590,7 +703,7 @@
 		{
 			"Value": "MarkerEuler",
 			"ConfigString": "MARKER_EULER",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Euler wall boundary marker(s)",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -599,7 +712,7 @@
 		{
 			"Value": "MarkerFar",
 			"ConfigString": "MARKER_FAR",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Far-field boundary marker(s)",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -608,7 +721,7 @@
 		{
 			"Value": "MarkerSym",
 			"ConfigString": "MARKER_SYM",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Symmetry boundary condition",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -617,7 +730,7 @@
 		{
 			"Value": "MarkerPressure",
 			"ConfigString": "MARKER_PRESSURE",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Symmetry boundary condition",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -626,7 +739,7 @@
 		{
 			"Value": "MarkerNearfield",
 			"ConfigString": "MARKER_NEARFIELD",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Near-Field boundary condition",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -635,7 +748,7 @@
 		{
 			"Value": "MarkerInterface",
 			"ConfigString": "MARKER_INTERFACE",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Zone interface boundary marker(s)",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -644,7 +757,7 @@
 		{
 			"Value": "MarkerDirichlet",
 			"ConfigString": "MARKER_DIRICHLET",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Dirichlet boundary marker(s)",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -653,7 +766,7 @@
 		{
 			"Value": "MarkerNeumann",
 			"ConfigString": "MARKER_NEUMANN",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Neumann boundary marker(s)",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -662,7 +775,7 @@
 		{
 			"Value": "ElecDirichlet",
 			"ConfigString": "ELEC_DIRICHLET",
-			"Category": 3,
+			"Category": 4,
 			"Description": "poisson dirichlet boundary marker(s)",
 			"Type": "StringDoubleList",
 			"ExtraType": "",
@@ -671,7 +784,7 @@
 		{
 			"Value": "ElecNeumann",
 			"ConfigString": "ELEC_NEUMANN",
-			"Category": 3,
+			"Category": 4,
 			"Description": "poisson neumann boundary marker(s)",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -680,7 +793,7 @@
 		{
 			"Value": "MarkerCustom",
 			"ConfigString": "MARKER_CUSTOM",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Custom boundary marker(s)",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -689,7 +802,7 @@
 		{
 			"Value": "MarkerPeriodic",
 			"ConfigString": "MARKER_PERIODIC",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Periodic boundary marker(s) for use with SU2_MSHFormat: ( periodic marker, donor marker, rotation_center_x, rotation_center_y,rotation_center_z, rotation_angle_x-axis, rotation_angle_y-axis,rotation_angle_z-axis, translation_x, translation_y, translation_z, ... )",
 			"Type": "Periodic",
 			"ExtraType": "",
@@ -698,7 +811,7 @@
 		{
 			"Value": "MarkerActdisk",
 			"ConfigString": "MARKER_ACTDISK",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Periodic boundary marker(s) for use with SU2_MSHFormat: ( periodic marker, donor marker, rotation_center_x, rotation_center_y,rotation_center_z, rotation_angle_x-axis, rotation_angle_y-axis,rotation_angle_z-axis, translation_x, translation_y, translation_z, ... )",
 			"Type": "ActuatorDisk",
 			"ExtraType": "",
@@ -707,7 +820,7 @@
 		{
 			"Value": "InletType",
 			"ConfigString": "INLET_TYPE",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Inlet boundary type",
 			"Type": "Enum",
 			"ExtraType": "InletType",
@@ -716,16 +829,25 @@
 		{
 			"Value": "MarkerInlet",
 			"ConfigString": "MARKER_INLET",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Inlet boundary marker(s) with the following formats,Total Conditions: (inlet marker, total temp, total pressure, flow_direction_x,flow_direction_y, flow_direction_z, ... ) where flow_direction isa unit vector.Mass Flow: (inlet marker, density, velocity magnitude, flow_direction_x,flow_direction_y, flow_direction_z, ... ) where flow_direction isa unit vector.",
 			"Type": "Inlet",
 			"ExtraType": "",
 			"Default": "\u0026su2types.Inlet{}"
 		},
 		{
+			"Value": "MarkerRiemann",
+			"ConfigString": "MARKER_RIEMANN",
+			"Category": 4,
+			"Description": "Riemann boundary marker(s) with the following formats, a unit vector.",
+			"Type": "Riemann",
+			"ExtraType": "",
+			"Default": "\u0026su2types.Riemann{}"
+		},
+		{
 			"Value": "MarkerSupersonicInlet",
 			"ConfigString": "MARKER_SUPERSONIC_INLET",
-			"Category": 3,
+			"Category": 4,
 			"Description": "% Supersonic inlet boundary marker(s)Format: (inlet marker, temperature, static pressure, velocity_x,velocity_y, velocity_z, ... ), i.e. primitive variables specified.",
 			"Type": "Inlet",
 			"ExtraType": "",
@@ -734,7 +856,7 @@
 		{
 			"Value": "MarkerOutlet",
 			"ConfigString": "MARKER_OUTLET",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Outlet boundary marker(s)Format: ( outlet marker, back pressure (static), ... )",
 			"Type": "StringDoubleList",
 			"ExtraType": "",
@@ -743,7 +865,7 @@
 		{
 			"Value": "MarkerIsothermal",
 			"ConfigString": "MARKER_ISOTHERMAL",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Isothermal wall boundary marker(s)Format: ( isothermal marker, wall temperature (static), ... )",
 			"Type": "StringDoubleList",
 			"ExtraType": "",
@@ -752,7 +874,7 @@
 		{
 			"Value": "MarkerIsothermalNoncatalytic",
 			"ConfigString": "MARKER_ISOTHERMAL_NONCATALYTIC",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Isothermal wall boundary marker(s)Format: ( isothermal marker, wall temperature (static), ... )",
 			"Type": "StringDoubleList",
 			"ExtraType": "",
@@ -761,7 +883,7 @@
 		{
 			"Value": "MarkerIsothermalCatalytic",
 			"ConfigString": "MARKER_ISOTHERMAL_CATALYTIC",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Isothermal wall boundary marker(s)Format: ( isothermal marker, wall temperature (static), ... )",
 			"Type": "StringDoubleList",
 			"ExtraType": "",
@@ -770,7 +892,7 @@
 		{
 			"Value": "MarkerHeatflux",
 			"ConfigString": "MARKER_HEATFLUX",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Specified heat flux wall boundary marker(s)Format: ( Heat flux marker, wall heat flux (static), ... )",
 			"Type": "StringDoubleList",
 			"ExtraType": "",
@@ -779,7 +901,7 @@
 		{
 			"Value": "MarkerHeatfluxNoncatalytic",
 			"ConfigString": "MARKER_HEATFLUX_NONCATALYTIC",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Specified heat flux wall boundary marker(s)Format: ( Heat flux marker, wall heat flux (static), ... )",
 			"Type": "StringDoubleList",
 			"ExtraType": "",
@@ -788,7 +910,7 @@
 		{
 			"Value": "MarkerHeatfluxCatalytic",
 			"ConfigString": "MARKER_HEATFLUX_CATALYTIC",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Specified heat flux wall boundary marker(s)Format: ( Heat flux marker, wall heat flux (static), ... )",
 			"Type": "StringDoubleList",
 			"ExtraType": "",
@@ -797,7 +919,7 @@
 		{
 			"Value": "MarkerNacelleInflow",
 			"ConfigString": "MARKER_NACELLE_INFLOW",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Nacelle inflow boundary marker(s)Format: ( nacelle inflow marker, fan face Mach, ... )",
 			"Type": "StringDoubleList",
 			"ExtraType": "",
@@ -806,7 +928,7 @@
 		{
 			"Value": "SubsonicNacelleInflow",
 			"ConfigString": "SUBSONIC_NACELLE_INFLOW",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Engine subsonic intake region",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -815,7 +937,7 @@
 		{
 			"Value": "MarkerNacelleExhaust",
 			"ConfigString": "MARKER_NACELLE_EXHAUST",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Nacelle exhaust boundary marker(s)Format: (nacelle exhaust marker, total nozzle temp, total nozzle pressure, ... )",
 			"Type": "InletFixed",
 			"ExtraType": "",
@@ -824,7 +946,7 @@
 		{
 			"Value": "MarkerNormalDispl",
 			"ConfigString": "MARKER_NORMAL_DISPL",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Displacement boundary marker(s)",
 			"Type": "StringDoubleList",
 			"ExtraType": "",
@@ -833,7 +955,7 @@
 		{
 			"Value": "MarkerNormalLoad",
 			"ConfigString": "MARKER_NORMAL_LOAD",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Load boundary marker(s)",
 			"Type": "StringDoubleList",
 			"ExtraType": "",
@@ -842,7 +964,7 @@
 		{
 			"Value": "MarkerFlowload",
 			"ConfigString": "MARKER_FLOWLOAD",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Flow load boundary marker(s)",
 			"Type": "StringDoubleList",
 			"ExtraType": "",
@@ -851,7 +973,7 @@
 		{
 			"Value": "DampNacelleInflow",
 			"ConfigString": "DAMP_NACELLE_INFLOW",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Damping factor for engine inlet condition",
 			"Type": "Double",
 			"ExtraType": "",
@@ -860,7 +982,7 @@
 		{
 			"Value": "MarkerOut1d",
 			"ConfigString": "MARKER_OUT_1D",
-			"Category": 3,
+			"Category": 4,
 			"Description": "Outlet boundary marker(s) over which to calculate 1-D flow propertiesFormat: ( outlet marker)",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -869,7 +991,7 @@
 		{
 			"Value": "UnsteadySimulation",
 			"ConfigString": "UNSTEADY_SIMULATION",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Unsteady simulation",
 			"Type": "Enum",
 			"ExtraType": "Unsteady",
@@ -878,7 +1000,7 @@
 		{
 			"Value": "CflNumber",
 			"ConfigString": "CFL_NUMBER",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Courant-Friedrichs-Lewy condition of the finest grid",
 			"Type": "Double",
 			"ExtraType": "",
@@ -887,7 +1009,7 @@
 		{
 			"Value": "CflRamp",
 			"ConfigString": "CFL_RAMP",
-			"Category": 4,
+			"Category": 5,
 			"Description": "CFL ramp (factor, number of iterations, CFL limit)",
 			"Type": "DoubleArray",
 			"ExtraType": "3",
@@ -896,7 +1018,7 @@
 		{
 			"Value": "CflReductionAdjflow",
 			"ConfigString": "CFL_REDUCTION_ADJFLOW",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Reduction factor of the CFL coefficient in the adjoint problem",
 			"Type": "Double",
 			"ExtraType": "",
@@ -905,7 +1027,7 @@
 		{
 			"Value": "CflReductionTurb",
 			"ConfigString": "CFL_REDUCTION_TURB",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Reduction factor of the CFL coefficient in the level set problem",
 			"Type": "Double",
 			"ExtraType": "",
@@ -914,7 +1036,7 @@
 		{
 			"Value": "CflReductionAdjturb",
 			"ConfigString": "CFL_REDUCTION_ADJTURB",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Reduction factor of the CFL coefficient in the turbulent adjoint problem",
 			"Type": "Double",
 			"ExtraType": "",
@@ -923,7 +1045,7 @@
 		{
 			"Value": "ExtIter",
 			"ConfigString": "EXT_ITER",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Number of total iterations",
 			"Type": "UnsignedLong",
 			"ExtraType": "",
@@ -932,7 +1054,7 @@
 		{
 			"Value": "RkAlphaCoeff",
 			"ConfigString": "RK_ALPHA_COEFF",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Runge-Kutta alpha coefficients",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -941,7 +1063,7 @@
 		{
 			"Value": "UnstTimestep",
 			"ConfigString": "UNST_TIMESTEP",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time Step for dual time stepping simulations (s)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -950,7 +1072,7 @@
 		{
 			"Value": "UnstTime",
 			"ConfigString": "UNST_TIME",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Total Physical Time for dual time stepping simulations (s)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -959,7 +1081,7 @@
 		{
 			"Value": "UnstCflNumber",
 			"ConfigString": "UNST_CFL_NUMBER",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Unsteady Courant-Friedrichs-Lewy number of the finest grid",
 			"Type": "Double",
 			"ExtraType": "",
@@ -968,7 +1090,7 @@
 		{
 			"Value": "UnstIntIter",
 			"ConfigString": "UNST_INT_ITER",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Number of internal iterations (dual time method)",
 			"Type": "UnsignedLong",
 			"ExtraType": "",
@@ -977,7 +1099,7 @@
 		{
 			"Value": "TimeInstances",
 			"ConfigString": "TIME_INSTANCES",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Integer number of periodic time instances for Time Spectral",
 			"Type": "UnsignedShort",
 			"ExtraType": "",
@@ -986,7 +1108,7 @@
 		{
 			"Value": "UnstRestartIter",
 			"ConfigString": "UNST_RESTART_ITER",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Iteration number to begin unsteady restarts (dual time method)",
 			"Type": "Long",
 			"ExtraType": "",
@@ -995,7 +1117,7 @@
 		{
 			"Value": "UnstAdjointIter",
 			"ConfigString": "UNST_ADJOINT_ITER",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Starting direct solver iteration for the unsteady adjoint",
 			"Type": "Long",
 			"ExtraType": "",
@@ -1004,7 +1126,7 @@
 		{
 			"Value": "TimeDiscreFlow",
 			"ConfigString": "TIME_DISCRE_FLOW",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time discretization",
 			"Type": "Enum",
 			"ExtraType": "TimeInt",
@@ -1013,7 +1135,7 @@
 		{
 			"Value": "TimeDiscreTne2",
 			"ConfigString": "TIME_DISCRE_TNE2",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time discretization",
 			"Type": "Enum",
 			"ExtraType": "TimeInt",
@@ -1022,7 +1144,7 @@
 		{
 			"Value": "TimeDiscreAdjtne2",
 			"ConfigString": "TIME_DISCRE_ADJTNE2",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time discretization",
 			"Type": "Enum",
 			"ExtraType": "TimeInt",
@@ -1031,7 +1153,7 @@
 		{
 			"Value": "TimeDiscreAdjlevelset",
 			"ConfigString": "TIME_DISCRE_ADJLEVELSET",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time discretization",
 			"Type": "Enum",
 			"ExtraType": "TimeInt",
@@ -1040,7 +1162,7 @@
 		{
 			"Value": "TimeDiscreAdjflow",
 			"ConfigString": "TIME_DISCRE_ADJFLOW",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time discretization",
 			"Type": "Enum",
 			"ExtraType": "TimeInt",
@@ -1049,7 +1171,7 @@
 		{
 			"Value": "TimeDiscreLin",
 			"ConfigString": "TIME_DISCRE_LIN",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time discretization",
 			"Type": "Enum",
 			"ExtraType": "TimeInt",
@@ -1058,7 +1180,7 @@
 		{
 			"Value": "TimeDiscreTurb",
 			"ConfigString": "TIME_DISCRE_TURB",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time discretization",
 			"Type": "Enum",
 			"ExtraType": "TimeInt",
@@ -1067,7 +1189,7 @@
 		{
 			"Value": "TimeDiscreAdjturb",
 			"ConfigString": "TIME_DISCRE_ADJTURB",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time discretization",
 			"Type": "Enum",
 			"ExtraType": "TimeInt",
@@ -1076,7 +1198,7 @@
 		{
 			"Value": "TimeDiscreWave",
 			"ConfigString": "TIME_DISCRE_WAVE",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time discretization",
 			"Type": "Enum",
 			"ExtraType": "TimeInt",
@@ -1085,7 +1207,7 @@
 		{
 			"Value": "TimeDiscreFea",
 			"ConfigString": "TIME_DISCRE_FEA",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time discretization",
 			"Type": "Enum",
 			"ExtraType": "TimeInt",
@@ -1094,7 +1216,7 @@
 		{
 			"Value": "TimeDiscreHeat",
 			"ConfigString": "TIME_DISCRE_HEAT",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time discretization",
 			"Type": "Enum",
 			"ExtraType": "TimeInt",
@@ -1103,7 +1225,7 @@
 		{
 			"Value": "TimeDiscrePoisson",
 			"ConfigString": "TIME_DISCRE_POISSON",
-			"Category": 4,
+			"Category": 5,
 			"Description": "Time discretization",
 			"Type": "Enum",
 			"ExtraType": "TimeInt",
@@ -1112,7 +1234,7 @@
 		{
 			"Value": "LinearSolver",
 			"ConfigString": "LINEAR_SOLVER",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Linear solver for the implicit, mesh deformation, or discrete adjoint systems",
 			"Type": "Enum",
 			"ExtraType": "LinearSolver",
@@ -1121,7 +1243,7 @@
 		{
 			"Value": "LinearSolverPrec",
 			"ConfigString": "LINEAR_SOLVER_PREC",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Preconditioner for the Krylov linear solvers",
 			"Type": "Enum",
 			"ExtraType": "LinearSolverPrec",
@@ -1130,7 +1252,7 @@
 		{
 			"Value": "LinearSolverError",
 			"ConfigString": "LINEAR_SOLVER_ERROR",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Minimum error threshold for the linear solver for the implicit formulation",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1139,7 +1261,7 @@
 		{
 			"Value": "LinearSolverIter",
 			"ConfigString": "LINEAR_SOLVER_ITER",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Maximum number of iterations of the linear solver for the implicit formulation",
 			"Type": "UnsignedLong",
 			"ExtraType": "",
@@ -1148,7 +1270,7 @@
 		{
 			"Value": "LinearSolverRestartFrequency",
 			"ConfigString": "LINEAR_SOLVER_RESTART_FREQUENCY",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Maximum number of iterations of the linear solver for the implicit formulation",
 			"Type": "UnsignedLong",
 			"ExtraType": "",
@@ -1157,7 +1279,7 @@
 		{
 			"Value": "LinearSolverRelax",
 			"ConfigString": "LINEAR_SOLVER_RELAX",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Relaxation of the linear solver for the implicit formulation",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1166,7 +1288,7 @@
 		{
 			"Value": "RoeTurkelPrec",
 			"ConfigString": "ROE_TURKEL_PREC",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Roe-Turkel preconditioning for low Mach number flows",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -1175,7 +1297,7 @@
 		{
 			"Value": "MinRoeTurkelPrec",
 			"ConfigString": "MIN_ROE_TURKEL_PREC",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Time Step for dual time stepping simulations (s)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1184,7 +1306,7 @@
 		{
 			"Value": "MaxRoeTurkelPrec",
 			"ConfigString": "MAX_ROE_TURKEL_PREC",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Time Step for dual time stepping simulations (s)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1193,7 +1315,7 @@
 		{
 			"Value": "AdjturbLinSolver",
 			"ConfigString": "ADJTURB_LIN_SOLVER",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Linear solver for the turbulent adjoint systems",
 			"Type": "Enum",
 			"ExtraType": "LinearSolver",
@@ -1202,7 +1324,7 @@
 		{
 			"Value": "AdjturbLinPrec",
 			"ConfigString": "ADJTURB_LIN_PREC",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Preconditioner for the turbulent adjoint Krylov linear solvers",
 			"Type": "Enum",
 			"ExtraType": "LinearSolverPrec",
@@ -1211,7 +1333,7 @@
 		{
 			"Value": "AdjturbLinError",
 			"ConfigString": "ADJTURB_LIN_ERROR",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Minimum error threshold for the turbulent adjoint linear solver for the implicit formulation",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1220,16 +1342,25 @@
 		{
 			"Value": "AdjturbLinIter",
 			"ConfigString": "ADJTURB_LIN_ITER",
-			"Category": 5,
+			"Category": 6,
 			"Description": "Maximum number of iterations of the turbulent adjoint linear solver for the implicit formulation",
 			"Type": "UnsignedShort",
 			"ExtraType": "",
 			"Default": "10"
 		},
 		{
+			"Value": "EntropyFixCoeff",
+			"ConfigString": "ENTROPY_FIX_COEFF",
+			"Category": 6,
+			"Description": "Entropy fix factor",
+			"Type": "Double",
+			"ExtraType": "",
+			"Default": "0.0"
+		},
+		{
 			"Value": "ConvCriteria",
 			"ConfigString": "CONV_CRITERIA",
-			"Category": 6,
+			"Category": 7,
 			"Description": "Convergence criteria",
 			"Type": "Enum",
 			"ExtraType": "ConvergeCrit",
@@ -1238,7 +1369,7 @@
 		{
 			"Value": "ResidualReduction",
 			"ConfigString": "RESIDUAL_REDUCTION",
-			"Category": 6,
+			"Category": 7,
 			"Description": "Residual reduction (order of magnitude with respect to the initial value)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1247,7 +1378,7 @@
 		{
 			"Value": "ResidualMinval",
 			"ConfigString": "RESIDUAL_MINVAL",
-			"Category": 6,
+			"Category": 7,
 			"Description": "Min value of the residual (log10 of the residual)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1256,7 +1387,7 @@
 		{
 			"Value": "StartconvIter",
 			"ConfigString": "STARTCONV_ITER",
-			"Category": 6,
+			"Category": 7,
 			"Description": "Iteration number to begin convergence monitoring",
 			"Type": "UnsignedLong",
 			"ExtraType": "",
@@ -1265,7 +1396,7 @@
 		{
 			"Value": "CauchyElems",
 			"ConfigString": "CAUCHY_ELEMS",
-			"Category": 6,
+			"Category": 7,
 			"Description": "Number of elements to apply the criteria",
 			"Type": "UnsignedShort",
 			"ExtraType": "",
@@ -1274,7 +1405,7 @@
 		{
 			"Value": "CauchyEps",
 			"ConfigString": "CAUCHY_EPS",
-			"Category": 6,
+			"Category": 7,
 			"Description": "Epsilon to control the series convergence",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1283,7 +1414,7 @@
 		{
 			"Value": "CauchyFuncFlow",
 			"ConfigString": "CAUCHY_FUNC_FLOW",
-			"Category": 6,
+			"Category": 7,
 			"Description": "Flow functional for the Cauchy criteria",
 			"Type": "Enum",
 			"ExtraType": "Objective",
@@ -1292,7 +1423,7 @@
 		{
 			"Value": "CauchyFuncAdjflow",
 			"ConfigString": "CAUCHY_FUNC_ADJFLOW",
-			"Category": 6,
+			"Category": 7,
 			"Description": "Adjoint functional for the Cauchy criteria",
 			"Type": "Enum",
 			"ExtraType": "Sens",
@@ -1301,7 +1432,7 @@
 		{
 			"Value": "CauchyFuncLin",
 			"ConfigString": "CAUCHY_FUNC_LIN",
-			"Category": 6,
+			"Category": 7,
 			"Description": "Linearized functional for the Cauchy criteria",
 			"Type": "Enum",
 			"ExtraType": "LinearObj",
@@ -1310,7 +1441,7 @@
 		{
 			"Value": "FullmgCauchyEps",
 			"ConfigString": "FULLMG_CAUCHY_EPS",
-			"Category": 6,
+			"Category": 7,
 			"Description": "Epsilon for a full multigrid method evaluation",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1319,7 +1450,7 @@
 		{
 			"Value": "Fullmg",
 			"ConfigString": "FULLMG",
-			"Category": 7,
+			"Category": 8,
 			"Description": "Full multi-grid",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -1328,7 +1459,7 @@
 		{
 			"Value": "StartUpIter",
 			"ConfigString": "START_UP_ITER",
-			"Category": 7,
+			"Category": 8,
 			"Description": "Start up iterations using the fine grid only",
 			"Type": "UnsignedShort",
 			"ExtraType": "",
@@ -1337,7 +1468,7 @@
 		{
 			"Value": "Mglevel",
 			"ConfigString": "MGLEVEL",
-			"Category": 7,
+			"Category": 8,
 			"Description": "Multi-grid Levels",
 			"Type": "UnsignedShort",
 			"ExtraType": "",
@@ -1346,7 +1477,7 @@
 		{
 			"Value": "Mgcycle",
 			"ConfigString": "MGCYCLE",
-			"Category": 7,
+			"Category": 8,
 			"Description": "Multi-grid Cycle (0 = V cycle, 1 = W Cycle)",
 			"Type": "UnsignedShort",
 			"ExtraType": "",
@@ -1355,7 +1486,7 @@
 		{
 			"Value": "MgPreSmooth",
 			"ConfigString": "MG_PRE_SMOOTH",
-			"Category": 7,
+			"Category": 8,
 			"Description": "Multi-grid pre-smoothing level",
 			"Type": "UShortList",
 			"ExtraType": "",
@@ -1364,7 +1495,7 @@
 		{
 			"Value": "MgPostSmooth",
 			"ConfigString": "MG_POST_SMOOTH",
-			"Category": 7,
+			"Category": 8,
 			"Description": "Multi-grid post-smoothing level",
 			"Type": "UShortList",
 			"ExtraType": "",
@@ -1373,7 +1504,7 @@
 		{
 			"Value": "MgCorrectionSmooth",
 			"ConfigString": "MG_CORRECTION_SMOOTH",
-			"Category": 7,
+			"Category": 8,
 			"Description": "Jacobi implicit smoothing of the correction",
 			"Type": "UShortList",
 			"ExtraType": "",
@@ -1382,7 +1513,7 @@
 		{
 			"Value": "MgDampRestriction",
 			"ConfigString": "MG_DAMP_RESTRICTION",
-			"Category": 7,
+			"Category": 8,
 			"Description": "Damping factor for the residual restriction",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1391,17 +1522,8 @@
 		{
 			"Value": "MgDampProlongation",
 			"ConfigString": "MG_DAMP_PROLONGATION",
-			"Category": 7,
+			"Category": 8,
 			"Description": "Damping factor for the correction prolongation",
-			"Type": "Double",
-			"ExtraType": "",
-			"Default": "0.9"
-		},
-		{
-			"Value": "MgCflReduction",
-			"ConfigString": "MG_CFL_REDUCTION",
-			"Category": 7,
-			"Description": "CFL reduction factor on the coarse levels",
 			"Type": "Double",
 			"ExtraType": "",
 			"Default": "0.9"
@@ -1409,7 +1531,7 @@
 		{
 			"Value": "MaxChildren",
 			"ConfigString": "MAX_CHILDREN",
-			"Category": 7,
+			"Category": 8,
 			"Description": "Maximum number of children in the agglomeration stage",
 			"Type": "UnsignedShort",
 			"ExtraType": "",
@@ -1418,7 +1540,7 @@
 		{
 			"Value": "MaxDimension",
 			"ConfigString": "MAX_DIMENSION",
-			"Category": 7,
+			"Category": 8,
 			"Description": "Maximum length of an agglomerated element (relative to the domain)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1427,7 +1549,7 @@
 		{
 			"Value": "NumMethodGrad",
 			"ConfigString": "NUM_METHOD_GRAD",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Numerical method for spatial gradients",
 			"Type": "Enum",
 			"ExtraType": "FlowGradient",
@@ -1436,16 +1558,25 @@
 		{
 			"Value": "LimiterCoeff",
 			"ConfigString": "LIMITER_COEFF",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Coefficient for the limiter",
 			"Type": "Double",
 			"ExtraType": "",
 			"Default": "0.5"
 		},
 		{
+			"Value": "LimiterIter",
+			"ConfigString": "LIMITER_ITER",
+			"Category": 9,
+			"Description": "Freeze the value of the limiter after a number of iterations",
+			"Type": "UnsignedLong",
+			"ExtraType": "",
+			"Default": "999999"
+		},
+		{
 			"Value": "SharpEdgesCoeff",
 			"ConfigString": "SHARP_EDGES_COEFF",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Coefficient for detecting the limit of the sharp edges",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1454,34 +1585,16 @@
 		{
 			"Value": "ConvNumMethodFlow",
 			"ConfigString": "CONV_NUM_METHOD_FLOW",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
 			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
-			"Value": "ViscNumMethodFlow",
-			"ConfigString": "VISC_NUM_METHOD_FLOW",
-			"Category": 8,
-			"Description": "Viscous numerical method",
-			"Type": "Enum",
-			"ExtraType": "Viscous",
-			"Default": "AvgGradCorrected"
-		},
-		{
-			"Value": "SourNumMethodFlow",
-			"ConfigString": "SOUR_NUM_METHOD_FLOW",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "NoSource"
-		},
-		{
 			"Value": "SpatialOrderFlow",
 			"ConfigString": "SPATIAL_ORDER_FLOW",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Spatial numerical order integration",
 			"Type": "Enum",
 			"ExtraType": "SpatialOrder",
@@ -1490,7 +1603,7 @@
 		{
 			"Value": "SlopeLimiterFlow",
 			"ConfigString": "SLOPE_LIMITER_FLOW",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Slope limiter",
 			"Type": "Enum",
 			"ExtraType": "Limiter",
@@ -1499,7 +1612,7 @@
 		{
 			"Value": "AdCoeffFlow",
 			"ConfigString": "AD_COEFF_FLOW",
-			"Category": 8,
+			"Category": 9,
 			"Description": "1st, 2nd and 4th order artificial dissipation coefficients",
 			"Type": "DoubleArray",
 			"ExtraType": "3",
@@ -1508,34 +1621,16 @@
 		{
 			"Value": "ConvNumMethodAdjflow",
 			"ConfigString": "CONV_NUM_METHOD_ADJFLOW",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
 			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
-			"Value": "ViscNumMethodAdjflow",
-			"ConfigString": "VISC_NUM_METHOD_ADJFLOW",
-			"Category": 8,
-			"Description": "Viscous numerical method",
-			"Type": "Enum",
-			"ExtraType": "Viscous",
-			"Default": "NoViscous"
-		},
-		{
-			"Value": "SourNumMethodAdjflow",
-			"ConfigString": "SOUR_NUM_METHOD_ADJFLOW",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "NoSource"
-		},
-		{
 			"Value": "SpatialOrderAdjflow",
 			"ConfigString": "SPATIAL_ORDER_ADJFLOW",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Spatial numerical order integration",
 			"Type": "Enum",
 			"ExtraType": "SpatialOrder",
@@ -1544,7 +1639,7 @@
 		{
 			"Value": "SlopeLimiterAdjflow",
 			"ConfigString": "SLOPE_LIMITER_ADJFLOW",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Slope limiter",
 			"Type": "Enum",
 			"ExtraType": "Limiter",
@@ -1553,7 +1648,7 @@
 		{
 			"Value": "AdCoeffAdjflow",
 			"ConfigString": "AD_COEFF_ADJFLOW",
-			"Category": 8,
+			"Category": 9,
 			"Description": "1st, 2nd and 4th order artificial dissipation coefficients",
 			"Type": "DoubleArray",
 			"ExtraType": "3",
@@ -1562,7 +1657,7 @@
 		{
 			"Value": "SpatialOrderTurb",
 			"ConfigString": "SPATIAL_ORDER_TURB",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Spatial numerical order integration",
 			"Type": "Enum",
 			"ExtraType": "SpatialOrder",
@@ -1571,7 +1666,7 @@
 		{
 			"Value": "SlopeLimiterTurb",
 			"ConfigString": "SLOPE_LIMITER_TURB",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Slope limiter",
 			"Type": "Enum",
 			"ExtraType": "Limiter",
@@ -1580,34 +1675,16 @@
 		{
 			"Value": "ConvNumMethodTurb",
 			"ConfigString": "CONV_NUM_METHOD_TURB",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
 			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
-			"Value": "ViscNumMethodTurb",
-			"ConfigString": "VISC_NUM_METHOD_TURB",
-			"Category": 8,
-			"Description": "Viscous numerical method",
-			"Type": "Enum",
-			"ExtraType": "Viscous",
-			"Default": "AvgGradCorrected"
-		},
-		{
-			"Value": "SourNumMethodTurb",
-			"ConfigString": "SOUR_NUM_METHOD_TURB",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "PiecewiseConstant"
-		},
-		{
 			"Value": "SpatialOrderAdjturb",
 			"ConfigString": "SPATIAL_ORDER_ADJTURB",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Spatial numerical order integration",
 			"Type": "Enum",
 			"ExtraType": "SpatialOrder",
@@ -1616,7 +1693,7 @@
 		{
 			"Value": "SlopeLimiterAdjturb",
 			"ConfigString": "SLOPE_LIMITER_ADJTURB",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Slope limiter",
 			"Type": "Enum",
 			"ExtraType": "Limiter",
@@ -1625,61 +1702,25 @@
 		{
 			"Value": "ConvNumMethodAdjturb",
 			"ConfigString": "CONV_NUM_METHOD_ADJTURB",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
 			"Default": "enum.NoConvective.ConfigString()"
-		},
-		{
-			"Value": "ViscNumMethodAdjturb",
-			"ConfigString": "VISC_NUM_METHOD_ADJTURB",
-			"Category": 8,
-			"Description": "Viscous numerical method",
-			"Type": "Enum",
-			"ExtraType": "Viscous",
-			"Default": "NoViscous"
-		},
-		{
-			"Value": "SourNumMethodAdjturb",
-			"ConfigString": "SOUR_NUM_METHOD_ADJTURB",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "NoSource"
 		},
 		{
 			"Value": "ConvNumMethodLin",
 			"ConfigString": "CONV_NUM_METHOD_LIN",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
 			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
-			"Value": "ViscNumMethodLin",
-			"ConfigString": "VISC_NUM_METHOD_LIN",
-			"Category": 8,
-			"Description": "Viscous numerical method",
-			"Type": "Enum",
-			"ExtraType": "Viscous",
-			"Default": "NoViscous"
-		},
-		{
-			"Value": "SourNumMethodLin",
-			"ConfigString": "SOUR_NUM_METHOD_LIN",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "NoSource"
-		},
-		{
 			"Value": "AdCoeffLin",
 			"ConfigString": "AD_COEFF_LIN",
-			"Category": 8,
+			"Category": 9,
 			"Description": "1st, 2nd and 4th order artificial dissipation coefficients",
 			"Type": "DoubleArray",
 			"ExtraType": "2",
@@ -1688,7 +1729,7 @@
 		{
 			"Value": "SpatialOrderAdjlevelset",
 			"ConfigString": "SPATIAL_ORDER_ADJLEVELSET",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Spatial numerical order integration",
 			"Type": "Enum",
 			"ExtraType": "SpatialOrder",
@@ -1697,7 +1738,7 @@
 		{
 			"Value": "SlopeLimiterAdjlevelset",
 			"ConfigString": "SLOPE_LIMITER_ADJLEVELSET",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Slope limiter",
 			"Type": "Enum",
 			"ExtraType": "Limiter",
@@ -1706,61 +1747,25 @@
 		{
 			"Value": "ConvNumMethodAdjlevelset",
 			"ConfigString": "CONV_NUM_METHOD_ADJLEVELSET",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
 			"Default": "enum.NoConvective.ConfigString()"
-		},
-		{
-			"Value": "ViscNumMethodAdjlevelset",
-			"ConfigString": "VISC_NUM_METHOD_ADJLEVELSET",
-			"Category": 8,
-			"Description": "Viscous numerical method",
-			"Type": "Enum",
-			"ExtraType": "Viscous",
-			"Default": "NoViscous"
-		},
-		{
-			"Value": "SourNumMethodAdjlevelset",
-			"ConfigString": "SOUR_NUM_METHOD_ADJLEVELSET",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "NoSource"
 		},
 		{
 			"Value": "ConvNumMethodTne2",
 			"ConfigString": "CONV_NUM_METHOD_TNE2",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
 			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
-			"Value": "ViscNumMethodTne2",
-			"ConfigString": "VISC_NUM_METHOD_TNE2",
-			"Category": 8,
-			"Description": "Viscous numerical method",
-			"Type": "Enum",
-			"ExtraType": "Viscous",
-			"Default": "NoViscous"
-		},
-		{
-			"Value": "SourNumMethodTne2",
-			"ConfigString": "SOUR_NUM_METHOD_TNE2",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "NoSource"
-		},
-		{
 			"Value": "SpatialOrderTne2",
 			"ConfigString": "SPATIAL_ORDER_TNE2",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Spatial numerical order integration",
 			"Type": "Enum",
 			"ExtraType": "SpatialOrder",
@@ -1769,7 +1774,7 @@
 		{
 			"Value": "SlopeLimiterTne2",
 			"ConfigString": "SLOPE_LIMITER_TNE2",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Slope limiter",
 			"Type": "Enum",
 			"ExtraType": "Limiter",
@@ -1778,7 +1783,7 @@
 		{
 			"Value": "AdCoeffTne2",
 			"ConfigString": "AD_COEFF_TNE2",
-			"Category": 8,
+			"Category": 9,
 			"Description": "1st, 2nd and 4th order artificial dissipation coefficients",
 			"Type": "DoubleArray",
 			"ExtraType": "3",
@@ -1787,34 +1792,16 @@
 		{
 			"Value": "ConvNumMethodAdjtne2",
 			"ConfigString": "CONV_NUM_METHOD_ADJTNE2",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Convective numerical method",
 			"Type": "Convect",
 			"ExtraType": "",
 			"Default": "enum.NoConvective.ConfigString()"
 		},
 		{
-			"Value": "ViscNumMethodAdjtne2",
-			"ConfigString": "VISC_NUM_METHOD_ADJTNE2",
-			"Category": 8,
-			"Description": "Viscous numerical method",
-			"Type": "Enum",
-			"ExtraType": "Viscous",
-			"Default": "NoViscous"
-		},
-		{
-			"Value": "SourNumMethodAdjtne2",
-			"ConfigString": "SOUR_NUM_METHOD_ADJTNE2",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "NoSource"
-		},
-		{
 			"Value": "SpatialOrderAdjtne2",
 			"ConfigString": "SPATIAL_ORDER_ADJTNE2",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Spatial numerical order integration",
 			"Type": "Enum",
 			"ExtraType": "SpatialOrder",
@@ -1823,7 +1810,7 @@
 		{
 			"Value": "SlopeLimiterAdjtne2",
 			"ConfigString": "SLOPE_LIMITER_ADJTNE2",
-			"Category": 8,
+			"Category": 9,
 			"Description": "Slope limiter",
 			"Type": "Enum",
 			"ExtraType": "Limiter",
@@ -1832,97 +1819,16 @@
 		{
 			"Value": "AdCoeffAdjtne2",
 			"ConfigString": "AD_COEFF_ADJTNE2",
-			"Category": 8,
+			"Category": 9,
 			"Description": "1st, 2nd and 4th order artificial dissipation coefficients",
 			"Type": "DoubleArray",
 			"ExtraType": "3",
 			"Default": "[3]float64{0.15, 0.5, 0.02}"
 		},
 		{
-			"Value": "ViscNumMethodWave",
-			"ConfigString": "VISC_NUM_METHOD_WAVE",
-			"Category": 8,
-			"Description": "Viscous numerical method",
-			"Type": "Enum",
-			"ExtraType": "Viscous",
-			"Default": "Galerkin"
-		},
-		{
-			"Value": "SourNumMethodWave",
-			"ConfigString": "SOUR_NUM_METHOD_WAVE",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "NoSource"
-		},
-		{
-			"Value": "ViscNumMethodPoisson",
-			"ConfigString": "VISC_NUM_METHOD_POISSON",
-			"Category": 8,
-			"Description": "Viscous numerical method",
-			"Type": "Enum",
-			"ExtraType": "Viscous",
-			"Default": "NoViscous"
-		},
-		{
-			"Value": "SourNumMethodPoisson",
-			"ConfigString": "SOUR_NUM_METHOD_POISSON",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "NoSource"
-		},
-		{
-			"Value": "ViscNumMethodFea",
-			"ConfigString": "VISC_NUM_METHOD_FEA",
-			"Category": 8,
-			"Description": "Viscous numerical method",
-			"Type": "Enum",
-			"ExtraType": "Viscous",
-			"Default": "Galerkin"
-		},
-		{
-			"Value": "SourNumMethodFea",
-			"ConfigString": "SOUR_NUM_METHOD_FEA",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "NoSource"
-		},
-		{
-			"Value": "ViscNumMethodHeat",
-			"ConfigString": "VISC_NUM_METHOD_HEAT",
-			"Category": 8,
-			"Description": "Viscous numerical method",
-			"Type": "Enum",
-			"ExtraType": "Viscous",
-			"Default": "Galerkin"
-		},
-		{
-			"Value": "SourNumMethodHeat",
-			"ConfigString": "SOUR_NUM_METHOD_HEAT",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "NoSource"
-		},
-		{
-			"Value": "SourNumMethodTemplate",
-			"ConfigString": "SOUR_NUM_METHOD_TEMPLATE",
-			"Category": 8,
-			"Description": "Source term numerical method",
-			"Type": "Enum",
-			"ExtraType": "Source",
-			"Default": "NoSource"
-		},
-		{
 			"Value": "LimitAdjflow",
 			"ConfigString": "LIMIT_ADJFLOW",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Limit value for the adjoint variable",
 			"Type": "Double",
 			"ExtraType": "",
@@ -1931,7 +1837,7 @@
 		{
 			"Value": "ObjectiveFunction",
 			"ConfigString": "OBJECTIVE_FUNCTION",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Adjoint problem boundary condition",
 			"Type": "Enum",
 			"ExtraType": "Objective",
@@ -1940,7 +1846,7 @@
 		{
 			"Value": "GeoLocationSections",
 			"ConfigString": "GEO_LOCATION_SECTIONS",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Definition of the airfoil section",
 			"Type": "DoubleArray",
 			"ExtraType": "2",
@@ -1949,7 +1855,7 @@
 		{
 			"Value": "GeoOrientationSections",
 			"ConfigString": "GEO_ORIENTATION_SECTIONS",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Identify the axis of the section",
 			"Type": "Enum",
 			"ExtraType": "AxisOrientation",
@@ -1958,7 +1864,7 @@
 		{
 			"Value": "GeoNumberSections",
 			"ConfigString": "GEO_NUMBER_SECTIONS",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Percentage of new elements (% of the original number of elements)",
 			"Type": "UnsignedShort",
 			"ExtraType": "",
@@ -1967,7 +1873,7 @@
 		{
 			"Value": "GeoVolumeSections",
 			"ConfigString": "GEO_VOLUME_SECTIONS",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Number of section cuts to make when calculating internal volume",
 			"Type": "UnsignedShort",
 			"ExtraType": "",
@@ -1976,7 +1882,7 @@
 		{
 			"Value": "GeoPlotSections",
 			"ConfigString": "GEO_PLOT_SECTIONS",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Output sectional forces for specified markers.",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -1985,7 +1891,7 @@
 		{
 			"Value": "GeoMode",
 			"ConfigString": "GEO_MODE",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Mode of the GDC code (analysis, or gradient)",
 			"Type": "Enum",
 			"ExtraType": "GeometryMode",
@@ -1994,7 +1900,7 @@
 		{
 			"Value": "DragInSonicboom",
 			"ConfigString": "DRAG_IN_SONICBOOM",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Drag weight in sonic boom Objective Function (from 0.0 to 1.0)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2003,7 +1909,7 @@
 		{
 			"Value": "SensSmoothing",
 			"ConfigString": "SENS_SMOOTHING",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Sensitivity smoothing",
 			"Type": "Enum",
 			"ExtraType": "SensSmoothing",
@@ -2012,7 +1918,7 @@
 		{
 			"Value": "ContinuousEqns",
 			"ConfigString": "CONTINUOUS_EQNS",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Continuous governing equation set",
 			"Type": "Enum",
 			"ExtraType": "ContinuousEqns",
@@ -2021,7 +1927,7 @@
 		{
 			"Value": "DiscreteEqns",
 			"ConfigString": "DISCRETE_EQNS",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Discrete governing equation set",
 			"Type": "Enum",
 			"ExtraType": "DiscreteEqns",
@@ -2030,7 +1936,7 @@
 		{
 			"Value": "FrozenVisc",
 			"ConfigString": "FROZEN_VISC",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Adjoint frozen viscosity",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2039,7 +1945,7 @@
 		{
 			"Value": "CteViscousDrag",
 			"ConfigString": "CTE_VISCOUS_DRAG",
-			"Category": 9,
+			"Category": 10,
 			"Description": "",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2048,7 +1954,7 @@
 		{
 			"Value": "FixAzimuthalLine",
 			"ConfigString": "FIX_AZIMUTHAL_LINE",
-			"Category": 9,
+			"Category": 10,
 			"Description": "",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2057,7 +1963,7 @@
 		{
 			"Value": "SensRemoveSharp",
 			"ConfigString": "SENS_REMOVE_SHARP",
-			"Category": 9,
+			"Category": 10,
 			"Description": "Remove sharp edges from the sensitivity evaluation",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2066,7 +1972,7 @@
 		{
 			"Value": "PnormHeatflux",
 			"ConfigString": "PNORM_HEATFLUX",
-			"Category": 9,
+			"Category": 10,
 			"Description": "P-norm for heat-flux based objective functions.",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2075,7 +1981,7 @@
 		{
 			"Value": "OutputFormat",
 			"ConfigString": "OUTPUT_FORMAT",
-			"Category": 10,
+			"Category": 11,
 			"Description": "I/O",
 			"Type": "Enum",
 			"ExtraType": "Output",
@@ -2084,7 +1990,7 @@
 		{
 			"Value": "MeshFormat",
 			"ConfigString": "MESH_FORMAT",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Mesh input file format",
 			"Type": "Enum",
 			"ExtraType": "Input",
@@ -2093,7 +1999,7 @@
 		{
 			"Value": "CgnsToSu2",
 			"ConfigString": "CGNS_TO_SU2",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Convert a CGNS mesh to SU2 format",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2102,7 +2008,7 @@
 		{
 			"Value": "MeshFilename",
 			"ConfigString": "MESH_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Mesh input file",
 			"Type": "String",
 			"ExtraType": "",
@@ -2111,7 +2017,7 @@
 		{
 			"Value": "MeshScaleChange",
 			"ConfigString": "MESH_SCALE_CHANGE",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Factor for scaling the mesh",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2120,8 +2026,17 @@
 		{
 			"Value": "MeshOutput",
 			"ConfigString": "MESH_OUTPUT",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Write a new mesh converted to meters",
+			"Type": "Bool",
+			"ExtraType": "",
+			"Default": "false"
+		},
+		{
+			"Value": "CuthillMckeeOrdering",
+			"ConfigString": "CUTHILL_MCKEE_ORDERING",
+			"Category": 11,
+			"Description": "Cuthill–McKee ordering algorithm",
 			"Type": "Bool",
 			"ExtraType": "",
 			"Default": "false"
@@ -2129,7 +2044,7 @@
 		{
 			"Value": "MeshOutFilename",
 			"ConfigString": "MESH_OUT_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Mesh output file",
 			"Type": "String",
 			"ExtraType": "",
@@ -2138,7 +2053,7 @@
 		{
 			"Value": "ConvFilename",
 			"ConfigString": "CONV_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file convergence history (w/o extension)",
 			"Type": "String",
 			"ExtraType": "",
@@ -2147,7 +2062,7 @@
 		{
 			"Value": "SolutionFlowFilename",
 			"ConfigString": "SOLUTION_FLOW_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Restart flow input file",
 			"Type": "String",
 			"ExtraType": "",
@@ -2156,7 +2071,7 @@
 		{
 			"Value": "SolutionLinFilename",
 			"ConfigString": "SOLUTION_LIN_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Restart linear flow input file",
 			"Type": "String",
 			"ExtraType": "",
@@ -2165,7 +2080,7 @@
 		{
 			"Value": "SolutionAdjFilename",
 			"ConfigString": "SOLUTION_ADJ_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Restart adjoint input file",
 			"Type": "String",
 			"ExtraType": "",
@@ -2174,7 +2089,7 @@
 		{
 			"Value": "RestartFlowFilename",
 			"ConfigString": "RESTART_FLOW_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file restart flow",
 			"Type": "String",
 			"ExtraType": "",
@@ -2183,7 +2098,7 @@
 		{
 			"Value": "RestartLinFilename",
 			"ConfigString": "RESTART_LIN_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file linear flow",
 			"Type": "String",
 			"ExtraType": "",
@@ -2192,7 +2107,7 @@
 		{
 			"Value": "RestartAdjFilename",
 			"ConfigString": "RESTART_ADJ_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file restart adjoint",
 			"Type": "String",
 			"ExtraType": "",
@@ -2201,7 +2116,7 @@
 		{
 			"Value": "RestartWaveFilename",
 			"ConfigString": "RESTART_WAVE_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file restart wave",
 			"Type": "String",
 			"ExtraType": "",
@@ -2210,7 +2125,7 @@
 		{
 			"Value": "VolumeFlowFilename",
 			"ConfigString": "VOLUME_FLOW_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file flow (w/o extension) variables",
 			"Type": "String",
 			"ExtraType": "",
@@ -2219,7 +2134,7 @@
 		{
 			"Value": "VolumeStructureFilename",
 			"ConfigString": "VOLUME_STRUCTURE_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file structure (w/o extension) variables",
 			"Type": "String",
 			"ExtraType": "",
@@ -2228,7 +2143,7 @@
 		{
 			"Value": "SurfaceStructureFilename",
 			"ConfigString": "SURFACE_STRUCTURE_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file structure (w/o extension) variables",
 			"Type": "String",
 			"ExtraType": "",
@@ -2237,7 +2152,7 @@
 		{
 			"Value": "SurfaceWaveFilename",
 			"ConfigString": "SURFACE_WAVE_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file structure (w/o extension) variables",
 			"Type": "String",
 			"ExtraType": "",
@@ -2246,7 +2161,7 @@
 		{
 			"Value": "SurfaceHeatFilename",
 			"ConfigString": "SURFACE_HEAT_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file structure (w/o extension) variables",
 			"Type": "String",
 			"ExtraType": "",
@@ -2255,7 +2170,7 @@
 		{
 			"Value": "VolumeWaveFilename",
 			"ConfigString": "VOLUME_WAVE_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file wave (w/o extension) variables",
 			"Type": "String",
 			"ExtraType": "",
@@ -2264,7 +2179,7 @@
 		{
 			"Value": "VolumeHeatFilename",
 			"ConfigString": "VOLUME_HEAT_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file wave (w/o extension) variables",
 			"Type": "String",
 			"ExtraType": "",
@@ -2273,7 +2188,7 @@
 		{
 			"Value": "VolumeAdjwaveFilename",
 			"ConfigString": "VOLUME_ADJWAVE_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file adj. wave (w/o extension) variables",
 			"Type": "String",
 			"ExtraType": "",
@@ -2282,7 +2197,7 @@
 		{
 			"Value": "VolumeAdjFilename",
 			"ConfigString": "VOLUME_ADJ_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file adjoint (w/o extension) variables",
 			"Type": "String",
 			"ExtraType": "",
@@ -2291,7 +2206,7 @@
 		{
 			"Value": "VolumeLinFilename",
 			"ConfigString": "VOLUME_LIN_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file linear (w/o extension) variables",
 			"Type": "String",
 			"ExtraType": "",
@@ -2300,7 +2215,7 @@
 		{
 			"Value": "GradObjfuncFilename",
 			"ConfigString": "GRAD_OBJFUNC_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output objective function gradient",
 			"Type": "String",
 			"ExtraType": "",
@@ -2309,7 +2224,7 @@
 		{
 			"Value": "ValueObjfuncFilename",
 			"ConfigString": "VALUE_OBJFUNC_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output objective function",
 			"Type": "String",
 			"ExtraType": "",
@@ -2318,7 +2233,7 @@
 		{
 			"Value": "SurfaceFlowFilename",
 			"ConfigString": "SURFACE_FLOW_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file surface flow coefficient (w/o extension)",
 			"Type": "String",
 			"ExtraType": "",
@@ -2327,7 +2242,7 @@
 		{
 			"Value": "SurfaceAdjFilename",
 			"ConfigString": "SURFACE_ADJ_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file surface adjoint coefficient (w/o extension)",
 			"Type": "String",
 			"ExtraType": "",
@@ -2336,7 +2251,7 @@
 		{
 			"Value": "SurfaceLinFilename",
 			"ConfigString": "SURFACE_LIN_FILENAME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output file surface linear coefficient (w/o extension)",
 			"Type": "String",
 			"ExtraType": "",
@@ -2345,7 +2260,7 @@
 		{
 			"Value": "WrtSolFreq",
 			"ConfigString": "WRT_SOL_FREQ",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Writing solution file frequency",
 			"Type": "UnsignedLong",
 			"ExtraType": "",
@@ -2354,7 +2269,7 @@
 		{
 			"Value": "WrtSolFreqDualtime",
 			"ConfigString": "WRT_SOL_FREQ_DUALTIME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Writing solution file frequency",
 			"Type": "UnsignedLong",
 			"ExtraType": "",
@@ -2363,7 +2278,7 @@
 		{
 			"Value": "WrtConFreq",
 			"ConfigString": "WRT_CON_FREQ",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Writing convergence history frequency",
 			"Type": "UnsignedLong",
 			"ExtraType": "",
@@ -2372,7 +2287,7 @@
 		{
 			"Value": "WrtConFreqDualtime",
 			"ConfigString": "WRT_CON_FREQ_DUALTIME",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Writing convergence history frequency for the dual time",
 			"Type": "UnsignedLong",
 			"ExtraType": "",
@@ -2381,7 +2296,7 @@
 		{
 			"Value": "WrtVolSol",
 			"ConfigString": "WRT_VOL_SOL",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Write a volume solution file",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2390,7 +2305,7 @@
 		{
 			"Value": "WrtSrfSol",
 			"ConfigString": "WRT_SRF_SOL",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Write a surface solution file",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2399,7 +2314,7 @@
 		{
 			"Value": "WrtCsvSol",
 			"ConfigString": "WRT_CSV_SOL",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Write a surface CSV solution file",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2408,7 +2323,7 @@
 		{
 			"Value": "WrtRestart",
 			"ConfigString": "WRT_RESTART",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Write a restart solution file",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2417,7 +2332,25 @@
 		{
 			"Value": "WrtResiduals",
 			"ConfigString": "WRT_RESIDUALS",
-			"Category": 10,
+			"Category": 11,
+			"Description": "Output residual info to solution/restart file",
+			"Type": "Bool",
+			"ExtraType": "",
+			"Default": "false"
+		},
+		{
+			"Value": "WrtLimiters",
+			"ConfigString": "WRT_LIMITERS",
+			"Category": 11,
+			"Description": "Output residual info to solution/restart file",
+			"Type": "Bool",
+			"ExtraType": "",
+			"Default": "false"
+		},
+		{
+			"Value": "WrtSharpedges",
+			"ConfigString": "WRT_SHARPEDGES",
+			"Category": 11,
 			"Description": "Output residual info to solution/restart file",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2426,16 +2359,16 @@
 		{
 			"Value": "WrtHalo",
 			"ConfigString": "WRT_HALO",
-			"Category": 10,
+			"Category": 11,
 			"Description": "Output the rind layers in the solution files",
 			"Type": "Bool",
 			"ExtraType": "",
 			"Default": "false"
 		},
 		{
-			"Value": "Wrt1dOutput",
-			"ConfigString": "WRT_1D_OUTPUT",
-			"Category": 10,
+			"Value": "OneDOutput",
+			"ConfigString": "ONE_D_OUTPUT",
+			"Category": 11,
 			"Description": "Output averaged stagnation pressure on specified exit marker.",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2444,7 +2377,7 @@
 		{
 			"Value": "GridMovement",
 			"ConfigString": "GRID_MOVEMENT",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Mesh motion for unsteady simulations",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2453,7 +2386,7 @@
 		{
 			"Value": "GridMovementKind",
 			"ConfigString": "GRID_MOVEMENT_KIND",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Type of mesh motion",
 			"Type": "EnumList",
 			"ExtraType": "Gridmovement",
@@ -2462,7 +2395,7 @@
 		{
 			"Value": "MarkerMoving",
 			"ConfigString": "MARKER_MOVING",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Marker(s) of moving surfaces (MOVING_WALL or DEFORMING grid motion).",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -2471,7 +2404,7 @@
 		{
 			"Value": "MachMotion",
 			"ConfigString": "MACH_MOTION",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Mach number (non-dimensional, based on the mesh velocity and freestream vals.)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2480,7 +2413,7 @@
 		{
 			"Value": "MotionOriginX",
 			"ConfigString": "MOTION_ORIGIN_X",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Coordinates of the rigid motion origin",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2489,7 +2422,7 @@
 		{
 			"Value": "MotionOriginY",
 			"ConfigString": "MOTION_ORIGIN_Y",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Coordinates of the rigid motion origin",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2498,7 +2431,7 @@
 		{
 			"Value": "MotionOriginZ",
 			"ConfigString": "MOTION_ORIGIN_Z",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Coordinates of the rigid motion origin",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2507,7 +2440,7 @@
 		{
 			"Value": "TranslationRateX",
 			"ConfigString": "TRANSLATION_RATE_X",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Translational velocity vector (m/s) in the x, y, \u0026 z directions (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2516,7 +2449,7 @@
 		{
 			"Value": "TranslationRateY",
 			"ConfigString": "TRANSLATION_RATE_Y",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Translational velocity vector (m/s) in the x, y, \u0026 z directions (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2525,7 +2458,7 @@
 		{
 			"Value": "TranslationRateZ",
 			"ConfigString": "TRANSLATION_RATE_Z",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Translational velocity vector (m/s) in the x, y, \u0026 z directions (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2534,7 +2467,7 @@
 		{
 			"Value": "RotationRateX",
 			"ConfigString": "ROTATION_RATE_X",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Angular velocity vector (rad/s) about x, y, \u0026 z axes (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2543,7 +2476,7 @@
 		{
 			"Value": "RotationRateY",
 			"ConfigString": "ROTATION_RATE_Y",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Angular velocity vector (rad/s) about x, y, \u0026 z axes (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2552,7 +2485,7 @@
 		{
 			"Value": "RotationRateZ",
 			"ConfigString": "ROTATION_RATE_Z",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Angular velocity vector (rad/s) about x, y, \u0026 z axes (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2561,7 +2494,7 @@
 		{
 			"Value": "PitchingOmegaX",
 			"ConfigString": "PITCHING_OMEGA_X",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Pitching angular freq. (rad/s) about x, y, \u0026 z axes (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2570,7 +2503,7 @@
 		{
 			"Value": "PitchingOmegaY",
 			"ConfigString": "PITCHING_OMEGA_Y",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Pitching angular freq. (rad/s) about x, y, \u0026 z axes (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2579,7 +2512,7 @@
 		{
 			"Value": "PitchingOmegaZ",
 			"ConfigString": "PITCHING_OMEGA_Z",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Pitching angular freq. (rad/s) about x, y, \u0026 z axes (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2588,7 +2521,7 @@
 		{
 			"Value": "PitchingAmplX",
 			"ConfigString": "PITCHING_AMPL_X",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Pitching amplitude (degrees) about x, y, \u0026 z axes (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2597,7 +2530,7 @@
 		{
 			"Value": "PitchingAmplY",
 			"ConfigString": "PITCHING_AMPL_Y",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Pitching amplitude (degrees) about x, y, \u0026 z axes (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2606,7 +2539,7 @@
 		{
 			"Value": "PitchingAmplZ",
 			"ConfigString": "PITCHING_AMPL_Z",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Pitching amplitude (degrees) about x, y, \u0026 z axes (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2615,7 +2548,7 @@
 		{
 			"Value": "PitchingPhaseX",
 			"ConfigString": "PITCHING_PHASE_X",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Pitching phase offset (degrees) about x, y, \u0026 z axes (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2624,7 +2557,7 @@
 		{
 			"Value": "PitchingPhaseY",
 			"ConfigString": "PITCHING_PHASE_Y",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Pitching phase offset (degrees) about x, y, \u0026 z axes (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2633,7 +2566,7 @@
 		{
 			"Value": "PitchingPhaseZ",
 			"ConfigString": "PITCHING_PHASE_Z",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Pitching phase offset (degrees) about x, y, \u0026 z axes (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2642,7 +2575,7 @@
 		{
 			"Value": "PlungingOmegaX",
 			"ConfigString": "PLUNGING_OMEGA_X",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Plunging angular freq. (rad/s) in x, y, \u0026 z directions (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2651,7 +2584,7 @@
 		{
 			"Value": "PlungingOmegaY",
 			"ConfigString": "PLUNGING_OMEGA_Y",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Plunging angular freq. (rad/s) in x, y, \u0026 z directions (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2660,7 +2593,7 @@
 		{
 			"Value": "PlungingOmegaZ",
 			"ConfigString": "PLUNGING_OMEGA_Z",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Plunging angular freq. (rad/s) in x, y, \u0026 z directions (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2669,7 +2602,7 @@
 		{
 			"Value": "PlungingAmplX",
 			"ConfigString": "PLUNGING_AMPL_X",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Plunging amplitude (m) in x, y, \u0026 z directions (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2678,7 +2611,7 @@
 		{
 			"Value": "PlungingAmplY",
 			"ConfigString": "PLUNGING_AMPL_Y",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Plunging amplitude (m) in x, y, \u0026 z directions (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2687,7 +2620,7 @@
 		{
 			"Value": "PlungingAmplZ",
 			"ConfigString": "PLUNGING_AMPL_Z",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Plunging amplitude (m) in x, y, \u0026 z directions (RIGID_MOTION only)",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2696,7 +2629,7 @@
 		{
 			"Value": "MoveMotionOrigin",
 			"ConfigString": "MOVE_MOTION_ORIGIN",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Value to move motion origins (1 or 0)",
 			"Type": "UShortList",
 			"ExtraType": "",
@@ -2705,7 +2638,7 @@
 		{
 			"Value": "MotionFilename",
 			"ConfigString": "MOTION_FILENAME",
-			"Category": 11,
+			"Category": 12,
 			"Description": "",
 			"Type": "String",
 			"ExtraType": "",
@@ -2714,7 +2647,7 @@
 		{
 			"Value": "FreqPlungeAeroelastic",
 			"ConfigString": "FREQ_PLUNGE_AEROELASTIC",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Uncoupled Aeroelastic Frequency Plunge.",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2723,7 +2656,7 @@
 		{
 			"Value": "FreqPitchAeroelastic",
 			"ConfigString": "FREQ_PITCH_AEROELASTIC",
-			"Category": 11,
+			"Category": 12,
 			"Description": "Uncoupled Aeroelastic Frequency Pitch.",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2732,7 +2665,7 @@
 		{
 			"Value": "KindAdapt",
 			"ConfigString": "KIND_ADAPT",
-			"Category": 12,
+			"Category": 13,
 			"Description": "Kind of grid adaptation",
 			"Type": "Enum",
 			"ExtraType": "Adapt",
@@ -2741,7 +2674,7 @@
 		{
 			"Value": "NewElems",
 			"ConfigString": "NEW_ELEMS",
-			"Category": 12,
+			"Category": 13,
 			"Description": "Percentage of new elements (% of the original number of elements)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2750,7 +2683,7 @@
 		{
 			"Value": "DualvolPower",
 			"ConfigString": "DUALVOL_POWER",
-			"Category": 12,
+			"Category": 13,
 			"Description": "Scale factor for the dual volume",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2759,7 +2692,7 @@
 		{
 			"Value": "AnalyticalSurfdef",
 			"ConfigString": "ANALYTICAL_SURFDEF",
-			"Category": 12,
+			"Category": 13,
 			"Description": "Use analytical definition for surfaces",
 			"Type": "Enum",
 			"ExtraType": "GeoAnalytic",
@@ -2768,7 +2701,7 @@
 		{
 			"Value": "SmoothGeometry",
 			"ConfigString": "SMOOTH_GEOMETRY",
-			"Category": 12,
+			"Category": 13,
 			"Description": "Before each computation, implicitly smooth the nodal coordinates",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2777,7 +2710,7 @@
 		{
 			"Value": "AdaptBoundary",
 			"ConfigString": "ADAPT_BOUNDARY",
-			"Category": 12,
+			"Category": 13,
 			"Description": "Adapt the boundary elements",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2786,7 +2719,7 @@
 		{
 			"Value": "DivideElements",
 			"ConfigString": "DIVIDE_ELEMENTS",
-			"Category": 12,
+			"Category": 13,
 			"Description": "Divide rectangles into triangles",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2795,7 +2728,7 @@
 		{
 			"Value": "WindGust",
 			"ConfigString": "WIND_GUST",
-			"Category": 13,
+			"Category": 14,
 			"Description": "Apply a wind gust",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2804,7 +2737,7 @@
 		{
 			"Value": "GustType",
 			"ConfigString": "GUST_TYPE",
-			"Category": 13,
+			"Category": 14,
 			"Description": "Type of gust",
 			"Type": "Enum",
 			"ExtraType": "GustType",
@@ -2813,7 +2746,7 @@
 		{
 			"Value": "GustWavelength",
 			"ConfigString": "GUST_WAVELENGTH",
-			"Category": 13,
+			"Category": 14,
 			"Description": "Gust wavelenght (meters)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2822,7 +2755,7 @@
 		{
 			"Value": "GustPeriods",
 			"ConfigString": "GUST_PERIODS",
-			"Category": 13,
+			"Category": 14,
 			"Description": "Number of gust periods",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2831,7 +2764,7 @@
 		{
 			"Value": "GustAmpl",
 			"ConfigString": "GUST_AMPL",
-			"Category": 13,
+			"Category": 14,
 			"Description": "Gust amplitude (m/s)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2840,7 +2773,7 @@
 		{
 			"Value": "GustBeginTime",
 			"ConfigString": "GUST_BEGIN_TIME",
-			"Category": 13,
+			"Category": 14,
 			"Description": "Time at which to begin the gust (sec)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2849,7 +2782,7 @@
 		{
 			"Value": "GustBeginLoc",
 			"ConfigString": "GUST_BEGIN_LOC",
-			"Category": 13,
+			"Category": 14,
 			"Description": "Location at which the gust begins (meters)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2858,7 +2791,7 @@
 		{
 			"Value": "GustDir",
 			"ConfigString": "GUST_DIR",
-			"Category": 13,
+			"Category": 14,
 			"Description": "Direction of the gust X or Y dir",
 			"Type": "Enum",
 			"ExtraType": "GustDir",
@@ -2867,7 +2800,7 @@
 		{
 			"Value": "EquivArea",
 			"ConfigString": "EQUIV_AREA",
-			"Category": 14,
+			"Category": 15,
 			"Description": "Evaluate equivalent area on the Near-Field",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -2876,7 +2809,7 @@
 		{
 			"Value": "EaIntLimit",
 			"ConfigString": "EA_INT_LIMIT",
-			"Category": 14,
+			"Category": 15,
 			"Description": "Integration limits of the equivalent area ( xmin, xmax, Dist_NearField )",
 			"Type": "DoubleArray",
 			"ExtraType": "3",
@@ -2885,7 +2818,7 @@
 		{
 			"Value": "GasModel",
 			"ConfigString": "GAS_MODEL",
-			"Category": 15,
+			"Category": 16,
 			"Description": "Specify chemical model for multi-species simulations",
 			"Type": "Enum",
 			"ExtraType": "Gasmodel",
@@ -2894,7 +2827,7 @@
 		{
 			"Value": "GasComposition",
 			"ConfigString": "GAS_COMPOSITION",
-			"Category": 15,
+			"Category": 16,
 			"Description": "",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -2903,7 +2836,7 @@
 		{
 			"Value": "RatioDensity",
 			"ConfigString": "RATIO_DENSITY",
-			"Category": 16,
+			"Category": 17,
 			"Description": "Ratio of density for two phase problems",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2912,7 +2845,7 @@
 		{
 			"Value": "RatioViscosity",
 			"ConfigString": "RATIO_VISCOSITY",
-			"Category": 16,
+			"Category": 17,
 			"Description": "Ratio of viscosity for two phase problems",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2921,7 +2854,7 @@
 		{
 			"Value": "FreesurfaceZero",
 			"ConfigString": "FREESURFACE_ZERO",
-			"Category": 16,
+			"Category": 17,
 			"Description": "Location of the freesurface (y or z coordinate)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2930,7 +2863,7 @@
 		{
 			"Value": "FreesurfaceDepth",
 			"ConfigString": "FREESURFACE_DEPTH",
-			"Category": 16,
+			"Category": 17,
 			"Description": "Free surface depth surface (x or y coordinate)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2939,7 +2872,7 @@
 		{
 			"Value": "FreesurfaceThickness",
 			"ConfigString": "FREESURFACE_THICKNESS",
-			"Category": 16,
+			"Category": 17,
 			"Description": "Thickness of the interface in a free surface problem",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2948,7 +2881,7 @@
 		{
 			"Value": "FreesurfaceDampingCoeff",
 			"ConfigString": "FREESURFACE_DAMPING_COEFF",
-			"Category": 16,
+			"Category": 17,
 			"Description": "Free surface damping coefficient",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2957,7 +2890,7 @@
 		{
 			"Value": "FreesurfaceDampingLength",
 			"ConfigString": "FREESURFACE_DAMPING_LENGTH",
-			"Category": 16,
+			"Category": 17,
 			"Description": "Free surface damping length (times the baseline wave)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2966,7 +2899,7 @@
 		{
 			"Value": "FreesurfaceOutlet",
 			"ConfigString": "FREESURFACE_OUTLET",
-			"Category": 16,
+			"Category": 17,
 			"Description": "Location of the free surface outlet surface (x or y coordinate)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -2975,7 +2908,7 @@
 		{
 			"Value": "DvKind",
 			"ConfigString": "DV_KIND",
-			"Category": 17,
+			"Category": 18,
 			"Description": "Kind of deformation",
 			"Type": "EnumList",
 			"ExtraType": "Param",
@@ -2984,7 +2917,7 @@
 		{
 			"Value": "DvMarker",
 			"ConfigString": "DV_MARKER",
-			"Category": 17,
+			"Category": 18,
 			"Description": "Marker of the surface to which we are going apply the shape deformation",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -2993,7 +2926,7 @@
 		{
 			"Value": "DvValue",
 			"ConfigString": "DV_VALUE",
-			"Category": 17,
+			"Category": 18,
 			"Description": "New value of the shape deformation",
 			"Type": "DoubleList",
 			"ExtraType": "",
@@ -3002,8 +2935,8 @@
 		{
 			"Value": "DvParam",
 			"ConfigString": "DV_PARAM",
-			"Category": 17,
-			"Description": "Parameters of the shape deformation- FFD_CONTROL_POINT_2D ( FFDBox ID, i_Ind, j_Ind, x_Disp, y_Disp )- FFD_CAMBER_2D ( FFDBox ID, i_Ind )- FFD_THICKNESS_2D ( FFDBox ID, i_Ind )- HICKS_HENNE ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), x_Loc )- COSINE_BUMP ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), x_Loc, Thickness )- FOURIER ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), index, cos(0)/sin(1) )- NACA_4DIGITS ( 1st digit, 2nd digit, 3rd and 4th digit )- PARABOLIC ( Center, Thickness )- DISPLACEMENT ( x_Disp, y_Disp, z_Disp )- ROTATION ( x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- OBSTACLE ( Center, Bump size )- SPHERICAL ( ControlPoint_Index, Theta_Disp, R_Disp )- FFD_CONTROL_POINT ( FFDBox ID, i_Ind, j_Ind, k_Ind, x_Disp, y_Disp, z_Disp )- FFD_DIHEDRAL_ANGLE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_TWIST_ANGLE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_ROTATION ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_CAMBER ( FFDBox ID, i_Ind, j_Ind )- FFD_THICKNESS ( FFDBox ID, i_Ind, j_Ind )",
+			"Category": 18,
+			"Description": "Parameters of the shape deformation- FFD_CONTROL_POINT_2D ( FFDBox ID, i_Ind, j_Ind, x_Disp, y_Disp )- FFD_CAMBER_2D ( FFDBox ID, i_Ind )- FFD_THICKNESS_2D ( FFDBox ID, i_Ind )- HICKS_HENNE ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), x_Loc )- COSINE_BUMP ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), x_Loc, Thickness )- FOURIER ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), index, cos(0)/sin(1) )- NACA_4DIGITS ( 1st digit, 2nd digit, 3rd and 4th digit )- PARABOLIC ( Center, Thickness )- DISPLACEMENT ( x_Disp, y_Disp, z_Disp )- ROTATION ( x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- OBSTACLE ( Center, Bump size )- SPHERICAL ( ControlPoint_Index, Theta_Disp, R_Disp )- FFD_CONTROL_POINT ( FFDBox ID, i_Ind, j_Ind, k_Ind, x_Disp, y_Disp, z_Disp )- FFD_DIHEDRAL_ANGLE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_TWIST_ANGLE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_ROTATION ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_CONTROL_SURFACE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_CAMBER ( FFDBox ID, i_Ind, j_Ind )- FFD_THICKNESS ( FFDBox ID, i_Ind, j_Ind )",
 			"Type": "DVParam",
 			"ExtraType": "",
 			"Default": "\u0026su2types.DVParam{}"
@@ -3011,7 +2944,7 @@
 		{
 			"Value": "HoldGridFixed",
 			"ConfigString": "HOLD_GRID_FIXED",
-			"Category": 17,
+			"Category": 18,
 			"Description": "Hold the grid fixed in a region",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -3020,7 +2953,7 @@
 		{
 			"Value": "HoldGridFixedCoord",
 			"ConfigString": "HOLD_GRID_FIXED_COORD",
-			"Category": 17,
+			"Category": 18,
 			"Description": "Coordinates of the box where the grid will be deformed (Xmin, Ymin, Zmin, Xmax, Ymax, Zmax)",
 			"Type": "DoubleArray",
 			"ExtraType": "6",
@@ -3029,7 +2962,7 @@
 		{
 			"Value": "VisualizeDeformation",
 			"ConfigString": "VISUALIZE_DEFORMATION",
-			"Category": 17,
+			"Category": 18,
 			"Description": "Visualize the deformation",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -3038,25 +2971,25 @@
 		{
 			"Value": "DeformConsoleOutput",
 			"ConfigString": "DEFORM_CONSOLE_OUTPUT",
-			"Category": 17,
+			"Category": 18,
 			"Description": "Print the residuals during mesh deformation to the console",
 			"Type": "Bool",
 			"ExtraType": "",
-			"Default": "true"
+			"Default": "false"
 		},
 		{
 			"Value": "DeformNonlinearIter",
 			"ConfigString": "DEFORM_NONLINEAR_ITER",
-			"Category": 17,
+			"Category": 18,
 			"Description": "Number of nonlinear deformation iterations (surface deformation increments)",
 			"Type": "UnsignedLong",
 			"ExtraType": "",
-			"Default": "1"
+			"Default": "5"
 		},
 		{
 			"Value": "DeformLinearIter",
 			"ConfigString": "DEFORM_LINEAR_ITER",
-			"Category": 17,
+			"Category": 18,
 			"Description": "Number of smoothing iterations for FEA mesh deformation",
 			"Type": "UnsignedLong",
 			"ExtraType": "",
@@ -3065,7 +2998,7 @@
 		{
 			"Value": "DeformTolFactor",
 			"ConfigString": "DEFORM_TOL_FACTOR",
-			"Category": 17,
+			"Category": 18,
 			"Description": "Factor to multiply smallest volume for deform tolerance (0.001 default)",
 			"Type": "Double",
 			"ExtraType": "",
@@ -3074,25 +3007,25 @@
 		{
 			"Value": "DeformStiffnessType",
 			"ConfigString": "DEFORM_STIFFNESS_TYPE",
-			"Category": 17,
+			"Category": 18,
 			"Description": "Type of element stiffness imposed for FEA mesh deformation (INVERSE_VOLUME, WALL_DISTANCE, CONSTANT_STIFFNESS)",
 			"Type": "Enum",
 			"ExtraType": "DeformStiffness",
 			"Default": "InverseVolume"
 		},
 		{
-			"Value": "YoungsModulus",
-			"ConfigString": "YOUNGS_MODULUS",
-			"Category": 17,
+			"Value": "DeformElasticityModulus",
+			"ConfigString": "DEFORM_ELASTICITY_MODULUS",
+			"Category": 18,
 			"Description": "Poisson's ratio for constant stiffness FEA method of grid deformation",
 			"Type": "Double",
 			"ExtraType": "",
 			"Default": "2E11"
 		},
 		{
-			"Value": "PoissonsRatio",
-			"ConfigString": "POISSONS_RATIO",
-			"Category": 17,
+			"Value": "DeformPoissonsRatio",
+			"ConfigString": "DEFORM_POISSONS_RATIO",
+			"Category": 18,
 			"Description": "Young's modulus and Poisson's ratio for constant stiffness FEA method of grid deformation",
 			"Type": "Double",
 			"ExtraType": "",
@@ -3101,7 +3034,7 @@
 		{
 			"Value": "CyclicPitch",
 			"ConfigString": "CYCLIC_PITCH",
-			"Category": 18,
+			"Category": 19,
 			"Description": "MISSING ---",
 			"Type": "Double",
 			"ExtraType": "",
@@ -3110,7 +3043,7 @@
 		{
 			"Value": "CollectivePitch",
 			"ConfigString": "COLLECTIVE_PITCH",
-			"Category": 18,
+			"Category": 19,
 			"Description": "MISSING ---",
 			"Type": "Double",
 			"ExtraType": "",
@@ -3119,7 +3052,7 @@
 		{
 			"Value": "ElasticityModulus",
 			"ConfigString": "ELASTICITY_MODULUS",
-			"Category": 19,
+			"Category": 20,
 			"Description": "Modulus of elasticity",
 			"Type": "Double",
 			"ExtraType": "",
@@ -3128,7 +3061,7 @@
 		{
 			"Value": "PoissonRatio",
 			"ConfigString": "POISSON_RATIO",
-			"Category": 19,
+			"Category": 20,
 			"Description": "Poisson ratio",
 			"Type": "Double",
 			"ExtraType": "",
@@ -3137,7 +3070,7 @@
 		{
 			"Value": "MaterialDensity",
 			"ConfigString": "MATERIAL_DENSITY",
-			"Category": 19,
+			"Category": 20,
 			"Description": "Material density",
 			"Type": "Double",
 			"ExtraType": "",
@@ -3146,7 +3079,7 @@
 		{
 			"Value": "WaveSpeed",
 			"ConfigString": "WAVE_SPEED",
-			"Category": 20,
+			"Category": 21,
 			"Description": "Constant wave speed",
 			"Type": "Double",
 			"ExtraType": "",
@@ -3155,7 +3088,7 @@
 		{
 			"Value": "ThermalDiffusivity",
 			"ConfigString": "THERMAL_DIFFUSIVITY",
-			"Category": 21,
+			"Category": 22,
 			"Description": "Thermal diffusivity constant",
 			"Type": "Double",
 			"ExtraType": "",
@@ -3164,7 +3097,7 @@
 		{
 			"Value": "VisualizeCv",
 			"ConfigString": "VISUALIZE_CV",
-			"Category": 22,
+			"Category": 23,
 			"Description": "Node number for the CV to be visualized",
 			"Type": "Long",
 			"ExtraType": "",
@@ -3173,7 +3106,7 @@
 		{
 			"Value": "InvDesignCp",
 			"ConfigString": "INV_DESIGN_CP",
-			"Category": 23,
+			"Category": 24,
 			"Description": "Evaluate inverse design on the surface",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -3182,7 +3115,7 @@
 		{
 			"Value": "InvDesignHeatflux",
 			"ConfigString": "INV_DESIGN_HEATFLUX",
-			"Category": 23,
+			"Category": 24,
 			"Description": "Evaluate inverse design on the surface",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -3191,7 +3124,7 @@
 		{
 			"Value": "ExtraOutput",
 			"ConfigString": "EXTRA_OUTPUT",
-			"Category": 24,
+			"Category": 25,
 			"Description": "Write extra output",
 			"Type": "Bool",
 			"ExtraType": "",
@@ -3200,7 +3133,7 @@
 		{
 			"Value": "MlTurbModelFile",
 			"ConfigString": "ML_TURB_MODEL_FILE",
-			"Category": 24,
+			"Category": 25,
 			"Description": "Location of the turb model itself",
 			"Type": "String",
 			"ExtraType": "",
@@ -3209,7 +3142,7 @@
 		{
 			"Value": "MlTurbModelFeatureset",
 			"ConfigString": "ML_TURB_MODEL_FEATURESET",
-			"Category": 24,
+			"Category": 25,
 			"Description": "what kind of input/output feature map is there",
 			"Type": "String",
 			"ExtraType": "",
@@ -3218,7 +3151,7 @@
 		{
 			"Value": "MlTurbModelExtra",
 			"ConfigString": "ML_TURB_MODEL_EXTRA",
-			"Category": 24,
+			"Category": 25,
 			"Description": "Extra values for ML Turb model",
 			"Type": "StringList",
 			"ExtraType": "",
@@ -3227,25 +3160,43 @@
 		{
 			"Value": "FfdIterations",
 			"ConfigString": "FFD_ITERATIONS",
-			"Category": 25,
+			"Category": 26,
 			"Description": "Number of total iterations in the FFD point inversion",
 			"Type": "UnsignedShort",
 			"ExtraType": "",
-			"Default": "1000"
+			"Default": "500"
 		},
 		{
 			"Value": "FfdTolerance",
 			"ConfigString": "FFD_TOLERANCE",
-			"Category": 25,
+			"Category": 26,
 			"Description": "Free surface damping coefficient",
 			"Type": "Double",
 			"ExtraType": "",
 			"Default": "1E-8"
 		},
 		{
+			"Value": "GradientMethod",
+			"ConfigString": "GRADIENT_METHOD",
+			"Category": 27,
+			"Description": "Gradient method",
+			"Type": "Python",
+			"ExtraType": "",
+			"Default": "\u0026su2types.Python{}"
+		},
+		{
+			"Value": "GeoParam",
+			"ConfigString": "GEO_PARAM",
+			"Category": 27,
+			"Description": "Geometrical Parameter",
+			"Type": "Python",
+			"ExtraType": "",
+			"Default": "\u0026su2types.Python{}"
+		},
+		{
 			"Value": "DefinitionDv",
 			"ConfigString": "DEFINITION_DV",
-			"Category": 26,
+			"Category": 27,
 			"Description": "Setup for design variables",
 			"Type": "Python",
 			"ExtraType": "",
@@ -3254,7 +3205,7 @@
 		{
 			"Value": "DvValueNew",
 			"ConfigString": "DV_VALUE_NEW",
-			"Category": 26,
+			"Category": 27,
 			"Description": "Current value of the design variables",
 			"Type": "Python",
 			"ExtraType": "",
@@ -3263,7 +3214,7 @@
 		{
 			"Value": "DvValueOld",
 			"ConfigString": "DV_VALUE_OLD",
-			"Category": 26,
+			"Category": 27,
 			"Description": "Previous value of the design variables",
 			"Type": "Python",
 			"ExtraType": "",
@@ -3272,7 +3223,7 @@
 		{
 			"Value": "NumberPart",
 			"ConfigString": "NUMBER_PART",
-			"Category": 26,
+			"Category": 27,
 			"Description": "Number of partitions of the mesh",
 			"Type": "Python",
 			"ExtraType": "",
@@ -3281,7 +3232,7 @@
 		{
 			"Value": "OptObjective",
 			"ConfigString": "OPT_OBJECTIVE",
-			"Category": 26,
+			"Category": 27,
 			"Description": "Optimization objective function with optional scaling factor",
 			"Type": "Python",
 			"ExtraType": "",
@@ -3290,7 +3241,7 @@
 		{
 			"Value": "OptConstraint",
 			"ConfigString": "OPT_CONSTRAINT",
-			"Category": 26,
+			"Category": 27,
 			"Description": "Optimization constraint functions with optional scaling factor",
 			"Type": "Python",
 			"ExtraType": "",
@@ -3299,7 +3250,7 @@
 		{
 			"Value": "FinDiffStep",
 			"ConfigString": "FIN_DIFF_STEP",
-			"Category": 26,
+			"Category": 27,
 			"Description": "Finite different step for gradient estimation",
 			"Type": "Python",
 			"ExtraType": "",
@@ -3308,7 +3259,7 @@
 		{
 			"Value": "Console",
 			"ConfigString": "CONSOLE",
-			"Category": 26,
+			"Category": 27,
 			"Description": "Verbosity of the python scripts to Stdout",
 			"Type": "Python",
 			"ExtraType": "",
@@ -3317,7 +3268,7 @@
 		{
 			"Value": "Decomposed",
 			"ConfigString": "DECOMPOSED",
-			"Category": 26,
+			"Category": 27,
 			"Description": "Flag specifying if the mesh was decomposed",
 			"Type": "Python",
 			"ExtraType": "",

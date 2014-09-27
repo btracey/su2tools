@@ -42,6 +42,10 @@
 				"Identifier": "NoAdapt",
 				"ConfigString": "NONE"
 			},
+			"Periodic": {
+				"Identifier": "Periodic",
+				"ConfigString": "PERIODIC"
+			},
 			"Remaining": {
 				"Identifier": "Remaining",
 				"ConfigString": "REMAINING"
@@ -220,6 +224,10 @@
 				"Identifier": "PressureBoundary",
 				"ConfigString": ""
 			},
+			"RiemannBoundary": {
+				"Identifier": "RiemannBoundary",
+				"ConfigString": ""
+			},
 			"SendReceive": {
 				"Identifier": "SendReceive",
 				"ConfigString": ""
@@ -348,6 +356,42 @@
 			}
 		},
 		"Mapname": "GradientMap"
+	},
+	"Fluidmodel": {
+		"Typename": "Fluidmodel",
+		"Option": {
+			"IdealGas": {
+				"Identifier": "IdealGas",
+				"ConfigString": "IDEAL_GAS"
+			},
+			"PrGas": {
+				"Identifier": "PrGas",
+				"ConfigString": "PR_GAS"
+			},
+			"StandardAir": {
+				"Identifier": "StandardAir",
+				"ConfigString": "STANDARD_AIR"
+			},
+			"VwGas": {
+				"Identifier": "VwGas",
+				"ConfigString": "VW_GAS"
+			}
+		},
+		"Mapname": "FluidmodelMap"
+	},
+	"FreestreamOption": {
+		"Typename": "FreestreamOption",
+		"Option": {
+			"DensityFs": {
+				"Identifier": "DensityFs",
+				"ConfigString": "DENSITY_FS"
+			},
+			"TemperatureFs": {
+				"Identifier": "TemperatureFs",
+				"ConfigString": "TEMPERATURE_FS"
+			}
+		},
+		"Mapname": "FreestreamoptionMap"
 	},
 	"Gasmodel": {
 		"Typename": "Gasmodel",
@@ -612,9 +656,9 @@
 	"Limiter": {
 		"Typename": "Limiter",
 		"Option": {
-			"Minmod": {
-				"Identifier": "Minmod",
-				"ConfigString": "MINMOD"
+			"BarthJespersen": {
+				"Identifier": "BarthJespersen",
+				"ConfigString": "BARTH_JESPERSEN"
 			},
 			"SharpEdges": {
 				"Identifier": "SharpEdges",
@@ -668,6 +712,22 @@
 				"Identifier": "Rfgmres",
 				"ConfigString": "RFGMRES"
 			},
+			"SmootherIlu": {
+				"Identifier": "SmootherIlu",
+				"ConfigString": "SMOOTHER_ILU0"
+			},
+			"SmootherJacobi": {
+				"Identifier": "SmootherJacobi",
+				"ConfigString": "SMOOTHER_JACOBI"
+			},
+			"SmootherLinelet": {
+				"Identifier": "SmootherLinelet",
+				"ConfigString": "SMOOTHER_LINELET"
+			},
+			"SmootherLusgs": {
+				"Identifier": "SmootherLusgs",
+				"ConfigString": "SMOOTHER_LUSGS"
+			},
 			"SteepestDescent": {
 				"Identifier": "SteepestDescent",
 				"ConfigString": "STEEPEST_DESCENT"
@@ -678,6 +738,10 @@
 	"LinearSolverPrec": {
 		"Typename": "LinearSolverPrec",
 		"Option": {
+			"Ilu": {
+				"Identifier": "Ilu",
+				"ConfigString": "ILU0"
+			},
 			"Jacobi": {
 				"Identifier": "Jacobi",
 				"ConfigString": "JACOBI"
@@ -711,9 +775,27 @@
 		},
 		"Mapname": "MathProblemMap"
 	},
+	"Measurements": {
+		"Typename": "Measurements",
+		"Option": {
+			"Si": {
+				"Identifier": "Si",
+				"ConfigString": "SI"
+			},
+			"Us": {
+				"Identifier": "Us",
+				"ConfigString": "US"
+			}
+		},
+		"Mapname": "MeasurementsMap"
+	},
 	"Objective": {
 		"Typename": "Objective",
 		"Option": {
+			"AvgTotalPressure": {
+				"Identifier": "AvgTotalPressure",
+				"ConfigString": "AVG_TOTAL_PRESSURE"
+			},
 			"DragCoefficient": {
 				"Identifier": "DragCoefficient",
 				"ConfigString": "DRAG"
@@ -757,6 +839,10 @@
 			"LiftCoefficient": {
 				"Identifier": "LiftCoefficient",
 				"ConfigString": "LIFT"
+			},
+			"MassFlowRate": {
+				"Identifier": "MassFlowRate",
+				"ConfigString": "MASS_FLOW_RATE"
 			},
 			"MaxThickSec1": {
 				"Identifier": "MaxThickSec1",
@@ -928,6 +1014,10 @@
 				"Identifier": "FfdControlPoint2d",
 				"ConfigString": "FFD_CONTROL_POINT_2D"
 			},
+			"FfdControlSurface": {
+				"Identifier": "FfdControlSurface",
+				"ConfigString": "FFD_CONTROL_SURFACE"
+			},
 			"FfdDihedralAngle": {
 				"Identifier": "FfdDihedralAngle",
 				"ConfigString": "FFD_DIHEDRAL_ANGLE"
@@ -1008,6 +1098,32 @@
 			}
 		},
 		"Mapname": "RegimeMap"
+	},
+	"RiemannType": {
+		"Typename": "RiemannType",
+		"Option": {
+			"DensityVelocity": {
+				"Identifier": "DensityVelocity",
+				"ConfigString": "DENSITY_VELOCITY"
+			},
+			"StaticPressure": {
+				"Identifier": "StaticPressure",
+				"ConfigString": "STATIC_PRESSURE"
+			},
+			"StaticSupersonicInflow": {
+				"Identifier": "StaticSupersonicInflow",
+				"ConfigString": "STATIC_SUPERSONIC_INFLOW"
+			},
+			"TotalConditionsPt": {
+				"Identifier": "TotalConditionsPt",
+				"ConfigString": "TOTAL_CONDITIONS_PT"
+			},
+			"TotalSupersonicInflow": {
+				"Identifier": "TotalSupersonicInflow",
+				"ConfigString": "TOTAL_SUPERSONIC_INFLOW"
+			}
+		},
+		"Mapname": "RiemannMap"
 	},
 	"RuntimeType": {
 		"Typename": "RuntimeType",
@@ -1205,28 +1321,6 @@
 		},
 		"Mapname": "SolverMap"
 	},
-	"Source": {
-		"Typename": "Source",
-		"Option": {
-			"ChargeDist": {
-				"Identifier": "ChargeDist",
-				"ConfigString": "CHARGE_DIST"
-			},
-			"NoSource": {
-				"Identifier": "NoSource",
-				"ConfigString": "NONE"
-			},
-			"PiecewiseConstant": {
-				"Identifier": "PiecewiseConstant",
-				"ConfigString": "PIECEWISE_CONSTANT"
-			},
-			"SourceTemplate": {
-				"Identifier": "SourceTemplate",
-				"ConfigString": "TEMPLATE_SOURCE_METHOD"
-			}
-		},
-		"Mapname": "SourceMap"
-	},
 	"Sourcejac": {
 		"Typename": "Sourcejac",
 		"Option": {
@@ -1288,32 +1382,24 @@
 				"Identifier": "Su2Cfd",
 				"ConfigString": ""
 			},
-			"Su2Ddc": {
-				"Identifier": "Su2Ddc",
+			"Su2Def": {
+				"Identifier": "Su2Def",
 				"ConfigString": ""
 			},
-			"Su2Gdc": {
-				"Identifier": "Su2Gdc",
+			"Su2Dot": {
+				"Identifier": "Su2Dot",
 				"ConfigString": ""
 			},
-			"Su2Gpc": {
-				"Identifier": "Su2Gpc",
+			"Su2Geo": {
+				"Identifier": "Su2Geo",
 				"ConfigString": ""
 			},
-			"Su2Mac": {
-				"Identifier": "Su2Mac",
+			"Su2Msh": {
+				"Identifier": "Su2Msh",
 				"ConfigString": ""
 			},
-			"Su2Mdc": {
-				"Identifier": "Su2Mdc",
-				"ConfigString": ""
-			},
-			"Su2Pbc": {
-				"Identifier": "Su2Pbc",
-				"ConfigString": ""
-			},
-			"Su2Smc": {
-				"Identifier": "Su2Smc",
+			"Su2Prt": {
+				"Identifier": "Su2Prt",
 				"ConfigString": ""
 			},
 			"Su2Sol": {
@@ -1475,26 +1561,18 @@
 		},
 		"Mapname": ""
 	},
-	"Viscous": {
-		"Typename": "Viscous",
+	"Viscositymodel": {
+		"Typename": "Viscositymodel",
 		"Option": {
-			"AvgGrad": {
-				"Identifier": "AvgGrad",
-				"ConfigString": "AVG_GRAD"
+			"ConstantViscosity": {
+				"Identifier": "ConstantViscosity",
+				"ConfigString": "COSTANT_VISCOSITY"
 			},
-			"AvgGradCorrected": {
-				"Identifier": "AvgGradCorrected",
-				"ConfigString": "AVG_GRAD_CORRECTED"
-			},
-			"Galerkin": {
-				"Identifier": "Galerkin",
-				"ConfigString": "GALERKIN"
-			},
-			"NoViscous": {
-				"Identifier": "NoViscous",
-				"ConfigString": "NONE"
+			"Sutherland": {
+				"Identifier": "Sutherland",
+				"ConfigString": "SUTHERLAND"
 			}
 		},
-		"Mapname": "ViscousMap"
+		"Mapname": "ViscositymodelMap"
 	}
 }

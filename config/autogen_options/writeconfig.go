@@ -183,6 +183,8 @@ func goTypeFromConfigType(typename, extra string) (string, error) {
 		return "enum.MathProblem", nil
 	case "Python":
 		return "*su2types.Python", nil
+	case "Riemann":
+		return "*su2types.Riemann", nil
 	}
 }
 

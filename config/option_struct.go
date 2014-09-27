@@ -28,10 +28,32 @@ type Options struct {
 	RestartSol bool
 	// Write a tecplot file for each partition
 	VisualizePart bool
-	// Specific gas constant (287.87 J/kg*K (air), only for compressible flows)
+	// System of measurements
+	SystemMeasurements enum.Measurements
+	// Fluid model
+	FluidModel enum.Fluidmodel
+	// Specific gas constant (287.058 J/kg*K (air), only for compressible flows)
 	GasConstant float64
 	// Ratio of specific heats (1.4 (air), only for compressible flows)
 	GammaValue float64
+	// Critical Temperature, default value for AIR
+	CriticalTemperature float64
+	// Critical Pressure, default value for MDM
+	CriticalPressure float64
+	// Critical Density, default value for MDM
+	CriticalDensity float64
+	// Critical Density, default value for MDM
+	AcentricFactor float64
+	// model of the viscosity
+	ViscosityModel enum.Viscositymodel
+	// Critical Temperature, default value for AIR
+	MuConstant float64
+	// Sutherland Viscosity Ref default value for AIR SI
+	MuRef float64
+	// Sutherland Temperature Ref, default value for AIR SI
+	MuTRef float64
+	// Sutherland constant, default value for AIR SI
+	SutherlandConstant float64
 	// Reynolds number (non-dimensional, based on the free-stream values)
 	ReynoldsNumber float64
 	// Reynolds length (1 m by default)
@@ -46,13 +68,15 @@ type Options struct {
 	ArtcompFactor float64
 	// Mach number (non-dimensional, based on the free-stream values)
 	MachNumber float64
+	// Free-stream option to choose between density and temperature for initializing the solution
+	FreestreamOption enum.FreestreamOption
 	// Free-stream pressure (101325.0 N/m^2 by default)
 	FreestreamPressure float64
 	// Free-stream density (1.2886 Kg/m^3 (air), 998.2 Kg/m^3 (water))
 	FreestreamDensity float64
-	// Free-stream temperature (273.15 K by default)
+	// Free-stream temperature (288.15 K by default)
 	FreestreamTemperature float64
-	// Free-stream vibrational-electronic temperature (273.15 K by default)
+	// Free-stream vibrational-electronic temperature (288.15 K by default)
 	FreestreamTemperatureVe float64
 	// Free-stream velocity (m/s)
 	FreestreamVelocity [3]float64
@@ -138,6 +162,8 @@ type Options struct {
 	InletType enum.InletType
 	// Inlet boundary marker(s) with the following formats,Total Conditions: (inlet marker, total temp, total pressure, flow_direction_x,flow_direction_y, flow_direction_z, ... ) where flow_direction isa unit vector.Mass Flow: (inlet marker, density, velocity magnitude, flow_direction_x,flow_direction_y, flow_direction_z, ... ) where flow_direction isa unit vector.
 	MarkerInlet *su2types.Inlet
+	// Riemann boundary marker(s) with the following formats, a unit vector.
+	MarkerRiemann *su2types.Riemann
 	// % Supersonic inlet boundary marker(s)Format: (inlet marker, temperature, static pressure, velocity_x,velocity_y, velocity_z, ... ), i.e. primitive variables specified.
 	MarkerSupersonicInlet *su2types.Inlet
 	// Outlet boundary marker(s)Format: ( outlet marker, back pressure (static), ... )
@@ -250,6 +276,8 @@ type Options struct {
 	AdjturbLinError float64
 	// Maximum number of iterations of the turbulent adjoint linear solver for the implicit formulation
 	AdjturbLinIter uint16
+	// Entropy fix factor
+	EntropyFixCoeff float64
 	// Convergence criteria
 	ConvCriteria enum.ConvergeCrit
 	// Residual reduction (order of magnitude with respect to the initial value)
@@ -288,8 +316,6 @@ type Options struct {
 	MgDampRestriction float64
 	// Damping factor for the correction prolongation
 	MgDampProlongation float64
-	// CFL reduction factor on the coarse levels
-	MgCflReduction float64
 	// Maximum number of children in the agglomeration stage
 	MaxChildren uint16
 	// Maximum length of an agglomerated element (relative to the domain)
@@ -298,14 +324,12 @@ type Options struct {
 	NumMethodGrad enum.FlowGradient
 	// Coefficient for the limiter
 	LimiterCoeff float64
+	// Freeze the value of the limiter after a number of iterations
+	LimiterIter uint64
 	// Coefficient for detecting the limit of the sharp edges
 	SharpEdgesCoeff float64
 	// Convective numerical method
 	ConvNumMethodFlow string
-	// Viscous numerical method
-	ViscNumMethodFlow enum.Viscous
-	// Source term numerical method
-	SourNumMethodFlow enum.Source
 	// Spatial numerical order integration
 	SpatialOrderFlow enum.SpatialOrder
 	// Slope limiter
@@ -314,10 +338,6 @@ type Options struct {
 	AdCoeffFlow [3]float64
 	// Convective numerical method
 	ConvNumMethodAdjflow string
-	// Viscous numerical method
-	ViscNumMethodAdjflow enum.Viscous
-	// Source term numerical method
-	SourNumMethodAdjflow enum.Source
 	// Spatial numerical order integration
 	SpatialOrderAdjflow enum.SpatialOrder
 	// Slope limiter
@@ -330,26 +350,14 @@ type Options struct {
 	SlopeLimiterTurb enum.Limiter
 	// Convective numerical method
 	ConvNumMethodTurb string
-	// Viscous numerical method
-	ViscNumMethodTurb enum.Viscous
-	// Source term numerical method
-	SourNumMethodTurb enum.Source
 	// Spatial numerical order integration
 	SpatialOrderAdjturb enum.SpatialOrder
 	// Slope limiter
 	SlopeLimiterAdjturb enum.Limiter
 	// Convective numerical method
 	ConvNumMethodAdjturb string
-	// Viscous numerical method
-	ViscNumMethodAdjturb enum.Viscous
-	// Source term numerical method
-	SourNumMethodAdjturb enum.Source
 	// Convective numerical method
 	ConvNumMethodLin string
-	// Viscous numerical method
-	ViscNumMethodLin enum.Viscous
-	// Source term numerical method
-	SourNumMethodLin enum.Source
 	// 1st, 2nd and 4th order artificial dissipation coefficients
 	AdCoeffLin [2]float64
 	// Spatial numerical order integration
@@ -358,16 +366,8 @@ type Options struct {
 	SlopeLimiterAdjlevelset enum.Limiter
 	// Convective numerical method
 	ConvNumMethodAdjlevelset string
-	// Viscous numerical method
-	ViscNumMethodAdjlevelset enum.Viscous
-	// Source term numerical method
-	SourNumMethodAdjlevelset enum.Source
 	// Convective numerical method
 	ConvNumMethodTne2 string
-	// Viscous numerical method
-	ViscNumMethodTne2 enum.Viscous
-	// Source term numerical method
-	SourNumMethodTne2 enum.Source
 	// Spatial numerical order integration
 	SpatialOrderTne2 enum.SpatialOrder
 	// Slope limiter
@@ -376,34 +376,12 @@ type Options struct {
 	AdCoeffTne2 [3]float64
 	// Convective numerical method
 	ConvNumMethodAdjtne2 string
-	// Viscous numerical method
-	ViscNumMethodAdjtne2 enum.Viscous
-	// Source term numerical method
-	SourNumMethodAdjtne2 enum.Source
 	// Spatial numerical order integration
 	SpatialOrderAdjtne2 enum.SpatialOrder
 	// Slope limiter
 	SlopeLimiterAdjtne2 enum.Limiter
 	// 1st, 2nd and 4th order artificial dissipation coefficients
 	AdCoeffAdjtne2 [3]float64
-	// Viscous numerical method
-	ViscNumMethodWave enum.Viscous
-	// Source term numerical method
-	SourNumMethodWave enum.Source
-	// Viscous numerical method
-	ViscNumMethodPoisson enum.Viscous
-	// Source term numerical method
-	SourNumMethodPoisson enum.Source
-	// Viscous numerical method
-	ViscNumMethodFea enum.Viscous
-	// Source term numerical method
-	SourNumMethodFea enum.Source
-	// Viscous numerical method
-	ViscNumMethodHeat enum.Viscous
-	// Source term numerical method
-	SourNumMethodHeat enum.Source
-	// Source term numerical method
-	SourNumMethodTemplate enum.Source
 	// Limit value for the adjoint variable
 	LimitAdjflow float64
 	// Adjoint problem boundary condition
@@ -450,6 +428,8 @@ type Options struct {
 	MeshScaleChange float64
 	// Write a new mesh converted to meters
 	MeshOutput bool
+	// Cuthill–McKee ordering algorithm
+	CuthillMckeeOrdering bool
 	// Mesh output file
 	MeshOutFilename string
 	// Output file convergence history (w/o extension)
@@ -516,10 +496,14 @@ type Options struct {
 	WrtRestart bool
 	// Output residual info to solution/restart file
 	WrtResiduals bool
+	// Output residual info to solution/restart file
+	WrtLimiters bool
+	// Output residual info to solution/restart file
+	WrtSharpedges bool
 	// Output the rind layers in the solution files
 	WrtHalo bool
 	// Output averaged stagnation pressure on specified exit marker.
-	Wrt1dOutput bool
+	OneDOutput bool
 	// Mesh motion for unsteady simulations
 	GridMovement bool
 	// Type of mesh motion
@@ -644,7 +628,7 @@ type Options struct {
 	DvMarker []string
 	// New value of the shape deformation
 	DvValue []float64
-	// Parameters of the shape deformation- FFD_CONTROL_POINT_2D ( FFDBox ID, i_Ind, j_Ind, x_Disp, y_Disp )- FFD_CAMBER_2D ( FFDBox ID, i_Ind )- FFD_THICKNESS_2D ( FFDBox ID, i_Ind )- HICKS_HENNE ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), x_Loc )- COSINE_BUMP ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), x_Loc, Thickness )- FOURIER ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), index, cos(0)/sin(1) )- NACA_4DIGITS ( 1st digit, 2nd digit, 3rd and 4th digit )- PARABOLIC ( Center, Thickness )- DISPLACEMENT ( x_Disp, y_Disp, z_Disp )- ROTATION ( x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- OBSTACLE ( Center, Bump size )- SPHERICAL ( ControlPoint_Index, Theta_Disp, R_Disp )- FFD_CONTROL_POINT ( FFDBox ID, i_Ind, j_Ind, k_Ind, x_Disp, y_Disp, z_Disp )- FFD_DIHEDRAL_ANGLE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_TWIST_ANGLE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_ROTATION ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_CAMBER ( FFDBox ID, i_Ind, j_Ind )- FFD_THICKNESS ( FFDBox ID, i_Ind, j_Ind )
+	// Parameters of the shape deformation- FFD_CONTROL_POINT_2D ( FFDBox ID, i_Ind, j_Ind, x_Disp, y_Disp )- FFD_CAMBER_2D ( FFDBox ID, i_Ind )- FFD_THICKNESS_2D ( FFDBox ID, i_Ind )- HICKS_HENNE ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), x_Loc )- COSINE_BUMP ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), x_Loc, Thickness )- FOURIER ( Lower Surface (0)/Upper Surface (1)/Only one Surface (2), index, cos(0)/sin(1) )- NACA_4DIGITS ( 1st digit, 2nd digit, 3rd and 4th digit )- PARABOLIC ( Center, Thickness )- DISPLACEMENT ( x_Disp, y_Disp, z_Disp )- ROTATION ( x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- OBSTACLE ( Center, Bump size )- SPHERICAL ( ControlPoint_Index, Theta_Disp, R_Disp )- FFD_CONTROL_POINT ( FFDBox ID, i_Ind, j_Ind, k_Ind, x_Disp, y_Disp, z_Disp )- FFD_DIHEDRAL_ANGLE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_TWIST_ANGLE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_ROTATION ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_CONTROL_SURFACE ( FFDBox ID, x_Orig, y_Orig, z_Orig, x_End, y_End, z_End )- FFD_CAMBER ( FFDBox ID, i_Ind, j_Ind )- FFD_THICKNESS ( FFDBox ID, i_Ind, j_Ind )
 	DvParam *su2types.DVParam
 	// Hold the grid fixed in a region
 	HoldGridFixed bool
@@ -663,9 +647,9 @@ type Options struct {
 	// Type of element stiffness imposed for FEA mesh deformation (INVERSE_VOLUME, WALL_DISTANCE, CONSTANT_STIFFNESS)
 	DeformStiffnessType enum.DeformStiffness
 	// Poisson's ratio for constant stiffness FEA method of grid deformation
-	YoungsModulus float64
+	DeformElasticityModulus float64
 	// Young's modulus and Poisson's ratio for constant stiffness FEA method of grid deformation
-	PoissonsRatio float64
+	DeformPoissonsRatio float64
 	// MISSING ---
 	CyclicPitch float64
 	// MISSING ---
@@ -698,6 +682,10 @@ type Options struct {
 	FfdIterations uint16
 	// Free surface damping coefficient
 	FfdTolerance float64
+	// Gradient method
+	GradientMethod *su2types.Python
+	// Geometrical Parameter
+	GeoParam *su2types.Python
 	// Setup for design variables
 	DefinitionDv *su2types.Python
 	// Current value of the design variables

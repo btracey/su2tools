@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"go/format"
+
 	autogen "github.com/btracey/su2tools/config/enum/autogen/autogencommon"
 )
 
